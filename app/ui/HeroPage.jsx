@@ -13,28 +13,28 @@ export const HeroPage = () => {
     <Image
       src={Logo}
       alt="pro"
-      width={window.innerWidth}
+      width={window?.innerWidth}
       height={40}
       className="shrink-0 object-cover"
     />,
     <Image
       src={Logo2}
       alt="pro"
-      width={window.innerWidth}
+      width={window?.innerWidth}
       height={40}
       className="shrink-0 object-cover aspect-auto"
     />,
     <Image
       src={Logo1}
       alt="pro"
-      width={window.innerWidth}
+      width={window?.innerWidth}
       height={40}
       className="shrink-0 object-cover"
     />,
     <Image
       src={Logo3}
       alt="pro"
-      width={window.innerWidth}
+      width={window?.innerWidth}
       height={40}
       className="shrink-0 object-cover"
     />,

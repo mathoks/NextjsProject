@@ -1,3 +1,3 @@
-import { handlers } from "@/auth.config"
-console.log(handlers)
-export const {GET, POST} = handlers
+import { handler } from "@/auth.config"
+console.log(handler)
+export {handler as GET, handler as POST }

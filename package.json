@@ -15,6 +15,7 @@
     "@mui/icons-material": "^5.15.18",
     "@mui/material": "^5.15.18",
     "@neondatabase/serverless": "^0.9.3",
+    "@next-auth/prisma-adapter": "^1.0.7",
     "@prisma/adapter-neon": "^5.14.0",
     "@prisma/client": "^5.14.0",
     "bcrypt": "^5.1.1",
