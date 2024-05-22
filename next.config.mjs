@@ -6,7 +6,8 @@ const nextConfig = {
             protocol: 'https',
             hostname: "imdb.com"
         }
-    ]}
+    ]},
+    trailingSlash: false
 };
 
 export default nextConfig;
