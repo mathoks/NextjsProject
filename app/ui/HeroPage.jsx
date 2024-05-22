@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-key */
+"use client"
 import Image from "next/image";
 import React from "react";
 import Logo from "@/app/assets/photo4.jpeg";
@@ -13,36 +14,32 @@ export const HeroPage = () => {
     <Image
       src={Logo}
       alt="pro"
-      width={window?.innerWidth}
       height={40}
-      className="shrink-0 object-cover"
+      className="shrink-0 object-cover w-full"
     />,
     <Image
       src={Logo2}
       alt="pro"
-      width={window?.innerWidth}
       height={40}
-      className="shrink-0 object-cover aspect-auto"
+      className="shrink-0 object-cover aspect-auto w-full"
     />,
     <Image
       src={Logo1}
       alt="pro"
-      width={window?.innerWidth}
       height={40}
-      className="shrink-0 object-cover"
+      className="shrink-0 object-cover w-full"
     />,
     <Image
       src={Logo3}
       alt="pro"
-      width={window?.innerWidth}
       height={40}
-      className="shrink-0 object-cover"
+      className="shrink-0 object-cover w-full"
     />,
   ];
 
   return (
     <section className="flex flex-col space-y-2 md:flex items-center">
-      <section className="flex flex-col max-w-lg md:flex-row gap-5 items-center justify-between bg-gray-100 py-12">
+      <section className="flex flex-col w-full md:flex-row gap-5 items-center justify-between bg-gray-100 py-12">
         <h2 className="text-4xl font-bold text-center md:text-left min-w-min text-gray-800 whitespace-pre-wrap">
           Welcome to mymart where shopping can only be fun
         </h2>
@@ -53,12 +50,12 @@ export const HeroPage = () => {
           </button>
         </div>
       </section>
-      <section className="grow space-y-6 flex flex-col  bg-gray-100">
-        <h3>Trending Produts</h3>
-        <div className="w-full">
+      <section className="grow space-y-6 flex flex-col w-full bg-gray-100">
+        {/* <h3 className="text-gray-800">Trending Produts</h3> */}
+        <div className="w-full bg-white">
           <Carousal autoslides="true" slides={slides} />
         </div>
-        <section className="grow flex-col overflow-scroll absolute space-y-2 top-3/4 img_p pl-2 pr-2 text-gray-800 w-full border-b-8 border-gray-300">
+        <section className="grow flex-col overflow-scroll absolute space-y-2 top-2/4 img_p pl-2 pr-2 text-gray-800 w-full border-b-8 border-gray-300">
           <h3>Discount Sales</h3>
           <div className="flex space-x-1 items-center gap-2">
             <div className="flex flex-col space-y-0 w-full rounded-md min-w-40 max-h-52">
