@@ -37,4 +37,12 @@ body {
   .img_p{
     padding-top: 180px;
   }
+  .icon_slate {
+    --tw-bg-opacity: 1;
+    color: rgb(15 23 42 / var(--tw-bg-opacity));
+}
+.sticky\:tab{
+  --tw-bg-opacity: 1;
+    background-color: rgb(15 23 42 / var(--tw-bg-opacity));
+}
 }

@@ -65,7 +65,7 @@ export default async function Home() {
             <section>
             <HeroPage/>
             </section>
-            <section>
+            <section className=" bg-white sticky top-[129px] tab shadow-md shadow-black/20 rounded-md">
               <Tab/>
             </section>
            <section className="bg-white ">
