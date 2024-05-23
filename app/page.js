@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import Products from "./ui/Products";
 import { HeroPage } from "./ui/HeroPage";
 import { auth } from "@/auth";
+import Tab from "./ui/Tab";
 
 // function Auth({ children }) {
 //   // if `{ required: true }` is supplied, `status` can only be "loading" or "authenticated"
@@ -58,13 +59,17 @@ export default async function Home() {
   }
   return (
     <SessionProvider baseUrl={"/api/auth"} session={session}>
-      <section className="flex min-h-screen flex-col items-center justify-between space-y-2">
-        <div className="mt-28 flex flex-col space-y-2">
+      <section className="flex min-h-screen flex-col items-center space-y-2 w-full">
+        <div className="mt-28 flex flex-col space-y-2 items-center">
            
             <section>
             <HeroPage/>
             </section>
-           <section className="bg-white w-full">
+            <section>
+              <Tab/>
+            </section>
+           <section className="bg-white ">
+           
            <Products/>
            </section>
           

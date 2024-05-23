@@ -14,26 +14,34 @@ export const HeroPage = () => {
     <Image
       src={Logo}
       alt="pro"
+      width={300}
+      loading="lazy"
       height={40}
-      className="shrink-0 object-cover w-full"
+      className="shrink-0 object-cover w-screen"
     />,
     <Image
       src={Logo2}
       alt="pro"
       height={40}
-      className="shrink-0 object-cover aspect-auto w-full"
+      width={300}
+      loading="lazy"
+      className="shrink-0 object-cover w-screen"
     />,
     <Image
       src={Logo1}
       alt="pro"
       height={40}
-      className="shrink-0 object-cover w-full"
+      width={300}
+      loading="lazy"
+      className="shrink-0 object-cover w-screen"
     />,
     <Image
       src={Logo3}
       alt="pro"
       height={40}
-      className="shrink-0 object-cover w-full"
+      width={300}
+      loading="lazy"
+      className="shrink-0 object-cover w-screen"
     />,
   ];
 
@@ -50,15 +58,16 @@ export const HeroPage = () => {
           </button>
         </div>
       </section>
-      <section className="grow space-y-6 flex flex-col w-full bg-gray-100">
+      <section className="grow flex flex-col w-full bg-gray-100">
         {/* <h3 className="text-gray-800">Trending Produts</h3> */}
         <div className="w-full bg-white">
-          <Carousal autoslides="true" slides={slides} />
+          <Carousal autoslides="true" slides={slides.map(e=>e)} />
         </div>
-        <section className="grow flex-col overflow-scroll absolute space-y-2 top-2/4 img_p pl-2 pr-2 text-gray-800 w-full border-b-8 border-gray-300">
+        </section>
+        <section className="flex flex-col overflow-x-scroll bg-white space-y-2 pt-8 pb-8 text-gray-800 p-4 w-screen">
           <h3>Discount Sales</h3>
-          <div className="flex space-x-1 items-center gap-2">
-            <div className="flex flex-col space-y-0 w-full rounded-md min-w-40 max-h-52">
+          <div className="flex justify-start items-center gap-4 w-full overflow-x-scroll ">
+            <div className="flex flex-col space-y-0  rounded-md  max-h-52 w-40">
               <div className="bg-white text-left p-4">
                 <h3>Amazing Gifts</h3>
               </div>
@@ -66,12 +75,12 @@ export const HeroPage = () => {
               <Image
                 src={Logo}
                 alt="pro"
-                width={150}
-                height={100}
-                className="shrink-0 object-cover w-full h-40"
+                // width={200}
+                // height={200}
+                className="shrink-0 object-cover h-40 w-40"
               />
             </div>
-            <div className="flex flex-col space-y-0 w-full rounded-md min-w-40 max-h-52">
+            <div className="flex flex-col space-y-0 rounded-md max-h-52 w-full">
               <div className="bg-white text-left p-4">
                 <h3>Amazing Gifts</h3>
               </div>
@@ -81,11 +90,11 @@ export const HeroPage = () => {
                   alt="pro"
                   width={150}
                   height={100}
-                  className="shrink-0 w-full h-40"
+                  className="shrink-0  h-40 object-cover"
                 />
               </div>
             </div>
-            <div className="flex flex-col space-y-0 w-full min-w-40 max-h-52">
+            <div className="flex flex-col space-y-0 max-h-52 w-full">
               <div className="bg-white text-left p-4">
                 <h3>Amazing Gifts</h3>
               </div>
@@ -95,14 +104,55 @@ export const HeroPage = () => {
                   alt="pro"
                   width={150}
                   height={100}
-                  className="shrink-0 w-full h-40"
+                  className="shrink-0 object-cover h-40"
+                />
+              </div>
+            </div>
+            <div className="flex flex-col space-y-0 max-h-52 w-full">
+              <div className="bg-white text-left p-4">
+                <h3>Amazing Gifts</h3>
+              </div>
+              <div>
+                <Image
+                  src={Logo2}
+                  alt="pro"
+                  width={150}
+                  height={100}
+                  className="shrink-0 object-cover h-40"
+                />
+              </div>
+            </div>
+            <div className="flex flex-col space-y-0 max-h-52 w-full">
+              <div className="bg-white text-left p-4">
+                <h3>Amazing Gifts</h3>
+              </div>
+              <div>
+                <Image
+                  src={Logo3}
+                  alt="pro"
+                  width={150}
+                  height={100}
+                  className="shrink-0 object-cover h-40"
+                />
+              </div>
+            </div>
+            <div className="flex flex-col space-y-0 max-h-52 w-full">
+              <div className="bg-white text-left p-4">
+                <h3>Amazing Gifts</h3>
+              </div>
+              <div>
+                <Image
+                  src={Logo3}
+                  alt="pro"
+                  width={150}
+                  height={100}
+                  className="shrink-0 object-cover h-40"
                 />
               </div>
             </div>
           </div>
         </section>
-      </section>
-      <section className="grow space-y-2 mt-60 pt-44 text-gray-800  bg-gray-100">
+      <section className="grow space-y-2 text-gray-800  bg-gray-100 pt-4 pb-10 pl-4 pr-4">
         <h3 className="font-bold">Discount Sales</h3>
         <div className="overflow-x-scroll w-full">
           <div className="flex items-center gap-3 overflow-scroll w-full">
