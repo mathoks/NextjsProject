@@ -6,7 +6,7 @@ const Products = () => {
     console.log(Arr)
   return (
     <section className='flex flex-col space-y-4 w-screen pt-4' >
-    <h3 className='text-gray-800 p-4 font-bold'>Dealers Section</h3>
+    <h3 className='text-gray-800 p-4 font-bold'>Dealers Reel</h3>
     <div  className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center'>
    {Arr.map((_, i)=>
     
