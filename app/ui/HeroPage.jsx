@@ -64,7 +64,7 @@ export const HeroPage = () => {
           <Carousal autoslides="true" slides={slides.map(e=>e)} />
         </div>
         </section>
-        <section className="flex flex-col overflow-x-scroll bg-white space-y-4 pt-8 pb-8 text-gray-800  w-screen h-fit">
+        <section className="flex flex-col overflow-x-scroll bg-white space-y-2 pt-8 pb-8 text-gray-800  w-screen h-fit">
           <h3 className="font-bold pl-4">Discount Sales</h3>
           <div className="flex justify-start items-center gap-4 w-full overflow-x-scroll h-fit p-6">
             <div className="flex flex-col space-y-0 rounded max-h-52 w-full  shadow-2xl hover:outline-4 z-40">
