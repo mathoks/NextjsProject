@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 const Tab = () => {
     const [index, setIndex] = useState(0)
     const handleChange = (e)=>{
-        setIndex(()=>e.target.value)
+        setIndex((prev)=> e.target.value === undefined ? prev : e.target.value)
         console.log(index)
     }
 

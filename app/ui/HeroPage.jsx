@@ -18,6 +18,7 @@ export const HeroPage = () => {
       loading="lazy"
       height={40}
       className="shrink-0 object-cover w-screen"
+      key={0}
     />,
     <Image
       src={Logo2}
@@ -26,14 +27,16 @@ export const HeroPage = () => {
       width={300}
       loading="lazy"
       className="shrink-0 object-cover w-screen"
+      key={1}
     />,
     <Image
       src={Logo1}
       alt="pro"
-      height={40}
+      height={400}
       width={300}
       loading="lazy"
       className="shrink-0 object-cover w-screen"
+      key={2}
     />,
     <Image
       src={Logo3}
@@ -42,6 +45,7 @@ export const HeroPage = () => {
       width={300}
       loading="lazy"
       className="shrink-0 object-cover w-screen"
+      key={3}
     />,
   ];
 
@@ -62,7 +66,7 @@ export const HeroPage = () => {
         {/* <h3 className="text-gray-800">Trending Produts</h3> */}
         <div className="w-full bg-white font-bold flex flex-col justify-start text-gray-900 gap-4 first:pt-4 pl-4 pr-4">
           <h4>New Arrivals</h4>
-          <Carousal autoslides="true" slides={slides.map(e=>e)} />
+          <Carousal autoSlide={true} slides={slides} />
         </div>
         </section>
         <section className="flex flex-col overflow-x-scroll bg-white space-y-2 pt-8 pb-8 text-gray-800  w-screen h-fit">
