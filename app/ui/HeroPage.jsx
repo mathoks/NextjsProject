@@ -64,24 +64,24 @@ export const HeroPage = () => {
           <Carousal autoslides="true" slides={slides.map(e=>e)} />
         </div>
         </section>
-        <section className="flex flex-col overflow-x-scroll bg-white space-y-2 pt-8 pb-8 text-gray-800 p-4 w-screen">
-          <h3>Discount Sales</h3>
-          <div className="flex justify-start items-center gap-4 w-full overflow-x-scroll ">
-            <div className="flex flex-col space-y-0  rounded-md  max-h-52 w-40">
-              <div className="bg-white text-left p-4">
-                <h3>Amazing Gifts</h3>
+        <section className="flex flex-col overflow-x-scroll bg-white space-y-4 pt-8 pb-8 text-gray-800  w-screen h-fit">
+          <h3 className="font-bold pl-4">Discount Sales</h3>
+          <div className="flex justify-start items-center gap-4 w-full overflow-x-scroll h-fit p-6">
+            <div className="flex flex-col space-y-0 rounded max-h-52 w-full  shadow-2xl hover:outline-4 z-40">
+              <div className="bg-white text-left p-4 text-nowrap rounded-r-md rounded-l-md">
+                <h3 >Amazing Gifts</h3>
               </div>
 
               <Image
                 src={Logo}
                 alt="pro"
-                // width={200}
-                // height={200}
+                width={200}
+                height={200}
                 className="shrink-0 object-cover h-40 w-40"
               />
             </div>
-            <div className="flex flex-col space-y-0 rounded-md max-h-52 w-full">
-              <div className="bg-white text-left p-4">
+            <div className="flex flex-col space-y-0 rounded-md max-h-52 w-full shadow-2xl z-40">
+              <div className="bg-white text-left p-4 text-nowrap rounded-r-md rounded-l-md">
                 <h3>Amazing Gifts</h3>
               </div>
               <div>
@@ -94,8 +94,8 @@ export const HeroPage = () => {
                 />
               </div>
             </div>
-            <div className="flex flex-col space-y-0 max-h-52 w-full">
-              <div className="bg-white text-left p-4">
+            <div className="flex flex-col space-y-0 max-h-52 w-full shadow-2xl z-40">
+              <div className="bg-white text-left p-4 text-nowrap rounded-r-md rounded-l-md">
                 <h3>Amazing Gifts</h3>
               </div>
               <div>
@@ -108,8 +108,8 @@ export const HeroPage = () => {
                 />
               </div>
             </div>
-            <div className="flex flex-col space-y-0 max-h-52 w-full">
-              <div className="bg-white text-left p-4">
+            <div className="flex flex-col space-y-0 max-h-52 w-full shadow-2xl z-40">
+              <div className="bg-white text-left p-4 text-nowrap rounded-r-md rounded-l-md">
                 <h3>Amazing Gifts</h3>
               </div>
               <div>
@@ -122,8 +122,8 @@ export const HeroPage = () => {
                 />
               </div>
             </div>
-            <div className="flex flex-col space-y-0 max-h-52 w-full">
-              <div className="bg-white text-left p-4">
+            <div className="flex flex-col space-y-0 max-h-52 w-full shadow-2xl z-40">
+              <div className="bg-white text-left p-4 text-nowrap rounded-r-md rounded-l-md">
                 <h3>Amazing Gifts</h3>
               </div>
               <div>
@@ -136,8 +136,8 @@ export const HeroPage = () => {
                 />
               </div>
             </div>
-            <div className="flex flex-col space-y-0 max-h-52 w-full">
-              <div className="bg-white text-left p-4">
+            <div className="flex flex-col space-y-0 max-h-52 w-full shadow-2xl z-40">
+              <div className="bg-white text-left p-4 text-nowrap rounded-r-md rounded-l-md">
                 <h3>Amazing Gifts</h3>
               </div>
               <div>
