@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/app/assets/photo1.jpeg"
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { LocationOnOutlined, SearchOutlined } from "@mui/icons-material";
+import { LocationOn, LocationOnOutlined, SearchOutlined } from "@mui/icons-material";
 import { blue, pink } from "@mui/material/colors";
 
 
@@ -28,7 +28,7 @@ export const Nav = () => {
         <div className="border flex items-center justify-between bg-white p-2 space-x-1 rounded-md">
         <SearchOutlined className="icon_slate" fontSize="medium" sx={{ zIndex: 80}}/>
         <input placeholder="find here" className="placeholder:text-center text-zinc-950  pl-4 pr-4 focus:outline-none"/>
-        <LocationOnOutlined className="icon_slate" fontSize="medium"/>
+        <LocationOn className="icon_slate" fontSize="medium" />
       </div>
       </div>
       </section>

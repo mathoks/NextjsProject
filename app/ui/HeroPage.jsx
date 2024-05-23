@@ -47,11 +47,11 @@ export const HeroPage = () => {
 
   return (
     <section className="flex flex-col space-y-2 md:flex items-center">
-      <section className="flex flex-col w-full md:flex-row gap-5 items-center justify-between bg-gray-100 py-12">
+      <section className="flex flex-col w-full md:flex-row gap-5 items-center justify-between bg-white py-12">
         <h2 className="text-4xl font-bold text-center md:text-left min-w-min text-gray-800 whitespace-pre-wrap">
           Welcome to mymart where shopping can only be fun
         </h2>
-        <div className="flex flex-col mx-auto font-bold text-center max-w-xl space-y-8 text-gray-800">
+        <div className="flex flex-col mx-auto font-bold text-center max-w-xl space-y-8 text-gray-800 w-3/4 p-6">
           <h4>Get a Store Today</h4>
           <button className="p-4 bg-blue-600 rounded whitespace-nowrap text-cyan-50">
             OPEN A STORE
@@ -61,7 +61,7 @@ export const HeroPage = () => {
       <section className="grow flex flex-col w-full bg-gray-100">
         {/* <h3 className="text-gray-800">Trending Produts</h3> */}
         <div className="w-full bg-white font-bold flex flex-col justify-start text-gray-900 gap-4 first:pt-4 pl-4 pr-4">
-          <h4>Top Dealers</h4>
+          <h4>New Arrivals</h4>
           <Carousal autoslides="true" slides={slides.map(e=>e)} />
         </div>
         </section>
