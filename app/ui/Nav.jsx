@@ -5,11 +5,12 @@ import Logo from "@/app/assets/photo1.jpeg"
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { LocationOn, LocationOnOutlined, SearchOutlined } from "@mui/icons-material";
 import { blue, pink } from "@mui/material/colors";
+import Tab from "./Tab";
 
 
 export const Nav = () => {
   return (
-    <nav className=" bg-slate-900 pb-4 fixed w-full z-50 shadow-md shadow-black/20" >
+    <nav aria-label="main" className=" flex flex-col space-y-0 bg-slate-900 pb-1 fixed w-full z-50 shadow-md shadow-black/20" >
     <div className="sm: flex flex-col space-y-4  md:flex items-center justify-center p-4">
     <section>
       <Link href={"#"} className="flex  gap-4 items-center">
@@ -38,6 +39,7 @@ export const Nav = () => {
       
       </section> */}
       </div>
+      <Tab/>
     </nav>
   );
 };

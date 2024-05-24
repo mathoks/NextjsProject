@@ -41,7 +41,7 @@ export const HeroPage = () => {
     <Image
       src={Logo}
       alt="pro"
-      width={300}
+      width={100}
       loading="lazy"
       height={40}
       className="shrink-0 object-cover w-screen"
