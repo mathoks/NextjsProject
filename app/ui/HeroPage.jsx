@@ -80,7 +80,7 @@ export const HeroPage = () => {
   return (
     <section className="flex flex-col space-y-2 md:flex items-center">
       <section className="flex bg-gradient-to-t relative from-white via-slate-400 to-slate-600 flex-col w-full md:flex-row gap-5 items-center justify-between  py-12">
-        <h2 className="text-4xl font-bold text-center md:text-left min-w-min text-gray-800 whitespace-pre-wrap">
+        <h2 className="text-3xl pt-8 w-3/4 font-bold text-center md:text-left min-w-min text-gray-800 whitespace-pre-wrap">
           Welcome to mymart where shopping can only be fun
         </h2>
         <div className="flex flex-col mx-auto font-bold text-center max-w-xl space-y-8 text-gray-800 w-3/4 p-6">

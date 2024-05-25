@@ -69,7 +69,7 @@ const Carousel = ({ slides = [], autoSlide = false, autoInterval = 3000 }) => {
           ))}
         </div>
       </div>
-      <div className="absolute inset-4">
+      {/* <div className="absolute inset-4">
         <div className="flex items-center justify-start gap-2">
           {slides.map((slide, i) => (
             <div
@@ -78,7 +78,7 @@ const Carousel = ({ slides = [], autoSlide = false, autoInterval = 3000 }) => {
             ><p>{slide.name}</p></div>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
