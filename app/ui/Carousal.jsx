@@ -75,8 +75,7 @@ const Carousel = ({ slides = [], autoSlide = false, autoInterval = 3000 }) => {
             <div
               key={i}
               className={`transition-all w-3 h-3 text-blue-600 text-xl first-letter:capitalize  ${(currentSlide === i ? "p-2" : " hidden")}`}
-              children={<p>{slide.name}</p>}
-            />
+            ><p>{slide.name}</p></div>
           ))}
         </div>
       </div>
