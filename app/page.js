@@ -59,14 +59,13 @@ export default async function Home() {
   }
   return (
     <SessionProvider baseUrl={"/api/auth"} session={session}>
-      <section className="flex min-h-screen flex-col items-center space-y-2 w-full">
-        <div className="mt-28 flex flex-col space-y-2 items-center">
+      <section className="flex min-h-screen flex-col items-center space-y-1 w-full">
+        <div className="mt-28 flex flex-col space-y-1 items-center">
            
             <section>
             <HeroPage/>
             </section>
            <section className="bg-white ">
-           
            <Products/>
            </section>
           

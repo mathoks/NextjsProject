@@ -4,13 +4,14 @@ import Image from "next/image";
 import React, { Suspense, useCallback, useEffect, useState } from "react";
 import Logo from "@/app/assets/photo4.jpeg";
 import Logo1 from "@/app/assets/photo2.jpeg";
-import Logo2 from "@/app/assets/photo3.jpeg";
-import Logo3 from "@/app/assets/photo5.jpeg";
+import Logo2 from "@/app/assets/photo7.jpeg";
+import Logo3 from "@/app/assets/photo7.jpeg";
 import Carousal from "./Carousal";
 import { signIn, useSession } from "next-auth/react";
 import { CircularProgress } from "@mui/material";
 import Loading from "../loading";
 import HeroCard from "./HeroCard";
+import herobg from "@/app/assets/herobg.png";
 
 export const HeroPage = () => {
   const [child, setchild] = useState(<Loading />);
@@ -38,69 +39,35 @@ export const HeroPage = () => {
   }, [handleCreateStore]);
 
   // eslint-disable-next-line react/jsx-key
-  const slides = [
-    <Image
-      src={Logo}
-      alt="pro"
-      width={200}
-      loading="lazy"
-      height={200}
-      className="shrink-0 object-cover w-screen"
-      key={0}
-    />,
-    <Image
-      src={Logo2}
-      alt="pro"
-      height={40}
-      width={300}
-      loading="lazy"
-      className="shrink-0 object-cover w-screen"
-      key={1}
-    />,
-    <Image
-      src={Logo1}
-      alt="pro"
-      height={400}
-      width={300}
-      loading="lazy"
-      className="shrink-0 object-cover w-screen"
-      key={2}
-    />,
-    <Image
-      src={Logo3}
-      alt="pro"
-      height={40}
-      width={300}
-      loading="lazy"
-      className="shrink-0 object-cover w-screen"
-      key={3}
-    />,
-  ];
 
   return (
-    <section className="flex flex-col space-y-2 md:flex items-center">
-      <section className="flex w-full  items-center justify-between  py-12 h-auto bg-slate-100">
-        <h2 className="text-3xl pt-8 w-3/4 font-bold text-center md:text-left min-w-min text-gray-800 whitespace-pre-wrap">
-          Welcome to mymart 
-        </h2>
-        <div className="flex flex-col mx-auto font-bold text-center max-w-xl space-y-8 text-gray-800 w-3/4 p-6">
-          <h4>Get a Store Today</h4>
+    <section className="flex flex-col space-y-2">
+      <section className=" bg_image bg-left">
+        <div className="flex flex-col w-full space-y-2  py-24 h-auto pl-8 items-start">
+          <div className="min-w-min">
+            <h2 className="text-3xl  w-2/3 text-left md:text-left font-bold   text-gray-800 ">
+              Welcome to mymart
+            </h2>
+          </div>
+          <div className="flex flex-col font-bold  space-y-4 text-gray-800 md:text-left ">
+            <h4>Get a Store Today</h4>
 
-          <button
-            className="p-2 bg-blue-600 rounded whitespace-nowrap text-cyan-50 text-sm"
-            onClick={handleCreateStore}
-          >
-            {child}
-          </button>
+            <button
+              className="p-2 bg-blue-600 rounded  text-cyan-50 text-sm"
+              onClick={handleCreateStore}
+            >
+              {child}
+            </button>
+          </div>
         </div>
       </section>
       <section className="grow flex flex-col w-full bg-gray-100">
         {/* <h3 className="text-gray-800">Trending Produts</h3> */}
         <div className="w-full bg-white font-bold flex flex-col justify-start text-gray-900 overflow-x-scroll">
-          {<HeroCard/>}
+          {<HeroCard />}
         </div>
       </section>
-      <section className="flex flex-col overflow-x-scroll bg-white space-y-2 pt-8 pb-8 text-gray-800  w-screen h-fit">
+      <section className="flex flex-col overflow-x-scroll bg-white space-y-2 pt-4 pb-8 text-gray-800  w-screen h-fit">
         <h3 className="font-bold pl-4">Trending Now</h3>
         <div className="flex justify-start items-center gap-4 w-full overflow-x-scroll h-fit p-2">
           <div className="flex flex-col space-y-0 rounded-md ring-1 overflow-y-clip w-full  shadow-md hover:outline-4 z-40">

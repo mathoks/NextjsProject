@@ -2,9 +2,9 @@ import React from "react";
 import Carousel from "./Carousal";
 import Image from "next/image";
 import Logo from "@/app/assets/photo4.jpeg";
-import Logo1 from "@/app/assets/photo2.jpeg";
-import Logo2 from "@/app/assets/photo3.jpeg";
-import Logo3 from "@/app/assets/photo5.jpeg";
+import Logo1 from "@/app/assets/photo6.jpeg";
+import Logo2 from "@/app/assets/photo7.jpeg";
+import Logo3 from "@/app/assets/photo3.jpeg";
 
 /**
  * @function

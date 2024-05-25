@@ -51,7 +51,7 @@ const Carousel = ({ slides = [], autoSlide = false, autoInterval = 3000 }) => {
           
       
       
-      <div className="absolute inset-0 -top-24 flex items-center p-4 justify-between">
+      <div className="hidden absolute inset-0 -top-24 md:flex  items-center p-4 justify-between">
         <button onClick={handlePrev} className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white">
           <ChevronLeft fontSize="medium" />
         </button>
