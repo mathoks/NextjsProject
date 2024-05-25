@@ -79,15 +79,15 @@ export const HeroPage = () => {
 
   return (
     <section className="flex flex-col space-y-2 md:flex items-center">
-      <section className="flex bg-gradient-to-t relative from-white via-slate-400 to-slate-600 flex-col w-full md:flex-row gap-5 items-center justify-between  py-12">
+      <section className="flex w-full  items-center justify-between  py-12 h-auto bg-slate-100">
         <h2 className="text-3xl pt-8 w-3/4 font-bold text-center md:text-left min-w-min text-gray-800 whitespace-pre-wrap">
-          Welcome to mymart where shopping can only be fun
+          Welcome to mymart 
         </h2>
         <div className="flex flex-col mx-auto font-bold text-center max-w-xl space-y-8 text-gray-800 w-3/4 p-6">
           <h4>Get a Store Today</h4>
 
           <button
-            className="p-4 bg-blue-600 rounded whitespace-nowrap text-cyan-50"
+            className="p-2 bg-blue-600 rounded whitespace-nowrap text-cyan-50 text-sm"
             onClick={handleCreateStore}
           >
             {child}
@@ -96,9 +96,7 @@ export const HeroPage = () => {
       </section>
       <section className="grow flex flex-col w-full bg-gray-100">
         {/* <h3 className="text-gray-800">Trending Produts</h3> */}
-        <div className="w-full bg-white font-bold flex flex-col justify-start text-gray-900 gap-4 first:pt-4 overflow-x-scroll">
-          <h4 className="pl-2">New Arrivals</h4>
-          {/* <Carousal autoSlide={true} slides={slides} /> */}
+        <div className="w-full bg-white font-bold flex flex-col justify-start text-gray-900 overflow-x-scroll">
           {<HeroCard/>}
         </div>
       </section>

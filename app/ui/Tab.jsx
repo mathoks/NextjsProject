@@ -18,10 +18,10 @@ const Tabs = [{"id": 0, "val": "all Stores",  "href": "#", 'icon': <AllOutOutlin
     <ul role='list' value = {index} defaultValue={0}  onClick={handleChange} className='pl-2 pr-2 flex items-start justify-between  overflow-x-scroll gap-8 text-white  pt-2 w-screen'>
       { Tabs.map((tab, id)=>(
         
-        <li key={tab.id} value={tab.id || id}  className={`first-letter:capitalize  focus:font-medium pb-1 text-nowrap  ${index === tab.id? 'border-b-2 border-slate-100 text-base  text-slate-50' : 'border-none text-sm' }`}>
+        <li key={tab.id} value={tab.id || id}  className={`first-letter:capitalize cursor-pointer focus:font-medium pb-1 text-nowrap  ${index === tab.id? 'border-b-2 border-slate-100 text-base  text-slate-50' : 'border-none text-sm' }`}>
         <ul role='list' defaultValue={0} className='flex items-center justify-start gap-1'>
             <li  value={tab.id || id}>{tab.icon}</li>
-            <li  value={tab.id || id} className='first-letter:capitalize' >{tab.val}</li>
+            <li  value={tab.id || id} className='first-letter:capitalize ' >{tab.val}</li>
         </ul>
         </li>
         

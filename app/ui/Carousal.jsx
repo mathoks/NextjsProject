@@ -27,7 +27,7 @@ const Carousel = ({ slides = [], autoSlide = false, autoInterval = 3000 }) => {
   }, [autoSlide, autoInterval, slideCount, currentSlide]); // Include slideCount in dependency array
 
   return (
-    <div className="overflow-hidden relative h-[22rem]">
+    <div className="overflow-hidden relative h-[34rem]">
       <div
         className="flex transition-transform ease-out duration-500"
         style={{ transform: `translateX(-${currentSlide * 100}%)` }}
