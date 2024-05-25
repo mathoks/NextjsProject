@@ -10,6 +10,7 @@ import Carousal from "./Carousal";
 import { signIn, useSession } from "next-auth/react";
 import { CircularProgress } from "@mui/material";
 import Loading from "../loading";
+import HeroCard from "./HeroCard";
 
 export const HeroPage = () => {
   const [child, setchild] = useState(<Loading />);
@@ -41,9 +42,9 @@ export const HeroPage = () => {
     <Image
       src={Logo}
       alt="pro"
-      width={100}
+      width={200}
       loading="lazy"
-      height={40}
+      height={200}
       className="shrink-0 object-cover w-screen"
       key={0}
     />,
@@ -78,7 +79,7 @@ export const HeroPage = () => {
 
   return (
     <section className="flex flex-col space-y-2 md:flex items-center">
-      <section className="flex flex-col w-full md:flex-row gap-5 items-center justify-between bg-white py-12">
+      <section className="flex bg-gradient-to-t relative from-white via-slate-400 to-slate-600 flex-col w-full md:flex-row gap-5 items-center justify-between  py-12">
         <h2 className="text-4xl font-bold text-center md:text-left min-w-min text-gray-800 whitespace-pre-wrap">
           Welcome to mymart where shopping can only be fun
         </h2>
@@ -95,14 +96,15 @@ export const HeroPage = () => {
       </section>
       <section className="grow flex flex-col w-full bg-gray-100">
         {/* <h3 className="text-gray-800">Trending Produts</h3> */}
-        <div className="w-full bg-white font-bold flex flex-col justify-start text-gray-900 gap-4 first:pt-4 pl-4 pr-4">
-          <h4>New Arrivals</h4>
-          <Carousal autoSlide={true} slides={slides} />
+        <div className="w-full bg-white font-bold flex flex-col justify-start text-gray-900 gap-4 first:pt-4 overflow-x-scroll">
+          <h4 className="pl-2">New Arrivals</h4>
+          {/* <Carousal autoSlide={true} slides={slides} /> */}
+          {<HeroCard/>}
         </div>
       </section>
       <section className="flex flex-col overflow-x-scroll bg-white space-y-2 pt-8 pb-8 text-gray-800  w-screen h-fit">
         <h3 className="font-bold pl-4">Trending Now</h3>
-        <div className="flex justify-start items-center gap-4 w-full overflow-x-scroll h-fit p-6">
+        <div className="flex justify-start items-center gap-4 w-full overflow-x-scroll h-fit p-2">
           <div className="flex flex-col space-y-0 rounded-md ring-1 overflow-y-clip w-full  shadow-md hover:outline-4 z-40">
             <div className="bg-white text-left p-4 text-nowrap rounded-r-md rounded-l-md">
               <h3>Amazing Gifts</h3>
@@ -188,7 +190,7 @@ export const HeroPage = () => {
           </div>
         </div>
       </section>
-      <section className="grow space-y-2 text-gray-800  bg-gray-100 pt-4 pb-10 pl-4 pr-4">
+      <section className="grow space-y-2 text-gray-800  bg-gray-100 pt-4 pb-10 pl-2 pr-2">
         <h3 className="font-bold">Discount Sales</h3>
         <div className="overflow-x-scroll w-full">
           <div className="flex items-center gap-3 overflow-scroll w-full">
