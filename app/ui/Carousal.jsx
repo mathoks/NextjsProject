@@ -3,6 +3,16 @@ import ChevronLeft from '@mui/icons-material/ChevronLeft';
 import ChevronRight from '@mui/icons-material/ChevronRight';
 import Image from 'next/image';
 
+
+/**
+ * Carousel component.
+ * @component
+ * @param {object} props- Component props.
+ * @param {Array<object>} props.slides - Array of slide objects.
+ * @param {boolean} props.autoSlide - Auto slide flag.
+ * @param {number} props.autoInterval - Auto slide interval.
+ * @returns {jsx}
+*/
 const Carousel = ({ slides = [], autoSlide = false, autoInterval = 3000 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideCount = slides.length; // Pre-calculate slide count for efficiency
@@ -27,7 +37,7 @@ const Carousel = ({ slides = [], autoSlide = false, autoInterval = 3000 }) => {
   }, [autoSlide, autoInterval, slideCount, currentSlide]); // Include slideCount in dependency array
 
   return (
-    <div className="overflow-hidden relative h-[25rem]">
+    <div className="overflow-hidden relative h-[24.5rem]">
       <div
         className="flex transition-transform ease-out duration-500"
         style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -42,6 +52,7 @@ const Carousel = ({ slides = [], autoSlide = false, autoInterval = 3000 }) => {
               width={400}
               loading='lazy'
               className='shrink-0  w-auto'
+              alt='pics'
              
             />
             

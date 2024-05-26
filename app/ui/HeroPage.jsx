@@ -1,18 +1,22 @@
 /* eslint-disable react/jsx-key */
 "use client";
 import Image from "next/image";
-import React, { Suspense, useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Logo from "@/app/assets/photo4.jpeg";
 import Logo1 from "@/app/assets/photo2.jpeg";
 import Logo2 from "@/app/assets/photo7.jpeg";
 import Logo3 from "@/app/assets/photo7.jpeg";
-import Carousal from "./Carousal";
 import { signIn, useSession } from "next-auth/react";
 import { CircularProgress } from "@mui/material";
 import Loading from "../loading";
 import HeroCard from "./HeroCard";
-import herobg from "@/app/assets/herobg.png";
+import { jsx } from "@emotion/react";
 
+/** 
+ * hero page component.
+ * @component
+ * @returns {jsx.Element} The rendered component.
+*/
 export const HeroPage = () => {
   const [child, setchild] = useState(<Loading />);
   const session = useSession();
@@ -41,7 +45,7 @@ export const HeroPage = () => {
   // eslint-disable-next-line react/jsx-key
 
   return (
-    <section className="flex flex-col space-y-2">
+    <section className="flex flex-col space-y-1">
       <section className=" bg_image bg-left">
         <div className="flex flex-col w-full space-y-2  py-24 h-auto pl-8 items-start">
           <div className="min-w-min">
@@ -80,7 +84,7 @@ export const HeroPage = () => {
               alt="pro"
               width={200}
               height={200}
-              className="shrink-0 object-cover h-40 w-40"
+              className="shrink-0 object-cover h-[8rem] w-40"
             />
           </div>
           <div className="flex flex-col space-y-0 rounded-md  w-full shadow-md ring-1 overflow-y-clip">
@@ -93,7 +97,7 @@ export const HeroPage = () => {
                 alt="pro"
                 width={150}
                 height={100}
-                className="shrink-0  h-40 object-cover"
+                className="shrink-0  h-[8rem] object-cover"
               />
             </div>
           </div>
@@ -107,7 +111,7 @@ export const HeroPage = () => {
                 alt="pro"
                 width={150}
                 height={100}
-                className="shrink-0 object-cover h-40"
+                className="shrink-0 object-cover h-[8rem]"
               />
             </div>
           </div>
@@ -121,7 +125,7 @@ export const HeroPage = () => {
                 alt="pro"
                 width={150}
                 height={100}
-                className="shrink-0 object-cover h-40"
+                className="shrink-0 object-cover h-[8rem]"
               />
             </div>
           </div>
@@ -135,7 +139,7 @@ export const HeroPage = () => {
                 alt="pro"
                 width={150}
                 height={100}
-                className="shrink-0 object-cover h-40"
+                className="shrink-0 object-cover h-[8rem]"
               />
             </div>
           </div>
@@ -149,13 +153,13 @@ export const HeroPage = () => {
                 alt="pro"
                 width={150}
                 height={100}
-                className="shrink-0 object-cover h-40"
+                className="shrink-0 object-cover h-[8rem]"
               />
             </div>
           </div>
         </div>
       </section>
-      <section className="grow space-y-2 text-gray-800  bg-gray-100 pt-4 pb-10 pl-2 pr-2">
+      <section className="grow space-y-2 text-gray-800  bg-white pt-4 pb-10 pl-2 pr-2">
         <h3 className="font-bold">Discount Sales</h3>
         <div className="overflow-x-scroll w-full">
           <div className="flex items-center gap-3 overflow-scroll w-full">

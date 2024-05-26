@@ -1,10 +1,12 @@
 
 import { SessionProvider } from "next-auth/react";
-import { useSession } from "next-auth/react";
 import Products from "./ui/Products";
 import { HeroPage } from "./ui/HeroPage";
 import { auth } from "@/auth";
-import Tab from "./ui/Tab";
+import { getUsers } from "./actions/users/getUsers";
+import { Suspense } from "react";
+import Loading from "./loading";
+
 
 // function Auth({ children }) {
 //   // if `{ required: true }` is supplied, `status` can only be "loading" or "authenticated"
@@ -50,6 +52,7 @@ import Tab from "./ui/Tab";
 // }
 export default async function Home() {
   const session = await auth()
+  const users = await getUsers()
   if(session?.user){
     session.user = {
       name : session.user.name,
@@ -57,6 +60,7 @@ export default async function Home() {
       image: session.user.image
     }
   }
+
   return (
     <SessionProvider baseUrl={"/api/auth"} session={session}>
       <section className="flex min-h-screen flex-col items-center space-y-1 w-full">
@@ -65,8 +69,13 @@ export default async function Home() {
             <section>
             <HeroPage/>
             </section>
+            <section className="h-14 bg-white w-full">
+            <Suspense fallback={<Loading/>}>
+              <p className=" text-gray-900">{users.title}</p>
+            </Suspense>
+          </section>
            <section className="bg-white ">
-           <Products/>
+           <Products {...users}/>
            </section>
           
             </div>

@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -55,3 +57,61 @@ body {
 
 }
 }
+
+.swiper {
+  padding: 4px 4px ; 
+  background-color: white;
+  align-items: center; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+  overflow-x: hidden;
+}
+
+.main_Container {
+   width: 50%; 
+  padding: 8px 4px ;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+swiper-container::part(button-next){
+  margin-top: 0px;
+  position: absolute;
+  top: 50px;
+  color: #3b82fe;
+  /* left: 270px; */
+}
+ swiper-container::part(button-prev){
+  margin-top: 0px;
+  position: absolute;
+  top: 50px;
+ color: #3b82fe;
+ /* left: 4px */
+  
+}
+
+
+/* swiper-container::part(paginaton){
+  margin-top: 8px;
+  
+} */
+
+swiper-container {
+  height: 295px;
+  width: 50%; 
+  padding: 1px 5px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+   margin: 1px;
+   background-color: #3b82fe;
+}
+
+
+
+

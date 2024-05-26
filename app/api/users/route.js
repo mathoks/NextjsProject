@@ -1,7 +1,9 @@
-
-import { NextResponse } from "next/server"
-
-
+/**
+ * GET /api/users
+ * @route GET /api/users.
+ * @returns {Promise<void>}
+ 
+ */
 export  async function GET(){
     try {
         const res = await fetch('https://jsonplaceholder.typicode.com/todos/1')

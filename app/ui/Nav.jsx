@@ -2,9 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/app/assets/photo1.jpeg"
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { LocationOn, LocationOnOutlined, SearchOutlined } from "@mui/icons-material";
-import { blue, pink } from "@mui/material/colors";
+import { LocationOn, SearchOutlined } from "@mui/icons-material";
 import Tab from "./Tab";
 
 
