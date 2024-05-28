@@ -15,7 +15,7 @@ const Products = (props) => {
     <h3 className='text-gray-800 p-4 font-bold'>Dealers Reel</h3>
     <div  className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center'>
     {Array.from(Array(10)).map((_, index) => (
-                        <Usercard key={index} name = "John Bull" storeDescription= {props.title}/>
+                        <Usercard key={index} name = "John Bull" storeDescription= {props?.title}/>
                     ))}
   
     </div>
