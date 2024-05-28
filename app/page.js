@@ -52,7 +52,7 @@ import Loading from "./loading";
 // }
 export default async function Home() {
   const session = await auth()
-  const users = await getUsers()
+  const users = getUsers()
   if(session?.user){
     session.user = {
       name : session.user.name,
