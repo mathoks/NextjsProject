@@ -71,7 +71,7 @@ export default async function Home() {
             </section>
             <section className="h-14 bg-white w-full">
             <Suspense fallback={<Loading/>}>
-              <p className=" text-gray-900">{users.title}</p>
+              <p className=" text-gray-900">{users?.title}</p>
             </Suspense>
           </section>
            <section className="bg-white ">
