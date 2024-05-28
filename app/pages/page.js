@@ -10,7 +10,7 @@ const page = async () => {
 
   return (
     <div className="flex items-center flex-row justify-center">
-      <p className="p-4 text-gray-950">{userlist?.title}</p>
+      <p className="p-4 text-gray-950 m-40">{userlist?.title}</p>
     </div>
   );
 };
