@@ -1,3 +1,6 @@
+import { headers } from "next/headers";
+
+
 /**
  * GET /api/users
  * @route GET /api/users.
@@ -19,6 +22,8 @@
 // }
 
 export async function GET() {
+    const headerList = headers()
+    console.log(headerList.get("host"))
     try {
       const response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
       if (!response.ok) {

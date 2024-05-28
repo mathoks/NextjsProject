@@ -1,4 +1,8 @@
 "use server"
+
+import { headers } from "next/headers";
+
+
 /**
  * Get all users from the database
  * @returns {Array<User>} - array of user Objects
@@ -15,8 +19,12 @@
 // }
 
 export async function getUsers() {
+    const headerList = headers()
+    console.log(headerList)
+    const domain = headerList.get("host")
+    console.log(domain)
     try {
-      const response = await fetch("https://nextjs-project-if9d-git-master-mathoks-projects.vercel.app/api/users");
+      const response = await fetch(`http://${domain}/api/users`);
       if (!response.ok) {
         throw new Error(`API request failed with status ${response.status}`);
       }
