@@ -23,10 +23,10 @@ const HeroCard = () => {
       <div>
         <Carousel slides={slides} autoSlide={true} />
       </div>
-      <div className="flex gap-2 overflow-x-scroll absolute inset-y-[14rem] h-[10rem] z-40 w-full pl-2 pr-2">
+      <div className="flex gap-2 overflow-x-scroll absolute inset-y-[14rem] h-fit z-40 w-full pl-2 pr-2">
         {[Logo, Logo2, Logo3, Logo1, Logo2, Logo3, Logo].map((img, id) => (
-          <div key={id} className=" bg-white flex flex-col space-y-0 rounded-md shadow-2xl">
-            <div className="text-left p-4 text-nowrap rounded-r-md rounded-md">
+          <div key={id} className=" bg-white flex flex-col space-y-0 rounded-md shadow-2xl h-fit">
+            <div className="text-left p-4 text-nowrap font-medium">
               <h3>Amazing Gifts</h3>
             </div>
            
@@ -36,7 +36,7 @@ const HeroCard = () => {
               width={300}
               alt="pics"
               key={id}
-              className="shrink-0 h-[6.5rem] rounded-b-md"
+              className="shrink-0 h-[7.5rem] rounded-b-md"
             />
             
           </div>

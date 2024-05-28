@@ -52,10 +52,12 @@ body {
   background-image: url('./assets/herobg.png');
   background-repeat: no-repeat;
   background-color: #ffff;
-  background-position: center;
+  background-position:"center"; 
   height: auto;
+  
 
 }
+
 }
 
 .swiper {

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import React, { useCallback, useEffect, useState } from "react";
 import Logo from "@/app/assets/photo4.jpeg";
+import Logo8 from "@/app/assets/herobg.png";
 import Logo1 from "@/app/assets/photo2.jpeg";
 import Logo2 from "@/app/assets/photo7.jpeg";
 import Logo3 from "@/app/assets/photo7.jpeg";
@@ -46,11 +47,11 @@ export const HeroPage = () => {
 
   return (
     <section className="flex flex-col space-y-1">
-      <section className=" bg_image bg-left">
-        <div className="flex flex-col w-full space-y-2  py-24 h-auto pl-8 items-start">
+      <section className="bg_image bg-center">
+        <div className="flex flex-col space-y-2  py-24 h-auto pl-8 items-start ">
           <div className="min-w-min">
             <h2 className="text-3xl  w-2/3 text-left md:text-left font-bold   text-gray-800 ">
-              Welcome to mymart
+              Welcome To Mymart
             </h2>
           </div>
           <div className="flex flex-col font-bold  space-y-4 text-gray-800 md:text-left ">
@@ -59,6 +60,7 @@ export const HeroPage = () => {
             <button
               className="p-2 bg-blue-600 rounded  text-cyan-50 text-sm"
               onClick={handleCreateStore}
+              title="hero"
             >
               {child}
             </button>
@@ -84,7 +86,7 @@ export const HeroPage = () => {
               alt="pro"
               width={200}
               height={200}
-              className="shrink-0 object-cover h-[8rem] w-40"
+              className="shrink-0 object-cover h-[7.5rem] w-40"
             />
           </div>
           <div className="flex flex-col space-y-0 rounded-md  w-full shadow-md ring-1 overflow-y-clip">
@@ -97,7 +99,7 @@ export const HeroPage = () => {
                 alt="pro"
                 width={150}
                 height={100}
-                className="shrink-0  h-[8rem] object-cover"
+                className="shrink-0  h-[7.5rem] object-cover"
               />
             </div>
           </div>
@@ -111,7 +113,7 @@ export const HeroPage = () => {
                 alt="pro"
                 width={150}
                 height={100}
-                className="shrink-0 object-cover h-[8rem]"
+                className="shrink-0 object-cover h-[7.5rem]"
               />
             </div>
           </div>
@@ -125,7 +127,7 @@ export const HeroPage = () => {
                 alt="pro"
                 width={150}
                 height={100}
-                className="shrink-0 object-cover h-[8rem]"
+                className="shrink-0 object-cover h-[7.5rem]"
               />
             </div>
           </div>
@@ -139,7 +141,7 @@ export const HeroPage = () => {
                 alt="pro"
                 width={150}
                 height={100}
-                className="shrink-0 object-cover h-[8rem]"
+                className="shrink-0 object-cover h-[7.5rem]"
               />
             </div>
           </div>
@@ -153,7 +155,7 @@ export const HeroPage = () => {
                 alt="pro"
                 width={150}
                 height={100}
-                className="shrink-0 object-cover h-[8rem]"
+                className="shrink-0 object-cover h-[7.5rem]"
               />
             </div>
           </div>

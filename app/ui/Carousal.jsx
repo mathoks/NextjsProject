@@ -37,7 +37,7 @@ const Carousel = ({ slides = [], autoSlide = false, autoInterval = 3000 }) => {
   }, [autoSlide, autoInterval, slideCount, currentSlide]); // Include slideCount in dependency array
 
   return (
-    <div className="overflow-hidden relative h-[24.5rem]">
+    <div className="overflow-hidden relative h-[24.9rem]">
       <div
         className="flex transition-transform ease-out duration-500"
         style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -51,7 +51,7 @@ const Carousel = ({ slides = [], autoSlide = false, autoInterval = 3000 }) => {
               height={400}
               width={400}
               loading='lazy'
-              className='shrink-0  w-auto'
+              className='shrink-0  w-auto cursor-pointer'
               alt='pics'
              
             />

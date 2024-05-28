@@ -8,7 +8,7 @@ import Tab from "./Tab";
 
 export const Nav = () => {
   return (
-    <nav aria-label="main" className=" flex flex-col space-y-0 bg-slate-800 pb-[2px] fixed w-full z-50 shadow-md shadow-black/20" >
+    <nav aria-label="main" className=" flex flex-col space-y-0 bg-slate-800 pb-[1px] fixed w-full z-50 shadow-md shadow-black/20" >
     <div className="sm: flex flex-col space-y-4  md:flex items-center justify-center p-4">
     <section>
       <Link href={"#"} className="flex  gap-4 items-center">
