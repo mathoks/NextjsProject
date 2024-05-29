@@ -12,7 +12,7 @@ export async function getUsers() {
   const domain = headerList.get("host");
   console.log(domain);
   try {
-    const response = await fetch(`https://${domain}/api/pages`);
+    const response = await fetch(`http://${domain}/api/pages`);
     if (!response.ok) {
       throw new Error(`API request failed with status ${response.status}`);
     }

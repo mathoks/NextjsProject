@@ -3,15 +3,15 @@
 import {
   Box
 } from "@mui/material";
-import React, { useRef } from "react";
+import React, { Suspense, useRef } from "react";
 import { InfoOutlined } from "@mui/icons-material";
 import DealerPic from "@/app/assets/photo6.jpeg";
 import DealerPic2 from "@/app/assets/photo4.jpeg";
 import { register } from "swiper/element-bundle";
 //import styles from "@/app/ui/swiper.module.css";
-import { MakeEllipsis } from "../lib/utills/Makelipsis";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 //const Image = dynamic(import("next/image"), { ssr: false });
 
@@ -34,7 +34,7 @@ const Showcase = (
   }
 ) => {
   const swiperDiv = useRef(null);
-
+  const router = useRouter();
   // const move = () => {
   //   return Navi("/users/supplier/product/1", { state: "product" });
   // };
@@ -43,8 +43,8 @@ const Showcase = (
   //   Navi("/users/supplier", { state: "section-1" });
   // };
   return (
-    
-      <div  className={"swiper w-[24rem] rounded-md  flex p-2 justify-center  h-80"}>
+    <Suspense fallback={<div>Loading...</div>}>
+      <div  className={"swiper w-[24rem] rounded-md  flex p-2 justify-center  h-80"} onClick={(e)=>{e.stopPropagation(); router.push("/pages")} }>
         <swiper-container
           ref={swiperDiv}
           slides-per-view="2"
@@ -54,6 +54,62 @@ const Showcase = (
           space-between="15"
          // className="rootswiper"
         >
+          <swiper-slide lazy="true" >
+            <div className="flex flex-col shadow-md rounded-md space-y-3 h-[16.5rem]">
+              <Image
+                src={DealerPic}
+                alt="DealerPic"
+                width={300}
+                height={200}
+                loading="lazy"
+                className="min-h-20"
+              />
+              <div className=" pl-2 pr-2 flex flex-col space-y-3">
+              <div>
+                <p className=" w-3/4 overflow-ellipsis font-semibold text-sm">Shoe Luis</p>
+              </div>
+              <div>
+                <p className=" w-3/4 overflow-ellipsis text-sm">Shoe Luis vitton for sale contact me</p>
+              </div>
+              <div className="flex justify-between">
+                <span className="te text-sm font-semibold">
+                  <p>N 745.00</p>
+                </span>
+                <span className="text-base">
+                  <InfoOutlined fontSize="inherit" />
+                </span>
+              </div>
+              </div>
+            </div>
+          </swiper-slide>
+          <swiper-slide lazy="true">
+            <div className="flex flex-col shadow-md rounded-md space-y-3 h-[16.5rem]" onClick={(e)=>e.stopPropagation()}>
+              <Image
+                src={DealerPic2}
+                alt="DealerPic"
+                width={300}
+                height={200}
+                loading="lazy"
+                className="min-h-20"
+              />
+              <div className=" pl-2 pr-2 flex flex-col space-y-3">
+              <div>
+                <p className=" w-3/4 overflow-ellipsis font-semibold text-sm">Shoe Luis</p>
+              </div>
+              <div>
+                <p className=" w-3/4 overflow-ellipsis text-sm">Shoe Luis vitton for sale contact me</p>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-sm font-semibold">
+                  <p>N 745.00</p>
+                </span>
+                <span className="text-base">
+                  <InfoOutlined fontSize="inherit" />
+                </span>
+              </div>
+              </div>
+            </div>
+          </swiper-slide>
           <swiper-slide lazy="true">
             <div className="flex flex-col shadow-md rounded-md space-y-3 h-[16.5rem]">
               <Image
@@ -66,13 +122,13 @@ const Showcase = (
               />
               <div className=" pl-2 pr-2 flex flex-col space-y-3">
               <div>
-                <p className=" w-3/4 overflow-ellipsis font-semibold">Shoe Luis</p>
+                <p className=" w-3/4 overflow-ellipsis font-semibold text-sm">Shoe Luis</p>
               </div>
               <div>
                 <p className=" w-3/4 overflow-ellipsis text-sm">Shoe Luis vitton for sale contact me</p>
               </div>
               <div className="flex justify-between">
-                <span className="text-base font-semibold">
+                <span className="text-sm font-semibold">
                   <p>N 745.00</p>
                 </span>
                 <span className="text-base">
@@ -89,74 +145,18 @@ const Showcase = (
                 alt="DealerPic"
                 width={300}
                 height={200}
-                loading="lazy"
-                className="min-h-20"
-              />
-              <div className=" pl-2 pr-2 flex flex-col space-y-3">
-              <div>
-                <p className=" w-3/4 overflow-ellipsis font-semibold">Shoe Luis</p>
-              </div>
-              <div>
-                <p className=" w-3/4 overflow-ellipsis text-sm">Shoe Luis vitton for sale contact me</p>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-base font-semibold">
-                  <p>N 745.00</p>
-                </span>
-                <span className="text-base">
-                  <InfoOutlined fontSize="inherit" />
-                </span>
-              </div>
-              </div>
-            </div>
-          </swiper-slide>
-          <swiper-slide lazy="true">
-            <div className="flex flex-col shadow-md rounded-md space-y-3 h-[16.5rem]">
-              <Image
-                src={DealerPic}
-                alt="DealerPic"
-                width={300}
-                height={200}
-                loading="lazy"
-                className="min-h-20"
-              />
-              <div className=" pl-2 pr-2 flex flex-col space-y-3">
-              <div>
-                <p className=" w-3/4 overflow-ellipsis font-semibold">Shoe Luis</p>
-              </div>
-              <div>
-                <p className=" w-3/4 overflow-ellipsis text-sm">Shoe Luis vitton for sale contact me</p>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-base font-semibold">
-                  <p>N 745.00</p>
-                </span>
-                <span className="text-base">
-                  <InfoOutlined fontSize="inherit" />
-                </span>
-              </div>
-              </div>
-            </div>
-          </swiper-slide>
-          <swiper-slide lazy="true">
-            <div className="flex flex-col shadow-md rounded-md space-y-3 h-[16.5rem]">
-              <Image
-                src={DealerPic2}
-                alt="DealerPic"
-                width={300}
-                height={200}
                 className="min-h-20"
                 loading="lazy"
               />
               <div className=" pl-2 pr-2 flex flex-col space-y-3">
               <div>
-                <p className=" w-3/4 overflow-ellipsis font-semibold">Shoe Luis</p>
+                <p className=" w-3/4 overflow-ellipsis font-semibold text-sm">Shoe Luis</p>
               </div>
               <div>
                 <p className=" w-3/4 overflow-ellipsis text-sm">Shoe Luis vitton for sale contact me</p>
               </div>
               <div className="flex justify-between">
-                <span className="text-base font-semibold">
+                <span className="text-sm font-semibold">
                   <p>N 745.00</p>
                 </span>
                 <span className="text-base">
@@ -168,7 +168,7 @@ const Showcase = (
           </swiper-slide>
         </swiper-container>
       </div>
-    // </Stack>
+    </Suspense>
   );
 };
 
