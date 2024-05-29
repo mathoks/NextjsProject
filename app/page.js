@@ -67,7 +67,7 @@ export default async function Home() {
       <section className="flex min-h-screen flex-col items-center space-y-1 w-full">
         <div className="mt-28 flex flex-col space-y-1 items-center">
            
-            <section className="bg-white">
+            <section>
             <HeroPage/>
             </section>
             <section className="h-14 bg-white w-full flex justify-center items-center">

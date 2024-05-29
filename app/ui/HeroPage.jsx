@@ -46,9 +46,9 @@ export const HeroPage = () => {
   // eslint-disable-next-line react/jsx-key
 
   return (
-    <section className="flex flex-col space-y-1">
+    <section className="flex flex-col space-y-1 w-screen">
       <section className="bg_image bg-center">
-        <div className="flex flex-col space-y-2  py-24 h-auto pl-8 items-start ">
+        <div className="flex flex-col space-y-4  py-24 h-auto pl-8 items-start ">
           <div className="min-w-min">
             <h2 className="text-3xl  w-2/3 text-left md:text-left font-bold   text-gray-800 ">
               Welcome To Mymart
@@ -67,14 +67,14 @@ export const HeroPage = () => {
           </div>
         </div>
       </section>
-      <section className="grow flex flex-col w-full bg-gray-100">
-        {/* <h3 className="text-gray-800">Trending Produts</h3> */}
+      {/* <section className="grow flex flex-col w-full bg-gray-100">
+        <h3 className="text-gray-800">Trending Produts</h3>
         <div className="w-full bg-white font-bold flex flex-col justify-start text-gray-900 overflow-x-scroll">
           {<HeroCard />}
         </div>
-      </section>
-      <section className="flex flex-col overflow-x-scroll bg-white space-y-2 pt-4 pb-8 text-gray-800  w-screen h-fit">
-        <h3 className="font-bold pl-4">Trending Now</h3>
+      </section> */}
+      {/* <section className="flex flex-col overflow-x-scroll bg-white space-y-2 pt-4 pb-8 text-gray-800  w-screen h-fit">
+        <h3 className="font-bold pl-2">Trending Now</h3>
         <div className="flex justify-start items-center gap-4 w-full overflow-x-scroll h-fit p-2">
           <div className="flex flex-col space-y-0 rounded-md ring-1 overflow-y-clip w-full  shadow-md hover:outline-4 z-40">
             <div className="bg-white text-left p-4 text-nowrap rounded-r-md rounded-l-md">
@@ -161,7 +161,7 @@ export const HeroPage = () => {
           </div>
         </div>
       </section>
-      <section className="grow space-y-2 text-gray-800  bg-white  pb-6 pl-2 pr-2 first:pb-2">
+      <section className="grow space-y-2 text-gray-800  bg-white  pb-6 pl-2 pr-2 first:pb-2  pt-4">
         <h3 className="font-bold">Discount Sales</h3>
         <div className="overflow-x-scroll w-full">
           <div className="flex items-center gap-3 overflow-scroll w-full">
@@ -208,8 +208,8 @@ export const HeroPage = () => {
               className="shrink-0"
             />
           </div>
-        </div>
-      </section>
+        </div> 
+      </section>*/}
     </section>
   );
 };
