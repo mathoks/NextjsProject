@@ -43,7 +43,7 @@ const Showcase = (
   //   Navi("/users/supplier", { state: "section-1" });
   // };
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    
       <div  className={"swiper w-[24rem] rounded-md  flex p-2 justify-center  h-80"} onClick={(e)=>{e.stopPropagation(); router.push("/pages")} }>
         <swiper-container
           ref={swiperDiv}
@@ -168,7 +168,7 @@ const Showcase = (
           </swiper-slide>
         </swiper-container>
       </div>
-    </Suspense>
+   
   );
 };
 

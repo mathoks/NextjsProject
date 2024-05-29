@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Nav } from "./ui/Nav";
+import ButtomNav from "./ui/buttomNav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,9 +22,7 @@ export default function RootLayout({ children }) {
       </main>
       <footer>
         <div>
-          <p>
-            bottom Nav
-          </p>
+          <ButtomNav/>
         </div>
       </footer>
       </body>
