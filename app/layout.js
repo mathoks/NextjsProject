@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
       <main>
       {children}
       </main>
-      <footer>
+      <footer className="static bottom-0">
         <div>
           <ButtomNav/>
         </div>
