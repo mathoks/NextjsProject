@@ -70,7 +70,7 @@ export default async function Home() {
             <section className="bg-white">
             <HeroPage/>
             </section>
-            <section className="h-14 bg-white w-full">
+            <section className="h-14 bg-white w-full flex justify-center items-center">
             <Suspense fallback={<Loading/>}>
               <p className=" text-gray-900">advert Panel</p>
             </Suspense>

@@ -3,7 +3,12 @@ import { Avatar } from "@mui/material";
 import React from "react";
 import { stringAvatar } from "../lib/utills/stringAvata";
 import {
+  ArrowBack,
+  ArrowForward,
+  Call,
+  Chat,
   LocationOnOutlined,
+  More,
   StarRate,
   StorefrontOutlined,
 } from "@mui/icons-material";
@@ -82,10 +87,19 @@ const Usercard = (props) => {
             <Showcase/>        
         
       </section>
-      <section className="flex flex-row justify-between">
-        <div></div>
-        <div></div>
-        <div></div>
+      <section className="flex flex-row justify-between  items-center w-[90%]">
+        <div className="flex space-x-1">
+          <span className="text-sm space-x-1">Chat</span>
+          <span className="text-sm"><Chat fontSize="inherit"/></span>
+        </div>
+        <div className="flex space-x-1">
+        <span className="text-sm">Call</span>
+          <span className="text-sm"><Call fontSize="inherit"/></span>
+        </div>
+        <div className="flex space-x-1">
+        <span className="text-sm">more</span>
+          <span className="text-sm"><ArrowForward fontSize="inherit"/></span>
+        </div>
       </section>
     </div>
     
