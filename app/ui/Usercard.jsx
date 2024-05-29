@@ -75,7 +75,7 @@ const Usercard = (props) => {
       </section>
       <section className="">
         
-            {/* <Showcase/>         */}
+            <Showcase/>        
         
       </section>
       <section className="flex flex-row justify-between">

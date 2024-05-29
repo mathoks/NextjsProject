@@ -1,23 +1,19 @@
 "use client";
 
 import {
-  Box,
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Divider,
-  Stack,
-  Typography,
+  Box
 } from "@mui/material";
 import React, { useRef } from "react";
 import { InfoOutlined } from "@mui/icons-material";
-import DealerPic from "@/app/assets/photo1.jpeg";
-import DealerPic2 from "@/app/assets/photo5.jpeg";
+import DealerPic from "@/app/assets/photo6.jpeg";
+import DealerPic2 from "@/app/assets/photo4.jpeg";
 import { register } from "swiper/element-bundle";
 //import styles from "@/app/ui/swiper.module.css";
 import { MakeEllipsis } from "../lib/utills/Makelipsis";
 import dynamic from "next/dynamic";
+import Image from "next/image";
+
+//const Image = dynamic(import("next/image"), { ssr: false });
 
 // const styles = dynamic(import("@/app/ui/swiper.module.css"), { ssr: false });
 
@@ -47,22 +43,8 @@ const Showcase = (
   //   Navi("/users/supplier", { state: "section-1" });
   // };
   return (
-    // <Stack
-    //   direction={"column"}
-    //   sx={{
-    //     backgroundColor: "rgba(255,255,255,0.2)",
-    //     backgroundImage:
-    //       "linear-gradient(to bottom, rgba(255,255,255,0.5), rgba(255,255,255,0.5))",
-    //   }}
-    //   gap={1}
-    //   p={1}
-    //   pt={2}
-    //   borderRadius={"15px 15px 15px 15px"}
-    //   boxShadow={"0px 3px 10px 0px rgba(0,0,0,0.2)"}
-    // //   className={"mainContainer"}
-    // >
-    //   <Divider variant="fullWidth" sx={{ pt: 1 }} />
-      <Box  className={"swiper"}>
+    
+      <div  className={"swiper w-[24rem] rounded-md  flex p-2 justify-center  h-80"}>
         <swiper-container
           ref={swiperDiv}
           slides-per-view="2"
@@ -73,7 +55,127 @@ const Showcase = (
          // className="rootswiper"
         >
           <swiper-slide lazy="true">
-            <Card
+            <div className="flex flex-col shadow-md rounded-md space-y-3 h-[16.5rem]">
+              <Image
+                src={DealerPic}
+                alt="DealerPic"
+                width={300}
+                height={200}
+                loading="lazy"
+                className="min-h-20"
+              />
+              <div className=" pl-2 pr-2 flex flex-col space-y-3">
+              <div>
+                <p className=" w-3/4 overflow-ellipsis font-semibold">Shoe Luis</p>
+              </div>
+              <div>
+                <p className=" w-3/4 overflow-ellipsis text-sm">Shoe Luis vitton for sale contact me</p>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-base font-semibold">
+                  <p>N 745.00</p>
+                </span>
+                <span className="text-base">
+                  <InfoOutlined fontSize="inherit" />
+                </span>
+              </div>
+              </div>
+            </div>
+          </swiper-slide>
+          <swiper-slide lazy="true">
+            <div className="flex flex-col shadow-md rounded-md space-y-3 h-[16.5rem]">
+              <Image
+                src={DealerPic2}
+                alt="DealerPic"
+                width={300}
+                height={200}
+                loading="lazy"
+                className="min-h-20"
+              />
+              <div className=" pl-2 pr-2 flex flex-col space-y-3">
+              <div>
+                <p className=" w-3/4 overflow-ellipsis font-semibold">Shoe Luis</p>
+              </div>
+              <div>
+                <p className=" w-3/4 overflow-ellipsis text-sm">Shoe Luis vitton for sale contact me</p>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-base font-semibold">
+                  <p>N 745.00</p>
+                </span>
+                <span className="text-base">
+                  <InfoOutlined fontSize="inherit" />
+                </span>
+              </div>
+              </div>
+            </div>
+          </swiper-slide>
+          <swiper-slide lazy="true">
+            <div className="flex flex-col shadow-md rounded-md space-y-3 h-[16.5rem]">
+              <Image
+                src={DealerPic}
+                alt="DealerPic"
+                width={300}
+                height={200}
+                loading="lazy"
+                className="min-h-20"
+              />
+              <div className=" pl-2 pr-2 flex flex-col space-y-3">
+              <div>
+                <p className=" w-3/4 overflow-ellipsis font-semibold">Shoe Luis</p>
+              </div>
+              <div>
+                <p className=" w-3/4 overflow-ellipsis text-sm">Shoe Luis vitton for sale contact me</p>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-base font-semibold">
+                  <p>N 745.00</p>
+                </span>
+                <span className="text-base">
+                  <InfoOutlined fontSize="inherit" />
+                </span>
+              </div>
+              </div>
+            </div>
+          </swiper-slide>
+          <swiper-slide lazy="true">
+            <div className="flex flex-col shadow-md rounded-md space-y-3 h-[16.5rem]">
+              <Image
+                src={DealerPic2}
+                alt="DealerPic"
+                width={300}
+                height={200}
+                className="min-h-20"
+                loading="lazy"
+              />
+              <div className=" pl-2 pr-2 flex flex-col space-y-3">
+              <div>
+                <p className=" w-3/4 overflow-ellipsis font-semibold">Shoe Luis</p>
+              </div>
+              <div>
+                <p className=" w-3/4 overflow-ellipsis text-sm">Shoe Luis vitton for sale contact me</p>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-base font-semibold">
+                  <p>N 745.00</p>
+                </span>
+                <span className="text-base">
+                  <InfoOutlined fontSize="inherit" />
+                </span>
+              </div>
+              </div>
+            </div>
+          </swiper-slide>
+        </swiper-container>
+      </div>
+    // </Stack>
+  );
+};
+
+export default Showcase;
+
+
+{/* <Card
               elevation={2}
               sx={{
                 maxWidth: 300,
@@ -89,7 +191,7 @@ const Showcase = (
                   component="img"
                   height={120}
                   width={150}
-                  src={product?.image}
+                  src={product?.image || DealerPic2}
                   alt="item1"
                 />
                 <CardContent>
@@ -352,12 +454,4 @@ const Showcase = (
                   </Stack>
                 </CardContent>
               </CardActionArea>
-            </Card>
-          </swiper-slide>
-        </swiper-container>
-      </Box>
-    // </Stack>
-  );
-};
-
-export default Showcase;
+            </Card> */}
