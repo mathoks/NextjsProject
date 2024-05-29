@@ -8,6 +8,8 @@ import {
 } from "@mui/icons-material";
 import { MakeEllipsis } from "../lib/utills/Makelipsis";
 import Showcase from "./cardCaroural";
+import Link from "next/link";
+
 
 /**
  * @component Usercard
@@ -15,8 +17,10 @@ import Showcase from "./cardCaroural";
  * @returns {JSX.Element} - JSX Element
  */
 const Usercard = (props) => {
+    console.log(props)
   return (
-    <div className="flex flex-col space-y-2 text-gray-900 ring-2 m-4 p-4 shadow-md rounded-md items-center grow-0 text-left ">
+    <Link href={`/pages/${encodeURIComponent(props?.id || 4)}`}>
+    <div className="flex flex-col space-y-2 text-gray-900 m-4 p-4 shadow-md rounded-md items-center grow-0 text-left ">
       <section className="flex flex-row justify-start items-start space-x-4">
         <div>
           <Avatar {...stringAvatar(props?.name, props?.image)} />
@@ -80,6 +84,7 @@ const Usercard = (props) => {
         <div></div>
       </section>
     </div>
+    </Link>
   );
 };
 

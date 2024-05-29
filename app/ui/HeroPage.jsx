@@ -161,7 +161,7 @@ export const HeroPage = () => {
           </div>
         </div>
       </section>
-      <section className="grow space-y-2 text-gray-800  bg-white pt-4 pb-10 pl-2 pr-2">
+      <section className="grow space-y-2 text-gray-800  bg-white  pb-6 pl-2 pr-2 first:pb-2">
         <h3 className="font-bold">Discount Sales</h3>
         <div className="overflow-x-scroll w-full">
           <div className="flex items-center gap-3 overflow-scroll w-full">

@@ -52,7 +52,7 @@ import Loading from "./loading";
 // }
 export default async function Home() {
   const session = await auth()
-  const users = await getUsers()
+  // const users = await getUsers()
   if(session?.user){
     session.user = {
       name : session.user.name,
@@ -66,16 +66,16 @@ export default async function Home() {
       <section className="flex min-h-screen flex-col items-center space-y-1 w-full">
         <div className="mt-28 flex flex-col space-y-1 items-center">
            
-            <section>
+            <section className="bg-white">
             <HeroPage/>
             </section>
             <section className="h-14 bg-white w-full">
             <Suspense fallback={<Loading/>}>
-              <p className=" text-gray-900">{users?.title}</p>
+              <p className=" text-gray-900">advert Panel</p>
             </Suspense>
           </section>
            <section className="bg-white ">
-           <Products {...users}/>
+           <Products/>
            </section>
           
             </div>
