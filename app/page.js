@@ -1,11 +1,16 @@
 
 import { SessionProvider } from "next-auth/react";
-import Products from "./ui/Products";
-import { HeroPage } from "./ui/HeroPage";
+
 import { auth } from "@/auth";
-import { getUsers } from "./actions/users/getUsers";
+
+import '@/app/globals.css'
 import { Suspense } from "react";
-import Loading from "./loading";
+import { HeroPage } from "@/app/ui/HeroPage";
+import Loading from "@/app/loading";
+import StoreProvider from "@/app/StoreProvider";
+import Products from "@/app/ui/Products";
+import { getUsers } from "./actions/users/getUsers";
+import { getRoutes } from "./actions/users/getRoute";
 
 
 // function Auth({ children }) {
@@ -53,7 +58,8 @@ import Loading from "./loading";
 
 export default async function Home() {
   const session = await auth()
-  // const users = await getUsers()
+  const usersList = await getRoutes()
+  console.log(usersList)
   if(session?.user){
     session.user = {
       name : session.user.name,
@@ -63,24 +69,33 @@ export default async function Home() {
   }
 
   return (
-    <SessionProvider baseUrl={"/api/auth"} session={session}>
-      <section className="flex min-h-screen flex-col items-center space-y-1 w-full">
+    <SessionProvider baseUrl={"/api/auth"} session={session} >
+    
+    
+    <StoreProvider>
+      <section className="flex min-h-screen flex-col items-center space-y-1 w-full bg-gray-400">
         <div className="mt-28 flex flex-col space-y-1 items-center">
            
             <section>
             <HeroPage/>
             </section>
             <section className="h-14 bg-white w-full flex justify-center items-center">
-            <Suspense fallback={<Loading/>}>
+            <Suspense fallback={<p>hhhhh</p>}>
               <p className=" text-gray-900">advert Panel</p>
             </Suspense>
           </section>
            <section className="bg-white ">
-           <Products/>
+           
+            <Suspense fallback={<Loading/>}>
+           <Products users={usersList}/>
+           </Suspense>
            </section>
           
             </div>
       </section>
+      </StoreProvider>
+      
     </SessionProvider>
   );
 }
+

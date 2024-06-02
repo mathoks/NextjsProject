@@ -1,4 +1,4 @@
-'use client'
+
 import { Avatar } from "@mui/material";
 import React from "react";
 import { stringAvatar } from "../lib/utills/stringAvata";
@@ -15,7 +15,7 @@ import {
 import { MakeEllipsis } from "../lib/utills/Makelipsis";
 import Showcase from "./cardCaroural";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 
 
@@ -26,10 +26,11 @@ import { useRouter } from "next/navigation";
  */
 const Usercard = (props) => {
     console.log(props)
-    const router = useRouter()
+    // const router = useRouter()
   return (
-
-    <div onClick={()=>router.push(`/pages/${encodeURIComponent(props?.id || 4)}`)} className="flex flex-col space-y-2 text-gray-900 m-4 p-4 shadow-md rounded-md items-center grow-0 text-left ">
+    
+    <div className="flex flex-col space-y-2 text-gray-900 m-4 p-4 shadow-md rounded-md items-center grow-0 text-left ">
+    <Link href= {`/pages/${encodeURIComponent(props?.id || 4)}`}>
       <section className="flex flex-row justify-start items-start space-x-4">
         <div>
           <Avatar {...stringAvatar(props?.name, props?.image)} />
@@ -82,6 +83,7 @@ const Usercard = (props) => {
         </div>
         <div></div>
       </section>
+      </Link>
       <section className="">
         
             <Showcase/>        

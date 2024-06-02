@@ -3,7 +3,7 @@ import React from 'react'
 
 const ButtomNav = () => {
   return (
-    <div className=' bg-slate-800 text-white flex flex-col pb-2'>
+    <div className=' bg-slate-800 text-white flex flex-col pb-2 '>
       <div className='flex flex-col items-center justify-center space-y-1 bg-slate-500 p-2 text-sm'>
       <span>
         <ArrowUpward/>

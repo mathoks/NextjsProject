@@ -19,7 +19,7 @@ import { jsx } from "@emotion/react";
  * @returns {jsx.Element} The rendered component.
 */
 export const HeroPage = () => {
-  const [child, setchild] = useState(<Loading />);
+  const [child, setchild] = useState("");
   const session = useSession();
   console.log(session.status);
   const handleCreateStore = useCallback(

@@ -15,7 +15,7 @@ const Tabs = [{"id": 0, "val": "all Stores",  "href": "#", 'icon': <AllOutOutlin
 
   return (
     <section className='flex items-start justify-between  overflow-x-scroll gap-8   w-screen ' >
-    <ul role='list' value = {index} defaultValue={0}  onClick={handleChange} className='pl-2 pr-2 flex items-start justify-between  overflow-x-scroll gap-8 text-gray-300  pt-2 w-screen'>
+    <ul role='list'  onClick={handleChange} className='pl-2 pr-2 flex items-start justify-between  overflow-x-scroll gap-8 text-gray-300  pt-2 w-screen'>
       { Tabs.map((tab, id)=>(
         
         <li key={tab.id} value={tab.id || id}  className={`first-letter:capitalize cursor-pointer focus:font-medium pb-1 text-nowrap  ${index === tab.id? 'border-b-2 transition-transform duration-300 border-slate-100 text-base  text-slate-50' : 'border-none text-sm' }`}>

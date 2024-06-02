@@ -1,13 +1,47 @@
-import React from "react";
+"use client"
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/app/assets/photo1.jpeg"
-import { LocationOn, SearchOutlined } from "@mui/icons-material";
+import { DiamondOutlined, LocationOn, LocationOnOutlined, SearchOutlined, AccessTimeOutlined } from "@mui/icons-material";
 import Tab from "./Tab";
+import { useAppDispatch, useAppSelector, useAppStore } from "../lib/hooks/hooks";
+import { usePathname } from "next/navigation";
+import { setNav, setPath } from "../lib/features/Nav/navSlice";
+import { connect } from "react-redux";
 
 
-export const Nav = () => {
+
+
+ const Nav = (props) => {
+  const {nav} = props
+  const path = usePathname()
+//   const dispatch = useAppDispatch()
+ const myNav = useAppStore()
+// const navState = myNav.getState()
+// console.log(navState?.nav?.nav)
+// const isInit = useRef(false)
+const init = useRef(false)
+if(!init.current){
+  if(path === '/pages')
+  myNav.dispatch(setNav(false))
+  init.current = true
+}
+
+useEffect(() => {
+  if(path === '/pages')
+    myNav.dispatch(setNav(false))
+  else 
+    myNav.dispatch(setNav(true))
+  
+}, [path])
+
+console.log(myNav.getState())
+
+
+
   return (
+    nav && path === '/' ? (
     <nav aria-label="main" className=" flex flex-col space-y-0 bg-slate-800 pb-[1px] fixed w-full z-50 shadow-md shadow-black/20" >
     <div className="sm: flex flex-col space-y-4  md:flex items-center justify-center p-4">
     <section>
@@ -39,5 +73,48 @@ export const Nav = () => {
       </div>
       <Tab/>
     </nav>
+    ) : (
+      <nav aria-label="main" className=" font-semibold flex flex-col space-y-0 bg-slate-100 pb-[1px]  w-full text-gray-600 p-4  h-32" >
+      <div className="flex justify-between flex-wrap items-center space-y-5 ">
+      <div className="flex space-x-1 items-center pt-4">
+      <span>
+      <LocationOnOutlined/>
+      </span>
+      
+      <span>
+        <p>Alaba Lagos</p>
+      </span>
+      </div>
+      <div className="flex space-x-1 items-center">
+      <span>
+      <DiamondOutlined/>
+      </span>
+      
+      <span>
+        <p>Diamond Member</p>
+      </span>
+      </div>
+      <div className="flex space-x-1 items-center">
+      <span>
+      <AccessTimeOutlined/>
+      </span>
+      <span>
+        <p>Member since 2024</p>
+      </span>
+      </div>
+
+      </div>
+      </nav>
+    )
   );
 };
+
+
+const mapStateToProps = (state)=>({
+  nav: state.nav.nav
+})
+const mapDispatchToProps = (dispatch)=>({
+  setNav: ()=>{if(window.location.pathname === '/pages') dispatch(setNav('false'))}
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Nav)

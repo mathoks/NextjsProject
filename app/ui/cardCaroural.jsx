@@ -11,7 +11,12 @@ import { register } from "swiper/element-bundle";
 //import styles from "@/app/ui/swiper.module.css";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useAppDispatch, useAppStore } from "../lib/hooks/hooks";
+import { setNav, setPath } from "../lib/features/Nav/navSlice";
+import Link from "next/link";
+
+
 
 //const Image = dynamic(import("next/image"), { ssr: false });
 
@@ -35,16 +40,14 @@ const Showcase = (
 ) => {
   const swiperDiv = useRef(null);
   const router = useRouter();
-  // const move = () => {
-  //   return Navi("/users/supplier/product/1", { state: "product" });
-  // };
+  const myNav = useAppStore()
+  const path = usePathname()
+  const dispatch = useAppDispatch()
 
-  // const gotoPro = () => {
-  //   Navi("/users/supplier", { state: "section-1" });
-  // };
+  
   return (
     
-      <div  className={"swiper w-[24rem] rounded-md  flex p-2 justify-center  h-80"} onClick={(e)=>{e.stopPropagation(); router.push("/pages")} }>
+      <div  className={"swiper w-[24rem] rounded-md  flex p-2 justify-center  h-80"} >
         <swiper-container
           ref={swiperDiv}
           slides-per-view="2"
@@ -54,8 +57,10 @@ const Showcase = (
           space-between="15"
          // className="rootswiper"
         >
-          <swiper-slide lazy="true" >
-            <div className="flex flex-col shadow-md rounded-md space-y-3 h-[16.5rem]">
+       
+          <swiper-slide lazy="true"  onClick={()=>{dispatch(setNav(false));} }>
+          <Link href={'/pages'}>
+            <div  className="flex flex-col shadow-md rounded-md space-y-3 h-[16.5rem]">
               <Image
                 src={DealerPic}
                 alt="DealerPic"
@@ -81,7 +86,9 @@ const Showcase = (
               </div>
               </div>
             </div>
+            </Link>
           </swiper-slide>
+          
           <swiper-slide lazy="true">
             <div className="flex flex-col shadow-md rounded-md space-y-3 h-[16.5rem]" onClick={(e)=>e.stopPropagation()}>
               <Image

@@ -1,23 +1,25 @@
-import React from "react";
-import { getUsers } from "../actions/users/getUsers";
-import { NextResponse } from "next/server";
+"use client"
+import React, { useEffect, useState } from 'react'
+import { useSubnavhook } from '../lib/hooks/useSubnavhook'
 
-
-
-
-/**
- * Server Side Rendered Page
- * @returns {JSX.Element} - JSX Element
- */
-const page = async () => {
-  const userlist = await getUsers();
+const Page = () => {
+  const [Dom, setDom] = useState(null)
   
-console.log(userlist)
-  return (
-    <div className="flex items-center flex-row justify-center">
-      <p className="p-4 text-gray-950 m-40">hhhh</p>
-    </div>
-  );
-};
+  useEffect(() => {
+    const doc = document.getElementById("userPage")
+    setDom(doc)
+  }, [])
+  
+  const Wrapper = useSubnavhook(Dom)
 
-export default page;
+
+  return (
+    <div  className=''>
+    <div id="userPage" className=' h-auto'>
+    {Wrapper}
+    </div>
+    </div>
+  )
+}
+
+export default Page

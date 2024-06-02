@@ -6,12 +6,12 @@ import { headers } from "next/headers";
  * @returns {Array<User>} - array of user Objects
  */
 
-export async function getUsers() {
+export async function getRoutes() {
   const headerList = headers();
   const domain = headerList.get("host");
   
   try {
-    const response = await fetch(`http://${domain}/api/pages`);
+    const response = await fetch(`http://${domain}/api/`);
     if (!response.ok) {
       throw new Error(`API request failed with status ${response.status}`);
     }
