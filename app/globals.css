@@ -120,6 +120,8 @@ swiper-container {
   justify-content: start;
 }
 
-
+.hide_nav{
+visibility: hidden;
+}
 
 

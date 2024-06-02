@@ -74,7 +74,7 @@ console.log(myNav.getState())
       <Tab/>
     </nav>
     ) : (
-      <nav aria-label="main" className=" font-semibold flex flex-col space-y-0 bg-slate-100 pb-[1px]  w-full text-gray-600 p-4  h-32" >
+      <nav  aria-label="main" className=" font-semibold flex flex-col space-y-0 bg-white pb-[1px]  w-full text-gray-600 p-4  h-32" >
       <div className="flex justify-between flex-wrap items-center space-y-5 ">
       <div className="flex space-x-1 items-center pt-4">
       <span>
