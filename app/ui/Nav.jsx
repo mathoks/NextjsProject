@@ -74,37 +74,38 @@ console.log(myNav.getState())
       <Tab/>
     </nav>
     ) : (
-      <nav  aria-label="main" className=" flex flex-col space-y-0 bg-white  pt-2 w-full text-gray-600 p-4  shadow-md  shadow-blue-300" >
-      <div className="flex justify-between flex-wrap items-center space-y-3">
-      <div className="flex space-x-1 items-center pt-4">
-      <span>
-      <LocationOnOutlined/>
-      </span>
+      null
+      // <nav  aria-label="main" className=" flex flex-col space-y-0 bg-white  pt-2 w-full text-gray-600 p-4  shadow-md  shadow-blue-300" >
+      // <div className="flex justify-between flex-wrap items-center space-y-3">
+      // <div className="flex space-x-1 items-center pt-4">
+      // <span>
+      // <LocationOnOutlined/>
+      // </span>
       
-      <span>
-        <p>Alaba Lagos</p>
-      </span>
-      </div>
-      <div className="flex space-x-1 items-center">
-      <span>
-      <DiamondOutlined/>
-      </span>
+      // <span>
+      //   <p>Alaba Lagos</p>
+      // </span>
+      // </div>
+      // <div className="flex space-x-1 items-center">
+      // <span>
+      // <DiamondOutlined/>
+      // </span>
       
-      <span>
-        <p>Diamond Member</p>
-      </span>
-      </div>
-      <div className="flex space-x-1 items-center">
-      <span>
-      <AccessTimeOutlined/>
-      </span>
-      <span>
-        <p>Member since 2024</p>
-      </span>
-      </div>
+      // <span>
+      //   <p>Diamond Member</p>
+      // </span>
+      // </div>
+      // <div className="flex space-x-1 items-center">
+      // <span>
+      // <AccessTimeOutlined/>
+      // </span>
+      // <span>
+      //   <p>Member since 2024</p>
+      // </span>
+      // </div>
 
-      </div>
-      </nav>
+      // </div>
+      // </nav>
     )
   );
 };
