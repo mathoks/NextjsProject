@@ -31,7 +31,7 @@ export const useSubnavhook = (visi, pop) => {
   const Wrapper = () => {
     const mem = React.useMemo(
       () => (
-        <InView initialInView={true} rootMargin="-50px">
+        <InView initialInView={true} rootMargin="-10px">
           {({ inView, ref, entry }) => {
             if (!visi && inView) {
               setshow(false);
@@ -43,25 +43,25 @@ export const useSubnavhook = (visi, pop) => {
             return (
               <div
                 ref={ref}
-                className={`pl-4 pr-4 sticky top-[0.5px]  bg-white w-full ${
-                  !show
-                    ? "invisible transition duration-500 opacity-100 "
-                    : "visible transition duration-500 opacity-100"
-                }`}
+                 className={`sticky top-0 bg-white w-full`}
               >
                 <ul
                   role="subTab"
-                  className="flex justify-between h-12 items-center pl-4 pr-4 font-semibold"
+                  className={`flex justify-between items-center pl-4 pr-4 font-semibold  hide_nav ${
+                    !show
+                    ? "invisible transition duration-500 opacity-100 h-0 "
+                    : "visible transition duration-500 opacity-100 h-12"
+                }`}
                 >
                   <li
                     value={0}
-                    className={`${
+                    className={`pt-2 ${
                       index === "#about"
                         ? "text-indigo-600 border-b-2 pb-3  border-violet-600"
-                        : "border-none text-gray-500"
+                        : "border-none text-gray-500 "
                     }`}
                   >
-                    <Link href={`/pages`}>About</Link>
+                    <Link href={""}>About</Link>
                   </li>
                   <li
                     value={1}
@@ -71,11 +71,11 @@ export const useSubnavhook = (visi, pop) => {
                         : "border-none text-gray-500"
                     }`}
                   >
-                    <Link href={`/pages#Products`}>Products</Link>
+                    <Link href={`/pages#Products`} >Products</Link>
                   </li>
                   <li
                     value={2}
-                    className={`${
+                    className={`pt-2 ${
                       index === "#Recommended"
                         ? "text-indigo-600 border-b-2 pb-3 border-violet-600"
                         : "border-none text-gray-500"
@@ -112,6 +112,7 @@ export const useSubnavhook = (visi, pop) => {
 
                 setIndex(`#${Tab.tag}`);
               }
+              {/* https://nextjs-project-if9d-git-prodbranch-mathoks-projects.vercel.app */}
               if (!inView && id === 0 && !visi && !check) {
                 goto.push("https://nextjs-project-if9d-git-prodbranch-mathoks-projects.vercel.app/pages", { scroll: true });
               }
