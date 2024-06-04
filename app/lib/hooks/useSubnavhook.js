@@ -152,11 +152,9 @@ export const useSubnavhook = (visi, pop) => {
           >
             {({ inView, ref, entry }) => {
               if (inView && entry?.isIntersecting && visi) {
-                if(id === 0){
-                    setshow(true)
-                }
+                
                 {/* if (id !== 0 || (entry?.target?.id !== "about" && !visi)) { */}
-                 {typeof window !== "undefined" ?  window.location.hash = `#${Tab.tag}`  : null};
+                 typeof window !== "undefined" ?  window.location.hash = `#${Tab.tag}`  : null
                 
 
                 setIndex(`${Tab.tag}`);
