@@ -51,7 +51,7 @@ export const useSubnavhook = (visi, pop) => {
                 className={`fixed flex flex-col space-y-0 bg-white  pt-2 w-full text-gray-600 pl-4 pr-4 pb-0  even:pb-0 ${
                   visi ? "shadow" : ""
                 }`}
-                data-curr = 'about'
+                
               >
                 <div
                   className={`flex justify-between flex-wrap items-center space-y-3 pb-4 ${
@@ -172,7 +172,7 @@ export const useSubnavhook = (visi, pop) => {
               return (
                 <div
                   ref={ref}
-                  data-curr={id === 0 ? "" : Tab.tag}
+                  data-curr={ Tab.tag}
                   id={Tab.tag}
                   className="min-h-screen p-2 pt-10 mt-96"
                 >
