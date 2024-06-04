@@ -40,8 +40,9 @@ export const useSubnavhook = (visi, pop) => {
       () => (
         <InView initialInView={!visi} rootMargin="-10px">
           {({ inView, ref, entry }) => {
-            if (inView && index === "about") {
-              goto.push("https://nextjs-project-if9d-git-prodbranch-mathoks-projects.vercel.app/pages")
+            if (inView) {
+              window.location.hash = ""
+              //goto.push("https://nextjs-project-if9d-git-prodbranch-mathoks-projects.vercel.app/pages")
             }
 
             return (
