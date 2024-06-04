@@ -41,7 +41,7 @@ export const useSubnavhook = (visi, pop) => {
         <InView initialInView={!visi} rootMargin="-10px">
           {({ inView, ref, entry }) => {
             if (inView && index === "about") {
-              goto.push("http://localhost:3000/pages");
+              goto.push("https://nextjs-project-if9d-git-prodbranch-mathoks-projects.vercel.app/pages")
             }
 
             return (
@@ -117,7 +117,7 @@ export const useSubnavhook = (visi, pop) => {
                           : "border-none transition duration-500 text-gray-500"
                       }`}
                     >
-                      <Link href={`/pages#Products`}>Products</Link>
+                      <Link href={`#Products`}>Products</Link>
                     </li>
                     <li
                       value={2}
@@ -127,7 +127,7 @@ export const useSubnavhook = (visi, pop) => {
                           : "border-none text-gray-500"
                       }`}
                     >
-                      <Link href={`/pages#Recommended`}>Recommended</Link>
+                      <Link href={`#Recommended`}>Recommended</Link>
                     </li>
                   </ul>
                 </div>
