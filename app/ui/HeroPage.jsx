@@ -1,16 +1,8 @@
 /* eslint-disable react/jsx-key */
 "use client";
-import Image from "next/image";
 import React, { useCallback, useEffect, useState } from "react";
-import Logo from "@/app/assets/photo4.jpeg";
-import Logo8 from "@/app/assets/herobg.png";
-import Logo1 from "@/app/assets/photo2.jpeg";
-import Logo2 from "@/app/assets/photo7.jpeg";
-import Logo3 from "@/app/assets/photo7.jpeg";
 import { signIn, useSession } from "next-auth/react";
 import { CircularProgress } from "@mui/material";
-import Loading from "../loading";
-import HeroCard from "./HeroCard";
 import { jsx } from "@emotion/react";
 
 /** 
@@ -24,13 +16,13 @@ export const HeroPage = () => {
   console.log(session.status);
   const handleCreateStore = useCallback(
     (e) => {
-      console.log(session?.status);
+      
       if (session?.status === "loading")
         setchild(() => <CircularProgress className=" text-cyan-50" />);
       if (session?.status === "authenticated") setchild("OPEN A STORE");
       if (session?.status === "unauthenticated") {
         setchild(() => "SIGN IN");
-        console.log(e?.target);
+    
         if (e?.target) {
           return signIn();
         }

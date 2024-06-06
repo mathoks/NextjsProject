@@ -30,7 +30,7 @@ export default async function RootLayout({ children }) {
       </head> */}
       <body className={`${inter.className} min-h-screen`}>
       
-      <header>
+      <header className="bg-indigo-700">
       <StoreProvider>
       <Nav/>
       </StoreProvider>
@@ -38,7 +38,7 @@ export default async function RootLayout({ children }) {
       <main>
       {children}
       </main>
-      <footer className="static bottom-0">
+      <footer className="static bottom-0 bg-[#4f08ed]">
         <div>
           <ButtomNav/>
         </div>

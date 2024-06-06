@@ -41,7 +41,8 @@ body {
   }
   .icon_slate {
     --tw-bg-opacity: 1;
-    color: rgb(15 23 42 / var(--tw-bg-opacity));
+    color: #4f08ed
+    /* rgb(15 23 42 / var(--tw-bg-opacity)); */
 }
 .sticky\:tab{
   --tw-bg-opacity: 1;
@@ -97,6 +98,9 @@ swiper-container::part(button-next){
   
 }
 
+main_nav {
+  background-color: #4f08ed;
+}
 
 swiper-container::part(pagination){
   bottom: 2px;

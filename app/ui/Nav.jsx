@@ -42,8 +42,8 @@ console.log(myNav.getState())
 
   return (
     nav && path === '/' ? (
-    <nav aria-label="main" className=" flex flex-col space-y-0 bg-slate-800 pb-[1px] fixed w-full z-50 shadow-md shadow-black/20" >
-    <div className="sm: flex flex-col space-y-4  md:flex items-center justify-center p-4">
+    <nav aria-label="main" className=" flex flex-col space-y-0  pb-[1px] fixed w-full z-50 shadow-md shadow-black/20" >
+    <div className="sm: flex flex-col space-y-4  bg-indigo-700 md:flex items-center justify-center p-4">
     <section>
       <Link href={"#"} className="flex  gap-4 items-center">
       <p>Mymart</p>
