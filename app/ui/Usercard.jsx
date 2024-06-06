@@ -32,7 +32,7 @@ const Usercard = (props) => {
     
     <div className="flex flex-col space-y-2 text-gray-900  p-4 shadow-md rounded-md items-center grow-0 text-left bg-white">
     <Link href= {`/pages/${encodeURIComponent(props?.id || 4)}#about`}>
-      <section className="flex flex-row justify-start items-start space-x-4">
+      <section className="flex flex-row pl-2 justify-center items-start space-x-5 ">
         <div>
           <Avatar {...stringAvatar(props?.name, props?.image)} />
         </div>

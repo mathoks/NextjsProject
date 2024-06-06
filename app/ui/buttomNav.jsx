@@ -11,7 +11,7 @@ const ButtomNav = () => {
   useEffect(() => {
     window.onscroll = () => {
       init.current = window.scrollY;
-      setTimeout(() => (init2.current = init.current), 1000);
+      setTimeout(() => (init2.current = init.current), 2000);
       if (init.current > init2.current) {
         setShow(false);
       } else setShow(true);
@@ -19,7 +19,7 @@ const ButtomNav = () => {
   }, [show]);
 
   return (
-    <div className=" text-white flex flex-col pb-16">
+    <div className=" text-white flex flex-col  w-full">
       <div className="flex flex-col items-center justify-center space-y-1 bg-indigo-400 p-1 text-sm ">
         <span>
           <Link href={"#"}>
@@ -37,7 +37,7 @@ const ButtomNav = () => {
           <p>Customer Service</p>
         </div>
       </div>
-      <div className="flex flex-col justify-start bg-[#4f08ed] space-y-2">
+      <div className="flex flex-col justify-start bg-[#4f08ed] space-y-2 pb-16">
         <div className="flex justify-between m-2">
           <span className="flex gap-1">
             <span className="text- text-green-500">&#x1F310;</span>
@@ -61,13 +61,14 @@ const ButtomNav = () => {
           <p>Privacy Notice</p>
         </div>
         <div className="flex justify-center items-center gap-4 text-sm">
+
           <p>@ 2022-2024, Mymart.com, Inc</p>
         </div>
       </div>
       <div
-        className={`fixed bottom-0  bg-white z-50 shadow ${
+        className={`fixed bottom-0 bg-white z-50 shadow w-full ${
           show
-            ? "visible opacity-100 transition-opacity ease-linear"
+            ? "visible opacity-100 transition-opacity ease-linear h-[5.6rem]"
             : "invisible opacity-0 transition-opacity ease-linear"
         }`}
       >

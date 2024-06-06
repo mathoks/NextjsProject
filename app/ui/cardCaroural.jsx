@@ -50,7 +50,7 @@ const Showcase = (
   
   return (
     
-      <div  className={"swiper w-[24rem] rounded-md  flex p-2 justify-center  h-80"} >
+      <div  className={"swiper w-[21rem] rounded-md  flex p-2 justify-center  h-80"} >
         <swiper-container
           ref={swiperDiv}
           slides-per-view="2"
@@ -63,7 +63,7 @@ const Showcase = (
        
           <swiper-slide lazy="true"  onClick={()=> dispatch(setNav(false))} >
            <Link href={`/pages/${encodeURIComponent("mackyStores")}/${encodeURIComponent("shoes")}`}>
-            <div  className="flex flex-col shadow-md rounded-md space-y-3 h-[16.5rem]">
+            <div  className="flex flex-col shadow-md rounded-md space-y-3 h-[15.5rem]">
               <Image
                 src={DealerPic}
                 alt="DealerPic"
@@ -80,8 +80,9 @@ const Showcase = (
                 <p className=" w-3/4 overflow-ellipsis text-sm">Shoe Luis vitton for sale contact me</p>
               </div>
               <div className="flex justify-between">
-                <span className="te text-sm font-semibold">
-                  <p>N 745.00</p>
+                <span className="flex justify-start items-center space-x-1">
+                <span>&#x20A6;</span>
+                  <p className="text-[12px] font-semibold"> 745.00</p>
                 </span>
                 <span className="text-base">
                   <InfoOutlined fontSize="inherit" />
@@ -93,7 +94,7 @@ const Showcase = (
           </swiper-slide>
           
           <swiper-slide lazy="true">
-            <div className="flex flex-col shadow-md rounded-md space-y-3 h-[16.5rem]" onClick={(e)=>e.stopPropagation()}>
+            <div className="flex flex-col shadow-md rounded-md space-y-3 h-[15.5rem]" onClick={(e)=>e.stopPropagation()}>
               <Image
                 src={DealerPic2}
                 alt="DealerPic"
@@ -110,8 +111,9 @@ const Showcase = (
                 <p className=" w-3/4 overflow-ellipsis text-sm">Shoe Luis vitton for sale contact me</p>
               </div>
               <div className="flex justify-between">
-                <span className="text-sm font-semibold">
-                  <p>N 745.00</p>
+              <span className="flex justify-start items-center space-x-1">
+                <span>&#x20A6;</span>
+                  <p className="text-[12px] font-semibold"> 745.00</p>
                 </span>
                 <span className="text-base">
                   <InfoOutlined fontSize="inherit" />
@@ -121,7 +123,7 @@ const Showcase = (
             </div>
           </swiper-slide>
           <swiper-slide lazy="true">
-            <div className="flex flex-col shadow-md rounded-md space-y-3 h-[16.5rem]">
+            <div className="flex flex-col shadow-md rounded-md space-y-3 h-[15.5rem]">
               <Image
                 src={DealerPic}
                 alt="DealerPic"
@@ -138,8 +140,9 @@ const Showcase = (
                 <p className=" w-3/4 overflow-ellipsis text-sm">Shoe Luis vitton for sale contact me</p>
               </div>
               <div className="flex justify-between">
-                <span className="text-sm font-semibold">
-                  <p>N 745.00</p>
+              <span className="flex justify-start items-center space-x-1">
+                <span>&#x20A6;</span>
+                  <p className="text-[12px] font-semibold"> 745.00</p>
                 </span>
                 <span className="text-base">
                   <InfoOutlined fontSize="inherit" />
@@ -149,7 +152,7 @@ const Showcase = (
             </div>
           </swiper-slide>
           <swiper-slide lazy="true">
-            <div className="flex flex-col shadow-md rounded-md space-y-3 h-[16.5rem]">
+            <div className="flex flex-col shadow-md rounded-md space-y-3 h-[15.5rem]">
               <Image
                 src={DealerPic2}
                 alt="DealerPic"
@@ -166,8 +169,9 @@ const Showcase = (
                 <p className=" w-3/4 overflow-ellipsis text-sm">Shoe Luis vitton for sale contact me</p>
               </div>
               <div className="flex justify-between">
-                <span className="text-sm font-semibold">
-                  <p>N 745.00</p>
+              <span className="flex justify-start items-center space-x-1">
+                <span>&#x20A6;</span>
+                  <p className="text-[12px] font-semibold"> 745.00</p>
                 </span>
                 <span className="text-base">
                   <InfoOutlined fontSize="inherit" />

@@ -13,24 +13,9 @@ import { jsx } from "@emotion/react";
 export const HeroPage = () => {
 
   const [child, setchild] = useState("");
-  const [show, setshow] = useState(true);
   const session = useSession();
   console.log(session.status);
 
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 1,
-    //target: ref.current,
-  });
-
-  useEffect(() => {
-    
-    if(trigger){
-      setshow(false)
-    }
-    else setshow(true)
-    
-  }, [trigger])
   
 
   const handleCreateStore = useCallback(

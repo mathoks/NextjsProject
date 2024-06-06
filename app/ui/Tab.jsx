@@ -14,7 +14,7 @@ const Tab = () => {
 const Tabs = [{"id": 0, "val": "all Stores",  "href": "#", 'icon': <SelectAllOutlined fontSize='small'/> }, {"id": 1, "val": "phone",  "href": "#", 'icon': <PhoneAndroid fontSize='small'/> },{"id": 2, "val": "furniture",  "href": "#", 'icon': <ChairAltOutlined fontSize='small'/> },{"id": 3, "val": "fashion",  "href": "#", 'icon': <ShoppingBagOutlined fontSize='small'/> },{"id": 4, "val": "machinery",  "href": "#" , 'icon': <BuildOutlined fontSize='small'/>},{"id": 5, "val": "building-Materials",  "href": "#", 'icon': <RoofingOutlined fontSize='small'/>}, {"id": 6, "val": "electronics",  "href": "#", 'icon': <TvOutlined fontSize='small'/> }]
 
   return (
-    <section className='flex items-start justify-between  overflow-x-scroll gap-8 bg-white  w-screen pb-0 z-50' >
+    <section className='flex items-start justify-between  overflow-x-scroll gap-8 bg-white   pb-0 z-50 w-full' >
     <ul role='list'  onClick={handleChange} className='pl-4 pr-4 flex items-start justify-between  overflow-x-scroll gap-8 text-gray-700  pt-2'>
       { Tabs.map((tab, id)=>(
         
