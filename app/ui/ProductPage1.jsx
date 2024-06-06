@@ -8,7 +8,7 @@ const ProductPage1 = ({visi, index}) => {
     <div className='flex flex-col space-y-20'>
     <nav
                 aria-label="main"
-                className={`fixed flex top-14 left-0 flex-col space-y-0 bg-white  pt-2 w-full text-gray-600 pl-4 pr-4 pb-0  even:pb-0 ${
+                className={`fixed flex top-14 left-0 flex-col space-y-0 bg-white text-sm pt-2 w-full text-gray-600 pl-4 pr-4 pb-0  even:pb-0 ${
                   visi ? "shadow" : ""
                 }`}
               >
