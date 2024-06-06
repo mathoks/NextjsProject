@@ -26,7 +26,7 @@ const BottomMenu = ({ show }) => {
   return (
     <div
       component={"div"}
-      className={"fixed bottom-0 w-screen bg-white z-50 shadow"}
+      className={" w-screen bg-white z-50 shadow"}
       
     >
       <Toolbar

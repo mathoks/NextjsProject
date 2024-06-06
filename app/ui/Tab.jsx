@@ -15,7 +15,7 @@ const Tabs = [{"id": 0, "val": "all Stores",  "href": "#", 'icon': <SelectAllOut
 
   return (
     <section className='flex items-start justify-between  overflow-x-scroll gap-8 bg-white  w-screen pb-0 z-50' >
-    <ul role='list'  onClick={handleChange} className='pl-4 pr-4 flex items-start justify-between  overflow-x-scroll gap-8 text-gray-700  pt-2 w-screen'>
+    <ul role='list'  onClick={handleChange} className='pl-4 pr-4 flex items-start justify-between  overflow-x-scroll gap-8 text-gray-700  pt-2'>
       { Tabs.map((tab, id)=>(
         
         <li key={tab.id} value={tab.id || id}  className={`first-letter:capitalize cursor-pointer focus:font-medium pb-[6px] text-nowrap  ${index === tab.id? ' transition-transform duration-300 border-[#4f08ed] text-base  icon_slate' : 'border-none text-sm' }`}>
