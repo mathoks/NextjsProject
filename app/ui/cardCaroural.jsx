@@ -59,7 +59,7 @@ const Showcase = (
         >
        
           <swiper-slide lazy="true"  onClick={()=>{dispatch(setNav(false));} }>
-          <Link href={'/pages'}>
+          <Link href={`/pages/${encodeURIComponent(4)}#Products`} scroll>
             <div  className="flex flex-col shadow-md rounded-md space-y-3 h-[16.5rem]">
               <Image
                 src={DealerPic}

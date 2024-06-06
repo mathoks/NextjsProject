@@ -27,10 +27,11 @@ import Link from "next/link";
 const Usercard = (props) => {
     console.log(props)
     // const router = useRouter()
+    // /pages/${encodeURIComponent(props?.id || 4)
   return (
     
     <div className="flex flex-col space-y-2 text-gray-900 m-4 p-4 shadow-md rounded-md items-center grow-0 text-left ">
-    <Link href= {`/pages/${encodeURIComponent(props?.id || 4)}`}>
+    <Link href= {`/pages/${encodeURIComponent(props?.id || 4)}#about`}>
       <section className="flex flex-row justify-start items-start space-x-4">
         <div>
           <Avatar {...stringAvatar(props?.name, props?.image)} />
