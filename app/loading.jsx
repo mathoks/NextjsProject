@@ -3,13 +3,11 @@ import React from 'react'
 
 const Loading = () => {
   return (
-  //   <html>
-  // <body>
-  //   <div>
+  
+    <div className=' min-h-screen w-full'>
     <CircularProgress size={20} className=' text-white'/>
-    // </div>
-    // </body>
-    // </html>
+    </div>
+    
     
   )
 }

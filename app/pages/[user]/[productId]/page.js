@@ -1,10 +1,8 @@
-"use client";
+   "use client";
 import React, { Suspense, useEffect, useRef, useState } from "react";
-//import { useSubnavhook } from "../../lib/hooks/useSubnavhook";
-
 import { useScrollTrigger } from "@mui/material";
-import { useGethook, useSubnavhook } from "@/app/lib/hooks/useSubnavhook";
 import Loading from "@/app/loading";
+import { useSubhook2 } from "@/app/lib/hooks/useSubhook2";
 
 function debounce(func, delay) {
   let timeout;
@@ -15,7 +13,7 @@ function debounce(func, delay) {
 }
 
 const Page = () => {
-  const targetRoot = useGethook("userPage");
+  
   const [Dom, setDom] = useState(false);
   const [Prop, setProp] = useState(false);
   const ref = useRef();
@@ -49,21 +47,17 @@ const Page = () => {
     }
   }, [trigger]);
 
-  const Wrapper = useSubnavhook(Dom, Prop);
+  const ProductWrapper = useSubhook2(Dom, Prop);
 
   return (
     <div
-      id="userPage"
-      ref={ref}
-      className=" bg-white min-w-full"
+      className=" bg-white"
     >
     <Suspense fallback={<Loading/>}>
-
-    
-      {Wrapper}
+{ProductWrapper}
       </Suspense>
     </div>
   );
 };
 
-export default Page;
+export default Page

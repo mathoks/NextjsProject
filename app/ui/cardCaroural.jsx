@@ -3,7 +3,7 @@
 import {
   Box
 } from "@mui/material";
-import React, { Suspense, useRef } from "react";
+import React, { Suspense, useEffect, useRef } from "react";
 import { InfoOutlined } from "@mui/icons-material";
 import DealerPic from "@/app/assets/photo6.jpeg";
 import DealerPic2 from "@/app/assets/photo4.jpeg";
@@ -45,6 +45,9 @@ const Showcase = (
   const dispatch = useAppDispatch()
 
   
+
+    
+  
   return (
     
       <div  className={"swiper w-[24rem] rounded-md  flex p-2 justify-center  h-80"} >
@@ -58,8 +61,8 @@ const Showcase = (
          // className="rootswiper"
         >
        
-          <swiper-slide lazy="true"  onClick={()=>{dispatch(setNav(false));} }>
-          <Link href={`/pages/${encodeURIComponent(4)}#Products`} scroll>
+          <swiper-slide lazy="true"  onClick={()=> dispatch(setNav(false))} >
+           <Link href={`/pages/${encodeURIComponent("mackyStores")}/${encodeURIComponent("shoes")}`}>
             <div  className="flex flex-col shadow-md rounded-md space-y-3 h-[16.5rem]">
               <Image
                 src={DealerPic}

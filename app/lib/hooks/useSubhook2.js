@@ -1,9 +1,11 @@
-import Page1 from "@/app/ui/Page1";
+
 import { InView } from "react-intersection-observer";
 import Page2 from "@/app/ui/Page2";
 import Page3 from "@/app/ui/Page3";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import ProductPage1 from "@/app/ui/ProductPage1";
+
 
 
 export const useGethook = (func) => {
@@ -15,24 +17,24 @@ export const useGethook = (func) => {
   return val;
 };
 
-export const useSubnavhook = (visi) => {
+export const useSubhook2 = (visi) => {
   const [index, setIndex] = useState("");
   const route = useRouter()
   const Tabs = [
-    { id: 0, tag: "about", child: <Page1 visi={visi} index={index} /> },
-    { id: 1, tag: "Products", child: <Page2 /> },
+    { id: 0, tag: "Overview", child: <ProductPage1 visi={visi} index={index} /> },
+    { id: 1, tag: "ProductDetails", child: <Page2 /> },
     { id: 2, tag: "Recommended", child: <Page3 /> },
   ];
 
   useEffect(() => {
     window.addEventListener("beforeunload", () => {
-      localStorage.setItem("tab", window.location.hash);
+      localStorage.setItem("tabs", window.location.hash);
     });
     console.log(window.history.state)
-    setIndex(localStorage.getItem("tab"));
+    setIndex(localStorage.getItem("tabs"));
   }, []);
 
-  const Wrapper = () =>
+  const ProductWrapper = () =>
     Tabs.map((Tab, id) => (
       <InView
         root={null}
@@ -60,5 +62,5 @@ export const useSubnavhook = (visi) => {
       </InView>
     ));
 
-  return <Wrapper />;
+  return <ProductWrapper />;
 };

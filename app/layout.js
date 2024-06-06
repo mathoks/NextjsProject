@@ -28,7 +28,7 @@ export default async function RootLayout({ children }) {
         <link rel="icon" href="/favicon.ico" />
         <style>{inter.css}</style>
       </head> */}
-      <body className={inter.className}>
+      <body className={`${inter.className} min-h-screen`}>
       
       <header>
       <StoreProvider>

@@ -99,10 +99,12 @@ const Usercard = (props) => {
         <span className="text-sm">Call</span>
           <span className="text-sm"><Call fontSize="inherit"/></span>
         </div>
-        <div className="flex space-x-1">
+        <Link href={`/pages/${encodeURIComponent(4)}#Products`}>
+        <div  className="flex space-x-1">
         <span className="text-sm">more</span>
           <span className="text-sm"><ArrowForward fontSize="inherit"/></span>
         </div>
+        </Link>
       </section>
     </div>
     
