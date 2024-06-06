@@ -73,7 +73,7 @@ export default async function Home() {
     
     
     <StoreProvider>
-      <section className="flex min-h-screen flex-col items-center space-y-1 w-full bg-gray-400">
+      <section className="flex min-h-screen flex-col items-center space-y-1 w-full">
         <div className="mt-28 flex flex-col space-y-1 items-center">
            
             <section>
@@ -84,7 +84,7 @@ export default async function Home() {
               <p className=" text-gray-900">advert Panel</p>
             </Suspense>
           </section>
-           <section className="bg-white ">
+           <section>
            
             <Suspense fallback={<Loading/>}>
            <Products users={usersList}/>

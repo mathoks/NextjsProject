@@ -30,7 +30,7 @@ const Usercard = (props) => {
     // /pages/${encodeURIComponent(props?.id || 4)
   return (
     
-    <div className="flex flex-col space-y-2 text-gray-900 m-4 p-4 shadow-md rounded-md items-center grow-0 text-left ">
+    <div className="flex flex-col space-y-2 text-gray-900  p-4 shadow-md rounded-md items-center grow-0 text-left bg-white">
     <Link href= {`/pages/${encodeURIComponent(props?.id || 4)}#about`}>
       <section className="flex flex-row justify-start items-start space-x-4">
         <div>
@@ -90,18 +90,18 @@ const Usercard = (props) => {
             <Showcase/>        
         
       </section>
-      <section className="flex flex-row justify-between  items-center w-[90%]">
-        <div className="flex space-x-1">
+      <section className="flex flex-row justify-end  items-center w-[90%]">
+        {/* <div className="flex space-x-1">
           <span className="text-sm space-x-1">Chat</span>
           <span className="text-sm"><Chat fontSize="inherit"/></span>
         </div>
         <div className="flex space-x-1">
         <span className="text-sm">Call</span>
           <span className="text-sm"><Call fontSize="inherit"/></span>
-        </div>
+        </div> */}
         <Link href={`/pages/${encodeURIComponent(4)}#Products`}>
         <div  className="flex space-x-1">
-        <span className="text-sm">more</span>
+        <span className="text-sm">See more</span>
           <span className="text-sm"><ArrowForward fontSize="inherit"/></span>
         </div>
         </Link>
