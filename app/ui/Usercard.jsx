@@ -37,7 +37,7 @@ const Usercard = (props) => {
           <Avatar {...stringAvatar(props?.name, props?.image)} />
         </div>
         <div className="flex flex-col space-y-2">
-        <span className="font-bold">
+        <span className="font-semibold">
             {props?.name || "John Bull"}
         </span>
           <span className="flex gap-2 w-[90%]">
@@ -100,8 +100,8 @@ const Usercard = (props) => {
           <span className="text-sm"><Call fontSize="inherit"/></span>
         </div> */}
         <Link href={`/pages/${encodeURIComponent(4)}#Products`}>
-        <div  className="flex space-x-1">
-        <span className="text-sm">See more</span>
+        <div  className="flex space-x-1 icon_slate ">
+        <span className="text-sm ">See more</span>
           <span className="text-sm"><ArrowForward fontSize="inherit"/></span>
         </div>
         </Link>

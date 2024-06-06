@@ -61,7 +61,7 @@ export const HeroPage = () => {
       <section className="bg_image bg-center">
         <div className="flex flex-col space-y-4  py-24 h-auto pl-8 items-start ">
           <div className="min-w-min">
-            <h2 className="text-3xl  w-2/3 text-left md:text-left font-bold   text-gray-800 ">
+            <h2 className="text-3xl  w-2/3 text-left md:text-left font-semibold   text-gray-800 ">
               Welcome To Mymart
             </h2>
           </div>
