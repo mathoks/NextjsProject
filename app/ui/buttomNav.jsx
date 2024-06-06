@@ -22,7 +22,7 @@ const ButtomNav = () => {
       <p>Customer Service</p>
       </div>
       </div>
-      <div className='flex flex-col justify-start bg-indigo-700 space-y-2'>
+      <div className='flex flex-col justify-start bg-[#4f08ed] space-y-2'>
       <div className='flex justify-between m-2'>
       <span className='flex gap-1'>
       <span className='text- text-green-500'>&#x1F310;</span>

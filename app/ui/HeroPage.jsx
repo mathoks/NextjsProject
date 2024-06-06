@@ -2,7 +2,7 @@
 "use client";
 import React, { useCallback, useEffect, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, useScrollTrigger } from "@mui/material";
 import { jsx } from "@emotion/react";
 
 /** 
@@ -11,9 +11,28 @@ import { jsx } from "@emotion/react";
  * @returns {jsx.Element} The rendered component.
 */
 export const HeroPage = () => {
+
   const [child, setchild] = useState("");
+  const [show, setshow] = useState(true);
   const session = useSession();
   console.log(session.status);
+
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 1,
+    //target: ref.current,
+  });
+
+  useEffect(() => {
+    
+    if(trigger){
+      setshow(false)
+    }
+    else setshow(true)
+    
+  }, [trigger])
+  
+
   const handleCreateStore = useCallback(
     (e) => {
       
@@ -38,7 +57,7 @@ export const HeroPage = () => {
   // eslint-disable-next-line react/jsx-key
 
   return (
-    <section className="flex flex-col space-y-1 w-screen">
+    <section className={`flex flex-col space-y-1 w-screen `}>
       <section className="bg_image bg-center">
         <div className="flex flex-col space-y-4  py-24 h-auto pl-8 items-start ">
           <div className="min-w-min">
