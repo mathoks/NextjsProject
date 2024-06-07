@@ -10,7 +10,7 @@ import React from "react"
  * @param {object} sx - style object
  * @returns {jsx}- JSX Element
  */
-export const MakeEllipsis = ({text,size, flag, sx})=>{
+export const MakeEllipsis = ({text,size, flag})=>{
     const id = React.useId()
     
     let value;
@@ -30,7 +30,7 @@ export const MakeEllipsis = ({text,size, flag, sx})=>{
 
     
        
-     return  <span> <Typography key={id} {...sx}>{value}</Typography></span>
+     return  <span> <Typography key={id} className="text-base w-full leading-5">{value}</Typography></span>
       }
       else return <Typography>nothing</Typography>
 }

@@ -44,7 +44,7 @@ const Usercard = (props) => {
             <span className="text-base">
               <LocationOnOutlined fontSize="inherit" />
             </span>
-            <span className="text text-base">
+            <span className=" text-base w-full leading-5">
               <span>{props?.location || "shop 134b Electronic line Alaba international market ojo lagos" }</span>
             </span>
           </span>
@@ -54,16 +54,10 @@ const Usercard = (props) => {
             </span>
             <span>
               <MakeEllipsis
-                text={props.storeDescription + "" + "we sell the best contact us today what are you waiting for you can check my product gallery"}
+                text={props.storeDescription + " " + "we sell the best contact us today what are you waiting for you can check my product gallery"}
                 size={60}
                 flag={"A"}
-                sx={{
-                //   fontSize: 16,
-                  lineHeight: 1,
-                  variant: "subtitle1",
-                //   '&:first-letter': {textTransform: 'capitalize'}
-                }}
-                
+              
               />
             </span>
           </span>

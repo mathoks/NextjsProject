@@ -50,7 +50,7 @@ const Showcase = (
   
   return (
     
-      <div  className={"swiper w-[21rem] rounded-md  flex p-2 justify-center  h-80"} >
+      <div  className={"swiper w-[22rem] rounded-md  flex p-2 justify-center  h-80"} >
         <swiper-container
           ref={swiperDiv}
           slides-per-view="2"
@@ -63,7 +63,7 @@ const Showcase = (
        
           <swiper-slide lazy="true"  onClick={()=> dispatch(setNav(false))} >
            <Link href={`/pages/${encodeURIComponent("mackyStores")}/${encodeURIComponent("shoes")}`}>
-            <div  className="flex flex-col shadow-md rounded-md space-y-3 h-[15.5rem]">
+            <div  className="flex relative flex-col shadow-md rounded-md space-y-3 h-[15.5rem]">
               <Image
                 src={DealerPic}
                 alt="DealerPic"
@@ -77,11 +77,11 @@ const Showcase = (
                 <p className=" w-3/4 overflow-ellipsis font-semibold text-sm">Shoe Luis</p>
               </div>
               <div>
-                <p className=" w-3/4 overflow-ellipsis text-sm">Shoe Luis vitton for sale contact me</p>
+                <p className=" w-[98%] overflow-ellipsis text-sm leading-4">Shoe Luis vitton for sale contact me</p>
               </div>
-              <div className="flex justify-between">
+              <div className="flex justify-between absolute bottom-2 w-[90%] items-center">
                 <span className="flex justify-start items-center space-x-1">
-                <span>&#x20A6;</span>
+                <span className="text-[12px]">&#x20A6;</span>
                   <p className="text-[12px] font-semibold"> 745.00</p>
                 </span>
                 <span className="text-base">
@@ -94,7 +94,7 @@ const Showcase = (
           </swiper-slide>
           
           <swiper-slide lazy="true">
-            <div className="flex flex-col shadow-md rounded-md space-y-3 h-[15.5rem]" onClick={(e)=>e.stopPropagation()}>
+            <div className="flex flex-col relative shadow-md rounded-md space-y-3 h-[15.5rem]" onClick={(e)=>e.stopPropagation()}>
               <Image
                 src={DealerPic2}
                 alt="DealerPic"
@@ -108,11 +108,11 @@ const Showcase = (
                 <p className=" w-3/4 overflow-ellipsis font-semibold text-sm">Shoe Luis</p>
               </div>
               <div>
-                <p className=" w-3/4 overflow-ellipsis text-sm">Shoe Luis vitton for sale contact me</p>
+                <p className="w-[98%] overflow-ellipsis text-sm leading-4">Shoe Luis vitton for sale contact me</p>
               </div>
-              <div className="flex justify-between">
+              <div className="flex justify-between absolute bottom-2 w-[90%] items-center">
               <span className="flex justify-start items-center space-x-1">
-                <span>&#x20A6;</span>
+                <span className="text-[12px]">&#x20A6;</span>
                   <p className="text-[12px] font-semibold"> 745.00</p>
                 </span>
                 <span className="text-base">
@@ -123,7 +123,7 @@ const Showcase = (
             </div>
           </swiper-slide>
           <swiper-slide lazy="true">
-            <div className="flex flex-col shadow-md rounded-md space-y-3 h-[15.5rem]">
+            <div className="flex relative flex-col shadow-md rounded-md space-y-3 h-[15.5rem]">
               <Image
                 src={DealerPic}
                 alt="DealerPic"
@@ -137,11 +137,11 @@ const Showcase = (
                 <p className=" w-3/4 overflow-ellipsis font-semibold text-sm">Shoe Luis</p>
               </div>
               <div>
-                <p className=" w-3/4 overflow-ellipsis text-sm">Shoe Luis vitton for sale contact me</p>
+                <p className=" w-[98%] overflow-ellipsis text-sm leading-4">Shoe Luis vitton for sale contact me</p>
               </div>
-              <div className="flex justify-between">
+              <div className="flex justify-between absolute bottom-2 w-[90%] items-center">
               <span className="flex justify-start items-center space-x-1">
-                <span>&#x20A6;</span>
+                <span className="text-[12px]">&#x20A6;</span>
                   <p className="text-[12px] font-semibold"> 745.00</p>
                 </span>
                 <span className="text-base">
@@ -152,7 +152,7 @@ const Showcase = (
             </div>
           </swiper-slide>
           <swiper-slide lazy="true">
-            <div className="flex flex-col shadow-md rounded-md space-y-3 h-[15.5rem]">
+            <div className="flex flex-col shadow-md rounded-md space-y-3 h-[15.5rem] relative">
               <Image
                 src={DealerPic2}
                 alt="DealerPic"
@@ -166,11 +166,11 @@ const Showcase = (
                 <p className=" w-3/4 overflow-ellipsis font-semibold text-sm">Shoe Luis</p>
               </div>
               <div>
-                <p className=" w-3/4 overflow-ellipsis text-sm">Shoe Luis vitton for sale contact me</p>
+                <p className="w-[98%] overflow-ellipsis text-sm leading-4">Shoe Luis vitton for sale contact me</p>
               </div>
-              <div className="flex justify-between">
+              <div className="flex justify-between items-center absolute bottom-2 w-[90%]">
               <span className="flex justify-start items-center space-x-1">
-                <span>&#x20A6;</span>
+                <span className="text-[12px]">&#x20A6;</span>
                   <p className="text-[12px] font-semibold"> 745.00</p>
                 </span>
                 <span className="text-base">
