@@ -25,9 +25,6 @@ const BottomMenu = ({ show }) => {
 
   return (
     <div
-      component={"div"}
-      className="h-fit"
-      
     >
       <Toolbar
         sx={{

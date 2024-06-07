@@ -38,7 +38,7 @@ export default async function RootLayout({ children }) {
       <main>
       {children}
       </main>
-      <footer className="h-40 bg-[#4f08ed] w-full">
+      <footer className="bg-[#4f08ed] w-full">
         
           <ButtomNav/>
         
