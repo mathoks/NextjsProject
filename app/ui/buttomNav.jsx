@@ -66,9 +66,9 @@ const ButtomNav = () => {
         </div>
       </div>
       <div
-        className={`fixed bottom-0 bg-white z-50 shadow w-full ${
+        className={` opacity-0 bg-white z-50 shadow w-full ${
           show
-            ? "visible opacity-100 transition-opacity ease-linear"
+            ? "visible opacity-100 transition-opacity ease-linear fixed bottom-0"
             : "invisible opacity-0 transition-opacity ease-linear"
         }`}
       >
