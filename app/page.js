@@ -73,15 +73,15 @@ export default async function Home() {
     
     
     <StoreProvider>
-      <section className="flex min-h-screen flex-col items-center space-y-1 w-full">
-        <div className="mt-28 flex flex-col space-y-1 items-center">
+      <section className="flex min-h-screen mt-0 flex-col items-center  w-full">
+        <div className="mt-28 flex flex-col gap-[0.08rem] items-center">
            
             <section>
             <HeroPage/>
             </section>
-            <section className="h-14 bg-white w-full flex justify-center items-center">
+            <section className="h-14  w-full flex justify-center items-center">
             <Suspense fallback={<p>hhhhh</p>}>
-              <p className=" text-gray-900">advert Panel</p>
+              <p className="text-white">advert Panel</p>
             </Suspense>
           </section>
            <section>

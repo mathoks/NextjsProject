@@ -43,14 +43,15 @@ export const HeroPage = () => {
 
   return (
     <section className={`flex flex-col space-y-1 w-screen `}>
-      <section className="bg_image bg-center">
-        <div className="flex flex-col space-y-4  py-24 h-auto pl-8 items-start ">
+      <section className="bg_image bg-center ">
+        <div className="flex w-[60%]  text-white flex-col space-y-4  py-24 h-auto pl-8 items-start">
+        
           <div className="min-w-min">
-            <h2 className="text-3xl  w-2/3 text-left md:text-left font-semibold   text-gray-800 ">
+            <h2 className="text-2xl  w-2/3 text-left md:text-left font-semibold ">
               Welcome To Mymart
             </h2>
           </div>
-          <div className="flex flex-col font-bold  space-y-4 text-gray-800 md:text-left ">
+          <div className="flex flex-col font-bold  space-y-4 md:text-left ">
             <h4>Get a Store Today</h4>
 
             <button
@@ -61,6 +62,7 @@ export const HeroPage = () => {
               {child}
             </button>
           </div>
+          
         </div>
       </section>
       {/* <section className="grow flex flex-col w-full bg-gray-100">

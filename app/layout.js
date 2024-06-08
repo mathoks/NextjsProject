@@ -20,15 +20,8 @@ export default async function RootLayout({ children }) {
   //const pathname = await getRoute()
   return (
     <html lang="en">
-      {/* <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content={metadata.description} />
-        <title>{metadata.title}</title>
-        <link rel="icon" href="/favicon.ico" />
-        <style>{inter.css}</style>
-      </head> */}
-      <body className={`${inter.className} min-h-screen w-full`}>
+      
+      <body className={`${inter.className} min-h-screen w-full overflow-x-clip `}>
       
       <header className="bg-indigo-700">
       <StoreProvider>

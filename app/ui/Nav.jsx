@@ -9,11 +9,20 @@ import { useAppDispatch, useAppSelector, useAppStore } from "../lib/hooks/hooks"
 import { usePathname } from "next/navigation";
 import { setNav, setPath } from "../lib/features/Nav/navSlice";
 import { connect } from "react-redux";
+import { useScrollTrigger } from "@mui/material";
 
 
 
 
  const Nav = (props) => {
+  const [col, setcol] = useState(false)
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 1,
+
+  });
+
+
   const {nav} = props
   const path = usePathname()
 //   const dispatch = useAppDispatch()
@@ -36,13 +45,19 @@ useEffect(() => {
   
 }, [path])
 
-console.log(myNav.getState())
+useEffect(()=>{
+  if(trigger)
+    setcol(true)
+  else setcol(false)
+},[trigger])
+
+
 
 
 
   return (
     nav && path === '/' ? (
-    <nav aria-label="main" className=" flex flex-col fixed w-full z-50  shadow-lg h-[158px]" >
+    <nav aria-label="main" className={`flex bg-[#4f08ed] flex-col fixed w-full z-50  h-[158px] ${col ? "shadow-lg" : ""}`} >
     <div className="sm: flex flex-col space-y-4  bg-[#4f08ed] md:flex items-center justify-center p-4">
     <section>
       <Link href={"#"} className="flex  gap-4 items-center">

@@ -26,38 +26,43 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb)); */
-    background-color: gainsboro;
-    ::-webkit-scrollbar {
-      display: none;
-    }
+  background: linear-gradient(to bottom, #4f08ed 0.005%, white 39.995% ,  white 60% );
+  /* background-size: 100% 100%; */
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
-  .img_p{
+
+  .img_p {
     padding-top: 180px;
   }
+
   .icon_slate {
     --tw-bg-opacity: 1;
     color: #4f08ed
-    /* rgb(15 23 42 / var(--tw-bg-opacity)); */
-}
-.sticky\:tab{
-  --tw-bg-opacity: 1;
+      /* rgb(15 23 42 / var(--tw-bg-opacity)); */
+  }
+
+  .sticky\:tab {
+    --tw-bg-opacity: 1;
     background-color: rgb(15 23 42 / var(--tw-bg-opacity));
-}
+  }
 
-.bg_image {
-  background-image: url('./assets/herobg.png');
-  background-repeat: no-repeat;
-  background-color: #ffff;
-  background-position:"center"; 
-  height: auto;
-  
+  .bg_image {
+    background-image: url('./assets/herobg.png');
+    background-repeat: no-repeat;
+    background-color: #4f08ed;
+    background-position: "center";
+    height: auto;
 
-}
+
+  }
 
 }
 
@@ -74,28 +79,29 @@ body {
 } */
 
 .main_Container {
-   width: 50%; 
-  padding: 8px 4px ;
+  width: 50%;
+  padding: 8px 4px;
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
 }
 
-swiper-container::part(button-next){
+swiper-container::part(button-next) {
   margin-top: 0px;
   position: absolute;
   top: 50px;
   color: #3b82fe;
   /* left: 270px; */
 }
- swiper-container::part(button-prev){
+
+swiper-container::part(button-prev) {
   margin-top: 0px;
   position: absolute;
   top: 50px;
- color: #3b82fe;
- /* left: 4px */
-  
+  color: #3b82fe;
+  /* left: 4px */
+
 }
 
 .bottom_menu {
@@ -103,19 +109,19 @@ swiper-container::part(button-next){
   z-index: 1045;
 }
 
-swiper-container::part(pagination){
+swiper-container::part(pagination) {
   bottom: 2px;
   color: #3b82fe;
 }
 
- /* swiper-container::part(wrapper){
+/* swiper-container::part(wrapper){
   height: 80%;
   background-color: aquamarine;
 } */
 
 swiper-container {
   height: 100%;
-  width: 100%; 
+  width: 100%;
   padding-top: 4px;
   padding-left: 4px;
   padding-bottom: 4px;
@@ -125,11 +131,8 @@ swiper-container {
   justify-content: start;
 }
 
-.hide_nav{
+.hide_nav {
 
-opacity: 0.5;
-transition: opacity 1s ease-in-out;
+  opacity: 0.5;
+  transition: opacity 1s ease-in-out;
 }
-
-
-
