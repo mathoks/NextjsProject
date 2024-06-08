@@ -24,17 +24,16 @@ const BottomMenu = ({ show }) => {
   }, [pathname, path]);
 
   return (
-    <div
-    >
-      <Toolbar
+    <div className="flex  items-center justify-between p-6 shadow-inner ">
+      {/* <Toolbar
         sx={{
           display: "flex",
           justifyContent: "space-around",
           padding: 1,
           alignItems: "center",
         }}
-      >
-        <Box component={"span"}>
+      > */}
+        <Box component={"div"}>
           <Link href={'#'}>
           
             <Stack className="flex flex-col justify-center items-center">
@@ -51,7 +50,7 @@ const BottomMenu = ({ show }) => {
             </Stack>
           </Link>
         </Box>
-        <Box component={"span"}>
+        <Box component={"div"}>
           <Link className="items-center"
             href={"/Discover"}
           >
@@ -69,7 +68,7 @@ const BottomMenu = ({ show }) => {
             </Stack>
           </Link>
         </Box>
-        <Box component={"span"}>
+        <Box component={"div"}>
           <Link  className = "items-center" href={'#'}
           >
             <Stack  className="flex flex-col justify-center items-center">
@@ -86,7 +85,7 @@ const BottomMenu = ({ show }) => {
             </Stack>
           </Link>
         </Box>
-        <Box component={"span"}>
+        <Box component={"div"}>
           <Link
             style={{
               alignItems: "center",
@@ -108,7 +107,7 @@ const BottomMenu = ({ show }) => {
             </Stack>
           </Link>
         </Box>
-      </Toolbar>
+      {/* </Toolbar> */}
     </div>
   );
 };
