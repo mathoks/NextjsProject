@@ -24,7 +24,7 @@ const BottomMenu = ({ show }) => {
   }, [pathname, path]);
 
   return (
-    <div className="flex  items-center justify-between p-6 pt-2 shadow-inner ">
+    <div className="flex  items-center justify-between p-3 shadow-inner ">
       {/* <Toolbar
         sx={{
           display: "flex",

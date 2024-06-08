@@ -47,15 +47,15 @@ export const HeroPage = () => {
         <div className="flex w-[60%]  text-white flex-col space-y-4  py-24 h-auto pl-8 items-start">
         
           <div className="min-w-min">
-            <h2 className="text-2xl  w-2/3 text-left md:text-left font-semibold ">
+            <h2 className="text-2xl  w-2/3 text-left md:text-left font-semibold text_shadow">
               Welcome To Mymart
             </h2>
           </div>
-          <div className="flex flex-col font-bold  space-y-4 md:text-left ">
+          <div className="flex flex-col font-bold text_shadow  space-y-4 md:text-left ">
             <h4>Get a Store Today</h4>
 
             <button
-              className="p-2 bg-blue-600 rounded  text-cyan-50 text-sm"
+              className="p-2 bg-[#34C759] rounded text-white text-sm text_shadow"
               onClick={handleCreateStore}
               title="hero"
             >
