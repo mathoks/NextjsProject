@@ -72,11 +72,11 @@ useEffect(()=>{
       </Link>
       </section>
       <section>
-      <div className="md:flex">
-        <div className="border flex items-center justify-between bg-white p-2 space-x-1 rounded-md">
+      <div className="md:flex w-[95%]">
+        <div className="border flex items-center justify-between bg-white p-2 rounded-md ">
         <SearchOutlined className="icon_slate" fontSize="medium" sx={{ zIndex: 80}}/>
-        <input placeholder="find here" className="placeholder:text-center text-zinc-950  pl-4 pr-4 focus:outline-none"/>
-        <LocationOn className="icon_slate" fontSize="medium" />
+        <input placeholder="find here" className="placeholder:text-center text-zinc-950  pl-4 pr-4 focus:outline-none w-[98%]"/>
+        <LocationOn className="icon_slate sm:pr-2" fontSize="medium" />
       </div>
       </div>
       </section>

@@ -70,7 +70,7 @@ const Showcase = (
                 width={300}
                 height={200}
                 loading="lazy"
-                className="min-h-20"
+                className="min-h-20 rounded-t-lg"
               />
               <div className=" pl-2 pr-2 flex flex-col space-y-3">
               <div>
@@ -101,7 +101,7 @@ const Showcase = (
                 width={300}
                 height={200}
                 loading="lazy"
-                className="min-h-20"
+                className="min-h-20 rounded-t-lg"
               />
               <div className=" pl-2 pr-2 flex flex-col space-y-3">
               <div>
@@ -130,7 +130,7 @@ const Showcase = (
                 width={300}
                 height={200}
                 loading="lazy"
-                className="min-h-20"
+                className="min-h-20 rounded-t-lg"
               />
               <div className=" pl-2 pr-2 flex flex-col space-y-3">
               <div>
@@ -158,7 +158,7 @@ const Showcase = (
                 alt="DealerPic"
                 width={300}
                 height={200}
-                className="min-h-20"
+                className="min-h-20 rounded-t-lg"
                 loading="lazy"
               />
               <div className=" pl-2 pr-2 flex flex-col space-y-3">
