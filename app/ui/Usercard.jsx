@@ -31,7 +31,7 @@ const Usercard = (props) => {
     // /pages/${encodeURIComponent(props?.id || 4)
   return (
     
-    <div className="flex flex-col space-y-2 text-gray-900  p-2 pr-1 pt-3  items-center grow-0 text-left bg-white border-b-2 last:mt-0">
+    <div className="flex flex-col space-y-2 text-gray-900  p-2 pr-1 pt-3  items-center grow-0 text-left shadow-md rounded-md bg-white  last:mt-0">
     <Link href= {`/pages/${encodeURIComponent(props?.id || 4)}#about`}>
       <section className="flex flex-row pl-2 justify-between items-start">
         <div>

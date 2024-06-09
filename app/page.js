@@ -80,14 +80,14 @@ export default async function Home() {
             <section>
             <HeroPage/>
             </section>
-            <section className="w-screen bg-white text-black flex flex-col space-y-1">
-            <div className="p-4 pb-0 font-semibold text-xl"><p>Discount Sales</p></div>
+            <section className="w-screen bg-slate-50 text-black flex flex-col space-y-1">
+            <div className="p-4 pb-0 font-semibold text-lg"><p>Discount Sales</p></div>
             <Suspense fallback={<Loading/>}>
               <Ads/>
             </Suspense>
           </section>
-             <section className="w-screen bg-white text-black flex flex-col space-y-1">
-             <div className="p-4 pb-0 font-semibold text-xl"><p>New Arrivals</p></div>
+             <section className="w-screen bg-slate-50 text-black flex flex-col space-y-1">
+             <div className="p-4 pb-0 font-semibold text-lg"><p>New Arrivals</p></div>
             <Suspense fallback={<Loading/>}>
               <Ads/>
             </Suspense>
