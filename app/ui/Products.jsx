@@ -16,7 +16,7 @@ const Products = async({users}) => {
   return (
     <section className='flex flex-col' >
     <div className='w-full bg-white p-4'>
-    <h3 className='text-gray-800  font-semibold '>Dealers Reel</h3>
+    <p className='text-gray-800  font-semibold  text-xl'>Dealers Reel</p>
     </div>
     
     <div  className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  place-items-center first:pt-0 first:rounded-s-none last:pb-0'>

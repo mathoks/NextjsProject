@@ -163,9 +163,9 @@ export const HeroPage = () => {
           </div>
         </div>
       </section> */}
-      <section className="grow space-y-2 text-gray-800  bg-white  pb-4  pl-2 pr-2  pt-4">
+      {/* <section className="grow space-y-2 text-gray-800  bg-white  pb-4  pl-2 pr-2  pt-4">
         <h3 className="font-semibold pl-2">Discount Sales</h3>
-        <Ads/>
+        <Ads/> */}
         {/* <div className="overflow-x-scroll w-full">
           <div className="flex items-center gap-3 overflow-scroll w-full">
             <Image
@@ -212,7 +212,7 @@ export const HeroPage = () => {
             />
           </div>
         </div>  */}
-      </section> 
+      {/* </section>  */}
     </section>
   );
 };

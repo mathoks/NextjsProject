@@ -11,6 +11,7 @@ import StoreProvider from "@/app/StoreProvider";
 import Products from "@/app/ui/Products";
 import { getUsers } from "./actions/users/getUsers";
 import { getRoutes } from "./actions/users/getRoute";
+import Ads from "./ui/adds";
 
 
 // function Auth({ children }) {
@@ -79,11 +80,18 @@ export default async function Home() {
             <section>
             <HeroPage/>
             </section>
-            {/* <section className="h-14  w-full flex justify-center items-center bg-white border-b-2">
-            <Suspense fallback={<p>hhhhh</p>}>
-              <p className="text-white">advert Panel</p>
+            <section className="w-screen bg-white text-black flex flex-col space-y-1">
+            <div className="p-4 pb-0 font-semibold text-xl"><p>Discount Sales</p></div>
+            <Suspense fallback={<Loading/>}>
+              <Ads/>
             </Suspense>
-          </section> */}
+          </section>
+             <section className="w-screen bg-white text-black flex flex-col space-y-1">
+             <div className="p-4 pb-0 font-semibold text-xl"><p>New Arrivals</p></div>
+            <Suspense fallback={<Loading/>}>
+              <Ads/>
+            </Suspense>
+          </section> 
            <section>
            
             <Suspense fallback={<Loading/>}>

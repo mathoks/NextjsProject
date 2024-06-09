@@ -16,7 +16,7 @@ const BottomMenu = ({ show }) => {
   
   useEffect(() => {
     if (pathname === "/") {
-      setCol("#4f08ed");
+      setCol("#ffff");
     } else setCol("grey");
     if (path?.includes("Account")) {
       setCol4("#4f08ed");
