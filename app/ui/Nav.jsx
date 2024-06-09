@@ -57,7 +57,7 @@ useEffect(()=>{
 
   return (
     nav && path === '/' ? (
-    <nav aria-label="main" className={`flex bg-[#4f08ed] flex-col fixed w-full z-50  h-[158px] ${col ? "shadow-lg" : ""}`} >
+    <nav aria-label="main" className={`flex bg-[#4f08ed]  flex-col fixed w-full z-50  h-[158px] ${col ? "shadow-lg" : ""}`} >
     <div className="sm: flex flex-col space-y-4  bg-[#4f08ed] md:flex items-center justify-center p-4">
     <section>
       <Link href={"#"} className="flex  gap-4 items-center text_shadow">

@@ -105,13 +105,13 @@ swiper-container::part(button-prev) {
 }
 
 .bottom_menu {
-  background-color: white;
+  /* background-color: white; */
   z-index: 1045;
 }
 
 swiper-container::part(pagination) {
   bottom: 2px;
-  color: #3b82fe;
+  color: #4f08ed;
 }
 
 /* swiper-container::part(wrapper){

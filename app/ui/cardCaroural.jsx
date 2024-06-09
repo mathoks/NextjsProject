@@ -50,7 +50,7 @@ const Showcase = (
   
   return (
     
-      <div  className={"swiper w-[22rem] rounded-md  flex p-2 justify-center  h-80"} >
+      <div  className={"swiper w-[22rem] rounded-md  flex  justify-center  h-72"} >
         <swiper-container
           ref={swiperDiv}
           slides-per-view="2"

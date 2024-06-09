@@ -4,6 +4,10 @@ import React, { useCallback, useEffect, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { CircularProgress, useScrollTrigger } from "@mui/material";
 import { jsx } from "@emotion/react";
+import Image from "next/image";
+import Logo from '@/app/assets/photo4.jpeg'
+import Logo2 from '@/app/assets/photo6.jpeg'
+import Ads from "./adds";
 
 /** 
  * hero page component.
@@ -42,9 +46,9 @@ export const HeroPage = () => {
   // eslint-disable-next-line react/jsx-key
 
   return (
-    <section className={`flex flex-col space-y-1 w-screen `}>
+    <section className={`flex flex-col w-screen `}>
       <section className="bg_image bg-center ">
-        <div className="flex w-[60%]  text-white flex-col space-y-4  py-24 h-auto pl-8 items-start">
+        <div className="flex w-[60%]  text-white flex-col space-y-4 py-24 h-auto pl-6 items-start">
         
           <div className="min-w-min">
             <h2 className="text-2xl  w-2/3 text-left md:text-left font-semibold text_shadow">
@@ -158,10 +162,11 @@ export const HeroPage = () => {
             </div>
           </div>
         </div>
-      </section>
-      <section className="grow space-y-2 text-gray-800  bg-white  pb-6 pl-2 pr-2 first:pb-2  pt-4">
-        <h3 className="font-bold">Discount Sales</h3>
-        <div className="overflow-x-scroll w-full">
+      </section> */}
+      <section className="grow space-y-2 text-gray-800  bg-white  pb-4  pl-2 pr-2  pt-4">
+        <h3 className="font-semibold pl-2">Discount Sales</h3>
+        <Ads/>
+        {/* <div className="overflow-x-scroll w-full">
           <div className="flex items-center gap-3 overflow-scroll w-full">
             <Image
               src={Logo2}
@@ -206,8 +211,8 @@ export const HeroPage = () => {
               className="shrink-0"
             />
           </div>
-        </div> 
-      </section>*/}
+        </div>  */}
+      </section> 
     </section>
   );
 };

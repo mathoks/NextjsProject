@@ -1,5 +1,5 @@
 
-import { Avatar } from "@mui/material";
+import { Avatar, Divider } from "@mui/material";
 import React from "react";
 import { stringAvatar } from "../lib/utills/stringAvata";
 import {
@@ -9,6 +9,7 @@ import {
   Chat,
   LocationOnOutlined,
   More,
+  MoreVertOutlined,
   StarRate,
   StorefrontOutlined,
 } from "@mui/icons-material";
@@ -30,17 +31,17 @@ const Usercard = (props) => {
     // /pages/${encodeURIComponent(props?.id || 4)
   return (
     
-    <div className="flex flex-col space-y-2 text-gray-900  p-4  items-center grow-0 text-left bg-white">
+    <div className="flex flex-col space-y-2 text-gray-900  p-2 pr-1 pt-3  items-center grow-0 text-left bg-white border-b-2 last:mt-0">
     <Link href= {`/pages/${encodeURIComponent(props?.id || 4)}#about`}>
-      <section className="flex flex-row pl-2 justify-center items-start space-x-5 ">
+      <section className="flex flex-row pl-2 justify-between items-start">
         <div>
           <Avatar {...stringAvatar(props?.name, props?.image)} />
         </div>
-        <div className="flex flex-col space-y-2">
+        <div className="flex flex-col space-y-2 ml-3">
         <span className="font-semibold">
             {props?.name || "John Bull"}
         </span>
-          <span className="flex gap-2 w-[90%]">
+          <span className="flex gap-2 w-[100%]">
             <span className="text-base">
               <LocationOnOutlined fontSize="inherit" />
             </span>
@@ -48,7 +49,7 @@ const Usercard = (props) => {
               <span>{props?.location || "shop 134b Electronic line Alaba international market ojo lagos" }</span>
             </span>
           </span>
-          <span className="flex gap-2 w-[90%] justify-start items-start">
+          <span className="flex gap-2 w-[100%] justify-start items-start">
             <span>
               <StorefrontOutlined fontSize="inherit" />
             </span>
@@ -76,10 +77,13 @@ const Usercard = (props) => {
             <span>{"200"}</span>
           </span>
         </div>
-        <div></div>
+        <div>
+        <MoreVertOutlined/>
+        </div>
+        
       </section>
       </Link>
-      <section className="">
+      <section>
         
             <Showcase/>        
         
@@ -100,6 +104,7 @@ const Usercard = (props) => {
         </div>
         </Link>
       </section>
+      
     </div>
     
   );
