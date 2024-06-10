@@ -32,7 +32,7 @@ function stringToColor(string) {
  */
 
 export function stringAvatar(name = "", image = "") {
-  console.log(image)
+  
   return {
     sx: image ? { bgcolor: 'transparent' } : {bgcolor: stringToColor(name)},
     src : image ? image : undefined,

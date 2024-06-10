@@ -43,17 +43,17 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
         </span>
           <span className="flex gap-2 w-[100%] items-start">
             <span>
-              <LocationOnOutlined sx={{fontSize: "21px"}}/>
+              <LocationOnOutlined sx={{fontSize: "20px"}}/>
             </span>
-            <span className=" text-sm w-full leading-5">
+            <span className=" text-sm w-full leading-5 pt-[1px]">
               <span>{address || "shop 134b Electronic line Alaba international market ojo lagos" }</span>
             </span>
           </span>
           <span className="flex gap-2 w-[100%] justify-start items-start">
             <span>
-              <StorefrontOutlined sx={{fontSize: "21px"}} />
+              <StorefrontOutlined sx={{fontSize: "20px"}} />
             </span>
-            <span>
+            <span className="pt-[1px]">
               <MakeEllipsis
                 text={storeDescription + " " + "we sell the best contact us today what are you waiting for you can check my product gallery"}
                 size={60}
