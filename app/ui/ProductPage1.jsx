@@ -73,7 +73,7 @@ const ProductPage1 = ({visi, index}) => {
                  <Carousel slides={slides} autoSlide={false}/> 
                  
                  
-                  <div className='flex justify-between items-start p-2'>
+                  <div className='flex justify-between items-start p-2 text-sm'>
                   
                   <div className='flex justify-start items-center space-x-2'>
                   <Avatar/>

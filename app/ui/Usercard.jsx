@@ -42,8 +42,8 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
             {Storename || "John Bull"}
         </span>
           <span className="flex gap-2 w-[100%] items-start">
-            <span className="">
-              <LocationOnOutlined fontSize="inherit" />
+            <span>
+              <LocationOnOutlined sx={{fontSize: "21px"}}/>
             </span>
             <span className=" text-sm w-full leading-5">
               <span>{address || "shop 134b Electronic line Alaba international market ojo lagos" }</span>
@@ -51,7 +51,7 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
           </span>
           <span className="flex gap-2 w-[100%] justify-start items-start">
             <span>
-              <StorefrontOutlined fontSize="inherit" />
+              <StorefrontOutlined sx={{fontSize: "21px"}} />
             </span>
             <span>
               <MakeEllipsis
