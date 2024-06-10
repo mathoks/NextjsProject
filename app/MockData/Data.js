@@ -10,7 +10,7 @@ return {
     description: faker.commerce.productDescription(),
     image: faker.image.url(200, 200),
     category: faker.commerce.department(),
-    rating: faker.number.int(0,5),
+    rating: faker.number.int({min: 0, max: 5}),
 }
 }
 
@@ -27,7 +27,7 @@ export  function  User() {
     birthdate: faker.date.birthdate(),
     registeredAt: faker.date.past(),
     address: faker.location.streetAddress(),
-    ratings: faker.number.int(0,5),
+    ratings: faker.number.int({min: 0, max: 5}),
     Phone: faker.phone.number(),
     product: Array.from({length: 5},Products),
 

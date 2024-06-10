@@ -83,7 +83,7 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
         
       </section>
       </Link>
-      <section>
+      <section className="flex flex-col justify-center">
         
             <Showcase info = {product}/>        
         
@@ -99,7 +99,7 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
         </div> */}
         <Link href={`/pages/${encodeURIComponent(4)}#Products`}>
         <div  className="flex space-x-1 icon_slate ">
-        <span className="text-sm ">See more</span>
+        <span className="text-sm ">See all</span>
           <span className="text-sm"><ArrowForward fontSize="inherit"/></span>
         </div>
         </Link>

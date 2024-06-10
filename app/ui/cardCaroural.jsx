@@ -2,7 +2,7 @@
 
 import { Box } from "@mui/material";
 import React, { Suspense, useEffect, useRef } from "react";
-import { InfoOutlined } from "@mui/icons-material";
+import { InfoOutlined, StarRate } from "@mui/icons-material";
 import DealerPic from "@/app/assets/photo6.jpeg";
 import DealerPic2 from "@/app/assets/photo4.jpeg";
 import { register } from "swiper/element-bundle";
@@ -13,6 +13,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useAppDispatch, useAppStore } from "../lib/hooks/hooks";
 import { setNav, setPath } from "../lib/features/Nav/navSlice";
 import Link from "next/link";
+import { MakeEllipsis } from "../lib/utills/Makelipsis";
 
 //const Image = dynamic(import("next/image"), { ssr: false });
 
@@ -27,7 +28,7 @@ const Showcase = ({info}) => {
   const dispatch = useAppDispatch();
 
   return (
-    <div className={"swiper w-[22rem] rounded-md  flex  justify-center  h-72"}>
+    
       <swiper-container
         ref={swiperDiv}
         slides-per-view="1"
@@ -58,45 +59,70 @@ const Showcase = ({info}) => {
                 href={`/pages/${encodeURIComponent(
                   "mackyStores"
                 )}/${encodeURIComponent("shoes")}`}
+              
               >
-                <div className="flex relative flex-col shadow-md rounded-md space-y-3 h-[15.5rem]">
+                <div className="flex relative justify-start items-start  space-x-3 h-[13.5rem] ">
+                  <div className="flex flex-col space-y-2">
                   <Image
                     src={image}
                     alt="DealerPic"
-                    width={300}
-                    height={300}
+                    width={200}
+                    height={200}
                     loading="lazy"
                     className="min-h-20 rounded-t-lg"
                   />
-                  <div className=" pl-2 pr-2 flex flex-col space-y-3">
+                  <div className="flex flex-col space-y-1">
+                  <span className="flex justify-between">
+                    <span className="font-semibold">{category}</span>
+                    </span>
+                    <span className="flex space-x-1 items-center text-sm">
+                    <span>{rating}</span>
+                    <span className="">
+            {Array.from(Array(5)).map((_, index) => (
+                      <StarRate
+                        key={index}
+                        fontSize="inherit"
+                        sx={{ color: "#f2c464" }}
+                      />
+                    ))}
+            </span>
+            <span className="text-blue-500 text-sm">1123</span>
+            </span>
+                    <div className="flex justify-between absolute bottom-2 w-[90%] items-center">
+                      <span className="flex justify-start items-center space-x-1">
+                        <span className="text-[12px]">&#x20A6;</span>
+                        <p className="text-[12px] font-semibold">{price}</p>
+                      </span>
+                      {/* <span className="text-base">
+                        <InfoOutlined fontSize="inherit" />
+                      </span> */}
+                    </div>
+                  </div>
+                  </div>
+                  <div className=" flex flex-col space-y-3 w-[50%]">
                     <div>
                       <p className=" w-3/4 overflow-ellipsis font-semibold text-sm">
                         {name}
                       </p>
                     </div>
                     <div>
-                      <p className=" w-[98%] overflow-ellipsis text-sm leading-4">
+                    <MakeEllipsis text={description}
+                size={60}
+                flag={"A"}/>
+                      {/* <p className=" w-[98%] overflow-ellipsis text-sm leading-4">
                         {description}
-                      </p>
+                      </p> */}
                     </div>
-                    <div className="flex justify-between absolute bottom-2 w-[90%] items-center">
-                      <span className="flex justify-start items-center space-x-1">
-                        <span className="text-[12px]">&#x20A6;</span>
-                        <p className="text-[12px] font-semibold">{price}</p>
-                      </span>
-                      <span className="text-base">
-                        <InfoOutlined fontSize="inherit" />
-                      </span>
-                    </div>
+                    
                   </div>
-                </div>
+                  </div>
               </Link>
             </swiper-slide>
           )
         )}
         
       </swiper-container>
-    </div>
+    
   );
 };
 

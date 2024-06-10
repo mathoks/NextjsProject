@@ -120,15 +120,15 @@ swiper-container::part(pagination) {
 } */
 
 swiper-container {
-  height: 100%;
-  width: 100%;
-  padding-top: 4px;
-  padding-left: 4px;
-  padding-bottom: 4px;
-  padding-right: 4px;
+  /* height: 100%;
+  width: 100%; */
+  padding: 4px;
+  width: 19rem;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
+  /* outline: #3b82fe; */
+  /* background-color: #3b82fe; */
 }
 
 .hide_nav {
