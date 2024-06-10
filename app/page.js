@@ -60,7 +60,7 @@ import Ads from "./ui/adds";
 export default async function Home() {
   const session = await auth()
   const usersList = await getRoutes()
-  console.log(usersList)
+  
   if(session?.user){
     session.user = {
       name : session.user.name,
@@ -95,7 +95,7 @@ export default async function Home() {
            <section>
            
             <Suspense fallback={<Loading/>}>
-           <Products info = {usersList}/>
+           <Products info = {JSON.parse(usersList)}/>
            </Suspense>
            </section>
           

@@ -75,7 +75,7 @@ const Carousel = ({ slides = [], autoSlide = false, autoInterval = 3000 }) => {
           {slides.map((_, i) => (
             <div
               key={i}
-              className={`transition-all w-2 h-2 ring-1 bg-white rounded-full ${(currentSlide === i ? " bg-blue-500" : "bg-opacity-50")}`}
+              className={`transition-all w-2 h-2 ring-1 bg-white rounded-full ${(currentSlide === i ? " bg-blue-600" : "bg-opacity-50")}`}
             />
           ))}
         </div>

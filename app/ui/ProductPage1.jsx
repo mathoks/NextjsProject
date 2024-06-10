@@ -69,7 +69,7 @@ const ProductPage1 = ({visi, index}) => {
                   </ul>
                 </div>
               </nav>
-              <section className="text-gray-900 absolute -top-14 flex flex-col">
+              <section className="text-gray-900 absolute -top-14 flex flex-col w-fit">
                  <Carousel slides={slides} autoSlide={false}/> 
                  
                  

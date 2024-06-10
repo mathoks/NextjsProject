@@ -26,7 +26,7 @@ import Link from "next/link";
  * @returns {JSX.Element} - JSX Element
  */
 const Usercard = ({userId, Storename, storeDescription, email, avatar, registeredAt, address, product, ratings, subscriptionTier}) => {
-    
+    console.log(product[0])
     // const router = useRouter()
     // /pages/${encodeURIComponent(props?.id || 4)
   return (

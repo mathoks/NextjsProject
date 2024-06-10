@@ -1,8 +1,6 @@
 "use client";
 
-import {
-  Box
-} from "@mui/material";
+import { Box } from "@mui/material";
 import React, { Suspense, useEffect, useRef } from "react";
 import { InfoOutlined } from "@mui/icons-material";
 import DealerPic from "@/app/assets/photo6.jpeg";
@@ -16,180 +14,96 @@ import { useAppDispatch, useAppStore } from "../lib/hooks/hooks";
 import { setNav, setPath } from "../lib/features/Nav/navSlice";
 import Link from "next/link";
 
-
-
 //const Image = dynamic(import("next/image"), { ssr: false });
 
 // const styles = dynamic(import("@/app/ui/swiper.module.css"), { ssr: false });
 
 register();
-const Showcase = (
-  product = {
-    userId: 1,
-    Storename: "Store Name",
-    storeDescription: "Store Description",
-    email: "email",
-    avatar: "avatar",
-    password: null,
-    birthdate: null,
-    registeredAt: new Date(),
-    address: "address",
-    ratings: 4,
-    Phone: "Phone",
-  }
-) => {
+const Showcase = ({info}) => {
   const swiperDiv = useRef(null);
   const router = useRouter();
-  const myNav = useAppStore()
-  const path = usePathname()
-  const dispatch = useAppDispatch()
+  const myNav = useAppStore();
+  const path = usePathname();
+  const dispatch = useAppDispatch();
 
-  
-
-    
-  
   return (
-    
-      <div  className={"swiper w-[22rem] rounded-md  flex  justify-center  h-72"} >
-        <swiper-container
-          ref={swiperDiv}
-          slides-per-view="2"
-          // navigation="true"
-          pagination="true"
-          // pagination-type="fraction"
-          space-between="15"
-         // className="rootswiper"
-        >
-       
-          <swiper-slide lazy="true"  onClick={()=> dispatch(setNav(false))} >
-           <Link href={`/pages/${encodeURIComponent("mackyStores")}/${encodeURIComponent("shoes")}`}>
-            <div  className="flex relative flex-col shadow-md rounded-md space-y-3 h-[15.5rem]">
-              <Image
-                src={DealerPic}
-                alt="DealerPic"
-                width={300}
-                height={200}
-                loading="lazy"
-                className="min-h-20 rounded-t-lg"
-              />
-              <div className=" pl-2 pr-2 flex flex-col space-y-3">
-              <div>
-                <p className=" w-3/4 overflow-ellipsis font-semibold text-sm">Shoe Luis</p>
-              </div>
-              <div>
-                <p className=" w-[98%] overflow-ellipsis text-sm leading-4">Shoe Luis vitton for sale contact me</p>
-              </div>
-              <div className="flex justify-between absolute bottom-2 w-[90%] items-center">
-                <span className="flex justify-start items-center space-x-1">
-                <span className="text-[12px]">&#x20A6;</span>
-                  <p className="text-[12px] font-semibold"> 745.00</p>
-                </span>
-                <span className="text-base">
-                  <InfoOutlined fontSize="inherit" />
-                </span>
-              </div>
-              </div>
-            </div>
-            </Link>
-          </swiper-slide>
-          
-          <swiper-slide lazy="true">
-            <div className="flex flex-col relative shadow-md rounded-md space-y-3 h-[15.5rem]" onClick={(e)=>e.stopPropagation()}>
-              <Image
-                src={DealerPic2}
-                alt="DealerPic"
-                width={300}
-                height={200}
-                loading="lazy"
-                className="min-h-20 rounded-t-lg"
-              />
-              <div className=" pl-2 pr-2 flex flex-col space-y-3">
-              <div>
-                <p className=" w-3/4 overflow-ellipsis font-semibold text-sm">Shoe Luis</p>
-              </div>
-              <div>
-                <p className="w-[98%] overflow-ellipsis text-sm leading-4">Shoe Luis vitton for sale contact me</p>
-              </div>
-              <div className="flex justify-between absolute bottom-2 w-[90%] items-center">
-              <span className="flex justify-start items-center space-x-1">
-                <span className="text-[12px]">&#x20A6;</span>
-                  <p className="text-[12px] font-semibold"> 745.00</p>
-                </span>
-                <span className="text-base">
-                  <InfoOutlined fontSize="inherit" />
-                </span>
-              </div>
-              </div>
-            </div>
-          </swiper-slide>
-          <swiper-slide lazy="true">
-            <div className="flex relative flex-col shadow-md rounded-md space-y-3 h-[15.5rem]">
-              <Image
-                src={DealerPic}
-                alt="DealerPic"
-                width={300}
-                height={200}
-                loading="lazy"
-                className="min-h-20 rounded-t-lg"
-              />
-              <div className=" pl-2 pr-2 flex flex-col space-y-3">
-              <div>
-                <p className=" w-3/4 overflow-ellipsis font-semibold text-sm">Shoe Luis</p>
-              </div>
-              <div>
-                <p className=" w-[98%] overflow-ellipsis text-sm leading-4">Shoe Luis vitton for sale contact me</p>
-              </div>
-              <div className="flex justify-between absolute bottom-2 w-[90%] items-center">
-              <span className="flex justify-start items-center space-x-1">
-                <span className="text-[12px]">&#x20A6;</span>
-                  <p className="text-[12px] font-semibold"> 745.00</p>
-                </span>
-                <span className="text-base">
-                  <InfoOutlined fontSize="inherit" />
-                </span>
-              </div>
-              </div>
-            </div>
-          </swiper-slide>
-          <swiper-slide lazy="true">
-            <div className="flex flex-col shadow-md rounded-md space-y-3 h-[15.5rem] relative">
-              <Image
-                src={DealerPic2}
-                alt="DealerPic"
-                width={300}
-                height={200}
-                className="min-h-20 rounded-t-lg"
-                loading="lazy"
-              />
-              <div className=" pl-2 pr-2 flex flex-col space-y-3">
-              <div>
-                <p className=" w-3/4 overflow-ellipsis font-semibold text-sm">Shoe Luis</p>
-              </div>
-              <div>
-                <p className="w-[98%] overflow-ellipsis text-sm leading-4">Shoe Luis vitton for sale contact me</p>
-              </div>
-              <div className="flex justify-between items-center absolute bottom-2 w-[90%]">
-              <span className="flex justify-start items-center space-x-1">
-                <span className="text-[12px]">&#x20A6;</span>
-                  <p className="text-[12px] font-semibold"> 745.00</p>
-                </span>
-                <span className="text-base">
-                  <InfoOutlined fontSize="inherit" />
-                </span>
-              </div>
-              </div>
-            </div>
-          </swiper-slide>
-        </swiper-container>
-      </div>
-   
+    <div className={"swiper w-[22rem] rounded-md  flex  justify-center  h-72"}>
+      <swiper-container
+        ref={swiperDiv}
+        slides-per-view="1"
+        // navigation="true"
+        pagination="true"
+        // pagination-type="fraction"
+        space-between="15"
+        // className="rootswiper"
+      >
+        {info.map(
+          ({
+            productId,
+            image,
+            price,
+            description,
+            category,
+            rating,
+            name
+            },
+            id
+          ) => (
+            <swiper-slide
+              lazy="true"
+              key={productId || id}
+              onClick={() => dispatch(setNav(false))}
+            >
+              <Link
+                href={`/pages/${encodeURIComponent(
+                  "mackyStores"
+                )}/${encodeURIComponent("shoes")}`}
+              >
+                <div className="flex relative flex-col shadow-md rounded-md space-y-3 h-[15.5rem]">
+                  <Image
+                    src={image}
+                    alt="DealerPic"
+                    width={300}
+                    height={300}
+                    loading="lazy"
+                    className="min-h-20 rounded-t-lg"
+                  />
+                  <div className=" pl-2 pr-2 flex flex-col space-y-3">
+                    <div>
+                      <p className=" w-3/4 overflow-ellipsis font-semibold text-sm">
+                        {name}
+                      </p>
+                    </div>
+                    <div>
+                      <p className=" w-[98%] overflow-ellipsis text-sm leading-4">
+                        {description}
+                      </p>
+                    </div>
+                    <div className="flex justify-between absolute bottom-2 w-[90%] items-center">
+                      <span className="flex justify-start items-center space-x-1">
+                        <span className="text-[12px]">&#x20A6;</span>
+                        <p className="text-[12px] font-semibold">{price}</p>
+                      </span>
+                      <span className="text-base">
+                        <InfoOutlined fontSize="inherit" />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </swiper-slide>
+          )
+        )}
+        
+      </swiper-container>
+    </div>
   );
 };
 
 export default Showcase;
 
-
-{/* <Card
+{
+  /* <Card
               elevation={2}
               sx={{
                 maxWidth: 300,
@@ -468,4 +382,5 @@ export default Showcase;
                   </Stack>
                 </CardContent>
               </CardActionArea>
-            </Card> */}
+            </Card> */
+}

@@ -2,7 +2,21 @@
 import { faker} from '@faker-js/faker';
 
 
+export  function Products(){
+return {
+    productId: faker.string.uuid(),
+    name: faker.commerce.productName(),
+    price: faker.commerce.price(),
+    description: faker.commerce.productDescription(),
+    image: faker.image.url(200, 200),
+    category: faker.commerce.department(),
+    rating: faker.number.int(0,5),
+}
+}
+
+
 export  function  User() {
+
   return {
     userId: faker.string.uuid(),
     Storename: faker.internet.userName(),
@@ -15,14 +29,7 @@ export  function  User() {
     address: faker.location.streetAddress(),
     ratings: faker.number.int(0,5),
     Phone: faker.phone.number(),
-    product:{ 
-        name: faker.commerce.productName(),
-        price: faker.commerce.price(),
-        description: faker.commerce.productDescription(),
-        image: faker.image.url(200, 200),
-        category: faker.commerce.department(),
-        rating: faker.number.int(0,5),
-    }, 
+    product: Array.from({length: 5},Products),
 
         subscriptionTier:  faker.helpers.arrayElement(['free', 'basic', 'business']),
     
@@ -30,5 +37,11 @@ export  function  User() {
 }
 
 export const users =  faker.helpers.multiple(User, {
-  count: 80
+  count: 20
 });
+
+
+
+    
+
+

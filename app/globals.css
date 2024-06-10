@@ -128,7 +128,7 @@ swiper-container {
   padding-right: 4px;
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: center;
 }
 
 .hide_nav {
