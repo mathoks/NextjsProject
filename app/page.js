@@ -95,7 +95,7 @@ export default async function Home() {
            <section>
            
             <Suspense fallback={<Loading/>}>
-           <Products users={usersList}/>
+           <Products info = {usersList}/>
            </Suspense>
            </section>
           

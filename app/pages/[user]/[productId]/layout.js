@@ -9,7 +9,7 @@ export default async function Layout({ children }) {
     
   return (
     <div>
-      <header>
+      <header className="z-50 fixed">
         <div className="h-16 flex justify-between items-center fixed bg-white w-full text-gray-950 p-4">
           <ProductBack/>
           <div>

@@ -32,10 +32,12 @@ function stringToColor(string) {
  */
 
 export function stringAvatar(name = "", image = "") {
+  console.log(image)
   return {
     sx: image ? { bgcolor: 'transparent' } : {bgcolor: stringToColor(name)},
     src : image ? image : undefined,
-    children: image? undefined : `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
+    children: image ? image : `${name.split(' ')[0][0]}`,
   };
 }
 
+//${name.split(' ')[1][0]}

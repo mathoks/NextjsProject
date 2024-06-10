@@ -37,10 +37,10 @@ const Carousel = ({ slides = [], autoSlide = false, autoInterval = 3000 }) => {
   }, [autoSlide, autoInterval, slideCount, currentSlide]); // Include slideCount in dependency array
 
   return (
-    <div className="overflow-hidden relative h-[24.9rem]">
+    <div className="overflow-hidden relative h-[19.2rem]">
       <div
         className="flex transition-transform ease-out duration-500"
-        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+        style={{ transform: `translateX(-${currentSlide * 111}%)` }}
       >
      
       {slides.map((slide, i) => (
@@ -51,7 +51,7 @@ const Carousel = ({ slides = [], autoSlide = false, autoInterval = 3000 }) => {
               height={400}
               width={400}
               loading='lazy'
-              className='shrink-0  w-auto cursor-pointer'
+              className='shrink-0  w-auto cursor-pointer mr-10'
               alt='pics'
              
             />
@@ -62,7 +62,7 @@ const Carousel = ({ slides = [], autoSlide = false, autoInterval = 3000 }) => {
           
       
       
-      <div className="hidden absolute inset-0 -top-24 md:flex  items-center p-4 justify-between">
+      <div className="absolute inset-0 -top-24 flex  items-center p-4 justify-between">
         <button onClick={handlePrev} className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white">
           <ChevronLeft fontSize="medium" />
         </button>
@@ -75,7 +75,7 @@ const Carousel = ({ slides = [], autoSlide = false, autoInterval = 3000 }) => {
           {slides.map((_, i) => (
             <div
               key={i}
-              className={`transition-all w-3 h-3 bg-white rounded-full ${(currentSlide === i ? "p-2" : "bg-opacity-50")}`}
+              className={`transition-all w-2 h-2 ring-1 bg-white rounded-full ${(currentSlide === i ? " bg-blue-500" : "bg-opacity-50")}`}
             />
           ))}
         </div>

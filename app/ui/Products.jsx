@@ -1,8 +1,8 @@
-import Image from 'next/image'
+
 import React from 'react'
-import Logo from '@/app/assets/photo1.jpeg'
 import Usercard from './Usercard'
-import { getUsers } from '../actions/users/getUsers'
+
+
 
 /**
  * @component - The Products component
@@ -10,7 +10,7 @@ import { getUsers } from '../actions/users/getUsers'
  * 
  * 
  */
-const Products = async({users}) => {
+const Products = async({info}) => {
     
 
   return (
@@ -20,9 +20,9 @@ const Products = async({users}) => {
     </div>
     
     <div  className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  place-items-center first:pt-4 gap-2  last:pb-0'>
-    {Array.from(Array(10)).map((_, index) => (
+    {info.map((user, index) => (
                         
-                        <Usercard key={index} name = "John Bull" storeDescription= {users?.title}/>
+                        <Usercard key={index} {...user}/>
                     ))}
   
     </div>
