@@ -32,37 +32,7 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
   return (
     
     <div className="flex flex-col space-y-2 text-gray-900  p-2 pr-1 pt-3  items-center grow-0 text-left shadow-md rounded-md bg-white  last:mt-0">
-    <Link href= {`/pages/${encodeURIComponent(userId || 4)}#about`}>
-      <section className="flex flex-row pl-2 justify-between items-start">
-        <div>
-          <Avatar {...stringAvatar(Storename, avatar)} />
-        </div>
-        <div className="flex flex-col space-y-2 ml-3 ">
-        <span className="font-semibold">
-            {Storename || "John Bull"}
-        </span>
-          <span className="flex gap-2 w-[100%] items-start">
-            <span>
-              <LocationOnOutlined sx={{fontSize: "20px"}}/>
-            </span>
-            <span className=" text-sm w-full leading-5 pt-[1px]">
-              <span>{address || "shop 134b Electronic line Alaba international market ojo lagos" }</span>
-            </span>
-          </span>
-          <span className="flex gap-2 w-[100%] justify-start items-start">
-            <span>
-              <StorefrontOutlined sx={{fontSize: "20px"}} />
-            </span>
-            <span className="pt-[1px]">
-              <MakeEllipsis
-                text={storeDescription + " " + "we sell the best contact us today what are you waiting for you can check my product gallery"}
-                size={60}
-                flag={"A"}
-              
-              />
-            </span>
-          </span>
-          <span className=" first-letter:capitalize flex gap-1 w-3/4 justify-start items-center text-[14px]">
+    <span className=" first-letter:capitalize flex gap-1 w-3/4 justify-end items-center text-[12px]">
             <span>{ratings || 4.5}
             </span>
             <div>
@@ -76,6 +46,37 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
             </div>
             <span>{"200"}</span>
           </span>
+    <Link href= {`/pages/${encodeURIComponent(userId || 4)}#about`}>
+      <section className="flex flex-row pl-2 justify-between items-start">
+        <div>
+          <Avatar {...stringAvatar(Storename, avatar)} />
+        </div>
+        <div className="flex flex-col space-y-2 ml-3 ">
+        <span className="font-semibold">
+            {Storename || "John Bull"}
+        </span>
+          <span className="flex gap-2 w-[100%] items-start">
+            <span>
+              <LocationOnOutlined sx={{fontSize: "18px"}}/>
+            </span>
+            <span className=" text-sm w-full leading-5 pt-[2px]">
+              <span>{address || "shop 134b Electronic line Alaba international market ojo lagos" }</span>
+            </span>
+          </span>
+          <span className="flex gap-2 w-[100%] justify-start items-start">
+            <span>
+              <StorefrontOutlined sx={{fontSize: "18px"}} />
+            </span>
+            <span className="pt-[2px]">
+              <MakeEllipsis
+                text={storeDescription + " " + "we sell the best contact us today what are you waiting for you can check my product gallery"}
+                size={60}
+                flag={"A"}
+              
+              />
+            </span>
+          </span>
+          
         </div>
         <div>
         <MoreVertOutlined/>

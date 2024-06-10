@@ -73,7 +73,7 @@ const Showcase = ({info}) => {
                   />
                   <div className="flex flex-col space-y-1">
                   <span className="flex justify-between">
-                    <span className="font-semibold">{category}</span>
+                    <span className="font-semibold text-sm">{category}</span>
                     </span>
                     <span className="flex space-x-1 items-center text-sm">
                     <span>{rating}</span>

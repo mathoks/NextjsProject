@@ -19,7 +19,7 @@ export const MakeEllipsis = ({text,size, flag})=>{
     value=text
     else if(text?.length > size && flag === "A"){
 
-     value = [...`${text.slice(0, size-1)}${'....'}`,<Typography key={id} sx={{color: "#34C759"}} component={"span"} > Show more</Typography>]
+     value = [...`${text.slice(0, size-1)}${'....'}`,<Typography key={id} sx={{color: "#34C759", fontSize: 14}} component={"span"} > Show more</Typography>]
     }
     else if(text.length > size && flag === "B"){
         value = [...text.slice(0, size-1), '...']
