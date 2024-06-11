@@ -82,7 +82,7 @@ const Showcase = ({info}) => {
                       </span>
                     </span>
                     </span>
-                    <span>
+                    <span className="text-sm">
                       {Availability}
                     </span>
                     <span className="flex space-x-1 items-center text-[12px]">
