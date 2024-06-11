@@ -1,6 +1,6 @@
-
-import { Avatar, Divider } from "@mui/material";
-import React from "react";
+"use client"
+import { Avatar, ButtonBase, Divider } from "@mui/material";
+import React, { Suspense } from "react";
 import { stringAvatar } from "../lib/utills/stringAvata";
 import {
   ArrowBack,
@@ -16,7 +16,10 @@ import {
 import { MakeEllipsis } from "../lib/utills/Makelipsis";
 import Showcase from "./cardCaroural";
 import Link from "next/link";
-// import { useRouter } from "next/navigation";
+import Modal from "./utilComp/modal";
+import HomeMore from "./Buttons/HomeMore";
+ import { useRouter } from "next/navigation";
+import Loading from "../loading";
 
 
 
@@ -26,12 +29,12 @@ import Link from "next/link";
  * @returns {JSX.Element} - JSX Element
  */
 const Usercard = ({userId, Storename, storeDescription, email, avatar, registeredAt, address, product, ratings, subscriptionTier}) => {
-    console.log(product[0])
-    // const router = useRouter()
+    
+     const router = useRouter()
     // /pages/${encodeURIComponent(props?.id || 4)
   return (
     
-    <div className="flex flex-col space-y-2 text-gray-900  p-2 pr-1 pt-3  items-center grow-0 text-left shadow-md rounded-md bg-white  last:mt-0">
+    <div className="flex flex-col space-y-2 text-gray-900  p-2 pr-1 pt-3 items-center grow-0 text-left shadow-md rounded-md bg-white  last:mt-0">
     <span className=" first-letter:capitalize flex gap-1 w-3/4 justify-end items-center text-[12px]">
             <span>{ratings || 4.5}
             </span>
@@ -46,8 +49,8 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
             </div>
             <span>{"200"}</span>
           </span>
-    <Link href= {`/pages/${encodeURIComponent(userId || 4)}#about`}>
-      <section className="flex flex-row pl-2 justify-between items-start">
+    
+      <section className="flex flex-row pl-2 justify-between items-start" onClick={()=>router.push(`/pages/${encodeURIComponent(userId || 4)}#about`)}>
         <div>
           <Avatar {...stringAvatar(Storename, avatar)} />
         </div>
@@ -78,16 +81,18 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
           </span>
           
         </div>
-        <div>
-        <MoreVertOutlined/>
+        <div className=" relative">
+        
+        <HomeMore id={userId}/>
+        <Modal call='call' chat='chat' share='share' value={userId}/>
         </div>
         
       </section>
-      </Link>
+    
       <section className="flex flex-col justify-center">
-        
+        <Suspense fallback=<p>Loading</p>>
             <Showcase info = {product}/>        
-        
+            </Suspense>
       </section>
       <section className="flex flex-row justify-end  items-center w-[90%]">
         {/* <div className="flex space-x-1">

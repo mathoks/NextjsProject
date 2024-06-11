@@ -28,7 +28,7 @@ const Showcase = ({info}) => {
   const dispatch = useAppDispatch();
 
   return (
-    
+    <Suspense fallback=<p>Loading</p>>
       <swiper-container
         ref={swiperDiv}
         slides-per-view="1"
@@ -122,7 +122,7 @@ const Showcase = ({info}) => {
         )}
         
       </swiper-container>
-    
+      </Suspense>
   );
 };
 
