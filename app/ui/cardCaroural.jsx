@@ -61,7 +61,7 @@ const Showcase = ({info}) => {
                 )}/${encodeURIComponent("shoes")}`}
               
               >
-                <div className="flex relative justify-start items-start  space-x-3 h-[13.5rem] ">
+                <div className="flex relative justify-start items-start  space-x-3 h-[14rem] ">
                   <div className="flex flex-col space-y-2">
                   <Image
                     src={image}
@@ -69,13 +69,19 @@ const Showcase = ({info}) => {
                     width={200}
                     height={200}
                     loading="lazy"
-                    className="min-h-20 rounded-t-lg"
+                    className="h-[9.5rem] rounded-t-lg"
                   />
                   <div className="flex flex-col space-y-1">
                   <span className="flex justify-between">
                     <span className="font-semibold text-sm">{category}</span>
+                    <span className="flex justify-between items-center">
+                      <span className="flex justify-start items-center space-x-1">
+                        <span className="text-[12px]">&#x20A6;</span>
+                        <p className="text-[12px] font-semibold">{price}</p>
+                      </span>
                     </span>
-                    <span className="flex space-x-1 items-center text-sm">
+                    </span>
+                    <span className="flex space-x-1 items-center text-[12px]">
                     <span>{rating}</span>
                     <span className="">
             {Array.from(Array(5)).map((_, index) => (
@@ -88,15 +94,7 @@ const Showcase = ({info}) => {
             </span>
             <span className="text-blue-500 text-sm">1123</span>
             </span>
-                    <div className="flex justify-between absolute bottom-2 w-[90%] items-center">
-                      <span className="flex justify-start items-center space-x-1">
-                        <span className="text-[12px]">&#x20A6;</span>
-                        <p className="text-[12px] font-semibold">{price}</p>
-                      </span>
-                      {/* <span className="text-base">
-                        <InfoOutlined fontSize="inherit" />
-                      </span> */}
-                    </div>
+                    
                   </div>
                   </div>
                   <div className=" flex flex-col space-y-3 w-[50%]">

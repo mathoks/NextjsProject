@@ -110,7 +110,7 @@ swiper-container::part(button-prev) {
 }
 
 swiper-container::part(pagination) {
-  bottom: 2px;
+  bottom: -6px;
   color: #4f08ed;
 }
 
@@ -123,6 +123,7 @@ swiper-container {
   /* height: 100%;
   width: 100%; */
   padding: 4px;
+  padding-right: 1px;
   width: 19rem;
   display: flex;
   align-items: center;
