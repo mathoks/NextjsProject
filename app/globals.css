@@ -110,7 +110,7 @@ swiper-container::part(button-prev) {
 }
 
 swiper-container::part(pagination) {
-  bottom: -6px;
+  bottom: -4px;
   color: #4f08ed;
 }
 

@@ -71,7 +71,7 @@ const Showcase = ({info}) => {
                     loading="lazy"
                     className="h-[9.5rem] rounded-t-lg"
                   />
-                  <div className="flex flex-col space-y-1">
+                  <div className="flex flex-col space-y-2">
                   <span className="flex justify-between">
                     <span className="font-semibold text-sm">{category}</span>
                     <span className="flex justify-between items-center">
