@@ -11,6 +11,7 @@ return {
     image: faker.image.url(200, 200),
     category: faker.commerce.department(),
     rating: faker.number.int({min: 0, max: 5}),
+    Availability: faker.helpers.arrayElement(['In-Stock', 'Limited Quantity', 'Out of Stock'])
 }
 }
 

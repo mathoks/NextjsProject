@@ -6,10 +6,13 @@ import {
   ArrowBack,
   ArrowForward,
   Call,
+  CallReceivedOutlined,
   Chat,
+  ChatOutlined,
   LocationOnOutlined,
   More,
   MoreVertOutlined,
+  ShareOutlined,
   StarRate,
   StorefrontOutlined,
 } from "@mui/icons-material";
@@ -84,7 +87,7 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
         <div className=" relative">
         
         <HomeMore id={userId}/>
-        <Modal call='call' chat='chat' share='share' value={userId}/>
+        <Modal call={{'tag':'call', icon: <CallReceivedOutlined/>}} chat={{'tag':'chat', icon: <ChatOutlined/>}} share={{'tag':'share', icon: <ShareOutlined/>}} value={userId}/>
         </div>
         
       </section>

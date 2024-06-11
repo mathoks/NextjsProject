@@ -1,5 +1,6 @@
 "use client";
 import { useAppSelector } from "@/app/lib/hooks/hooks";
+import { CallOutlined, CallEndOutlined } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 
 /**
@@ -22,7 +23,7 @@ function Modal(props = {}) {
        if( tile.toString() !== "value")
          return (
         <li key={id} value={id}>
-          {props[tile.toString()]}
+          <span className="flex items-center space-x-2 text-[#4f08ed]"><span>{props[tile.toString()].icon}</span><span>{props[tile.toString()].tag}</span> </span>
         </li>
     )})
       setchild(
@@ -38,7 +39,7 @@ function Modal(props = {}) {
 
   return (
     <div
-      className={`absolute flex flex-col  opacity-0 shadow-md z-30 bg-white top-8 right-8 p-2 ${open === props["value"] ? "inline-block visible opacity-100 transition-opacity" : ""}`}
+      className={`absolute flex flex-col  opacity-0 shadow-md z-30 bg-white top-8 right-8 p-4 ${open === props["value"] ? "inline-block visible opacity-100 transition-opacity" : ""}`}
       key={props["value"]}
       id={props["value"]}
     >

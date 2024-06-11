@@ -124,7 +124,8 @@ swiper-container {
   width: 100%; */
   padding: 4px;
   padding-right: 1px;
-  width: 19rem;
+  padding-left: 2px;
+  width: 19.5rem;
   display: flex;
   align-items: center;
   justify-content: start;

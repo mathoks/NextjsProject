@@ -46,7 +46,8 @@ const Showcase = ({info}) => {
             description,
             category,
             rating,
-            name
+            name,
+            Availability
             },
             id
           ) => (
@@ -61,7 +62,7 @@ const Showcase = ({info}) => {
                 )}/${encodeURIComponent("shoes")}`}
               
               >
-                <div className="flex relative justify-start items-start  space-x-3 h-[14rem] ">
+                <div className="flex relative justify-start items-start  space-x-3 h-[16rem] ">
                   <div className="flex flex-col space-y-2">
                   <Image
                     src={image}
@@ -80,6 +81,9 @@ const Showcase = ({info}) => {
                         <p className="text-[12px] font-semibold">{price}</p>
                       </span>
                     </span>
+                    </span>
+                    <span>
+                      {Availability}
                     </span>
                     <span className="flex space-x-1 items-center text-[12px]">
                     <span>{rating}</span>
