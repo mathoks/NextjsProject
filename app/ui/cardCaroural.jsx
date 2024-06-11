@@ -83,7 +83,7 @@ const Showcase = ({info}) => {
                     </span>
                     <span className="flex space-x-1 items-center text-[12px]">
                     <span>{rating}</span>
-                    <span className="">
+                    <span>
             {Array.from(Array(5)).map((_, index) => (
                       <StarRate
                         key={index}
@@ -92,7 +92,7 @@ const Showcase = ({info}) => {
                       />
                     ))}
             </span>
-            <span className="text-blue-500 text-sm">1123</span>
+            <span className="text-blue-500 ">1123</span>
             </span>
                     
                   </div>
