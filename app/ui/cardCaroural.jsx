@@ -64,8 +64,9 @@ const Showcase = ({info}) => {
               >
                 <div className="flex relative justify-start items-start  space-x-3 h-[16rem] ">
                   <div className="flex flex-col space-y-2">
-                  <Image
+                  <img
                     src={image}
+                    sizes="50vw"
                     alt="DealerPic"
                     width={200}
                     height={200}
