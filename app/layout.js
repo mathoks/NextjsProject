@@ -20,13 +20,13 @@ export default async function RootLayout({ children }) {
   //const pathname = await getRoute()
   return (
     <html lang="en">
-      
+      <StoreProvider>
       <body className={`${inter.className} min-h-screen w-full overflow-x-clip `}>
       
       <header className="bg-indigo-700">
-      <StoreProvider>
+      
       <Nav/>
-      </StoreProvider>
+      
       </header>
       <main>
       {children}
@@ -37,6 +37,7 @@ export default async function RootLayout({ children }) {
         
       </footer>
       </body>
+      </StoreProvider>
     </html>
   );
 }

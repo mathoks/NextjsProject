@@ -3,20 +3,49 @@ import { ArrowUpward } from "@mui/icons-material";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import BottomMenu from "./utilComp/ButtomMenu";
+import { useAppDispatch, useAppSelector } from "../lib/hooks/hooks";
+import { setNavToggle } from "../lib/features/Nav/navSlice";
+
+function debounce(func, delay) {
+  let timeout;
+  return function debounced() {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func, delay);
+  };
+}
+
+let throttle = function (func, limit) {
+  let inthrottle;
+
+  return function () {
+    if (!inthrottle) {
+      debounce(func, 1000);
+      inthrottle = true;
+      setTimeout(() => {
+        inthrottle = false;
+      }, limit);
+    }
+  };
+};
+
 const ButtomNav = () => {
   const [show, setShow] = useState(true);
+  const dispatch = useAppDispatch()
+  const showState = useAppSelector((state)=>state.nav.navToggle) 
   const init = useRef(0);
   const init2 = useRef(init);
 
   useEffect(() => {
     window.onscroll = () => {
       init.current = window.scrollY;
-      setTimeout(() => (init2.current = init.current), 2000);
+      // init2.current = init.current
+     setTimeout(() => (init2.current = init.current), 2000);
       if (init.current > init2.current) {
-        setShow(false);
-      } else setShow(true);
+        throttle(dispatch(setNavToggle(false), 3000))
+      } else 
+      throttle(dispatch(setNavToggle(true)), 3000);
     };
-  }, [show]);
+  }, [dispatch]);
 
   return (
     <div className=" text-white flex flex-col  w-full">
@@ -67,7 +96,7 @@ const ButtomNav = () => {
       </div>
       <div
         className={`fixed bottom-0  bottom_menu opacity-0 bg-white shadow-md w-full ${
-          show
+          showState
             ? "visible opacity-100 transition-opacity"
             : "invisible opacity-0 "
         }`}

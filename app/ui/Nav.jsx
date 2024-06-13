@@ -16,6 +16,7 @@ import { useScrollTrigger } from "@mui/material";
 
  const Nav = (props) => {
   const [col, setcol] = useState(false)
+  const navState = useAppSelector((state)=>state.nav.navToggle)
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 1,
@@ -57,8 +58,8 @@ useEffect(()=>{
 
   return (
     nav && path === '/' ? (
-    <nav aria-label="main" className={`flex bg-[#4f08ed]  flex-col fixed w-full z-50  h-[158px] ${col ? "shadow-lg" : ""}`} >
-    <div className="sm: flex flex-col space-y-4  bg-[#4f08ed] md:flex items-center justify-center p-4">
+    <nav aria-label="main" className={`flex bg-[#4f08ed]  flex-col fixed w-full z-50  ${col ? "shadow-lg" : ""}`} >
+    <div className={`sm: flex flex-col space-y-4 opacity-100  bg-[#4f08ed] md:flex items-center justify-center p-4 ${!navState ? "invisible h-0 opacity-0 transition-opacity" : ""}` }>
     <section>
       <Link href={"#"} className="flex  gap-4 items-center text_shadow">
       <p>Mymart</p>

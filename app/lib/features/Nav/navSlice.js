@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     path: "",
     nav: true,
+    navToggle: true
 
 }
 const navSliceReducer = createSlice({
@@ -14,9 +15,12 @@ reducers: {
     },
     setNav: (state, action) => {
         state.nav = action.payload
+    },
+    setNavToggle: (state, action) => {
+        state.navToggle = action.payload
     }
 }
 });
 
-export const { setNav, setPath } = navSliceReducer.actions
+export const { setNav, setPath, setNavToggle } = navSliceReducer.actions
 export default navSliceReducer.reducer
