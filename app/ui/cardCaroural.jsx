@@ -71,7 +71,7 @@ const Showcase = ({info}) => {
                     width={200}
                     height={200}
                     loading="lazy"
-                    className="h-[9.5rem] rounded-t-lg"
+                    className="h-[9rem] rounded-t-lg"
                   />
                   <div className="flex flex-col space-y-2">
                   <span className="flex justify-between">
@@ -97,7 +97,7 @@ const Showcase = ({info}) => {
                       />
                     ))}
             </span>
-            <span className="text-blue-500 ">1123</span>
+            <span className="text-[#005B9A]">1123</span>
             </span>
                     
                   </div>

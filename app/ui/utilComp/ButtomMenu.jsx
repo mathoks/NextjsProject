@@ -17,10 +17,10 @@ const BottomMenu = ({ show }) => {
   useEffect(() => {
     if (pathname === "/") {
       setCol("#4f08ed");
-    } else setCol("grey");
+    } else setCol("black");
     if (path?.includes("Account")) {
       setCol4("#4f08ed");
-    } else setCol4("grey");
+    } else setCol4("black");
   }, [pathname, path]);
 
   return (
@@ -55,10 +55,10 @@ const BottomMenu = ({ show }) => {
             href={"/Discover"}
           >
             <Stack  className="flex flex-col justify-center items-center">
-              <NewspaperIcon sx={{ color: "grey" }} fontSize="meduim" />
+              <NewspaperIcon sx={{ color: "black" }} fontSize="meduim" />
               <Typography
                 sx={{
-                  color: "GrayText",
+                  color: "black",
                   textRendering: "optimizeLegibility",
                   fontSize: 14,
                 }}
@@ -72,10 +72,10 @@ const BottomMenu = ({ show }) => {
           <Link  className = "items-center" href={'#'}
           >
             <Stack  className="flex flex-col justify-center items-center">
-              <ForumIcon sx={{ color: "grey" }} fontSize="meduim" />
+              <ForumIcon sx={{ color: "black" }} fontSize="meduim" />
               <Typography
                 sx={{
-                  color: "GrayText",
+                  color: "black",
                   textRendering: "optimizeLegibility",
                   fontSize: 14,
                 }}

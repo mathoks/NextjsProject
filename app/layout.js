@@ -21,7 +21,7 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <StoreProvider>
-      <body className={`${inter.className} min-h-screen w-full overflow-x-clip `}>
+      <body className={`${inter.className} w-full overflow-x-clip `}>
       
       <header className="bg-indigo-700">
       

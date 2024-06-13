@@ -74,13 +74,13 @@ export default async function Home() {
     
     
     <StoreProvider>
-      <section className="flex min-h-screen mt-0 flex-col items-center  w-full">
+      <section className="flex min-h-screen mt-0 flex-col items-center">
         <div className="mt-28 flex flex-col items-center">
            
             <section>
             <HeroPage/>
             </section>
-            <section className="w-screen bg-slate-50 text-black flex flex-col space-y-1">
+            <section className=" bg-slate-50 text-black flex flex-col space-y-1 w-[100vw]">
             <div className="p-4 pb-0 font-semibold text-lg"><p>Discount Sales</p></div>
             <Suspense fallback={<Loading/>}>
               <Ads/>

@@ -14,19 +14,19 @@ function debounce(func, delay) {
   };
 }
 
-let throttle = function (func, limit) {
-  let inthrottle;
+// let throttle = function (func, limit) {
+//   let inthrottle;
 
-  return function () {
-    if (!inthrottle) {
-      debounce(func, 1000);
-      inthrottle = true;
-      setTimeout(() => {
-        inthrottle = false;
-      }, limit);
-    }
-  };
-};
+//   return function () {
+//     if (!inthrottle) {
+//       debounce(func, 1000);
+//       inthrottle = true;
+//       setTimeout(() => {
+//         inthrottle = false;
+//       }, limit);
+//     }
+//   };
+// };
 
 const ButtomNav = () => {
   const [show, setShow] = useState(true);
@@ -38,12 +38,14 @@ const ButtomNav = () => {
   useEffect(() => {
     window.onscroll = () => {
       init.current = window.scrollY;
-      // init2.current = init.current
+      //init2.current = init.current
      setTimeout(() => (init2.current = init.current), 2000);
-      if (init.current > init2.current) {
-        throttle(dispatch(setNavToggle(false), 3000))
-      } else 
-      throttle(dispatch(setNavToggle(true)), 3000);
+     
+      if (init.current > init2.current && init.current - init2.current > 1 ) {
+        debounce(dispatch(setNavToggle(false), 3000))
+      } else if(init.current < init2.current && init2.current - init.current > 1)
+      debounce(dispatch(setNavToggle(true)), 3000);
+      else {}
     };
   }, [dispatch]);
 

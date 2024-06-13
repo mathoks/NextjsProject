@@ -56,10 +56,10 @@ export const HeroPage = () => {
             </h2>
           </div>
           <div className="flex flex-col font-bold text_shadow  space-y-4 md:text-left ">
-            <h4>Get a Store Today</h4>
+            <h2>Get a Store Today</h2>
 
             <button
-              className="p-2 bg-[#34C759] rounded text-white text-sm text_shadow"
+              className="p-2 bg-[#FF4500] rounded text-white text-sm text_shadow"
               onClick={handleCreateStore}
               title="hero"
             >

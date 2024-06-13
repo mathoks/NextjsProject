@@ -55,7 +55,7 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
     
       <section className="flex flex-row pl-2 justify-between items-start" onClick={()=>router.push(`/pages/${encodeURIComponent(userId || 4)}#about`)}>
         <div>
-          <Avatar {...stringAvatar(Storename, avatar)} />
+          <Avatar {...stringAvatar(Storename, avatar)} alt="userImg"/>
         </div>
         <div className="flex flex-col space-y-2 ml-3 ">
         <span className="font-semibold">
@@ -107,7 +107,7 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
           <span className="text-sm"><Call fontSize="inherit"/></span>
         </div> */}
         <Link href={`/pages/${encodeURIComponent(4)}#Products`}>
-        <div  className="flex space-x-1 icon_slate ">
+        <div  className="flex space-x-1 text-[#005B9A]">
         <span className="text-sm ">See all</span>
           <span className="text-sm"><ArrowForward fontSize="inherit"/></span>
         </div>

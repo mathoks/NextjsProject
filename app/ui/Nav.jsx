@@ -58,8 +58,8 @@ useEffect(()=>{
 
   return (
     nav && path === '/' ? (
-    <nav aria-label="main" className={`flex bg-[#4f08ed]  flex-col fixed w-full z-50  ${col ? "shadow-lg" : ""}`} >
-    <div className={`sm: flex flex-col space-y-4 opacity-100  bg-[#4f08ed] md:flex items-center justify-center p-4 ${!navState ? "invisible h-0 opacity-0 transition-opacity" : ""}` }>
+    <nav aria-label="main" className={`flex bg-[#6A0DAD]  flex-col fixed w-full z-50  ${col ? "shadow-lg" : ""}`} >
+    <div className={`sm: flex flex-col space-y-4 opacity-100  bg-[#6A0DAD] md:flex items-center justify-center p-4 ${!navState ? "invisible h-0 opacity-0 transition-opacity" : ""}` }>
     <section>
       <Link href={"#"} className="flex  gap-4 items-center text_shadow">
       <p>Mymart</p>
@@ -73,11 +73,11 @@ useEffect(()=>{
       </Link>
       </section>
       <section>
-      <div className="md:flex w-[95%]">
+      <div className="flex w-[90%] justify-center">
         <div className="border flex items-center justify-between bg-white p-2 rounded-md ">
-        <SearchOutlined className="icon_slate" fontSize="medium" sx={{ zIndex: 80}}/>
+        <SearchOutlined className=" text-[#6A0DAD]" fontSize="medium" sx={{ zIndex: 80}}/>
         <input placeholder="find here" className="placeholder:text-center text-zinc-950  pl-4 pr-4 focus:outline-none w-[98%]"/>
-        <LocationOn className="icon_slate sm:pr-2" fontSize="medium" />
+        <LocationOn className="text-[#6A0DAD] sm:pr-2" fontSize="medium" />
       </div>
       </div>
       </section>
@@ -91,37 +91,7 @@ useEffect(()=>{
     </nav>
     ) : (
       null
-      // <nav  aria-label="main" className=" flex flex-col space-y-0 bg-white  pt-2 w-full text-gray-600 p-4  shadow-md  shadow-blue-300" >
-      // <div className="flex justify-between flex-wrap items-center space-y-3">
-      // <div className="flex space-x-1 items-center pt-4">
-      // <span>
-      // <LocationOnOutlined/>
-      // </span>
       
-      // <span>
-      //   <p>Alaba Lagos</p>
-      // </span>
-      // </div>
-      // <div className="flex space-x-1 items-center">
-      // <span>
-      // <DiamondOutlined/>
-      // </span>
-      
-      // <span>
-      //   <p>Diamond Member</p>
-      // </span>
-      // </div>
-      // <div className="flex space-x-1 items-center">
-      // <span>
-      // <AccessTimeOutlined/>
-      // </span>
-      // <span>
-      //   <p>Member since 2024</p>
-      // </span>
-      // </div>
-
-      // </div>
-      // </nav>
     )
   );
 };

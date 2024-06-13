@@ -20,13 +20,14 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  /* background: linear-gradient(
+  background-color: azure;
+   /* background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb)); */
-  background: linear-gradient(to bottom, #4f08ed 0.005%, white 39.995% ,  white 60% );
+    ) */
+    /* rgb(var(--background-start-rgb));  */
+  /* background: linear-gradient(to bottom, #4f08ed 0.005%, white 39.995% ,  white 60% ); */
   /* background-size: 100% 100%; */
 
   ::-webkit-scrollbar {
@@ -57,7 +58,8 @@ body {
   .bg_image {
     background-image: url('./assets/herobg.png');
     background-repeat: no-repeat;
-    background-color: #4f08ed;
+    /* background-color: #4f08ed; */
+    background-color: #6A0DAD;
     background-position: "center";
     height: auto;
 
@@ -120,8 +122,8 @@ swiper-container::part(pagination) {
 } */
 
 swiper-container {
-  /* height: 100%;
-  width: 100%; */
+  /* height: 100%; */
+  width: 100vw;
   padding: 4px;
   padding-right: 1px;
   padding-left: 2px;
