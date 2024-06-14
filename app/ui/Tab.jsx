@@ -20,7 +20,7 @@ const Tabs = [{"id": 0, "val": "all Stores",  "href": "#", 'icon': <SelectAllOut
     <ul role='list'  onClick={handleChange} className='pl-4 pr-4 flex items-start justify-between  overflow-x-scroll gap-8 text-slate-200  pt-2'>
       { Tabs.map((tab, id)=>(
         
-        <li key={tab.id} value={tab.id || id}  className={`border-opacity-0 first-letter:capitalize cursor-pointer focus:font-medium pb-[8px] text-nowrap  ${index === tab.id? 'text_shadow border-opacity-100 transition-opacity  text-base  text-white' : 'transition-opacity duration-300 ease-linear border-opacity-0 text-sm' }`}>
+        <li key={tab.id} value={tab.id || id}  className={`border-opacity-0 first-letter:capitalize cursor-pointer focus:font-medium pb-[8px] text-nowrap  ${index === tab.id? 'text_shadow2 border-opacity-100 transition-opacity  text-base  text-white' : 'transition-opacity duration-300 ease-linear border-opacity-0 text-sm' }`}>
         <ul role='list' defaultValue={0} className='flex items-center justify-start gap-1'>
             <li  value={tab.id || id}>{tab.icon}</li>
             <li  value={tab.id || id} className='first-letter:capitalize ' >{tab.val}</li>

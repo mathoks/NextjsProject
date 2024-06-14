@@ -16,15 +16,15 @@ const BottomMenu = ({ show }) => {
   
   useEffect(() => {
     if (pathname === "/") {
-      setCol("#4f08ed");
+      setCol("#6A0DAD");
     } else setCol("black");
     if (path?.includes("Account")) {
-      setCol4("#4f08ed");
+      setCol4("#6A0DAD");
     } else setCol4("black");
   }, [pathname, path]);
 
   return (
-    <div className="flex  items-center justify-between p-3 shadow-inner ">
+    <div className="flex  items-center justify-between p-3 shadow-inner text_shadow ">
       {/* <Toolbar
         sx={{
           display: "flex",

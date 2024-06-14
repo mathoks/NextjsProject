@@ -151,3 +151,10 @@ swiper-container {
   text-rendering: optimizeLegibility;
   color: white;
 }
+
+.glassy_nav {
+  background-color: #6A0DAD;
+  filter: blur(2px) brightness(1.2);
+  opacity: 0.9;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
