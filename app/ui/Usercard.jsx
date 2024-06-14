@@ -96,8 +96,8 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
         <Suspense fallback=<p>Loading</p>>
             <Showcase info = {product}/>        
             </Suspense>
-            <button className="absolute right-0 bottom-8  rounded p-1 bg-[#FF4500] text_shadow2 pb-2 pl-2 pr-2">
-              visit the store
+            <button className="absolute bottom-8 right-0  text_shadow text-[#005B9A] ">
+              Visit the Store
             </button>
       </section>
       <section className="flex flex-row justify-end  items-center w-[90%]">
