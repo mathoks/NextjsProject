@@ -95,7 +95,7 @@ export default async function Home() {
            <section>
            
             <Suspense fallback={<Loading/>}>
-           <Products info = {JSON.parse(usersList)}/>
+           <Products info = {usersList? JSON.parse(usersList) : {}}/>
            </Suspense>
            </section>
           
