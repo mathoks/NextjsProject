@@ -3,14 +3,13 @@ import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/app/assets/photo1.jpeg"
-import { DiamondOutlined, LocationOn, LocationOnOutlined, SearchOutlined, AccessTimeOutlined } from "@mui/icons-material";
+import { LocationOn, SearchOutlined, ExpandMore } from "@mui/icons-material";
 import Tab from "./Tab";
-import { useAppDispatch, useAppSelector, useAppStore } from "../lib/hooks/hooks";
+import { useAppSelector, useAppStore } from "../lib/hooks/hooks";
 import { usePathname } from "next/navigation";
-import { setNav, setPath } from "../lib/features/Nav/navSlice";
+import { setNav } from "../lib/features/Nav/navSlice";
 import { connect } from "react-redux";
-import { useScrollTrigger } from "@mui/material";
-import { setDrawer } from "../lib/features/Drawer/drawerSlice";
+import { ButtonBase, useScrollTrigger } from "@mui/material";
 import useHomeDrawer from "../lib/hooks/useHomeDrawer";
 
 
@@ -92,7 +91,15 @@ useEffect(()=>{
       
       </section> */}
       </div>
+      <div className="flex items-center justify-between pr-4">
       <Tab/>
+      <span>
+      <ButtonBase onClick={DrawerHandler}>
+                <ExpandMore fontSize="medium" sx={{ color: "#ffff" }} />
+              </ButtonBase>
+      </span>
+      </div>
+      
       <DrawerWrapper/>
     </nav>
     ) : (
