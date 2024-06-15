@@ -10,11 +10,14 @@ import { usePathname } from "next/navigation";
 import { setNav, setPath } from "../lib/features/Nav/navSlice";
 import { connect } from "react-redux";
 import { useScrollTrigger } from "@mui/material";
+import { setDrawer } from "../lib/features/Drawer/drawerSlice";
+import useHomeDrawer from "../lib/hooks/useHomeDrawer";
 
 
 
 
  const Nav = (props) => {
+  const { DrawerHandler, DrawerWrapper } = useHomeDrawer();
   const [col, setcol] = useState(false)
   const navState = useAppSelector((state)=>state.nav.navToggle)
   const trigger = useScrollTrigger({
@@ -26,7 +29,9 @@ import { useScrollTrigger } from "@mui/material";
 
   const {nav} = props
   const path = usePathname()
-//   const dispatch = useAppDispatch()
+
+ 
+
  const myNav = useAppStore()
 // const navState = myNav.getState()
 // console.log(navState?.nav?.nav)
@@ -77,7 +82,7 @@ useEffect(()=>{
         <div className="border flex items-center justify-between bg-white p-2 rounded-md ">
         <SearchOutlined className=" text-[#6A0DAD]" fontSize="medium" sx={{ zIndex: 80}}/>
         <input placeholder="find here" className="placeholder:text-center text-zinc-950  pl-4 pr-4 focus:outline-none w-[98%]"/>
-        <LocationOn className="text-[#6A0DAD] sm:pr-2" fontSize="medium" />
+        <LocationOn onClick={DrawerHandler} className="text-[#6A0DAD] sm:pr-2" fontSize="medium" />
       </div>
       </div>
       </section>
@@ -88,6 +93,7 @@ useEffect(()=>{
       </section> */}
       </div>
       <Tab/>
+      <DrawerWrapper/>
     </nav>
     ) : (
       null
