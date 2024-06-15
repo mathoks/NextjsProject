@@ -11,7 +11,7 @@ import Usercard from './Usercard'
  * 
  */
 const Products = async({info}) => {
-    console.log(info[0].product)
+    
 
   return (
     <section className='flex flex-col bg-slate-50 pl-4 pr-4 pb-2 pt-4' >

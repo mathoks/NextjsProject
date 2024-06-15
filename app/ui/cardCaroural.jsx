@@ -14,17 +14,15 @@ import { useAppDispatch, useAppStore } from "../lib/hooks/hooks";
 import { setNav, setPath } from "../lib/features/Nav/navSlice";
 import Link from "next/link";
 import { MakeEllipsis } from "../lib/utills/Makelipsis";
+import getProductById from "../actions/users/getProductById";
 
 //const Image = dynamic(import("next/image"), { ssr: false });
 
 // const styles = dynamic(import("@/app/ui/swiper.module.css"), { ssr: false });
 
 register();
-const Showcase = ({info}) => {
+const Showcase = ({info, userInfo}) => {
   const swiperDiv = useRef(null);
-  const router = useRouter();
-  const myNav = useAppStore();
-  const path = usePathname();
   const dispatch = useAppDispatch();
 
   return (
@@ -54,18 +52,18 @@ const Showcase = ({info}) => {
             <swiper-slide
               lazy="true"
               key={productId || id}
-              onClick={() => dispatch(setNav(false))}
+              onClick={async() => { dispatch(setNav(false)); await getProductById(userInfo, productId)}}
             >
               <Link
                 href={`/pages/${encodeURIComponent(
-                  "mackyStores"
-                )}/${encodeURIComponent("shoes")}`}
+                  userInfo
+                )}/${encodeURIComponent(productId)}`}
               
               >
                 <div className="flex relative justify-start items-start  space-x-3 h-[16rem] ">
                   <div className="flex flex-col space-y-2">
-                  <img
-                    src={image}
+                  <Image
+                    src={image[0]}
                     sizes="50vw"
                     alt="DealerPic"
                     width={200}

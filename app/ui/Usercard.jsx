@@ -1,4 +1,4 @@
-"use client"
+
 import { Avatar, ButtonBase, Divider } from "@mui/material";
 import React, { Suspense } from "react";
 import { stringAvatar } from "../lib/utills/stringAvata";
@@ -21,7 +21,6 @@ import Showcase from "./cardCaroural";
 import Link from "next/link";
 import Modal from "./utilComp/modal";
 import HomeMore from "./Buttons/HomeMore";
- import { useRouter } from "next/navigation";
 import Loading from "../loading";
 
 
@@ -33,7 +32,7 @@ import Loading from "../loading";
  */
 const Usercard = ({userId, Storename, storeDescription, email, avatar, registeredAt, address, product, ratings, subscriptionTier}) => {
     
-     const router = useRouter()
+     
     // /pages/${encodeURIComponent(props?.id || 4)
   return (
     
@@ -53,7 +52,7 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
             <span>{"200"}</span>
           </span>
     
-      <section className="flex flex-row pl-2 justify-between items-start" onClick={()=>router.push(`/pages/${encodeURIComponent(userId || 4)}#about`)}>
+      <section className="flex flex-row pl-2 justify-between items-start" >
         <div>
           <Avatar {...stringAvatar(Storename, avatar)} alt="userImg"/>
         </div>
@@ -78,7 +77,7 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
                 text={storeDescription + " " + "we sell the best contact us today what are you waiting for you can check my product gallery"}
                 size={60}
                 flag={"A"}
-              
+                userId={userId}
               />
             </span>
           </span>
@@ -94,7 +93,7 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
     
       <section className="flex flex-col justify-center relative">
         <Suspense fallback=<p>Loading</p>>
-            <Showcase info = {product}/>        
+            <Showcase info = {product} userInfo = {userId}/>        
             </Suspense>
             <button className="absolute bottom-8 right-0  z-30 text-[#005B9A] ">
               Visit the Store

@@ -8,6 +8,14 @@ const  prismaClientsingle = async()=>{
     return new PrismaClient({adapter})
 }
 
-let prisma = await prismaClientsingle()
-//if(process.env.NODE_ENV !== 'production') global
+let prisma; 
+if(process.env.NODE_ENV === 'production'){
+    prisma = await prismaClientsingle()
+}
+else {
+    if(!globalThis.prisma){
+        globalThis.prisma = await prismaClientsingle()
+    }
+    prisma = globalThis.prisma
+}
 export default prisma

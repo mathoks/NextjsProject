@@ -39,7 +39,7 @@ function Modal(props = {}) {
 
   return (
     <div
-      className={`absolute flex flex-col  opacity-0 shadow-md z-30 bg-white top-8 right-8 p-4 ${open === props["value"] ? "inline-block visible opacity-100 transition-opacity" : ""}`}
+      className={`absolute flex flex-col opacity-0 shadow-md z-30 bg-white top-8 right-8 p-4 ${open === props["value"] ? "inline-block opacity-100 transition-opacity" : "hidden"}`}
       key={props["value"]}
       id={props["value"]}
     >

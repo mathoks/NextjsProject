@@ -3,6 +3,8 @@ import React, { Suspense, useEffect, useRef, useState } from "react";
 import { useScrollTrigger } from "@mui/material";
 import Loading from "@/app/loading";
 import { useSubhook2 } from "@/app/lib/hooks/useSubhook2";
+import getProductById from "@/app/actions/users/getProductById";
+import { useParams } from "next/navigation";
 
 function debounce(func, delay) {
   let timeout;
@@ -12,8 +14,10 @@ function debounce(func, delay) {
   };
 }
 
+
 const Page = () => {
-  
+  const params = useParams()
+  //const info = getProductById()
   const [Dom, setDom] = useState(false);
   const [Prop, setProp] = useState(false);
   const ref = useRef();

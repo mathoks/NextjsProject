@@ -23,7 +23,7 @@ export const HeroPage = () => {
   
 
   const handleCreateStore = useCallback(
-    (e) => {
+    async(e) => {
       
       if (session?.status === "loading")
         setchild(() => <CircularProgress className=" text-cyan-50" />);
@@ -32,7 +32,7 @@ export const HeroPage = () => {
         setchild(() => "SIGN IN");
     
         if (e?.target) {
-          return signIn();
+          return await signIn();
         }
       }
     },

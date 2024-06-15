@@ -60,8 +60,9 @@ body {
     background-repeat: no-repeat;
     /* background-color: #4f08ed; */
     background-color: #6A0DAD;
-    background-position: "center";
+    background-position: center;
     height: auto;
+    /* background-size: cover, 100% 50%; */
 
 
   }
