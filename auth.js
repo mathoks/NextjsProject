@@ -35,6 +35,7 @@ export const providerMap = providers.map((provider) => {
 export const { handlers, auth, signIn, signOut } = NextAuth({
   basePath: "/api/auth",
   adapter: PrismaAdapter(prisma),
+  debug: true,
   providers,
   trustHost: true,
   pages: {
