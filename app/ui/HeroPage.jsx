@@ -32,7 +32,8 @@ export const HeroPage = () => {
         setchild(() => "SIGN IN");
     
         if (e?.target) {
-          return await signIn();
+          "use server"
+          return await signIn("google");
         }
       }
     },
