@@ -1,17 +1,12 @@
 
-import { Avatar, ButtonBase, Divider } from "@mui/material";
-import React, { Suspense } from "react";
+import { Avatar } from "@mui/material";
+import React from "react";
 import { stringAvatar } from "../lib/utills/stringAvata";
 import {
-  ArrowBack,
   ArrowForward,
-  Call,
   CallReceivedOutlined,
-  Chat,
   ChatOutlined,
   LocationOnOutlined,
-  More,
-  MoreVertOutlined,
   ShareOutlined,
   StarRate,
   StorefrontOutlined,
@@ -21,7 +16,6 @@ import Showcase from "./cardCaroural";
 import Link from "next/link";
 import Modal from "./utilComp/modal";
 import HomeMore from "./Buttons/HomeMore";
-import Loading from "../loading";
 
 
 
@@ -92,9 +86,9 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
       </section>
     
       <section className="flex flex-col justify-center relative">
-        <Suspense fallback=<p>Loading</p>>
-            <Showcase info = {product} userInfo = {userId}/>        
-            </Suspense>
+        
+            <Showcase info = {typeof product !== "undefined" ? product : []} userInfo = {userId}/>        
+          
             <button className="absolute bottom-8 right-0  z-30 text-[#005B9A] ">
               Visit the Store
             </button>

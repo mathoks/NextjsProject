@@ -95,7 +95,7 @@ export default async function Home() {
            <section>
            
           <Suspense fallback={<Loading/>}>
-           <Products info = {typeof usersList !== "undefined" ? JSON.parse(usersList): []}/>
+           <Products data = {typeof usersList !== "undefined" ? JSON.parse(usersList): []}/>
            </Suspense>
            </section>
           
