@@ -1,56 +1,21 @@
 /* eslint-disable react/jsx-key */
-"use client";
-import React, { useCallback, useEffect, useState } from "react";
-import { signIn, useSession } from "next-auth/react";
-import { CircularProgress, useScrollTrigger } from "@mui/material";
-import { jsx } from "@emotion/react";
-import Image from "next/image";
-import Logo from '@/app/assets/photo4.jpeg'
-import Logo2 from '@/app/assets/photo6.jpeg'
-import Ads from "./adds";
 
-/** 
+import React from "react";
+import { jsx } from "@emotion/react";
+import MainButton from "./Buttons/MainButton";
+
+/**
  * hero page component.
  * @component
  * @returns {jsx.Element} The rendered component.
-*/
+ */
 export const HeroPage = () => {
-
-  const [child, setchild] = useState("");
-  const session = useSession();
-  console.log(session.status);
-
-  
-
-  const handleCreateStore = useCallback(
-    async(e) => {
-      
-      if (session?.status === "loading")
-        setchild(() => <CircularProgress className=" text-cyan-50" />);
-      if (session?.status === "authenticated") setchild("OPEN A STORE");
-      if (session?.status === "unauthenticated") {
-        setchild(() => "SIGN IN");
-    
-        if (e?.target) {
-          "use server"
-          return await signIn("google");
-        }
-      }
-    },
-    [session]
-  );
-
-  useEffect(() => {
-    handleCreateStore();
-  }, [handleCreateStore]);
-
   // eslint-disable-next-line react/jsx-key
 
   return (
     <section className={`flex flex-col w-screen `}>
       <section className="bg_image bg-center ">
         <div className="flex w-[60%]  text-white flex-col space-y-4 py-24 h-auto pl-6 items-start">
-        
           <div className="min-w-min">
             <h2 className="text-2xl  w-2/3 text-left md:text-left font-semibold text_shadow">
               Welcome To Mymart
@@ -58,162 +23,10 @@ export const HeroPage = () => {
           </div>
           <div className="flex flex-col font-bold text_shadow  space-y-4 md:text-left ">
             <h2>Get a Store Today</h2>
-
-            <button
-              className="p-2 bg-[#FF4500] rounded text-white text-sm text_shadow"
-              onClick={handleCreateStore}
-              title="hero"
-            >
-              {child}
-            </button>
+            <MainButton />
           </div>
-          
         </div>
       </section>
-      {/* <section className="grow flex flex-col w-full bg-gray-100">
-        <h3 className="text-gray-800">Trending Produts</h3>
-        <div className="w-full bg-white font-bold flex flex-col justify-start text-gray-900 overflow-x-scroll">
-          {<HeroCard />}
-        </div>
-      </section> */}
-      {/* <section className="flex flex-col overflow-x-scroll bg-white space-y-2 pt-4 pb-8 text-gray-800  w-screen h-fit">
-        <h3 className="font-bold pl-2">Trending Now</h3>
-        <div className="flex justify-start items-center gap-4 w-full overflow-x-scroll h-fit p-2">
-          <div className="flex flex-col space-y-0 rounded-md ring-1 overflow-y-clip w-full  shadow-md hover:outline-4 z-40">
-            <div className="bg-white text-left p-4 text-nowrap rounded-r-md rounded-l-md">
-              <h3>Amazing Gifts</h3>
-            </div>
-
-            <Image
-              src={Logo}
-              alt="pro"
-              width={200}
-              height={200}
-              className="shrink-0 object-cover h-[7.5rem] w-40"
-            />
-          </div>
-          <div className="flex flex-col space-y-0 rounded-md  w-full shadow-md ring-1 overflow-y-clip">
-            <div className="bg-white text-left p-4 text-nowrap rounded-r-md rounded-l-md">
-              <h3>Amazing Gifts</h3>
-            </div>
-            <div>
-              <Image
-                src={Logo1}
-                alt="pro"
-                width={150}
-                height={100}
-                className="shrink-0  h-[7.5rem] object-cover"
-              />
-            </div>
-          </div>
-          <div className="flex flex-col space-y-0 rounded-md  w-full shadow-md ring-1 overflow-y-clip">
-            <div className="bg-white text-left p-4 text-nowrap rounded-r-md rounded-l-md">
-              <h3>Amazing Gifts</h3>
-            </div>
-            <div>
-              <Image
-                src={Logo3}
-                alt="pro"
-                width={150}
-                height={100}
-                className="shrink-0 object-cover h-[7.5rem]"
-              />
-            </div>
-          </div>
-          <div className="flex flex-col space-y-0 rounded-md  w-full shadow-md ring-1 overflow-y-clip">
-            <div className="bg-white text-left p-4 text-nowrap rounded-r-md rounded-l-md">
-              <h3>Amazing Gifts</h3>
-            </div>
-            <div>
-              <Image
-                src={Logo2}
-                alt="pro"
-                width={150}
-                height={100}
-                className="shrink-0 object-cover h-[7.5rem]"
-              />
-            </div>
-          </div>
-          <div className="flex flex-col space-y-0 rounded-md  w-full shadow-md ring-1 overflow-y-clip">
-            <div className="bg-white text-left p-4 text-nowrap rounded-r-md rounded-l-md">
-              <h3>Amazing Gifts</h3>
-            </div>
-            <div>
-              <Image
-                src={Logo3}
-                alt="pro"
-                width={150}
-                height={100}
-                className="shrink-0 object-cover h-[7.5rem]"
-              />
-            </div>
-          </div>
-          <div className="flex flex-col space-y-0 rounded-md  w-full shadow-md ring-1 overflow-y-clip">
-            <div className="bg-white text-left p-4 text-nowrap rounded-r-md rounded-l-md">
-              <h3>Amazing Gifts</h3>
-            </div>
-            <div>
-              <Image
-                src={Logo3}
-                alt="pro"
-                width={150}
-                height={100}
-                className="shrink-0 object-cover h-[7.5rem]"
-              />
-            </div>
-          </div>
-        </div>
-      </section> */}
-      {/* <section className="grow space-y-2 text-gray-800  bg-white  pb-4  pl-2 pr-2  pt-4">
-        <h3 className="font-semibold pl-2">Discount Sales</h3>
-        <Ads/> */}
-        {/* <div className="overflow-x-scroll w-full">
-          <div className="flex items-center gap-3 overflow-scroll w-full">
-            <Image
-              src={Logo2}
-              alt="pro"
-              width={200}
-              height={200}
-              className="shrink-0"
-            />
-            <Image
-              src={Logo}
-              alt="pro"
-              width={200}
-              height={200}
-              className="shrink-0"
-            />
-            <Image
-              src={Logo2}
-              alt="pro"
-              width={200}
-              height={200}
-              className="shrink-0"
-            />
-            <Image
-              src={Logo2}
-              alt="pro"
-              width={200}
-              height={200}
-              className="shrink-0"
-            />
-            <Image
-              src={Logo}
-              alt="pro"
-              width={200}
-              height={200}
-              className="shrink-0"
-            />
-            <Image
-              src={Logo}
-              alt="pro"
-              width={200}
-              height={200}
-              className="shrink-0"
-            />
-          </div>
-        </div>  */}
-      {/* </section>  */}
     </section>
   );
 };

@@ -5,6 +5,7 @@ import React, { useEffect, useRef, useState } from "react";
 import BottomMenu from "./utilComp/ButtomMenu";
 import { useAppDispatch, useAppSelector } from "../lib/hooks/hooks";
 import { setNavToggle } from "../lib/features/Nav/navSlice";
+import { SessionProvider } from "next-auth/react";
 
 function debounce(func, delay) {
   let timeout;
@@ -34,7 +35,7 @@ const ButtomNav = () => {
   const showState = useAppSelector((state)=>state.nav.navToggle) 
   const init = useRef(0);
   const init2 = useRef(init);
-
+  
   useEffect(() => {
     window.onscroll = () => {
       init.current = window.scrollY;
@@ -102,8 +103,9 @@ const ButtomNav = () => {
             ? "visible opacity-100 transition-opacity"
             : "invisible opacity-0 "
         }`}
-      >
+      ><SessionProvider baseUrl={"/api/auth"}>
         <BottomMenu />
+        </SessionProvider>
       </div>
     </div>
   );

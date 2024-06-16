@@ -10,11 +10,11 @@ const  prismaClientsingle = async()=>{
 
 let prisma; 
 if(process.env.NODE_ENV === 'production'){
-    prisma = await prismaClientsingle()
+    prisma =  prismaClientsingle()
 }
 else {
     if(!globalThis.prisma){
-        globalThis.prisma = await prismaClientsingle()
+        globalThis.prisma =  prismaClientsingle()
     }
     prisma = globalThis.prisma
 }

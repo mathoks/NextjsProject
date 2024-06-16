@@ -7,13 +7,14 @@ import ForumIcon from "@mui/icons-material/ForumOutlined";
 import NewspaperIcon from "@mui/icons-material/NewspaperOutlined";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { signIn, useSession } from "next-auth/react";
 
 const BottomMenu = ({ show }) => {
   const [col, setCol] = useState("");
   const [col4, setCol4] = useState("");
   const  pathname = usePathname();
   const path = pathname?.split("/");
-  
+  const session = useSession()
   useEffect(() => {
     if (pathname === "/") {
       setCol("#6A0DAD");
@@ -93,7 +94,7 @@ const BottomMenu = ({ show }) => {
             }}
             href={""}
           >
-            <Stack  className="flex flex-col justify-center items-center">
+            <Stack onClick={async()=> {if(session.status === "unauthenticated") {"use server"; signIn()} else console.log(session.status) }} className="flex flex-col justify-center items-center">
               <PersonIcon sx={{ color: col4 }} fontSize="meduim" />
               <Typography
                 sx={{
