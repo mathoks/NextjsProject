@@ -20,7 +20,7 @@ const Products = async({info}) => {
     </div>
     
     <div  className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  place-items-center first:pt-4 gap-2  last:pb-0'>
-    {info.map((user, index) => (
+    {info?.map((user, index) => (
                         
                         <Usercard key={index} {...user}/>
                     ))}

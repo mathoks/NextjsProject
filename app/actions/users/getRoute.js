@@ -17,7 +17,8 @@ export async function getRoutes() {
       throw new Error(`API request failed with status ${response.status}`);
     }
     //const users = await response.json();
-    return JSON.stringify(users) || {}; // Return an empty array if data is missing
+    const Users = users? JSON.stringify(users) : []
+    return Users; // Return an empty array if data is missing
   } catch (error) {
     console.error("Error fetching users:", error);
   }
