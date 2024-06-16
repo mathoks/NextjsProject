@@ -31,7 +31,8 @@ export default async function SignInPage() {
             <span className="text-4xl font-medium text-white">Mymart</span>
           </h2>
           <div className="flex flex-col gap-2 p-6 m-8 w-full bg-white rounded shadow-lg">
-            {Object.values(providerMap).map((provider) => (
+            {Object.values(providerMap).map((provider) => 
+            (
               <form
                 className="[&>div]:last-of-type:hidden"
                 key={provider.id}
@@ -40,7 +41,8 @@ export default async function SignInPage() {
                   if (provider.id === "credentials") {
                     await signIn(provider.id, {
                       redirectTo: "/",
-                      password: formData.get('password')
+                      password: formData.get('password'),
+                      email: formData.get('email')
                     });
                   } else {
                     await signIn(provider.id, { redirectTo: "/" });

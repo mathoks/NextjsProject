@@ -38,7 +38,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   providers,
   trustHost: true,
   pages: {
-    signIn: '/auth/login/',
+    signIn: '/auth/login',
   },
   callbacks: {
     async session({ session, user }) {
