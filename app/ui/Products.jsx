@@ -12,7 +12,7 @@ import Usercard from './Usercard'
  */
 const Products = async({data}) => {
     
-console.log(data)
+
   return (
     <section className='flex flex-col bg-slate-50 pl-4 pr-4 pb-2 pt-4' >
     <div className='w-full  p-4 bg-white'>

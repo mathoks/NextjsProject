@@ -14,7 +14,13 @@ const neon = new Pool({
 const adapter = new PrismaNeon(neon)
 const prisma = new PrismaClient({adapter})
 const providers = [
-    Google,
+    Google({authorization: {
+        params: {
+            prompt: 'consent',
+            access_type: 'offline',
+            response_type: 'code'
+        }
+    }}),
     Credentials({
       credentials: { password: { label: "Password", type: "password" } , email: {label: "email", type: "email"}},
       async authorize(c) {
