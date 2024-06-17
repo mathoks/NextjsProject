@@ -1,9 +1,18 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import prisma from "@/models/model";
+// import prisma from "@/models/model";
 import Credentials from "next-auth/providers/credentials";
+import { Pool } from "@neondatabase/serverless";
+import { PrismaNeon } from "@prisma/adapter-neon";
+import { PrismaClient } from "@prisma/client";
 
+const neon = new Pool({
+    connectionString: process.env.POSTGRES_PRISMA_URL,
+})
+
+const adapter = new PrismaNeon(neon)
+const prisma = new PrismaClient({adapter})
 const providers = [
     Google,
     Credentials({
