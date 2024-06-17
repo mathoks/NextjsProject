@@ -52,15 +52,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma),
   debug: true,
   providers,
-  trustHost: true,
   pages: {
     signIn: '/auth/login',
   },
   callbacks: {
     async session({ session, user }) {
-      session.user.role = user.role;
       return session;
     },
-    async signIn({ user, email, profile }) {},
   },
 });
