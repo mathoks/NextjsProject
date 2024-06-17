@@ -36,7 +36,7 @@ model Session {
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
  
-  @@map("sessions")
+  @@map("session")
 }
  
 model User {
@@ -48,7 +48,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
  
-  @@map("users")
+  @@map("user")
 }
  
 model VerificationToken {
@@ -57,5 +57,5 @@ model VerificationToken {
   expires    DateTime
  
   @@unique([identifier, token])
-  @@map("verificationtokens")
+  @@map("verificationtoken")
 }
