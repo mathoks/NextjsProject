@@ -5,7 +5,7 @@ import { signIn, useSession } from "next-auth/react";
 import React, { useCallback, useEffect, useState } from "react";
 
 const MainButton = () => {
-  const [child, setchild] = useState("");
+  const [child, setchild] = useState(<CircularProgress size={18} className="text-sm size-2"/>);
   const session = useSession();
 
   const handleCreateStore = useCallback(

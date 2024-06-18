@@ -1,9 +1,10 @@
 
 import { Inter } from "next/font/google";
 import "@/app/globals.css";
-import Nav from "@/app/ui/Nav";
-import ButtomNav from "@/app/ui/buttomNav";
-import StoreProvider from "@/app/StoreProvider";
+import StoreProvider from "./StoreProvider";
+import ButtomNav from "./ui/buttomNav";
+import Nav from "./ui/Nav";
+
 
 
 

@@ -6,12 +6,12 @@ import { auth } from "@/auth";
 import '@/app/globals.css'
 import { Suspense } from "react";
 import { HeroPage } from "@/app/ui/HeroPage";
-import Loading from "@/app/loading";
 import StoreProvider from "@/app/StoreProvider";
 import Products from "@/app/ui/Products";
 import { getUsers } from "./actions/users/getUsers";
 import { getRoutes } from "./actions/users/getRoute";
 import Ads from "./ui/adds";
+import { ProdSkeleton } from "./ui/Buttons/ProdSkeleton";
 
 
 // function Auth({ children }) {
@@ -82,21 +82,21 @@ export default async function Home() {
             </section>
             <section className=" bg-slate-50 text-black flex flex-col space-y-1 w-[100vw]">
             <div className="p-4 pb-0 font-semibold text-lg"><p>Discount Sales</p></div>
-            <Suspense fallback={<Loading/>}>
+            <Suspense fallback={<ProdSkeleton/>}>
               <Ads/>
             </Suspense>
           </section>
              <section className="w-screen bg-slate-50 text-black flex flex-col space-y-1">
              <div className="p-4 pb-0 font-semibold text-lg"><p>New Arrivals</p></div>
-            <Suspense fallback={<Loading/>}>
+            <Suspense fallback={"loading"}>
               <Ads/>
             </Suspense>
           </section> 
            <section>
            
-          <Suspense fallback={<Loading/>}>
+          
            <Products data = {typeof usersList !== "undefined" ? JSON.parse(usersList): []}/>
-           </Suspense>
+           
            </section>
           
             </div>

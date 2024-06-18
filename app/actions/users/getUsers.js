@@ -1,5 +1,5 @@
 "use server";
-import { users } from "@/app/MockData/Data";
+import { users } from "../../MockData/Data.js"
 import { headers } from "next/headers";
 
 /**

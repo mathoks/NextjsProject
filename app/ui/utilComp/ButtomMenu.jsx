@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { signIn, useSession } from "next-auth/react";
 
-const BottomMenu = ({ show }) => {
+const BottomMenu = () => {
   const [col, setCol] = useState("");
   const [col4, setCol4] = useState("");
   const  pathname = usePathname();

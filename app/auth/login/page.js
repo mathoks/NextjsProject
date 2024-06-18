@@ -1,7 +1,13 @@
-import { signIn, providerMap } from "@/auth";
+"use client"
+import { providerMap } from "@/auth";
 import imageFile from '@/app/assets/login_pattern.svg'
+import { useFormState } from 'react-dom'
+import { Authenticate } from "@/app/actions/users/Authenticate";
 
-export default async function SignInPage() {
+export default  function SignInPage() {
+  const initialState = { message: null, errors: {} };
+  const [state, dispatch] = useFormState(Authenticate, initialState);
+  
   return (
     <div className="flex overflow-hidden relative w-screen h-screen">
       <img
@@ -30,28 +36,25 @@ export default async function SignInPage() {
             </svg>
             <span className="text-4xl font-medium text-white">Mymart</span>
           </h2>
-          <div className="flex flex-col gap-2 p-6 m-8 w-full bg-white rounded shadow-lg">
-            {Object.values(providerMap).map((provider) => 
+          <div className="flex flex-col gap-2 p-6 m-8 w-full bg-white rounded shadow-lg relative">
+            {Object.values(providerMap).map(({id, name}) => 
             (
               <form
                 className="[&>div]:last-of-type:hidden"
-                key={provider.id}
-                action={async (formData) => {
-                  "use server";
-                  if (provider.id === "credentials") {
-                    await signIn(provider.id, {
-                      redirectTo: "/",
-                      password: formData.get('password'),
-                      email: formData.get('email')
-                    });
-                  } else {
-                    await signIn(provider.id, { redirectTo: "/" });
-                  }
-                }}
+                key={id}
+                action={dispatch}
               >
-                {provider.id === "credentials" && (
+                {id === "credentials" && (
                   <>
-                  <label className="text-base font-light text-neutral-800">
+                  <span id="customer-error"  aria-live="polite" className=" mx-auto" aria-atomic="true" >
+        {state?.errors.name &&
+            <p className="text-sm text-red-500" >
+              {state?.errors.error}
+              
+            </p>
+          }
+      </span>
+                  <label className="text-base font-light text-neutral-800 ">
                       Email
                       <input
                         className="block flex-1 p-3 w-full font-normal rounded-md border border-gray-200 transition sm:text-sm placeholder:font-light placeholder:text-zinc-400 focus:border-zinc-500 focus:ring-zinc-500"
@@ -60,6 +63,7 @@ export default async function SignInPage() {
                         placeholder="Email"
                         name="email"
                         type="email"
+                      
                       />
                     </label>
                     <label className="text-base font-light text-neutral-800">
@@ -77,9 +81,11 @@ export default async function SignInPage() {
                 )}
                 <button
                   type="submit"
-                  className="flex justify-center items-center px-4 mt-2 space-x-2 w-full h-12 text-base font-light text-white rounded transition focus:ring-2 focus:ring-offset-2 focus:outline-none bg-[#6A0DAD] hover:bg-zinc-900 focus:ring-zinc-800"
+                  className="flex justify-center items-center px-4 mt-4 space-x-2 w-full h-12 text-base font-light text-white rounded transition focus:ring-2 focus:ring-offset-2 focus:outline-none bg-[#6A0DAD] hover:bg-zinc-900 focus:ring-zinc-800"
+                  value={id}
+                  name={name}
                 >
-                  <span>Sign in with {provider.name}</span>
+                  <span>Sign in with {name}</span>
                 </button>
                 <div className="flex gap-2 items-center my-4">
                   <div className="flex-1 bg-[#6A0DAD] h-[1px]" />

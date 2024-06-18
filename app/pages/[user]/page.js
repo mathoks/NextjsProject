@@ -4,7 +4,7 @@ import React, { Suspense, useEffect, useRef, useState } from "react";
 
 import { useScrollTrigger } from "@mui/material";
 import { useGethook, useSubnavhook } from "@/app/lib/hooks/useSubnavhook";
-import Loading from "@/app/loading";
+
 
 function debounce(func, delay) {
   let timeout;
@@ -57,7 +57,7 @@ const Page = () => {
       ref={ref}
       className=" bg-white min-w-full"
     >
-    <Suspense fallback={<Loading/>}>
+    <Suspense fallback={'loading...'}>
 
     
       {Wrapper}
