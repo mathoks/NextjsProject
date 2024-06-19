@@ -5,7 +5,7 @@ import Image from "next/image";
 import Logo from "@/app/assets/photo1.jpeg"
 import { LocationOn, SearchOutlined, ExpandMore } from "@mui/icons-material";
 import Tab from "./Tab";
-import { useAppSelector, useAppStore } from "../lib/hooks/hooks";
+import { useAppDispatch, useAppSelector, useAppStore } from "../lib/hooks/hooks";
 import { usePathname } from "next/navigation";
 import { setNav } from "../lib/features/Nav/navSlice";
 import { connect } from "react-redux";
@@ -19,6 +19,7 @@ import useHomeDrawer from "../lib/hooks/useHomeDrawer";
   const { DrawerHandler, DrawerWrapper } = useHomeDrawer();
   const [col, setcol] = useState(false)
   const navState = useAppSelector((state)=>state.nav.navToggle)
+  const dispatch = useAppDispatch()
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 1,
@@ -26,34 +27,26 @@ import useHomeDrawer from "../lib/hooks/useHomeDrawer";
   });
 
 
-  const {nav} = props
-  const path = usePathname()
-
- 
-
- const myNav = useAppStore()
+  
 // const navState = myNav.getState()
 // console.log(navState?.nav?.nav)
 // const isInit = useRef(false)
-const init = useRef(false)
-if(!init.current){
-  if(path === '/pages')
-  myNav.dispatch(setNav(false))
-  init.current = true
-}
+// const init = useRef(false)
+// if(!init.current){
+//   if(path === '/pages')
+//   myNav.dispatch(setNav(false))
+//   init.current = true
+// }
 
-useEffect(() => {
-  if(path === '/pages')
-    myNav.dispatch(setNav(false))
-  else 
-    myNav.dispatch(setNav(true))
-  
-}, [path])
+
 
 useEffect(()=>{
   if(trigger)
     setcol(true)
-  else setcol(false)
+  else {
+    setcol(false)
+    dispatch(setNav(true))
+  }
 },[trigger])
 
 

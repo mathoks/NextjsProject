@@ -3,8 +3,6 @@ import { Inter } from "next/font/google";
 import "@/app/globals.css";
 import Nav from "../ui/Nav";
 import { HeroPage } from "../ui/HeroPage";
-import { SessionProvider } from "next-auth/react";
-import { auth } from "@/auth";
 
 
 
@@ -34,15 +32,15 @@ export default async function homeLayout({children, tab, arrivals}) {
    
     <>
      
-      <header className="bg-[#6A0DAD] fixed top-0 z-50">
+      <header className="bg-[#6A0DAD] fixed  top-0 z-50">
       
       <Nav/>
       
       </header>
-      <main className="mt-28">
-      <section className="bg-[#6A0DAD]">
+      <section className="bg-[#6A0DAD] pt-28">
         <HeroPage/>
       </section>
+      <main className="">
       <section className=" bg-slate-50 text-black flex flex-col space-y-1 w-[100vw]">
       {tab}
       </section>

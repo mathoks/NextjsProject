@@ -21,17 +21,14 @@ export const metadata = {
 export default async function Layout({children}) {
   
   // const session = await auth()
-  const session = {
-    user: {
-      name : 'paul'
-    }
-  }
+  
   
   
   return (
-    <html lang="en">
     <SessionProvider baseUrl={"/api/auth"} >
       <StoreProvider>
+    <html lang="en">
+    
       
       <body className={`${inter.className} w-full overflow-x-clip h-screen`}>
       
@@ -45,8 +42,9 @@ export default async function Layout({children}) {
       </footer>
       </body>
       
-      </StoreProvider>
-      </SessionProvider>
+      
     </html>
+    </StoreProvider>
+      </SessionProvider>
   );
 }
