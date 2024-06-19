@@ -19,16 +19,16 @@ export const metadata = {
 };
 
 export default async function homeLayout({children, tab, arrivals}) {
-    const session = await auth()
+//     const session = await auth()
   
   
-  if(session?.user){
-    session.user = {
-      name : session.user.name,
-      email: session.user.email,
-      image: session.user.image
-    }
-  }
+//   if(session?.user){
+//     session.user = {
+//       name : session.user.name,
+//       email: session.user.email,
+//       image: session.user.image
+//     }
+//   }
   
   return (
    

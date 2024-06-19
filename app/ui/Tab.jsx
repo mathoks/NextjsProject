@@ -1,6 +1,6 @@
 "use client"
-import { AllOutOutlined, BuildOutlined, ChairAltOutlined, PhoneAndroid, RoofingOutlined, SelectAllOutlined, ShoppingBagOutlined, TvOutlined } from '@mui/icons-material'
-import React, { useEffect, useState } from 'react'
+import { BuildOutlined, ChairAltOutlined, PhoneAndroid, RoofingOutlined, SelectAllOutlined, ShoppingBagOutlined, TvOutlined } from '@mui/icons-material'
+import React, { useState } from 'react'
 
 const Tab = () => {
     const [index, setIndex] = useState(0)

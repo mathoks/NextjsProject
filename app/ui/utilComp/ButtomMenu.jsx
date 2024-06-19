@@ -16,14 +16,15 @@ const BottomMenu = () => {
   const path = pathname?.split("/");
   const session = useSession();
   const userId = session?.data?.user?.name
+  console.log(session)
   useEffect(() => {
     if (pathname === "/home") {
       setCol("#6A0DAD");
     } else setCol("black");
-    if (path?.includes("Dashboard")) {
+    if (pathname?.includes("Dashboard")) {
       setCol4("#6A0DAD");
     } else setCol4("black");
-  }, [pathname, path]);
+  }, [pathname]);
 
   return (
     <div className="flex  items-center justify-between p-3 shadow-inner text_shadow ">
@@ -90,7 +91,7 @@ const BottomMenu = () => {
             textDecoration: "none",
           }}
           href={
-            session.status || session.data === "authenticated"
+            session.status === "authenticated"
               ? `/Dashboard/${encodeURIComponent(userId)}`
               : session.status === "loading"
               ? "#"

@@ -1,17 +1,7 @@
 
-import { SessionProvider } from "next-auth/react";
 
-import { auth } from "@/auth";
 
 import '@/app/globals.css'
-import { Suspense } from "react";
-import { HeroPage } from "@/app/ui/HeroPage";
-import StoreProvider from "@/app/StoreProvider";
-import Products from "@/app/ui/Products";
-import { getUsers } from "./actions/users/getUsers";
-import { getRoutes } from "./actions/users/getRoute";
-import Ads from "./ui/adds";
-import { ProdSkeleton } from "./ui/Buttons/ProdSkeleton";
 
 
 // function Auth({ children }) {
@@ -58,52 +48,48 @@ import { ProdSkeleton } from "./ui/Buttons/ProdSkeleton";
 // }
 
 export default async function Home() {
-  const session = await auth()
-  const usersList = await getRoutes()
+  // const session = await auth()
+  // const usersList = await getRoutes()
   
-  if(session?.user){
-    session.user = {
-      name : session.user.name,
-      email: session.user.email,
-      image: session.user.image
-    }
-  }
+  // if(session?.user){
+  //   session.user = {
+  //     name : session.user.name,
+  //     email: session.user.email,
+  //     image: session.user.image
+  //   }
+  // }
 
-  return (
-    <SessionProvider baseUrl={"/api/auth"} session={session} >
-    
-    
-    <StoreProvider>
-      <section className="flex min-h-screen mt-0 flex-col items-center">
-        <div className="mt-28 flex flex-col items-center">
-           
-            <section>
-            <HeroPage/>
-            </section>
-            <section className=" bg-slate-50 text-black flex flex-col space-y-1 w-[100vw]">
-            <div className="p-4 pb-0 font-semibold text-lg"><p>Discount Sales</p></div>
-            <Suspense fallback={<ProdSkeleton/>}>
-              <Ads/>
-            </Suspense>
-          </section>
-             <section className="w-screen bg-slate-50 text-black flex flex-col space-y-1">
-             <div className="p-4 pb-0 font-semibold text-lg"><p>New Arrivals</p></div>
-            <Suspense fallback={"loading"}>
-              <Ads/>
-            </Suspense>
-          </section> 
-           <section>
-           
-          
-           <Products data = {typeof usersList !== "undefined" ? JSON.parse(usersList): []}/>
-           
-           </section>
-          
-            </div>
-      </section>
-      </StoreProvider>
-      
-    </SessionProvider>
-  );
+  return null
 }
+//   return (
+    
+//       <section className="flex min-h-screen mt-0 flex-col items-center">
+//         <div className="mt-28 flex flex-col items-center">
+           
+//             <section>
+//             <HeroPage/>
+//             </section>
+//             <section className=" bg-slate-50 text-black flex flex-col space-y-1 w-[100vw]">
+//             <div className="p-4 pb-0 font-semibold text-lg"><p>Discount Sales</p></div>
+//             <Suspense fallback={<ProdSkeleton/>}>
+//               <Ads/>
+//             </Suspense>
+//           </section>
+//              <section className="w-screen bg-slate-50 text-black flex flex-col space-y-1">
+//              <div className="p-4 pb-0 font-semibold text-lg"><p>New Arrivals</p></div>
+//             <Suspense fallback={"loading"}>
+//               <Ads/>
+//             </Suspense>
+//           </section> 
+//            <section>
+           
+          
+//            <Products data = {typeof usersList !== "undefined" ? JSON.parse(usersList): []}/>
+           
+//            </section>
+          
+//             </div>
+//       </section>
+//   );
+// }
 

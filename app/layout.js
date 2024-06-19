@@ -20,28 +20,21 @@ export const metadata = {
 
 export default async function Layout({children}) {
   
-  const session = await auth()
-  
-  
-  if(session?.user){
-    session.user = {
-      name : session.user.name,
-      email: session.user.email,
-      image: session.user.image
+  // const session = await auth()
+  const session = {
+    user: {
+      name : 'paul'
     }
   }
-  //const pathname = await getRoute()
+  
+  
   return (
     <html lang="en">
+    <SessionProvider baseUrl={"/api/auth"} >
       <StoreProvider>
-      <SessionProvider baseUrl={"/api/auth"} session={session} >
+      
       <body className={`${inter.className} w-full overflow-x-clip h-screen`}>
       
-      {/* <header className="bg-indigo-700">
-      
-      <nav></nav>
-      
-      </header> */}
       <main>
       {children}
       </main>
@@ -51,8 +44,9 @@ export default async function Layout({children}) {
         
       </footer>
       </body>
-      </SessionProvider>
+      
       </StoreProvider>
+      </SessionProvider>
     </html>
   );
 }

@@ -1,11 +1,10 @@
 "use client";
 import { ArrowUpward } from "@mui/icons-material";
 import Link from "next/link";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import BottomMenu from "./utilComp/ButtomMenu";
 import { useAppDispatch, useAppSelector } from "../lib/hooks/hooks";
 import { setNavToggle } from "../lib/features/Nav/navSlice";
-import { SessionProvider } from "next-auth/react";
 
 function debounce(func, delay) {
   let timeout;
@@ -30,7 +29,6 @@ function debounce(func, delay) {
 // };
 
 const ButtomNav = () => {
-  const [show, setShow] = useState(true);
   const dispatch = useAppDispatch()
   const showState = useAppSelector((state)=>state.nav.navToggle) 
   const init = useRef(0);
@@ -103,9 +101,9 @@ const ButtomNav = () => {
             ? "visible opacity-100 transition-opacity"
             : "invisible opacity-0 "
         }`}
-      ><SessionProvider baseUrl={"/api/auth"}>
+      >
         <BottomMenu />
-        </SessionProvider>
+      
       </div>
     </div>
   );
