@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import { StarRate } from "@mui/icons-material";
-import { register } from "swiper/element-bundle";
+import {register} from 'swiper/element-bundle'
 //import styles from "@/app/ui/swiper.module.css";
 import { useAppDispatch } from "../lib/hooks/hooks";
 import { setNav } from "../lib/features/Nav/navSlice";
@@ -10,7 +10,7 @@ import Link from "next/link";
 import { MakeEllipsis } from "../lib/utills/Makelipsis";
 import getProductById from "../actions/users/getProductById";
 
-//const Image = dynamic(import("next/image"), { ssr: false });
+// const regis = dynamic(()=>import('swiper/'), { ssr: false });
 
 // const styles = dynamic(import("@/app/ui/swiper.module.css"), { ssr: false });
 

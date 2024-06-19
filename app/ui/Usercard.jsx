@@ -12,12 +12,13 @@ import {
   StorefrontOutlined,
 } from "@mui/icons-material";
 import { MakeEllipsis } from "../lib/utills/Makelipsis";
-import Showcase from "./cardCaroural";
+// import Showcase from "./cardCaroural";
 import Link from "next/link";
 import Modal from "./utilComp/modal";
 import HomeMore from "./Buttons/HomeMore";
+import dynamic from "next/dynamic";
 
-
+const UserComp = dynamic(()=>import('@/app/ui/cardCaroural') , {ssr: false}) 
 
 /**
  * @component Usercard
@@ -87,7 +88,7 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
     
       <section className="flex flex-col justify-center relative">
         
-            <Showcase info = {typeof product !== "undefined" ? product : []} userInfo = {userId}/>        
+            <UserComp info = {typeof product !== "undefined" ? product : []} userInfo = {userId}/>        
           
             <button className="absolute bottom-8 right-0  z-30 text-[#005B9A] ">
               Visit the Store
