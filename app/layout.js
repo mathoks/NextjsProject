@@ -3,7 +3,9 @@ import { Inter } from "next/font/google";
 import "@/app/globals.css";
 import StoreProvider from "./StoreProvider";
 import ButtomNav from "./ui/buttomNav";
-import Nav from "./ui/Nav";
+import { auth } from "@/auth";
+import { SessionProvider } from "next-auth/react";
+
 
 
 
@@ -18,20 +20,30 @@ export const metadata = {
 
 export default async function Layout({children}) {
   
+  const session = await auth()
+  
+  
+  if(session?.user){
+    session.user = {
+      name : session.user.name,
+      email: session.user.email,
+      image: session.user.image
+    }
+  }
   //const pathname = await getRoute()
   return (
     <html lang="en">
       <StoreProvider>
+      <SessionProvider baseUrl={"/api/auth"} session={session} >
       <body className={`${inter.className} w-full overflow-x-clip h-screen`}>
       
-      <header className="bg-indigo-700">
+      {/* <header className="bg-indigo-700">
       
       <nav></nav>
       
-      </header>
+      </header> */}
       <main>
       {children}
-      {/* {pal} */}
       </main>
       <footer className="bg-[#4f08ed] w-full bottom-0 static">
         
@@ -39,6 +51,7 @@ export default async function Layout({children}) {
         
       </footer>
       </body>
+      </SessionProvider>
       </StoreProvider>
     </html>
   );
