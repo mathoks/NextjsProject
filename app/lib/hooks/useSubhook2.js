@@ -30,7 +30,7 @@ export const useSubhook2 = (visi) => {
     window.addEventListener("beforeunload", () => {
       localStorage.setItem("tabs", window.location.hash);
     });
-    console.log(window.history.state)
+    
     setIndex(localStorage.getItem("tabs"));
   }, []);
 

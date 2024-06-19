@@ -28,7 +28,7 @@ export const useSubnavhook = (visi) => {
     window.addEventListener("beforeunload", () => {
       localStorage.setItem("tab", window.location.hash);
     });
-    console.log(window.history.state)
+    
     setIndex(localStorage.getItem("tab"));
   }, []);
 

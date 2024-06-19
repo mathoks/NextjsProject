@@ -61,7 +61,7 @@ useEffect(()=>{
 
 
   return (
-    nav && path === '/' ? (
+    // nav && path === '/home' ? (
     <nav aria-label="main" className={`flex bg-[#6A0DAD]  flex-col fixed w-full z-50  ${col ? "shadow-lg" : ""}`} >
     <div className={`sm: flex flex-col space-y-4 opacity-100  bg-[#6A0DAD] md:flex items-center justify-center p-4 ${!navState ? "invisible h-0 opacity-0 transition-opacity" : ""}` }>
     <section>
@@ -102,10 +102,10 @@ useEffect(()=>{
       
       <DrawerWrapper/>
     </nav>
-    ) : (
-      null
+    // ) : (
+    //   null
       
-    )
+    // )
   );
 };
 
