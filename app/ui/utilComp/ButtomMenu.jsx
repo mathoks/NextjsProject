@@ -90,7 +90,7 @@ const BottomMenu = () => {
             textDecoration: "none",
           }}
           href={
-            session.status === "authenticated"
+            session.status || session.data === "authenticated"
               ? `/Dashboard/${encodeURIComponent(userId)}`
               : session.status === "loading"
               ? "#"
