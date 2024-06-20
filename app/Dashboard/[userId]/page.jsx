@@ -50,7 +50,7 @@ const page = async () => {
           <span>Subscription</span>
         </div>
         <span className="-ml-2">
-          <Divider variant="inset" orientation="vertical" flexItem/>
+          <Divider variant="inset" orientation="vertical" flexItem sx={{bgcolor: 'gray'}}/>
         </span>
         <div className="flex flex-col justify-center items-center">
           <span>
@@ -68,7 +68,7 @@ const page = async () => {
           <span>Preference</span>
         </div>
         <span>
-          <Divider variant="inset" orientation="vertical"  flexItem/>
+          <Divider variant="inset" orientation="vertical"  flexItem sx={{bgcolor: 'grey'}}/>
         </span>
         <div className="flex flex-col justify-center items-center">
           <span>
