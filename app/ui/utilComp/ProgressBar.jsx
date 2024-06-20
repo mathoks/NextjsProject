@@ -1,3 +1,4 @@
+"use client"
 import { LinearProgress, linearProgressClasses, styled } from '@mui/material';
 import React from 'react'
 
