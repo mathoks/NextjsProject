@@ -14,16 +14,16 @@ const {user: {name, image}} = session
       <Settings fontSize='medium' />
       </span>
       
-        <span className='flex space-x-2'>
+        <span className='flex space-x-2 items-center'>
             <Avatar src={image}/>
-            <span className='flex flex-col space-y-2'>
-            <p>{name}</p>
-            <p>Lamb industries limited</p>
+            <span className='flex flex-col space-y-1'>
+            <p className='f font-semibold'>{name}</p>
+            <p className='text-sm'>Lamb industries limited</p>
             </span>
         </span>
-        <span className='bg-white rounded-t-md h-28 px-4 text-black'>
-            <span className='flex justify-between'><p>Complete your profile</p><button className='py-1 px-2 bg-[#6A0DAD] text-white'>Go</button></span>
-        </span>
+        <div className='bg-white rounded-t-md h-28 px-4 text-black w-fit'>
+            <span className='flex justify-between items-center'><p>Complete your profile</p><button className='py-1 px-2 bg-[#6A0DAD] text-white'>Go</button></span>
+        </div>
       </header>
       <section>
 
