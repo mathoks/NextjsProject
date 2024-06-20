@@ -1,7 +1,7 @@
 "use client";
 import { ArrowUpward } from "@mui/icons-material";
 import Link from "next/link";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import BottomMenu from "./utilComp/ButtomMenu";
 import { useAppDispatch, useAppSelector } from "../lib/hooks/hooks";
 import { setNavToggle } from "../lib/features/Nav/navSlice";
@@ -31,22 +31,29 @@ function debounce(func, delay) {
 const ButtomNav = () => {
   const dispatch = useAppDispatch()
   const showState = useAppSelector((state)=>state.nav.navToggle) 
-  const init = useRef(0);
+  const init = useRef( typeof window !== 'undefined' ? window.scrollY : 0);
   const init2 = useRef(init);
   
   useEffect(() => {
-    window.onscroll = () => {
+    const handle = ()=>{
       init.current = window.scrollY;
-      //init2.current = init.current
      setTimeout(() => (init2.current = init.current), 2000);
      
-      if (init.current > init2.current && init.current - init2.current > 1 ) {
+      if (init.current > init2.current && init.current - init2.current > 100 ) {
         debounce(dispatch(setNavToggle(false), 3000))
-      } else if(init.current < init2.current && init2.current - init.current > 1)
+      } else if(init.current < init2.current && init2.current - init.current > 100 || init.current === 0)
       debounce(dispatch(setNavToggle(true)), 3000);
       else {}
+      console.log(init.current, init2.current)
     };
+    
+    window.addEventListener('scroll', handle);
+    return ()=> window.removeEventListener('scroll', handle)
+      
   }, [dispatch]);
+
+  
+  
 
   return (
     <div className=" text-white flex flex-col  w-full">

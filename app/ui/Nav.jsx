@@ -45,7 +45,7 @@ useEffect(()=>{
     setcol(true)
   else {
     setcol(false)
-    dispatch(setNav(true))
+    // dispatch(setNav(true))
   }
 },[trigger])
 
