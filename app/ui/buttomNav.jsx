@@ -39,9 +39,9 @@ const ButtomNav = () => {
       init.current = window.scrollY;
      setTimeout(() => (init2.current = init.current), 2000);
      
-      if (init.current > init2.current && init.current - init2.current > 100 ) {
+      if (init.current > init2.current && init.current - init2.current > 50 ) {
         debounce(dispatch(setNavToggle(false), 3000))
-      } else if(init.current < init2.current && init2.current - init.current > 100 || init.current === 0)
+      } else if(init.current < init2.current && init2.current - init.current > 50 || init.current === 0)
       debounce(dispatch(setNavToggle(true)), 3000);
       else {}
       console.log(init.current, init2.current)
