@@ -1,10 +1,11 @@
-import ProgressBar from '@/app/ui/utilComp/ProgressBar'
+
 import { auth } from '@/auth'
 import { Settings } from '@mui/icons-material'
 import { Avatar} from '@mui/material'
+import dynamic from 'next/dynamic'
 import React from 'react'
 
-
+const ProgressBar = dynamic(()=>import('../../ui/utilComp/ProgressBar'), {ssr: false})
 const page = async() => {
     const session = await auth()
 const {user: {name, image}} = session
