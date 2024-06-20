@@ -49,9 +49,9 @@ const page = async () => {
           </span>
           <span>Subscription</span>
         </div>
-        <span className="-ml-2">
+        
           <Divider variant="inset" orientation="vertical" flexItem sx={{bgcolor: 'gray'}}/>
-        </span>
+        
         <div className="flex flex-col justify-center items-center">
           <span>
             <FavoriteBorderOutlinedIcon fontSize="medium" />
@@ -67,9 +67,9 @@ const page = async () => {
           </span>
           <span>Preference</span>
         </div>
-        <span>
+        
           <Divider variant="inset" orientation="vertical"  flexItem sx={{bgcolor: 'grey'}}/>
-        </span>
+        
         <div className="flex flex-col justify-center items-center">
           <span>
             <HistoryOutlinedIcon fontSize="medium"/>
