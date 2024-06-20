@@ -7,6 +7,8 @@ import React from "react";
 import SubscriptionsOutlinedIcon from "@mui/icons-material/SubscriptionsOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import HistoryOutlinedIcon from "@mui/icons-material/HistoryOutlined";
+import InsertEmoticonOutlinedIcon from '@mui/icons-material/InsertEmoticonOutlined';
+
 
 // const ProgressBar = dynamic(()=>import('../../ui/utilComp/ProgressBar'), {ssr: false})
 const page = async () => {
@@ -57,11 +59,11 @@ const page = async () => {
           <span>My Favorites</span>
         </div>
         
-          <Divider variant="inset"  orientation="vertical" sx={{color: 'red'}} />
+          <Divider variant="inset"  orientation="vertical" sx={{bgcolor: 'red'}} />
        
         <div className="flex flex-col justify-center items-center">
           <span>
-            <FavoriteBorderOutlinedIcon fontSize="medium" />
+            <InsertEmoticonOutlinedIcon fontSize="medium" />
           </span>
           <span>Preference</span>
         </div>
