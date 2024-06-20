@@ -19,7 +19,7 @@ import HomeMore from "./Buttons/HomeMore";
 import dynamic from "next/dynamic";
 
 const UserComp = dynamic(()=>import('@/app/ui/cardCaroural') , {ssr: false}) 
-
+// const Star = dynamic(()=>import('@mui/icons-material/StarRate'), {ssr: false})
 /**
  * @component Usercard
  * @param {object} props - Component props
@@ -35,12 +35,13 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
     <span className=" first-letter:capitalize flex gap-1 w-3/4 justify-end items-center text-[12px]">
             <span>{ratings || 4.5}
             </span>
-            <div>
+            <div suppressHydrationWarning={true}>
             {Array.from(Array(5)).map((_, index) => (
                       <StarRate
                         key={index}
                         fontSize="inherit"
                         sx={{ color: "#f2c464" }}
+                        
                       />
                     ))}
             </div>

@@ -3,11 +3,23 @@ import { providerMap } from "@/auth";
 import imageFile from '@/app/assets/login_pattern.svg'
 import { useFormState } from 'react-dom'
 import { Authenticate } from "@/app/actions/users/Authenticate";
+import { useEffect, useState } from "react";
+
 
 export default  function SignInPage() {
   const initialState = { message: null, errors: {} };
   const [state, dispatch] = useFormState(Authenticate, initialState);
+  const [active, setActive] = useState(false)
+
+  useEffect(() => {
+    if(dispatch)
+      setActive(true)
+    return () => {
+      setActive(false)
+    }
+  }, [dispatch])
   
+
   return (
     <div className="flex overflow-hidden relative w-screen h-screen">
       <img
@@ -84,6 +96,7 @@ export default  function SignInPage() {
                   className="flex justify-center items-center px-4 mt-4 space-x-2 w-full h-12 text-base font-light text-white rounded transition focus:ring-2 focus:ring-offset-2 focus:outline-none bg-[#6A0DAD] hover:bg-zinc-900 focus:ring-zinc-800"
                   value={id}
                   name={name}
+                  // disabled = {active}
                 >
                   <span>Sign in with {name}</span>
                 </button>

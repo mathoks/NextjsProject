@@ -1,5 +1,5 @@
 "use client";
-import { AppBar, Box, Stack, Toolbar, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import HomeIcon from "@mui/icons-material/HomeOutlined";
 import PersonIcon from "@mui/icons-material/Person";
@@ -7,7 +7,7 @@ import ForumIcon from "@mui/icons-material/ForumOutlined";
 import NewspaperIcon from "@mui/icons-material/NewspaperOutlined";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { signIn, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 const BottomMenu = () => {
   const [col, setCol] = useState("");
@@ -16,7 +16,7 @@ const BottomMenu = () => {
   const path = pathname?.split("/");
   const session = useSession();
   const userId = session?.data?.user?.name
-  console.log(session)
+  
   useEffect(() => {
     if (pathname === "/home") {
       setCol("#6A0DAD");
