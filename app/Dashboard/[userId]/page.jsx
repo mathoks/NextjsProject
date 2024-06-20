@@ -8,16 +8,26 @@ import SubscriptionsOutlinedIcon from "@mui/icons-material/SubscriptionsOutlined
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import HistoryOutlinedIcon from "@mui/icons-material/HistoryOutlined";
 import InsertEmoticonOutlinedIcon from '@mui/icons-material/InsertEmoticonOutlined';
+import { FeaturedPlayListOutlined, InboxOutlined,  MessageOutlined, RequestQuoteOutlined, ReviewsOutlined } from "@mui/icons-material";
+import AllActions from "@/app/ui/utilComp/AllActions";
 
 
 // const ProgressBar = dynamic(()=>import('../../ui/utilComp/ProgressBar'), {ssr: false})
 const page = async () => {
   const session = await auth();
+
+  const actionTab = [
+    { id: 0, tag: "Inquiries", path: "/Inquries", status: "unread" , icon: <InboxOutlined className={"text-gray-400"} fontSize="medium"/>},
+    { id: 1, tag: "My Wishlist", path: "/wishList", status: 'read' , icon: <FeaturedPlayListOutlined className={"text-gray-400"} fontSize="medium"/> },
+    { id: 2, tag: "Sourcing Request", path: "/Request", status: 'read', icon: <RequestQuoteOutlined className={"text-gray-400"} fontSize="medium"/> },
+    { id: 3, tag: "Reviews & Ratings", path: "/Reviews", status: 'read', icon: <ReviewsOutlined className={"text-gray-400"} fontSize="medium"/>},
+    { id: 4, tag: "Messages", path: "/Messages" , status: 'unread', icon: <MessageOutlined className={"text-gray-400"} fontSize="medium"/>},
+  ];
   const {
     user: { name, image },
   } = session;
   return (
-    <div className="h-screen bg-gray-100">
+    <div className="h-screen bg-gray-100 flex flex-col space-y-4">
       <header className="bg-[#6A0DAD] h-44 p-4 text-white flex-col space-y-2">
         <span className="flex justify-end">
           <Settings fontSize="medium" />
@@ -76,6 +86,9 @@ const page = async () => {
           </span>
           <span>Viewed</span>
         </div>
+      </section>
+      <section>
+        <AllActions tabs={actionTab}/>
       </section>
     </div>
   );
