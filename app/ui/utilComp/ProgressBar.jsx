@@ -1,4 +1,4 @@
-import { LinearProgress, linearProgressClasses } from '@mui/material';
+import { LinearProgress, linearProgressClasses, styled } from '@mui/material';
 import React from 'react'
 
 const ProgressBar = ({value}) => {
