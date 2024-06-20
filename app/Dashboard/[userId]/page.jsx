@@ -1,6 +1,7 @@
+import ProgressBar from '@/app/ui/utilComp/ProgressBar'
 import { auth } from '@/auth'
 import { Settings } from '@mui/icons-material'
-import { Avatar } from '@mui/material'
+import { Avatar} from '@mui/material'
 import React from 'react'
 
 
@@ -21,8 +22,11 @@ const {user: {name, image}} = session
             <p className='text-sm'>Lamb industries limited</p>
             </span>
         </div>
-        <div className='bg-white rounded-t-md h-20 p-4 text-black'>
-            <span className='flex justify-between items-center'><p>Complete your profile</p><button className='py-1 px-2 bg-[#6A0DAD] text-white rounded-md'>Go</button></span>
+        <div className='bg-white rounded-t-md h-20 p-4 text-black space-y-3 z-40'>
+            <span className='flex justify-between items-center'><p>Complete your profile</p><button className='py-1 px-4 bg-[#6A0DAD] text-white rounded-full'>Go</button></span>
+            <span>
+                <ProgressBar value={70}/>
+            </span>
         </div>
       </header>
       <section>
