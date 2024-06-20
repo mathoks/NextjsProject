@@ -40,8 +40,8 @@ const page = async () => {
           </span>
         </div>
       </header>
-      <section className="flex justify-between text-sm items-center bg-white text-black p-4 rounded-md">
-        <div className="flex flex-col justify-center">
+      <section className="flex justify-between text-[12px] items-center bg-white text-black p-4 rounded-md mt-10 w-screen mx-4">
+        <div className="flex flex-col justify-center items-center">
           <span>
             <SubscriptionsOutlinedIcon fontSize="medium" />
           </span>
@@ -50,16 +50,16 @@ const page = async () => {
         <span>
           <Divider variant="inset" orientation="vertical" />
         </span>
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col justify-center items-center">
           <span>
             <FavoriteBorderOutlinedIcon fontSize="medium" />
           </span>
           <span>My Favorites</span>
         </div>
-        <span>
-          <Divider variant="inset" orientation="vertical" />
-        </span>
-        <div className="flex flex-col justify-center">
+        
+          <Divider variant="inset"  orientation="vertical" sx={{color: 'red'}} />
+       
+        <div className="flex flex-col justify-center items-center">
           <span>
             <FavoriteBorderOutlinedIcon fontSize="medium" />
           </span>
@@ -68,7 +68,7 @@ const page = async () => {
         <span>
           <Divider variant="inset" orientation="vertical" />
         </span>
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col justify-center items-center">
           <span>
             <HistoryOutlinedIcon fontSize="medium"/>
           </span>
