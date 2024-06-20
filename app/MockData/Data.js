@@ -40,7 +40,7 @@ export  function  User() {
 }
 
 export const users =  faker.helpers.multiple(User, {
-  count: 20
+  count: 10
 });
 
 

@@ -20,10 +20,6 @@ export const metadata = {
 
 export default async function Layout({children}) {
   
-  // const session = await auth()
-  
-  
-  
   return (
     <SessionProvider baseUrl={"/api/auth"} >
       <StoreProvider>

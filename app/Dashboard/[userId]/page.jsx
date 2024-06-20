@@ -17,7 +17,7 @@ const page = async () => {
     user: { name, image },
   } = session;
   return (
-    <div className="h-screen bg-gray-50">
+    <div className="h-screen bg-gray-100">
       <header className="bg-[#6A0DAD] h-44 p-4 text-white flex-col space-y-2">
         <span className="flex justify-end">
           <Settings fontSize="medium" />
@@ -42,15 +42,15 @@ const page = async () => {
           </span>
         </div>
       </header>
-      <section className="flex justify-between text-[12px] items-center bg-white text-black p-4 rounded-md mt-10 w-screen mx-4">
-        <div className="flex flex-col justify-center items-center">
+      <section className="flex justify-between text-[12px] items-center bg-white text-black p-4 rounded-md mt-10  mx-4">
+        <div className="flex  flex-col justify-center items-center ">
           <span>
             <SubscriptionsOutlinedIcon fontSize="medium" />
           </span>
           <span>Subscription</span>
         </div>
         
-          <Divider variant="inset" orientation="vertical" flexItem sx={{bgcolor: 'gray'}}/>
+          <Divider className="mx-auto" variant="inset" orientation="vertical" flexItem/>
         
         <div className="flex flex-col justify-center items-center">
           <span>
@@ -59,7 +59,7 @@ const page = async () => {
           <span>My Favorites</span>
         </div>
         
-          <Divider variant="inset"  orientation="vertical" sx={{bgcolor: 'red'}} flexItem/>
+          <Divider variant="inset" className="mx-auto" orientation="vertical"  flexItem/>
        
         <div className="flex flex-col justify-center items-center">
           <span>
@@ -68,7 +68,7 @@ const page = async () => {
           <span>Preference</span>
         </div>
         
-          <Divider variant="inset" orientation="vertical"  flexItem sx={{bgcolor: 'grey'}}/>
+          <Divider variant="inset" className="mx-auto" orientation="vertical"  flexItem/>
         
         <div className="flex flex-col justify-center items-center">
           <span>
