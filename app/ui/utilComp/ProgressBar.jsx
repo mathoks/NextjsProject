@@ -5,7 +5,7 @@ import React from 'react'
 
 const ProgressBar = ({value}) => {
     const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
-        height: 8,
+        height: 4,
         borderRadius: 5,
         [`&.${linearProgressClasses.colorPrimary}`]: {
           backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
