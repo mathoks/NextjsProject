@@ -3,6 +3,9 @@ import { Inter } from "next/font/google";
 import "@/app/globals.css";
 import Nav from "../ui/Nav";
 import { HeroPage } from "../ui/HeroPage";
+import Link from "next/link";
+import { ArrowUpward } from "@mui/icons-material";
+import Footer from "../ui/utilComp/Footer";
 
 
 
@@ -50,7 +53,8 @@ export default async function homeLayout({children, tab, arrivals}) {
       <section>
       {children}
       </section>
-     
+      <Footer/>
+      
       
       </main>
       </>

@@ -37,7 +37,7 @@ const BottomMenu = () => {
         }}
       > */}
       <Box component={"div"}>
-        <Link href={"#"}>
+        <Link href={"/home"}>
           <Stack className="flex flex-col justify-center items-center">
             <HomeIcon sx={{ color: col }} fontSize="medium" />
             <Typography
@@ -93,9 +93,7 @@ const BottomMenu = () => {
           href={
             session.status === "authenticated"
               ? `/Dashboard/${encodeURIComponent(userId)}`
-              : session.status === "loading"
-              ? "#"
-              : "auth/login"
+              : '/auth/login'
           }
         >
           {/* async()=> {if(session.status === "unauthenticated") {"use server"; signIn()} else console.log(session.status) }} */}

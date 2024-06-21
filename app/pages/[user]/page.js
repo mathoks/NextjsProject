@@ -1,10 +1,9 @@
 "use client";
 import React, { Suspense, useEffect, useRef, useState } from "react";
-//import { useSubnavhook } from "../../lib/hooks/useSubnavhook";
 
 import { useScrollTrigger } from "@mui/material";
 import { useGethook, useSubnavhook } from "@/app/lib/hooks/useSubnavhook";
-
+import Footer from "@/app/ui/utilComp/Footer";
 
 function debounce(func, delay) {
   let timeout;
@@ -41,7 +40,7 @@ const Page = () => {
   };
 
   useEffect(() => {
-    console.log(ref)
+    console.log(ref);
     if (trigger) {
       throttle(setDom(true), 100);
     } else {
@@ -52,16 +51,9 @@ const Page = () => {
   const Wrapper = useSubnavhook(Dom, Prop);
 
   return (
-    <div
-      id="userPage"
-      ref={ref}
-      className=" bg-white min-w-full"
-    >
-    <Suspense fallback={'loading...'}>
-
-    
-      {Wrapper}
-      </Suspense>
+    <div id="userPage" ref={ref} className=" bg-white min-w-full">
+      <Suspense fallback={"loading..."}>{Wrapper}</Suspense>
+      <Footer />
     </div>
   );
 };
