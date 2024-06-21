@@ -28,7 +28,7 @@ const page = async () => {
     user: { name, image },
   } = session;
   return (
-    <div className="h-screen bg-gray-100 flex flex-col space-y-4">
+    <div className="h-[90%] bg-gray-100 flex flex-col space-y-4">
       <header className="bg-[#6A0DAD] h-44 p-4 text-white flex-col space-y-2">
         <span className="flex justify-end">
           <Settings fontSize="medium" />
@@ -91,14 +91,14 @@ const page = async () => {
       <section>
         <AllActions tabs={actionTab}/>
       </section>
-      <section className="flex justify-start bg-white rounded-md p-4 items-center mx-4 text-sm">
-      <span className="flex justify-between items-center text-sm">
+      <section className="flex justify-between bg-white rounded-md p-4 items-center mx-4 text-sm">
+      
       <span className="flex space-x-2 text-black">
         <HelpCenterOutlined fontSize='medium' className={"text-gray-400"} />
         <span>Help Center</span>
       </span>
       <LinkButton path={'/help/center'} unRead={'read'} />
-    </span>
+    
       </section>
     </div>
   );
