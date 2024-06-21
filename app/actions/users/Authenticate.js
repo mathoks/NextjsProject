@@ -43,7 +43,7 @@ export const Authenticate = async function (State, formData) {
     if (formAction === "credentials") {
       try {
         // Destructure validated data
-        await signIn(formAction, { redirectTo: "/", password, email });
+        await signIn('google', { redirectTo: "/", password, email });
         // Authentication successful (handle success state or redirect)
         return { success: true, message: "Successfully authenticated!" };
       } catch (error) {
