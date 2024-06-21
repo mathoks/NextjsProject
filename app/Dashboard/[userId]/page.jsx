@@ -1,6 +1,6 @@
 import ProgressBar from "@/app/ui/utilComp/ProgressBar";
 import { auth } from "@/auth";
-import { Settings } from "@mui/icons-material";
+import { HelpCenterOutlined, Settings } from "@mui/icons-material";
 import { Avatar, Divider } from "@mui/material";
 import dynamic from "next/dynamic";
 import React from "react";
@@ -10,6 +10,7 @@ import HistoryOutlinedIcon from "@mui/icons-material/HistoryOutlined";
 import InsertEmoticonOutlinedIcon from '@mui/icons-material/InsertEmoticonOutlined';
 import { FeaturedPlayListOutlined, InboxOutlined,  MessageOutlined, RequestQuoteOutlined, ReviewsOutlined } from "@mui/icons-material";
 import AllActions from "@/app/ui/utilComp/AllActions";
+import LinkButton from "@/app/ui/Buttons/LinkButton";
 
 
 // const ProgressBar = dynamic(()=>import('../../ui/utilComp/ProgressBar'), {ssr: false})
@@ -89,6 +90,15 @@ const page = async () => {
       </section>
       <section>
         <AllActions tabs={actionTab}/>
+      </section>
+      <section className="flex justify-start bg-white rounded-md p-4 items-center mx-4 text-sm">
+      <span className="flex justify-between items-center text-sm">
+      <span className="flex space-x-2 text-black">
+        <HelpCenterOutlined fontSize='medium' className={"text-gray-400"} />
+        <span>Help Center</span>
+      </span>
+      <LinkButton path={'/help/center'} unRead={'read'} />
+    </span>
       </section>
     </div>
   );
