@@ -28,7 +28,7 @@ const page = async () => {
     user: { name, image },
   } = session;
   return (
-    <div className="h-[95%] bg-gray-100 flex flex-col space-y-4">
+    <div className="h-[97vh] bg-gray-100 flex flex-col space-y-4">
       <header className="bg-[#6A0DAD] h-44 p-4 text-white flex-col space-y-2">
         <span className="flex justify-end">
           <Settings fontSize="medium" />
