@@ -9,6 +9,7 @@ import { setNav } from "../lib/features/Nav/navSlice";
 import Link from "next/link";
 import { MakeEllipsis } from "../lib/utills/Makelipsis";
 import getProductById from "../actions/users/getProductById";
+import { Chip } from "@mui/material";
 
 // const regis = dynamic(()=>import('swiper/'), { ssr: false });
 
@@ -82,6 +83,7 @@ const Showcase = ({ info, userInfo }) => {
                         </span>
                       </span>
                       <span className="text-sm">{Availability}</span>
+                      <span className="flex items-center justify-between relative">
                       <span className="flex space-x-1 items-center text-[12px]">
                         <span>{rating}</span>
                         <span>
@@ -95,22 +97,23 @@ const Showcase = ({ info, userInfo }) => {
                         </span>
                         <span className="text-[#005B9A]">1123</span>
                       </span>
+                      <span className="text-sm absolute -right-[8.6rem] text-white"><Link href={`/pages/${encodeURIComponent(
+                  userInfo)}`}><Chip clickable variant= 'outlined' label = 'Visit the Store' className="bg-[#6A0DAD] text_shadow2 bg-opacity-80"/></Link></span>
+                      </span>
                     </div>
                   </div>
                   <div className=" flex flex-col space-y-3 w-[50%]">
                     <div>
-                      <p className=" w-3/4 overflow-ellipsis font-semibold text-sm">
+                      <p className=" w-[95%] overflow-ellipsis font-semibold text-sm line-clamp-2 ">
                         {name}
                       </p>
                     </div>
                     <div>
                       <MakeEllipsis text={description} size={60} flag={"A"} />
-                      {/* <p className=" w-[98%] overflow-ellipsis text-sm leading-4">
-                        {description}
-                      </p> */}
                     </div>
                   </div>
                 </div>
+                
               </Link>
             </swiper-slide>
           )

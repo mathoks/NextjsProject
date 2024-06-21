@@ -91,9 +91,6 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
         
             <UserComp info = {typeof product !== "undefined" ? product : []} userInfo = {userId}/>        
           
-            <button className="absolute bottom-8 right-0  z-30 text-[#005B9A] ">
-              Visit the Store
-            </button>
       </section>
       <section className="flex flex-row justify-end  items-center w-[90%]">
         {/* <div className="flex space-x-1">
