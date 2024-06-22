@@ -61,7 +61,7 @@ const BottomMenu =  () => {
           {/* async()=> {if(session.status === "unauthenticated") {"use server"; signIn()} else console.log(session.status) }} */}
           <Stack className="flex flex-col justify-center items-center">
             <Chip
-              sx={{'& .MuiChip-icon': {color: path.includes('Dashboard') || path.includes('auth') ? 'white' : 'gray', ml: 2,}}}
+              sx={{'& .MuiChip-icon': {color: (path.includes('Dashboard') || path.includes('auth')) ? 'white' : 'gray', ml: 2,}}}
               className={`${pathname === '/Dashboard' ||  pathname === '/auth/login' ?  'bg-[#6A0DAD] MuiChip-label bg-opacity-80 flex ' : 'bg-transparent'}`}
               icon={<PersonIcon   fontSize="small" />}/>
               <span className={`text-sm ${pathname === '/Dashboard' ||  pathname === '/auth/login'? 'text-[#6A0DAD]' : 'text-gray-800'}`}>My Account</span>
