@@ -98,7 +98,7 @@ const Showcase = ({ info, userInfo }) => {
                         <span className="text-[#005B9A]">1123</span>
                       </span>
                       <span className="text-sm absolute -right-[8.6rem] text-white"><Link href={`/pages/${encodeURIComponent(
-                  userInfo)}`}><Chip clickable variant= 'outlined' label = 'Visit the Store' className="bg-[#6A0DAD] text_shadow2 bg-opacity-80"/></Link></span>
+                  userInfo)}`}><Chip clickable  label = 'Visit the Store' className="bg-[#6A0DAD] text_shadow2 bg-opacity-80"/></Link></span>
                       </span>
                     </div>
                   </div>

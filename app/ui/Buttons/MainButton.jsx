@@ -33,7 +33,7 @@ const MainButton = () => {
       className="p-2 bg-[#FF4500] rounded text-white text-sm text_shadow"
       onClick={handleCreateStore}
       title="hero"
-      disable= {session?.status === 'loading'}
+      disabled= {session?.status === 'loading'}
     >
       {child}
     </button>
