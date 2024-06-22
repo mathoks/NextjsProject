@@ -5,7 +5,7 @@ import StoreProvider from "./StoreProvider";
 import ButtomNav from "./ui/buttomNav";
 import { auth } from "@/auth";
 import { SessionProvider } from "next-auth/react";
-
+import {AppRouterCacheProvider} from '@mui/material-nextjs/v14-appRouter'
 
 
 
@@ -27,7 +27,7 @@ export default async function Layout({children}) {
     
       
       <body className={`${inter.className} w-full overflow-x-clip h-screen`}>
-      
+      <AppRouterCacheProvider>
       <main>
       {children}
       </main>
@@ -36,6 +36,7 @@ export default async function Layout({children}) {
           <ButtomNav/>
         
       </footer>
+      </AppRouterCacheProvider>
       </body>
       
       

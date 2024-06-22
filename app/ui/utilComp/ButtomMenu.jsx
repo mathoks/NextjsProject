@@ -26,12 +26,8 @@ const BottomMenu = () => {
                   color: pathname === "/home" ? "white" : "gray",
                   ml: 2,
                 },
+                bgcolor: pathname === "/home" ? "#6A0DAD" : "transparent",
               }}
-              className={` ${
-                pathname === "/home"
-                  ? "bg-[#6A0DAD] text-white  "
-                  : "bg-transparent"
-              }`}
               icon={<HomeIcon fontSize="small" />}
             />
             <span
@@ -55,12 +51,8 @@ const BottomMenu = () => {
                   color: pathname === "/Discover" ? "white" : "gray",
                   ml: 2,
                 },
+                bgcolor: pathname === "/Discover" ? "#6A0DAD" : "transparent",
               }}
-              className={` ${
-                pathname === "/Discover"
-                  ? "bg-[#6A0DAD] text-white  "
-                  : "bg-transparent"
-              }`}
               icon={<NewspaperIcon fontSize="small" />}
             />
             <span
@@ -76,7 +68,7 @@ const BottomMenu = () => {
         </Link>
       </Box>
       <Box component={"div"}>
-        <Link className="items-center" href={"#"}>
+        <Link className="items-center" href={"/Messages"}>
           <Stack className="flex flex-col justify-center items-center">
             <Chip
               sx={{
@@ -84,12 +76,8 @@ const BottomMenu = () => {
                   color: pathname === "/Messages" ? "white" : "gray",
                   ml: 2,
                 },
+                bgcolor: pathname === "/Messages" ? "#6A0DAD" : "transparent",
               }}
-              className={` ${
-                pathname === "/Messages"
-                  ? "bg-[#6A0DAD] text-white  "
-                  : "bg-transparent"
-              }`}
               icon={<ForumIcon className="text-white" fontSize="small" />}
             />
             <span
@@ -127,12 +115,11 @@ const BottomMenu = () => {
                       : "gray",
                   ml: 2,
                 },
+                bgcolor:
+                    path.includes("Dashboard") || path.includes("auth")
+                      ? "#6A0DAD"
+                      : "transparent",
               }}
-              className={`${
-                path.includes("Dashboard") || path.includes("auth")
-                  ? "bg-[#6A0DAD] MuiChip-label bg-opacity-80 flex "
-                  : "bg-transparent"
-              }`}
               icon={<PersonIcon fontSize="small" />}
             />
             <span

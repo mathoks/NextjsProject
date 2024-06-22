@@ -2,6 +2,8 @@
 import { Avatar } from "@mui/material";
 import React from "react";
 import { stringAvatar } from "../lib/utills/stringAvata";
+import { MakeEllipsis } from "../lib/utills/Makelipsis";
+// import Showcase from "./cardCaroural";
 import {
   ArrowForward,
   CallReceivedOutlined,
@@ -10,16 +12,14 @@ import {
   ShareOutlined,
   StarRate,
   StorefrontOutlined,
-} from "@mui/icons-material";
-import { MakeEllipsis } from "../lib/utills/Makelipsis";
-// import Showcase from "./cardCaroural";
+} from '@mui/icons-material'
 import Link from "next/link";
 import Modal from "./utilComp/modal";
 import HomeMore from "./Buttons/HomeMore";
 import dynamic from "next/dynamic";
 
 const UserComp = dynamic(()=>import('@/app/ui/cardCaroural') , {ssr: false}) 
-// const Star = dynamic(()=>import('@mui/icons-material/StarRate'), {ssr: false})
+
 /**
  * @component Usercard
  * @param {object} props - Component props
@@ -93,14 +93,6 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
           
       </section>
       <section className="flex flex-row justify-end  items-center w-[90%]">
-        {/* <div className="flex space-x-1">
-          <span className="text-sm space-x-1">Chat</span>
-          <span className="text-sm"><Chat fontSize="inherit"/></span>
-        </div>
-        <div className="flex space-x-1">
-        <span className="text-sm">Call</span>
-          <span className="text-sm"><Call fontSize="inherit"/></span>
-        </div> */}
         <Link href={`/pages/${encodeURIComponent(4)}#Products`}>
         <div  className="flex space-x-1 text-[#005B9A]">
         <span className="text-sm ">See all</span>

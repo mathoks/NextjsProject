@@ -44,12 +44,12 @@ const page = async () => {
         <div className="bg-white flex flex-col rounded-t-md h-24 p-4 text-black space-y-3 z-40 shadow">
           <span className="flex justify-between items-center">
             <p>Complete your profile</p>
-            <button className="py-1 px-4 bg-[#6A0DAD] text-white rounded-full">
+            <button className="py-1 px-4 bg-[#6A0DAD] text-white rounded-full text-sm">
               Go
             </button>
           </span>
           <span>
-            <ProgressBar value={70} />
+            <ProgressBar  value={70} />
           </span>
         </div>
       </header>

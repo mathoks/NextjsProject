@@ -17,7 +17,7 @@ const ProgressBar = ({value}) => {
       }));
   return (
     
-      <BorderLinearProgress variant="determinate" value={value}/>
+      <BorderLinearProgress  variant="determinate" value={value} sx={{color: '#6A0DAD' }}/>
     
   )
 }

@@ -93,7 +93,7 @@ const Showcase = ({ info, userInfo }) => {
                         </span>
                         <span className="text-[#005B9A]">1123</span>
                       </span>
-                      <span onClick={(e)=>{ e.stopPropagation(); router.push(`/pages/${encodeURIComponent(userInfo)}`)}} className="text-sm absolute -right-[8.6rem] text-white"><Chip clickable label = 'Visit the Store' className="bg-[#6A0DAD] text_shadow2 bg-opacity-80"/></span>
+                      <span onClick={(e)=>{ e.stopPropagation(); router.push(`/pages/${encodeURIComponent(userInfo)}`)}} className="text-sm absolute -right-[8.6rem] text-white"><Chip clickable label = 'Visit the Store' sx={{bgcolor:"#6A0DAD", color:'white', opacity:0.8, textRendering: 'optimizeLegibility'}} /></span>
                       </span>
                     </div>
                   </div>

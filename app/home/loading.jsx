@@ -1,12 +1,10 @@
 import { CircularProgress } from '@mui/material'
 import React from 'react'
+import { ProdSkeleton } from '../ui/Buttons/ProdSkeleton'
 
 const Loading = () => {
   return (
-  
-    <div className='bg-white min-h-screen w-full flex justify-center items-center'>
-    <CircularProgress size={20} className=' text-white'/>
-    </div>
+  <ProdSkeleton/>
     
     
   )
