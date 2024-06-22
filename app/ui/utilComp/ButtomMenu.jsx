@@ -21,7 +21,7 @@ const BottomMenu =  () => {
   
 
   return (
-    <Toolbar className="flex  items-center justify-between p-4 shadow-inner text_shadow px-6">
+    <Toolbar className="flex  items-center justify-between p-3 shadow-inner text_shadow px-6">
       <Box component={"div"}>
         <Link href={"/home"}>
           <Stack className="flex flex-col justify-center items-center">
@@ -62,9 +62,9 @@ const BottomMenu =  () => {
           <Stack className="flex flex-col justify-center items-center">
             <Chip
               sx={{'& .MuiChip-icon': {color: (path.includes('Dashboard') || path.includes('auth')) ? 'white' : 'gray', ml: 2,}}}
-              className={`${pathname === '/Dashboard' ||  pathname === '/auth/login' ?  'bg-[#6A0DAD] MuiChip-label bg-opacity-80 flex ' : 'bg-transparent'}`}
+              className={`${path.includes('Dashboard') ||  path.includes('auth') ?  'bg-[#6A0DAD] MuiChip-label bg-opacity-80 flex ' : 'bg-transparent'}`}
               icon={<PersonIcon   fontSize="small" />}/>
-              <span className={`text-sm ${pathname === '/Dashboard' ||  pathname === '/auth/login'? 'text-[#6A0DAD]' : 'text-gray-800'}`}>My Account</span>
+              <span className={`text-sm ${path.includes('Dashboard') ||  path.includes('auth')? 'text-[#6A0DAD]' : 'text-gray-800'}`}>My Account</span>
           </Stack>
         </Link>
       </Box>
