@@ -1,8 +1,7 @@
 import * as React from "react";
 import Skeleton from "@mui/material/Skeleton";
-import Stack from "@mui/material/Stack";
 
-export const ProdSkeleton = function () {
+const Skeletons = function () {
   return (
     <div className="w-screen p-4 bg-white">
       <span className="flex items-start justify-between"
@@ -56,3 +55,11 @@ export const ProdSkeleton = function () {
     </div>
   );
 };
+
+export const ProdSkeleton = function(){
+  return(
+    Array.from(new Array(5)).map((_, index) => (
+      <Skeletons key={index} />
+    ))
+  )
+}

@@ -10,16 +10,16 @@ import Link from "next/link";
 import { MakeEllipsis } from "../lib/utills/Makelipsis";
 import getProductById from "../actions/users/getProductById";
 import { Chip } from "@mui/material";
+import { useRouter } from "next/navigation";
 
-// const regis = dynamic(()=>import('swiper/'), { ssr: false });
 
-// const styles = dynamic(import("@/app/ui/swiper.module.css"), { ssr: false });
+
 
 register();
 const Showcase = ({ info, userInfo }) => {
   const swiperDiv = useRef(null);
   const dispatch = useAppDispatch();
-
+ const router = useRouter()
   return (
     <swiper-container
       ref={swiperDiv}
@@ -54,12 +54,8 @@ const Showcase = ({ info, userInfo }) => {
                 await getProductById(userInfo, productId);
               }}
             >
-              <Link
-                href={`/pages/${encodeURIComponent(
-                  userInfo
-                )}/${encodeURIComponent(productId)}`}
-              >
-                <div className="flex relative justify-start items-start  space-x-3 h-[16rem] ">
+              
+                <div className="flex relative justify-start items-start  space-x-3 h-[16rem] " onClick={()=>router.push(`/pages/${encodeURIComponent(userInfo)}/${encodeURIComponent(productId)}`)}>
                   <div className="flex flex-col space-y-2">
                     <img
                       src={image[0]}
@@ -97,8 +93,7 @@ const Showcase = ({ info, userInfo }) => {
                         </span>
                         <span className="text-[#005B9A]">1123</span>
                       </span>
-                      <span className="text-sm absolute -right-[8.6rem] text-white"><Link href={`/pages/${encodeURIComponent(
-                  userInfo)}`}><Chip clickable  label = 'Visit the Store' className="bg-[#6A0DAD] text_shadow2 bg-opacity-80"/></Link></span>
+                      <span onClick={(e)=>{ e.stopPropagation(); router.push(`/pages/${encodeURIComponent(userInfo)}`)}} className="text-sm absolute -right-[8.6rem] text-white"><Chip clickable label = 'Visit the Store' className="bg-[#6A0DAD] text_shadow2 bg-opacity-80"/></span>
                       </span>
                     </div>
                   </div>
@@ -114,7 +109,7 @@ const Showcase = ({ info, userInfo }) => {
                   </div>
                 </div>
                 
-              </Link>
+            
             </swiper-slide>
           )
         )}
