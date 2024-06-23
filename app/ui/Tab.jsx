@@ -107,11 +107,11 @@ const Tab = () => {
                 label={data.val}
                 sx={{
                   color: index === data.val ? "white" : 'GrayText',
-                  backgroundColor: index === data.val ? "#6A0DAD" : "inherit",
+                  backgroundColor: index === data.val ? "#FF4500" : "white",
                   border: "1px solid #6A0DAD",
-                  "&:hover": { backgroundColor: "#6A0DAD", color: "white" },
-                  "&:focus": { backgroundColor: "#6A0DAD", color: "white" },
-                  "&:active": { backgroundColor: "#6A0DAD", color: "white" },
+                  "&:hover": { backgroundColor: "#FF4500", color: "white" },
+                  "&:focus": { backgroundColor: "#FF4500", color: "white" },
+                  "&:active": { backgroundColor: "#FF4500", color: "white" },
                   "& .MuiChip-icon": {
                     color: index === data.val ? "white" : "gray",
                   },

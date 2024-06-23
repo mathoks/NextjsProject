@@ -27,7 +27,7 @@ const MainButton = () => {
   useEffect(() => {
     handleCreateStore();
   }, [handleCreateStore]);
-
+  // #FF4500
   return (
     <button
       className="p-2 bg-[#FF4500] rounded text-white text-sm text_shadow"
