@@ -71,7 +71,7 @@ const page = async () => {
           <span>My Favorites</span>
         </div>
         
-          <Divider variant="inset" sx={{ ml: 'auto', mr:'right'}} orientation="vertical"  flexItem/>
+          <Divider variant="inset" sx={{ ml: '50%'}} orientation="vertical"  flexItem/>
           
         <div className="flex flex-col justify-center items-center">
           <span>
