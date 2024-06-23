@@ -70,8 +70,8 @@ const page = async () => {
           </span>
           <span>My Favorites</span>
         </div>
-        
-          <Divider variant="inset" sx={{ pl: 'auto', pr: 'auto'}} orientation="vertical"  flexItem/>
+        <hr className="border-t-2 h-4 border-gray-400 mx-auto"></hr>
+          {/* <Divider variant="inset" sx={{ pl: 'auto', pr: 'auto'}} orientation="vertical"  flexItem/> */}
           
         <div className="flex flex-col justify-center items-center">
           <span>
@@ -79,6 +79,7 @@ const page = async () => {
           </span>
           <span>Preference</span>
         </div>
+
         <span className="flex justify-center">
           <Divider variant="inset" sx={{color: 'gray'}}  orientation="vertical"  flexItem/>
           </span>
