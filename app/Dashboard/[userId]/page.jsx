@@ -32,7 +32,7 @@ const page = async () => {
     <div className="bg-gray-100 flex flex-col space-y-4">
       <header className="bg-[#6A0DAD] h-44 p-4 text-white flex-col space-y-2">
         <span  className="flex justify-end">
-         <Link href = '/settings'><Settings  fontSize="medium" /></Link> 
+         <Link href = 'settings'><Settings  fontSize="medium" /></Link> 
         </span>
 
         <div className="flex space-x-2 items-center">
