@@ -62,7 +62,7 @@ const page = async () => {
           <span>Subscription</span>
         </div>
         
-          <Divider variant="inset" sx={{display: 'grid', placeItems:'center'}} orientation="vertical" flexItem/>
+          <Divider variant="inset" sx={{ ml: 'auto', mr:'right'}} orientation="vertical" flexItem/>
          
         <div className="flex flex-col justify-center items-center">
           <span>
@@ -79,9 +79,9 @@ const page = async () => {
           </span>
           <span>Preference</span>
         </div>
-        <span className="mx-auto">
-          <Divider variant="inset"  orientation="vertical"  flexItem/>
-          </span>
+        
+          <Divider variant="inset" sx={{ ml: 'auto', mr:'right'}}  orientation="vertical"  flexItem/>
+          
         <div className="flex flex-col justify-center items-center">
           <span>
             <HistoryOutlinedIcon fontSize="medium"/>
@@ -95,7 +95,7 @@ const page = async () => {
       <section className="flex justify-between bg-white rounded-md p-4 items-center mx-4 text-sm">
       
       <span className="flex space-x-2 text-black">
-        <HelpCenterOutlined fontSize='medium'  />
+        <HelpCenterOutlined fontSize='medium' sx={{color:'gray'}} />
         <span>Help Center</span>
       </span>
       <LinkButton path={'/help/center'} unRead={'read'} />
