@@ -79,9 +79,9 @@ const page = async () => {
           </span>
           <span>Preference</span>
         </div>
-        <div className="mx-auto h-fit border-gray-500 border-l-2"></div>
-          {/* <Divider variant="inset" sx={{ ml: 'auto', mr:'right'}}  orientation="vertical"  flexItem/> */}
-          
+        <span className="flex justify-center">
+          <Divider variant="inset" sx={{color: 'gray'}}  orientation="vertical"  flexItem/>
+          </span>
         <div className="flex flex-col justify-center items-center">
           <span>
             <HistoryOutlinedIcon fontSize="medium"/>
