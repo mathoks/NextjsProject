@@ -83,7 +83,7 @@ const Tab = () => {
 
   return (
     <section
-      className={`flex items-start justify-between  overflow-x-scroll gap-8   pb-0 w-[95%]`}
+      className={`flex items-start justify-between  overflow-x-scroll gap-8 z-50   pb-0 w-[90%]`}
     >
       <Paper
         sx={{
@@ -106,8 +106,8 @@ const Tab = () => {
                 icon={data.icon}
                 label={data.val}
                 sx={{
-                  color: index === data.val ? "white" : "gray",
-                  backgroundColor: index === data.val ? "#6A0DAD" : "white",
+                  color: index === data.val ? "white" : 'GrayText',
+                  backgroundColor: index === data.val ? "#6A0DAD" : "inherit",
                   border: "1px solid #6A0DAD",
                   "&:hover": { backgroundColor: "#6A0DAD", color: "white" },
                   "&:focus": { backgroundColor: "#6A0DAD", color: "white" },

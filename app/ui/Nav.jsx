@@ -1,12 +1,11 @@
 "use client"
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/app/assets/photo1.jpeg"
 import { LocationOn, SearchOutlined, ExpandMore } from "@mui/icons-material";
 import Tab from "./Tab";
-import { useAppDispatch, useAppSelector, useAppStore } from "../lib/hooks/hooks";
-import { usePathname } from "next/navigation";
+import { useAppDispatch, useAppSelector } from "../lib/hooks/hooks";
 import { setNav } from "../lib/features/Nav/navSlice";
 import { connect } from "react-redux";
 import { ButtonBase, useScrollTrigger } from "@mui/material";
@@ -15,7 +14,7 @@ import useHomeDrawer from "../lib/hooks/useHomeDrawer";
 
 
 
- const Nav = (props) => {
+ const Nav = () => {
   const { DrawerHandler, DrawerWrapper } = useHomeDrawer();
   const [col, setcol] = useState(false)
   const navState = useAppSelector((state)=>state.nav.navToggle)
@@ -84,11 +83,11 @@ useEffect(()=>{
       
       </section> */}
       </div>
-      <div className={`flex items-center justify-between pr-4 ${!col ? 'bg-[#6A0DAD]' : 'bg-white'} `}>
+      <div className={`flex items-center justify-between pr-4 ${navState ? 'bg-[#6A0DAD]' : 'bg-white'} `}>
       <Tab/>
       <span className="mx-auto ">
       <ButtonBase onClick={DrawerHandler}>
-                <ExpandMore fontSize="medium" sx={{ color: !col ? "white" : "gray" }} />
+                <ExpandMore fontSize="medium" sx={{ color: navState ? "white" : "gray" }} />
               </ButtonBase>
       </span>
       </div>
