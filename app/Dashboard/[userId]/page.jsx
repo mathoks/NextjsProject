@@ -61,27 +61,27 @@ const page = async () => {
           </span>
           <span>Subscription</span>
         </div>
-        
-          <Divider className="mx-auto" variant="inset" orientation="vertical" flexItem/>
-        
+        <span className="mx-auto">
+          <Divider variant="inset" orientation="vertical" flexItem/>
+          </span>
         <div className="flex flex-col justify-center items-center">
           <span>
             <FavoriteBorderOutlinedIcon fontSize="medium" />
           </span>
           <span>My Favorites</span>
         </div>
-        
-          <Divider variant="inset" className="mx-auto" orientation="vertical"  flexItem/>
-       
+        <span className="mx-auto">
+          <Divider variant="inset"  orientation="vertical"  flexItem/>
+          </span>
         <div className="flex flex-col justify-center items-center">
           <span>
             <InsertEmoticonOutlinedIcon fontSize="medium" />
           </span>
           <span>Preference</span>
         </div>
-        
-          <Divider variant="inset" className="mx-auto" orientation="vertical"  flexItem/>
-        
+        <span className="mx-auto">
+          <Divider variant="inset"  orientation="vertical"  flexItem/>
+          </span>
         <div className="flex flex-col justify-center items-center">
           <span>
             <HistoryOutlinedIcon fontSize="medium"/>
@@ -95,7 +95,7 @@ const page = async () => {
       <section className="flex justify-between bg-white rounded-md p-4 items-center mx-4 text-sm">
       
       <span className="flex space-x-2 text-black">
-        <HelpCenterOutlined fontSize='medium' className={"text-gray-400"} />
+        <HelpCenterOutlined fontSize='medium'  />
         <span>Help Center</span>
       </span>
       <LinkButton path={'/help/center'} unRead={'read'} />
