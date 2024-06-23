@@ -70,7 +70,7 @@ const page = async () => {
           </span>
           <span>My Favorites</span>
         </div>
-        <span className="mx-auto">
+        <span className="mx-auto text-gray-500">
           <Divider variant="inset"  orientation="vertical"  flexItem/>
           </span>
         <div className="flex flex-col justify-center items-center">
