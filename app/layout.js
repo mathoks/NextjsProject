@@ -26,7 +26,7 @@ export default async function Layout({children}) {
     <html lang="en">
     
       
-      <body className={`${inter.className} w-full overflow-x-clip h-screen`}>
+      <body className={`${inter.className} w-full overflow-x-clip h-fit`}>
       <AppRouterCacheProvider>
       <main>
       {children}
