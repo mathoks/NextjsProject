@@ -79,7 +79,7 @@ const page = async () => {
           </span>
           <span>Preference</span>
         </div>
-        <div className="mx-auto h-fit w-1 bg-slate-500"></div>
+        <div className="mx-auto h-fit border-gray-500 border-l-2"></div>
           {/* <Divider variant="inset" sx={{ ml: 'auto', mr:'right'}}  orientation="vertical"  flexItem/> */}
           
         <div className="flex flex-col justify-center items-center">

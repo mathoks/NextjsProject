@@ -17,7 +17,7 @@ const page = () => {
         <ArrowForwardIosOutlined fontSize='small'/>
         </span>
         </span>
-        <span className='w-screen h-4 bg-gray-300'></span>
+        <hr  className='w-screen  border-t-2 border-gray-500'></hr>
         <span className='flex justify-between'>
         <span>Currency</span>
         <span className='flex text-gray-400 space-x-2 items-center text-sm'>
