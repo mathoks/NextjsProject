@@ -11,6 +11,7 @@ import InsertEmoticonOutlinedIcon from '@mui/icons-material/InsertEmoticonOutlin
 import { FeaturedPlayListOutlined, InboxOutlined,  MessageOutlined, RequestQuoteOutlined, ReviewsOutlined } from "@mui/icons-material";
 import AllActions from "@/app/ui/utilComp/AllActions";
 import LinkButton from "@/app/ui/Buttons/LinkButton";
+import Link from "next/link";
 
 
 // const ProgressBar = dynamic(()=>import('../../ui/utilComp/ProgressBar'), {ssr: false})
@@ -30,8 +31,8 @@ const page = async () => {
   return (
     <div className="h-[90vh] bg-gray-100 flex flex-col space-y-4">
       <header className="bg-[#6A0DAD] h-44 p-4 text-white flex-col space-y-2">
-        <span className="flex justify-end">
-          <Settings fontSize="medium" />
+        <span  className="flex justify-end">
+         <Link href = '/settings'><Settings  fontSize="medium" /></Link> 
         </span>
 
         <div className="flex space-x-2 items-center">
