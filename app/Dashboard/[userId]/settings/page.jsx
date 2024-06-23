@@ -1,11 +1,11 @@
-import { ArrowBackOutlined, ArrowForwardOutlined } from '@mui/icons-material'
+import { ArrowBackOutlined, ArrowForwardIos, ArrowForwardIosOutlined, ArrowForwardOutlined } from '@mui/icons-material'
 import React from 'react'
 
 const page = () => {
   return (
-    <div className='b bg-gray-300 w-screen text-slate-950 flex flex-col space-y-4'>
+    <div className='b bg-gray-200 w-screen text-slate-950 flex flex-col space-y-3'>
         <section className='flex justify-between items-center bg-white w-screen p-4'>
-            <ArrowBackOutlined fontSize='medium'/>
+            <ArrowForwardIos fontSize='medium'/>
             <span>Settings</span>
             <span></span>
         </section>
@@ -14,7 +14,7 @@ const page = () => {
         <span>Language</span>
         <span className='flex text-gray-400 space-x-2 items-center text-sm'>
         <span>English</span>
-        <ArrowForwardOutlined/>
+        <ArrowForwardIosOutlined/>
         </span>
         </span>
         <span className='w-screen h-1 bg-gray-300'></span>
