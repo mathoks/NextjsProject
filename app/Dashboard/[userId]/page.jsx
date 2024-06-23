@@ -7,23 +7,65 @@ import React from "react";
 import SubscriptionsOutlinedIcon from "@mui/icons-material/SubscriptionsOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import HistoryOutlinedIcon from "@mui/icons-material/HistoryOutlined";
-import InsertEmoticonOutlinedIcon from '@mui/icons-material/InsertEmoticonOutlined';
-import { FeaturedPlayListOutlined, InboxOutlined,  MessageOutlined, RequestQuoteOutlined, ReviewsOutlined } from "@mui/icons-material";
+import InsertEmoticonOutlinedIcon from "@mui/icons-material/InsertEmoticonOutlined";
+import {
+  FeaturedPlayListOutlined,
+  InboxOutlined,
+  MessageOutlined,
+  RequestQuoteOutlined,
+  ReviewsOutlined,
+} from "@mui/icons-material";
 import AllActions from "@/app/ui/utilComp/AllActions";
 import LinkButton from "@/app/ui/Buttons/LinkButton";
 import Link from "next/link";
-
 
 // const ProgressBar = dynamic(()=>import('../../ui/utilComp/ProgressBar'), {ssr: false})
 const page = async () => {
   const session = await auth();
   const userInfo = session?.user?.name;
   const actionTab = [
-    { id: 0, tag: "Inquiries", path: "/Inquries", status: "unread" , icon: <InboxOutlined className={"text-gray-400"} fontSize="medium"/>},
-    { id: 1, tag: "My Wishlist", path: "/wishList", status: 'read' , icon: <FeaturedPlayListOutlined className={"text-gray-400"} fontSize="medium"/> },
-    { id: 2, tag: "Sourcing Request", path: "/Request", status: 'read', icon: <RequestQuoteOutlined className={"text-gray-400"} fontSize="medium"/> },
-    { id: 3, tag: "Reviews & Ratings", path: "/Reviews", status: 'read', icon: <ReviewsOutlined className={"text-gray-400"} fontSize="medium"/>},
-    { id: 4, tag: "Messages", path: "/Messages" , status: 'unread', icon: <MessageOutlined className={"text-gray-400"} fontSize="medium"/>},
+    {
+      id: 0,
+      tag: "Inquiries",
+      path: "/Inquries",
+      status: "unread",
+      icon: <InboxOutlined className={"text-gray-400"} fontSize="medium" />,
+    },
+    {
+      id: 1,
+      tag: "My Wishlist",
+      path: "/wishList",
+      status: "read",
+      icon: (
+        <FeaturedPlayListOutlined
+          className={"text-gray-400"}
+          fontSize="medium"
+        />
+      ),
+    },
+    {
+      id: 2,
+      tag: "Sourcing Request",
+      path: "/Request",
+      status: "read",
+      icon: (
+        <RequestQuoteOutlined className={"text-gray-400"} fontSize="medium" />
+      ),
+    },
+    {
+      id: 3,
+      tag: "Reviews & Ratings",
+      path: "/Reviews",
+      status: "read",
+      icon: <ReviewsOutlined className={"text-gray-400"} fontSize="medium" />,
+    },
+    {
+      id: 4,
+      tag: "Messages",
+      path: "/Messages",
+      status: "unread",
+      icon: <MessageOutlined className={"text-gray-400"} fontSize="medium" />,
+    },
   ];
   const {
     user: { name, image },
@@ -31,8 +73,10 @@ const page = async () => {
   return (
     <div className="bg-gray-100 flex flex-col space-y-4">
       <header className="bg-[#6A0DAD] h-44 p-4 text-white flex-col space-y-2">
-        <span  className="flex justify-end">
-         <Link href = {`${encodeURIComponent(userInfo)}/settings`}><Settings  fontSize="medium" /></Link> 
+        <span className="flex justify-end">
+          <Link href={`${encodeURIComponent(userInfo)}/settings`}>
+            <Settings fontSize="medium" />
+          </Link>
         </span>
 
         <div className="flex space-x-2 items-center">
@@ -50,7 +94,7 @@ const page = async () => {
             </button>
           </span>
           <span>
-            <ProgressBar  value={70} />
+            <ProgressBar value={70} />
           </span>
         </div>
       </header>
@@ -61,18 +105,16 @@ const page = async () => {
           </span>
           <span>Subscription</span>
         </div>
-        
-          <Divider variant="inset" sx={{ ml: 'auto', mr:'right'}} orientation="vertical" flexItem/>
-         
+
+        <hr style={{ borderLeft: "1px solid #ddd", height: "3rem" }} />
+
         <div className="flex flex-col justify-center items-center">
           <span>
             <FavoriteBorderOutlinedIcon fontSize="medium" />
           </span>
           <span>My Favorites</span>
         </div>
-        <hr style={{"borderTop": '1px solid #FF0000'}}></hr>
-          {/* <Divider variant="inset" sx={{ pl: 'auto', pr: 'auto'}} orientation="vertical"  flexItem/> */}
-          
+        <hr style={{ borderLeft: "1px solid #ddd", height: "3rem" }} />
         <div className="flex flex-col justify-center items-center">
           <span>
             <InsertEmoticonOutlinedIcon fontSize="medium" />
@@ -80,27 +122,23 @@ const page = async () => {
           <span>Preference</span>
         </div>
 
-        <div className="flex justify-center">
-          <Divider variant="inset"  sx={{color: 'gray'}}  orientation="vertical"  flexItem/>
-          </div>
+        <hr style={{ borderLeft: "1px solid #ddd", height: "3rem" }} />
         <div className="flex flex-col justify-center items-center">
           <span>
-            <HistoryOutlinedIcon fontSize="medium"/>
+            <HistoryOutlinedIcon fontSize="medium" />
           </span>
           <span>Viewed</span>
         </div>
       </section>
       <section>
-        <AllActions tabs={actionTab}/>
+        <AllActions tabs={actionTab} />
       </section>
       <section className="flex justify-between bg-white rounded-md p-4 items-center mx-4 text-sm">
-      
-      <span className="flex space-x-2 text-black">
-        <HelpCenterOutlined fontSize='medium' sx={{color:'gray'}} />
-        <span>Help Center</span>
-      </span>
-      <LinkButton path={'/help/center'} unRead={'read'} />
-    
+        <span className="flex space-x-2 text-black">
+          <HelpCenterOutlined fontSize="medium" sx={{ color: "gray" }} />
+          <span>Help Center</span>
+        </span>
+        <LinkButton path={"/help/center"} unRead={"read"} />
       </section>
     </div>
   );
