@@ -61,9 +61,9 @@ const page = async () => {
           </span>
           <span>Subscription</span>
         </div>
-        <span className="mx-auto">
-          <Divider variant="inset" orientation="vertical" flexItem/>
-          </span>
+        
+          <Divider variant="inset" sx={{display: 'flex', justifyContent: 'center', justifyItems: 'center'}} orientation="vertical" flexItem/>
+         
         <div className="flex flex-col justify-center items-center">
           <span>
             <FavoriteBorderOutlinedIcon fontSize="medium" />
