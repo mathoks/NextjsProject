@@ -1,4 +1,5 @@
 'use client'
+import { ArrowUpward } from '@mui/icons-material'
 import { useSession } from 'next-auth/react'
 import React from 'react'
 
@@ -7,8 +8,14 @@ const Footer = () => {
     const session = useSession()
     
   return (
-    <footer>
-        <div className="hidden bg-indigo-500 md:block">
+    <footer className='bg-[#6A0DAD]'>
+        <span className='flex justify-center text-sm  p-2'>
+          <span className='flex flex-col items-center'>
+          <ArrowUpward/>
+          <span>Back to Top</span>
+          </span>
+        </span>
+        <div className="hidden  md:block">
         <div className=" flex gap-4 ml-auto  justify-start p-2 flex-wrap text-sm h-24">
           <p>My Account</p>
           <p>My Orders</p>
@@ -17,7 +24,8 @@ const Footer = () => {
           <p>Customer Service</p>
         </div>
       </div>
-      <div className="flex flex-col justify-start bg-[#4f08ed] space-y-2 pb-16">
+      <div className="flex flex-col justify-start space-y-2 pb-16">
+
         <div className="flex justify-between m-2">
           <span className="flex gap-1">
             <span className="text- text-green-500">&#x1F310;</span>
@@ -34,7 +42,7 @@ const Footer = () => {
           </span>
         </div>
         <div className="flex justify-center items-center">
-         {typeof session?.data?.user.name === 'null' || 'undefined' ? <p>Already a customer? Sign in</p> : <p>Welcome {session.user.name}</p>}
+         {typeof session?.data?.user.name === 'undefined' ? <p>Already a customer? Sign in</p> : <p>Welcome {session.data.user.name}</p>}
         </div>
         <div className="flex justify-center items-center gap-4">
           <p>Conditions of Use </p>
