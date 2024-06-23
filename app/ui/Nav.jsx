@@ -56,7 +56,7 @@ useEffect(()=>{
   return (
     // nav && path === '/home' ? (
     <nav aria-label="main" className={`flex bg-[#6A0DAD]  flex-col fixed w-full z-50  ${col ? "shadow-lg" : ""}`} >
-    <div className={`sm: flex flex-col space-y-4 opacity-100  bg-[#6A0DAD] md:flex items-center justify-center p-4 ${!navState ? "invisible h-0 opacity-0 transition-opacity" : ""}` }>
+    <div className={`sm: flex flex-col space-y-4 opacity-100  bg-[#6A0DAD] md:flex items-center justify-center  ${!navState ? "invisible h-0 opacity-0 transition-opacity" : "p-4"}` }>
     <section>
       <Link href={"#"} className="flex  gap-4 items-center text_shadow">
       <p>Mymart</p>
@@ -84,11 +84,11 @@ useEffect(()=>{
       
       </section> */}
       </div>
-      <div className="flex items-center justify-between pr-4">
+      <div className={`flex items-center justify-between pr-4 ${!col ? 'bg-[#6A0DAD]' : 'bg-white'} `}>
       <Tab/>
-      <span>
+      <span className="mx-auto ">
       <ButtonBase onClick={DrawerHandler}>
-                <ExpandMore fontSize="medium" sx={{ color: "#ffff" }} />
+                <ExpandMore fontSize="medium" sx={{ color: !col ? "white" : "gray" }} />
               </ButtonBase>
       </span>
       </div>

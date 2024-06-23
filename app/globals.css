@@ -154,9 +154,9 @@ swiper-container {
 }
 
 .glassy_nav {
-  background-color: #6A0DAD;
+  background-color: 'transparent';
   filter: blur(2px) brightness(1.2);
-  opacity: 0.9;
+  opacity: 1;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
