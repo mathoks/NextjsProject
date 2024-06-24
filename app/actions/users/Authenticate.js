@@ -76,7 +76,7 @@ export const Authenticate = async function (State, formData) {
     try {
       const formAction2 = formData?.get("Google");
       // Handle other providers (replace with your implementation)
-      await signIn(formAction2, { redirectTo: "/home" });
+      await signIn('google');
       // Authentication successful (handle success state or redirect)
       return {
         success: true,

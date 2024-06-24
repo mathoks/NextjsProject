@@ -16,7 +16,7 @@ const BottomMenu = () => {
   const userId = session?.data?.user?.name;
 
   return (
-    <Toolbar className="flex  items-center justify-between p-3 shadow-inner text_shadow px-6">
+    <Toolbar className="flex  items-center justify-between p-2 shadow-inner text_shadow px-6">
       <Box component={"div"}>
         <Link href={"/home"}>
           <Stack className="flex flex-col justify-center items-center">

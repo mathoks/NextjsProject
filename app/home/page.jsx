@@ -8,8 +8,6 @@ import { getRoutes } from "@/app/actions/users/getRoute";
 
 
 export default async function page() {
-  
-
   const usersList = await getRoutes()
   
   
