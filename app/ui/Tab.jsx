@@ -45,38 +45,32 @@ const Tab = () => {
     {
       id: 0,
       val: "all Stores",
-      href: "#",
       icon: <SelectAllOutlined fontSize="small" />,
     },
-    { id: 1, val: "phone", href: "#", icon: <PhoneAndroid fontSize="small" /> },
+    { id: 1, val: "phone",  icon: <PhoneAndroid fontSize="small" /> },
     {
       id: 2,
       val: "furniture",
-      href: "#",
       icon: <ChairAltOutlined fontSize="small" />,
     },
     {
       id: 3,
       val: "fashion",
-      href: "#",
       icon: <ShoppingBagOutlined fontSize="small" />,
     },
     {
       id: 4,
       val: "machinery",
-      href: "#",
       icon: <BuildOutlined fontSize="small" />,
     },
     {
       id: 5,
       val: "building-Materials",
-      href: "#",
       icon: <RoofingOutlined fontSize="small" />,
     },
     {
       id: 6,
       val: "electronics",
-      href: "#",
       icon: <TvOutlined fontSize="small" />,
     },
   ];
@@ -90,28 +84,30 @@ const Tab = () => {
           display: "flex",
           justifyContent: "center",
           flexWrap: "nowrap",
-          listStyle: "none",
-          // pl: '4px',
-          // ml: 4,
+          listStyle: "none", 
           bgcolor: 'inherit'
         }}
         id="tab"
         component="ul"
         onClick={handleChange}
+        elevation={4}
       >
         {Tabs.map((data) => {
           return (
-            <ListItem key={data.id}>
+            <ListItem key={data.id} >
               <Chip
                 icon={data.icon}
                 label={data.val}
                 sx={{
                   color: index === data.val ? "white" : 'GrayText',
-                  backgroundColor: index === data.val ? "#FF4500" : "white",
-                  border: "1px solid #6A0DAD",
-                  "&:hover": { backgroundColor: "#FF4500", color: "white" },
-                  "&:focus": { backgroundColor: "#FF4500", color: "white" },
-                  "&:active": { backgroundColor: "#FF4500", color: "white" },
+                  backgroundColor: index === data.val ? "#6A0DAD" : "white",
+                  border: index === data.val ? "1px solid white" : 'none' ,
+                  boxShadow: index === data.val?  '0px 5px 10px rgba(0, 0, 0, 0.1)' : 'none',
+                  textShadow: index === data.val? '0px 2px 4px rgba(0,0,0,0.2)' : 'none',
+                  textRendering: 'optimizeLegibility',
+                  "&:hover": { backgroundColor: "#6A0DAD", color: "white" },
+                  "&:focus": { backgroundColor: "#6A0DAD", color: "white" },
+                  "&:active": { backgroundColor: "#6A0DAD", color: "white" },
                   "& .MuiChip-icon": {
                     color: index === data.val ? "white" : "gray",
                   },
