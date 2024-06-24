@@ -35,7 +35,7 @@ const ButtomNav = () => {
   useEffect(() => {
     const handle = () => {
       init.current = window.scrollY;
-      setTimeout(() => (init2.current = init.current), 2000);
+      setTimeout(() => (init2.current = init.current), 1000);
 
       if (init.current > init2.current && init.current - init2.current > 50) {
         debounce(dispatch(setNavToggle(false), 2000));

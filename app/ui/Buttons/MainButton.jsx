@@ -30,7 +30,7 @@ const MainButton = () => {
   // #FF4500
   return (
     <button
-      className="p-2 bg-[#FF4500] rounded text-white text-sm text_shadow"
+      className="p-2 rounded bg-[#FF4500] text-sm text_shadow"
       onClick={handleCreateStore}
       title="hero"
       disabled= {session?.status === 'loading'}
