@@ -10,7 +10,7 @@ const FormSchema = joi.object({
   password: joi.string().pattern(new RegExp("^[a-zA-Z0-9]{6,10}$")),
 });
 
- const State = {
+const State = {
   errors: {
     email: [],
     password: [],
@@ -29,25 +29,24 @@ const FormSchema = joi.object({
  */
 export const Authenticate = async function (State, formData) {
   const formAction = formData?.get("Credentials");
-  
-  try {
-    // 1. Validate Form Fields using FormSchema
-    const validatedFields = await FormSchema.validateAsync({
-      email: formData.get("email"),
-      password: formData.get("password"),
-    });
 
-    const { email, password } = validatedFields; 
-  
-    // 2. Check provider ID and Authenticate (handle different providers)
-    if (formAction === "credentials") {
+  // 2. Check provider ID and Authenticate (handle different providers)
+  if (formAction === "credentials") {
+    try {
+      // 1. Validate Form Fields using FormSchema
+      const validatedFields = await FormSchema.validateAsync({
+        email: formData.get("email"),
+        password: formData.get("password"),
+      });
+
+      const { email, password } = validatedFields;
+
       try {
         // Destructure validated data
-        await signIn('google', { redirectTo: "/", password, email });
+        await signIn(formAction, { redirectTo: "/", password, email });
         // Authentication successful (handle success state or redirect)
         return { success: true, message: "Successfully authenticated!" };
       } catch (error) {
-        
         if (error.type === "CredentialsSignin") {
           return {
             errors: ["Invalid credentials."],
@@ -57,28 +56,38 @@ export const Authenticate = async function (State, formData) {
           throw error; // Re-throw other errors for further handling
         }
       }
-    } else {
+    } catch (error) {
+      if (error?.details) {
+        // Return user-friendly error messages
+        return {
+          errors: {
+            error: error.details[0].message,
+            name: error.details[0].context["label"],
+          },
+          message: "Validation failed. Please check your input.",
+        };
+      } else
+        return {
+          errors: ["An error occurred. Please try again later."],
+          message: "Authentication failed.",
+        };
+    }
+  } else {
+    try {
+      const formAction2 = formData?.get("Google");
       // Handle other providers (replace with your implementation)
-      await signIn(formAction, { redirectTo: "/" });
+      await signIn(formAction2, { redirectTo: "/home" });
       // Authentication successful (handle success state or redirect)
       return {
         success: true,
-        message: `Successfully authenticated with ${formAction}!`,
+        message: `Successfully authenticated with ${formAction2}!`,
       };
-    }
-  } catch (error) {
-    
-    if (error?.details) {
-      // Return user-friendly error messages
+    } catch (error) {
+      console.log(error)
       return {
-        errors: { 'error': error.details[0].message, 'name': error.details[0].context['label']},
-        message: "Validation failed. Please check your input.",
+        errors: ["An error occurred. Please try again later."],
+        message: "Authentication failed.",
       };
     }
-    // Log the error for debugging
-    else return {
-      errors: ["An error occurred. Please try again later."],
-      message: "Authentication failed.",
-    };
   }
 };

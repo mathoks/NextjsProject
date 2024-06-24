@@ -31,7 +31,7 @@ const BottomMenu = () => {
               icon={<HomeIcon fontSize="small" />}
             />
             <span
-              className={`text-sm ${
+              className={`text-[12px] ${
                 pathname === "/home"
                   ? "text-[#6A0DAD] bg-opacity-80 "
                   : "text-gray-800"
@@ -56,7 +56,7 @@ const BottomMenu = () => {
               icon={<NewspaperIcon fontSize="small" />}
             />
             <span
-              className={`text-sm ${
+              className={`text-[12px] ${
                 pathname === "/Discover"
                   ? "text-[#6A0DAD] bg-opacity-80 "
                   : "text-gray-800"
@@ -81,7 +81,7 @@ const BottomMenu = () => {
               icon={<ForumIcon className="text-white" fontSize="small" />}
             />
             <span
-              className={`text-sm ${
+              className={`text-[12px] ${
                 pathname === "/Messages"
                   ? "text-[#6A0DAD] bg-opacity-80 "
                   : " text-gray-800"
@@ -123,7 +123,7 @@ const BottomMenu = () => {
               icon={<PersonIcon fontSize="small" />}
             />
             <span
-              className={`text-sm ${
+              className={`text-[12px] ${
                 path.includes("Dashboard") || path.includes("auth")
                   ? "text-[#6A0DAD]"
                   : "text-gray-800"
