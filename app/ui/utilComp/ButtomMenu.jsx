@@ -5,15 +5,17 @@ import HomeIcon from "@mui/icons-material/HomeOutlined";
 import PersonIcon from "@mui/icons-material/Person";
 import ForumIcon from "@mui/icons-material/ForumOutlined";
 import NewspaperIcon from "@mui/icons-material/NewspaperOutlined";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+
 
 const BottomMenu = () => {
   const pathname = usePathname();
   const path = pathname?.split("/");
   const session = useSession();
   const userId = session?.data?.user?.name;
+  const router = useRouter();
 
   return (
     <Toolbar className="flex  items-center justify-between p-2 shadow-inner text_shadow px-6">
@@ -93,7 +95,7 @@ const BottomMenu = () => {
         </Link>
       </Box>
       <Box component={"div"}>
-        <Link
+        {/* <Link
           style={{
             alignItems: "center",
             textDecoration: "none",
@@ -103,9 +105,9 @@ const BottomMenu = () => {
               ? `/Dashboard/${encodeURIComponent(userId)}`
               : "/auth/login"
           }
-        >
-          {/* async()=> {if(session.status === "unauthenticated") {"use server"; signIn()} else console.log(session.status) }} */}
-          <Stack className="flex flex-col justify-center items-center">
+        > */}
+          
+          <Stack onclick ={async()=> {if(session.status === "unauthenticated") {"use server"; await signIn()} else {router.push(`/Dashboard/${encodeURIComponent(userId)}`)}}} className="flex flex-col justify-center items-center">
             <Chip
               sx={{
                 "& .MuiChip-icon": {
@@ -132,7 +134,7 @@ const BottomMenu = () => {
               My Account
             </span>
           </Stack>
-        </Link>
+        {/* </Link> */}
       </Box>
     </Toolbar>
   );
