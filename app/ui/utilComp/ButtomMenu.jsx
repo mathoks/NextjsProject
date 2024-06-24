@@ -107,7 +107,7 @@ const BottomMenu = () => {
           }
         > */}
           
-          <Stack onclick ={async()=> {if(session.status === "unauthenticated") {"use server"; await signIn()} else {router.push(`/Dashboard/${encodeURIComponent(userId)}`)}}} className="flex flex-col justify-center items-center">
+          <div onclick ={async()=> {if(session.status === "unauthenticated") {"use server"; await signIn()} else {router.push(`/Dashboard/${encodeURIComponent(userId)}`)}}} className="flex flex-col justify-center items-center">
             <Chip
               sx={{
                 "& .MuiChip-icon": {
@@ -133,7 +133,7 @@ const BottomMenu = () => {
             >
               My Account
             </span>
-          </Stack>
+          </div>
         {/* </Link> */}
       </Box>
     </Toolbar>
