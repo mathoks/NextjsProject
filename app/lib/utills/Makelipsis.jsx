@@ -32,7 +32,7 @@ export const MakeEllipsis = ({text,size, flag, userId})=>{
 
     
        
-     return  <span> <Typography key={id} className="text-sm w-full leading-5">{value}</Typography></span>
+     return  <span  key={id} className="text-sm w-full leading-5">{value}</span>
       }
       else return <Typography>nothing</Typography>
 }
