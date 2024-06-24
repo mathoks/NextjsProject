@@ -45,33 +45,33 @@ const Tab = () => {
     {
       id: 0,
       val: "all Stores",
-      icon: <SelectAllOutlined fontSize="small" />,
+      icon: <SelectAllOutlined fontSize="inherit" />,
     },
-    { id: 1, val: "phone",  icon: <PhoneAndroid fontSize="small" /> },
+    { id: 1, val: "phone",  icon: <PhoneAndroid fontSize="inherit" /> },
     {
       id: 2,
       val: "furniture",
-      icon: <ChairAltOutlined fontSize="small" />,
+      icon: <ChairAltOutlined fontSize="inherit" />,
     },
     {
       id: 3,
       val: "fashion",
-      icon: <ShoppingBagOutlined fontSize="small" />,
+      icon: <ShoppingBagOutlined fontSize="inherit" />,
     },
     {
       id: 4,
       val: "machinery",
-      icon: <BuildOutlined fontSize="small" />,
+      icon: <BuildOutlined fontSize="inherit" />,
     },
     {
       id: 5,
       val: "building-Materials",
-      icon: <RoofingOutlined fontSize="small" />,
+      icon: <RoofingOutlined fontSize="inherit" />,
     },
     {
       id: 6,
       val: "electronics",
-      icon: <TvOutlined fontSize="small" />,
+      icon: <TvOutlined fontSize="inherit" />,
     },
   ];
 
