@@ -107,18 +107,18 @@ const BottomMenu = () => {
           }
         > */}
           
-          <Stack onClick ={async()=> {if(session.status === "unauthenticated") {"use server"; await signIn()} else {router.push(`/Dashboard/${encodeURIComponent(userId)}`)}}} className="flex flex-col justify-center items-center">
+          <Stack onClick ={async()=> {if(session.status === "unauthenticated") {signIn()} else {router.push(`/Dashboard/${encodeURIComponent(userId)}`)}}} className="flex flex-col justify-center items-center">
             <Chip
               sx={{
                 "& .MuiChip-icon": {
                   color:
-                    path.includes("Dashboard") || path.includes("auth")
+                    path.includes("Dashboard") || path.includes("login")
                       ? "white"
                       : "gray",
                   ml: 2,
                 },
                 bgcolor:
-                    path.includes("Dashboard") || path.includes("auth")
+                    path.includes("Dashboard") || path.includes("login")
                       ? "#6A0DAD"
                       : "transparent",
               }}

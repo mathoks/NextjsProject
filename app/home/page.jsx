@@ -5,9 +5,12 @@ import '@/app/globals.css'
 import StoreProvider from "@/app/StoreProvider";
 import Products from "@/app/ui/Products";
 import { getRoutes } from "@/app/actions/users/getRoute";
+import { auth } from '@/auth';
 
 
-export default async function page() {
+export default async function page(Props) {
+
+  console.log(Props)
   const usersList = await getRoutes()
   
   

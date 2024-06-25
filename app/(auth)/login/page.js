@@ -3,27 +3,23 @@ import { providerMap } from "@/auth";
 import imageFile from '@/app/assets/login_pattern.svg'
 import { useFormState } from 'react-dom'
 import { Authenticate } from "@/app/actions/users/Authenticate";
-import { useEffect, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 
 
 export default  function SignInPage() {
   const initialState = { message: null, errors: {} };
   const [state, dispatch] = useFormState(Authenticate, initialState);
-  const [active, setActive] = useState(false)
+  
 
-  useEffect(() => {
-    if(dispatch)
-      setActive(true)
-    return () => {
-      setActive(false)
-    }
-  }, [dispatch])
   
 
   return (
     <div className="flex overflow-hidden relative w-screen h-screen">
-      <img
+      <Image
         src={imageFile}
+        width={60}
+        height={60}
         alt="Pattern Background"
         className="object-cover fixed top-0 left-0 w-screen h-screen bg-white -z-10"
       />
@@ -109,7 +105,16 @@ export default  function SignInPage() {
                 </div>
               </form>
             ))}
+            <p className="px-8 text-center text-sm text-gray-700">
+          <Link
+            href="/register"
+            className="hover:text-brand underline underline-offset-4"
+          >
+            Don&apos;t have an account? Sign Up
+          </Link>
+        </p>
           </div>
+          
         </div>
       </div>
     </div>

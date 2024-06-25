@@ -4,7 +4,6 @@ import StoreProvider from "./StoreProvider";
 import ButtomNav from "./ui/buttomNav";
 import { SessionProvider } from "next-auth/react";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {

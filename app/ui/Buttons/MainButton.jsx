@@ -1,15 +1,15 @@
 "use client";
-import { authenticate } from "@/app/actions/users/Authenticate";
 import { CircularProgress } from "@mui/material";
 import { signIn, useSession } from "next-auth/react";
 import React, { useCallback, useEffect, useState } from "react";
+
 
 const MainButton = () => {
   const [child, setchild] = useState('loading..');
   const session = useSession();
 
   const handleCreateStore = useCallback(
-    async(e) => {
+    (e) => {
       if (session?.status === "loading")
         setchild(<CircularProgress size={18} color="primary" className=" text-cyan-50 " />);
       if (session?.status === "authenticated") setchild("OPEN A STORE");
@@ -17,7 +17,7 @@ const MainButton = () => {
         setchild("SIGN IN");
 
         if (e?.target) {
-        await signIn();
+        signIn();
         }
       }
     },
