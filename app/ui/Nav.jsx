@@ -14,7 +14,8 @@ import useHomeDrawer from "../lib/hooks/useHomeDrawer";
 
 
 
- const Nav = () => {
+ const Nav = (props) => {
+  console.log(props)
   const { DrawerHandler, DrawerWrapper } = useHomeDrawer();
   const [col, setcol] = useState(false)
   const navState = useAppSelector((state)=>state.nav.navToggle)

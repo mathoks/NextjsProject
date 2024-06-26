@@ -1,4 +1,4 @@
-"use client";
+ "use client";
 import {
   BuildOutlined,
   ChairAltOutlined,
@@ -14,45 +14,46 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 
 const Tab = () => {
-
-  const params = useSearchParams();
-  const index = params.get('category') || 'all Stores';
+    
+   const params = useSearchParams();
+   const index = params.get('category') || 'all Stores';
+  // || 'all Stores';
   
   const Tabs = [
     {
       id: 0,
-      path:`?category=all+Stores`,
+      path: `?${new URLSearchParams({'category': 'all Stores'})}`,
       val: `all Stores`,
       icon: <SelectAllOutlined fontSize="inherit" />,
     },
-    { id: 1, path:`?category=phone`, val: "phone",  icon: <PhoneAndroid fontSize="inherit" /> },
+    { id: 1, path:`?${new URLSearchParams({'category': 'phone'})}`, val: "phone",  icon: <PhoneAndroid fontSize="inherit" /> },
     {
       id: 2,
-      path:`?category=furniture`,
+      path:`?${new URLSearchParams({'category': 'furniture'})}`,
       val: "furniture",
       icon: <ChairAltOutlined fontSize="inherit" />,
     },
     {
       id: 3,
       val: "fashion",
-      path:`?category=fashion`,
+      path:`?${new URLSearchParams({'category': 'fashion'})}`,
       icon: <ShoppingBagOutlined fontSize="inherit" />,
     },
     {
       id: 4,
       val: "machinery",
-      path:`?category=machinery`,
+      path:`?${new URLSearchParams({'category': 'machinery'})}`,
       icon: <BuildOutlined fontSize="inherit" />,
     },
     {
       id: 5,
-      path:`?category=building-Materials`,
+      path:`?${new URLSearchParams({'category': 'building-Materials'})}`,
       val: "building-Materials",
       icon: <RoofingOutlined fontSize="inherit" />,
     },
     {
       id: 6,
-      path:`?category=electronics`,
+      path:`?${new URLSearchParams({'category': 'electronics'})}`,
       val: "electronics",
       icon: <TvOutlined fontSize="inherit" />,
     },
@@ -97,7 +98,7 @@ const Tab = () => {
                   },
                 }}
                 id={id}
-                clickable
+                // clickable
               />
               </Link>
             </ListItem>

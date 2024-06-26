@@ -5,12 +5,12 @@ import '@/app/globals.css'
 import StoreProvider from "@/app/StoreProvider";
 import Products from "@/app/ui/Products";
 import { getRoutes } from "@/app/actions/users/getRoute";
-import { auth } from '@/auth';
 
 
-export default async function page(Props) {
 
-  console.log(Props)
+export default async function page({searchParams}) {
+
+
   const usersList = await getRoutes()
   
   
@@ -19,7 +19,9 @@ export default async function page(Props) {
     
     
     <StoreProvider>
+
       <section className="flex min-h-screen mt-0 flex-col items-center">
+      
         <div className="flex flex-col items-center">
          
            <section>
