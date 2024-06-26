@@ -70,8 +70,8 @@ useEffect(()=>{
       </Link>
       </section>
       <section>
-      <div className="flex pl-4 pr-4 justify-center ">
-        <div className="border flex items-center justify-between bg-white p-2 rounded-md ">
+      <div className="flex justify-center shadow-my">
+        <div className="border flex items-center justify-between bg-white p-2 shadow-my">
         <SearchOutlined className=" text-[#6A0DAD]" fontSize="medium" sx={{ zIndex: 80}}/>
         <input placeholder="find here" className="placeholder:text-center text-zinc-950  pl-4 pr-4 focus:outline-none w-[98%]"/>
         <LocationOn onClick={DrawerHandler} className="text-[#6A0DAD] sm:pr-2" fontSize="medium" />
