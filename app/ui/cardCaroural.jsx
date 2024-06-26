@@ -64,7 +64,7 @@ const Showcase = ({ info, userInfo }) => {
                       width={200}
                       height={200}
                       loading="lazy"
-                      className="h-[9rem] rounded-t-lg shadow-my"
+                      className="h-[9rem] rounded-t-lg shadow-photo"
                     />
                     <div className="flex flex-col space-y-2">
                       <span className="flex justify-between">
@@ -93,7 +93,7 @@ const Showcase = ({ info, userInfo }) => {
                         </span>
                         <span className="text-[#005B9A]">1123</span>
                       </span>
-                      <span onClick={(e)=>{ e.stopPropagation(); router.push(`/pages/${encodeURIComponent(userInfo)}`)}} className="text-sm absolute -right-[8.6rem] text-white"><Chip clickable label = 'Visit the Store' sx={{bgcolor:"#6A0DAD", color:'white', opacity:0.8, textRendering: 'optimizeLegibility'}} /></span>
+                      <span onClick={(e)=>{ e.stopPropagation(); router.push(`/pages/${encodeURIComponent(userInfo)}`)}} className="text-sm absolute -right-[8.6rem] text-white"><Chip clickable label = 'Visit the Store' className="shadow-my" sx={{bgcolor:"#6A0DAD", color:'white', opacity:0.8, textRendering: 'optimizeLegibility'}} /></span>
                       </span>
                     </div>
                   </div>

@@ -166,3 +166,10 @@ swiper-container {
   padding: 10px;
   border-radius: 5px;
 }
+
+.shadow-photo {
+  background-color: 'inherit';
+  box-shadow: 0px 5px 10px rgba(0,0,0,0.1);
+  /* padding: 10px; */
+  border-radius: 5px;
+}
