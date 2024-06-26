@@ -64,7 +64,7 @@ const Showcase = ({ info, userInfo }) => {
                       width={200}
                       height={200}
                       loading="lazy"
-                      className="h-[9rem] rounded-t-lg"
+                      className="h-[9rem] rounded-t-lg shadow-my"
                     />
                     <div className="flex flex-col space-y-2">
                       <span className="flex justify-between">
