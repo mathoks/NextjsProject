@@ -8,68 +8,51 @@ import {
   ShoppingBagOutlined,
   TvOutlined,
 } from "@mui/icons-material";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { ListItem, Chip, Paper } from "@mui/material";
-import { useParams, usePathname } from "next/navigation";
-import { useRouter } from "next/navigation";
-const Tab = () => {
-  const query = useParams();
-  const params = new URLSearchParams(query)
-  const [index, setIndex] = useState('');
-  
-  const {replace } = useRouter()
-  const pathname = usePathname()
-  const handleChange = (e) => {
-    e.stopPropagation();
-    if (e.target.parentElement.id !== '0') {
-      params.set('query', e.target.innerText);
-      setIndex(params.get('query'))
-    } else {
-      params.delete('query');
-      setIndex('all Stores')
-    }
-    
-    replace(`${pathname}?${params.toString()}`);
-    
-  };
+import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 
-  useEffect(() => {
-    const { search } = window.location;
-    if (search) {
-      setIndex(search.split("=")[1]);
-    }
-    else setIndex('all Stores')
-  }, []);
+const Tab = () => {
+
+  const params = useSearchParams();
+  const index = params.get('category') || 'all Stores';
   
   const Tabs = [
     {
       id: 0,
-      val: "all Stores",
+      path:`?category=all+Stores`,
+      val: `all Stores`,
       icon: <SelectAllOutlined fontSize="inherit" />,
     },
-    { id: 1, val: "phone",  icon: <PhoneAndroid fontSize="inherit" /> },
+    { id: 1, path:`?category=phone`, val: "phone",  icon: <PhoneAndroid fontSize="inherit" /> },
     {
       id: 2,
+      path:`?category=furniture`,
       val: "furniture",
       icon: <ChairAltOutlined fontSize="inherit" />,
     },
     {
       id: 3,
       val: "fashion",
+      path:`?category=fashion`,
       icon: <ShoppingBagOutlined fontSize="inherit" />,
     },
     {
       id: 4,
       val: "machinery",
+      path:`?category=machinery`,
       icon: <BuildOutlined fontSize="inherit" />,
     },
     {
       id: 5,
+      path:`?category=building-Materials`,
       val: "building-Materials",
       icon: <RoofingOutlined fontSize="inherit" />,
     },
     {
       id: 6,
+      path:`?category=electronics`,
       val: "electronics",
       icon: <TvOutlined fontSize="inherit" />,
     },
@@ -89,32 +72,34 @@ const Tab = () => {
         }}
         id="tab"
         component="ul"
-        onClick={handleChange}
+        //onClick={handleChange}
         elevation={4}
       >
-        {Tabs.map((data) => {
+        {Tabs.map(({val, path, id, icon}) => {
           return (
-            <ListItem key={data.id} >
+            <ListItem key={id} >
+              <Link href={path}>
               <Chip
-                icon={data.icon}
-                label={data.val}
+                icon={icon}
+                label={val }
                 sx={{
-                  color: index === data.val ? "white" : 'GrayText',
-                  backgroundColor: index === data.val ? "#6A0DAD" : "white",
-                  border: index === data.val ? "1px solid white" : 'none' ,
-                  boxShadow: index === data.val?  '0px 5px 10px rgba(0, 0, 0, 0.1)' : 'none',
-                  textShadow: index === data.val? '0px 2px 4px rgba(0,0,0,0.2)' : 'none',
+                  color: index === val ? "white" : 'GrayText',
+                  backgroundColor: index === val ? "#6A0DAD" : "white",
+                  border: index === val ? "1px solid white" : 'none' ,
+                  boxShadow: index === val?  '0px 5px 10px rgba(0, 0, 0, 0.1)' : 'none',
+                  textShadow: index === val? '0px 2px 4px rgba(0,0,0,0.2)' : 'none',
                   textRendering: 'optimizeLegibility',
                   "&:hover": { backgroundColor: "#6A0DAD", color: "white" },
                   "&:focus": { backgroundColor: "#6A0DAD", color: "white" },
                   "&:active": { backgroundColor: "#6A0DAD", color: "white" },
                   "& .MuiChip-icon": {
-                    color: index === data.val ? "white" : "gray",
+                    color: index === val ? "white" : "gray",
                   },
                 }}
-                id={data.id}
-                clickable={false}
+                id={id}
+                clickable
               />
+              </Link>
             </ListItem>
           );
         })}
