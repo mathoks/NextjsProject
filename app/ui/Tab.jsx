@@ -98,7 +98,7 @@ const Tab = () => {
                   },
                 }}
                 id={id}
-                // clickable
+                clickable
               />
               </Link>
             </ListItem>
