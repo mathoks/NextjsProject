@@ -5,28 +5,31 @@ import { useFormState } from 'react-dom'
 import { Authenticate } from "@/app/actions/users/Authenticate";
 import Link from "next/link";
 import Image from "next/image";
+import { validate } from "@/app/lib/utills/validator";
+
 
 
 export default  function SignInPage() {
   const initialState = { message: null, errors: {} };
   const [state, dispatch] = useFormState(Authenticate, initialState);
+  const [states, dispatch2] = useFormState(validate, initialState);
   
 
   
 
   return (
     <div className="flex overflow-hidden relative w-screen h-screen">
-      <Image
+      {/* <Image
         src={imageFile}
         width={60}
         height={60}
         alt="Pattern Background"
         className="object-cover fixed top-0 left-0 w-screen h-screen bg-white -z-10"
-      />
-      <div
+      /> */}
+      {/* <div
         aria-label="Slate cover background"
         className="absolute left-0 top-0 z-10 flex h-[275%] w-[150%] translate-x-[-70%] translate-y-[-28%] rotate-[22deg] items-center bg-[#6A0DAD] md:translate-y-[-15%] md:rotate-[11deg]"
-      ></div>
+      ></div> */}
       <div className="h-dvh z-20 flex w-full items-center justify-center md:ml-[15%] md:w-[22rem]">
         <div className="flex flex-col justify-center items-center w-80 text-xl">
           <h2 className="flex items-center mb-4 space-x-2 text-3xl font-light text-zinc-600">
@@ -37,12 +40,12 @@ export default  function SignInPage() {
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="2"
-              className="p-2 text-white rounded-full size-12 bg-zinc-800"
+              className="p-2 text-white rounded-full size-12 bg-[#6A0DAD]"
               viewBox="0 0 24 24"
             >
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
             </svg>
-            <span className="text-4xl font-medium text-white">Mymart</span>
+            <span className="text-4xl font-medium text-black">Mymart</span>
           </h2>
           <div className="flex flex-col gap-2 p-6 m-8 w-full bg-white rounded shadow-lg relative">
             {Object.values(providerMap).map(({id, name}) => 
@@ -71,8 +74,16 @@ export default  function SignInPage() {
                         placeholder="Email"
                         name="email"
                         type="email"
-                      
+                        onBlur={dispatch2}
                       />
+                      <span id="customer-error"  aria-live="polite" className=" mx-auto text-left" aria-atomic="true" >
+        {state?.errors.name === 'email' || states?.errors.name === 'email' &&
+            <p className="text-sm text-red-500" >
+              {state?.errors.error || states?.errors.error}
+              
+            </p>
+          }
+    </span>
                     </label>
                     <label className="text-base font-light text-neutral-800">
                       Password
@@ -83,16 +94,25 @@ export default  function SignInPage() {
                         placeholder="password"
                         name="password"
                         type="password"
+                        onBlur={dispatch2}
                       />
+                      <span id="customer-error"  aria-live="polite" className=" mx-auto text-left" aria-atomic="true" >
+        {state?.errors.name === 'password' || states?.errors.name === 'password' &&
+            <p className="text-sm text-red-500" >
+              {state?.errors.error || states?.errors.error}
+              
+            </p>
+          }
+    </span>
                     </label>
                   </>
                 )}
                 <button
                   type="submit"
-                  className="flex justify-center items-center px-4 mt-4 space-x-2 w-full h-12 text-base font-light text-white rounded transition focus:ring-2 focus:ring-offset-2 focus:outline-none bg-[#6A0DAD] hover:bg-zinc-900 focus:ring-zinc-800"
+                  className="flex justify-center items-center px-4 mt-4 space-x-2 w-full h-12 text-base font-light text-white rounded transition focus:ring-2 focus:ring-offset-2 focus:outline-none bg-[#6A0DAD] hover:bg-zinc-900 focus:ring-zinc-800 disabled:opacity-75"
                   value={id}
                   name={name}
-                  // disabled = {active}
+                  disabled = {name === 'Credentials' && states.errors.error !== undefined || state.errors.error !== undefined }
                 >
                   <span>Sign in with {name}</span>
                 </button>
