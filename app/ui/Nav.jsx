@@ -14,12 +14,11 @@ import useHomeDrawer from "../lib/hooks/useHomeDrawer";
 
 
 
- const Nav = (props) => {
-  console.log(props)
+ const Nav = () => {
+  
   const { DrawerHandler, DrawerWrapper } = useHomeDrawer();
   const [col, setcol] = useState(false)
   const navState = useAppSelector((state)=>state.nav.navToggle)
-  const dispatch = useAppDispatch()
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 1,
@@ -54,7 +53,6 @@ useEffect(()=>{
 
 
   return (
-    // nav && path === '/home' ? (
     <nav aria-label="main" className={`flex bg-[#6A0DAD]  flex-col fixed w-full z-50  ${col ? "shadow-lg" : ""}`} >
     <div className={`sm: flex flex-col space-y-4 opacity-100  bg-[#6A0DAD] md:flex items-center justify-center  ${!navState ? "invisible h-0 opacity-0 transition-opacity" : "p-4"}` }>
     <section>
@@ -78,11 +76,6 @@ useEffect(()=>{
       </div>
       </div>
       </section>
-      {/* <section className="md:hidden  text-center mt--10" >
-      
-        <input className="rounded"/>
-      
-      </section> */}
       </div>
       <div className={`flex items-center justify-between pr-4 ${navState ? 'bg-[#6A0DAD]' : 'bg-white'} `}>
       <Tab/>
@@ -95,10 +88,6 @@ useEffect(()=>{
       
       <DrawerWrapper/>
     </nav>
-    // ) : (
-    //   null
-      
-    // )
   );
 };
 

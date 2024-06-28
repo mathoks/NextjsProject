@@ -41,14 +41,46 @@ model Session {
  
 model User {
   id            String    @id @default(cuid())
-  name          String?
+  rating        Int       @default(0)
+  name          String?   @unique
   email         String?   @unique
   emailVerified DateTime? @map("email_verified")
   image         String?
+  password      String?
   accounts      Account[]
   sessions      Session[]
- 
+  userInfo      Store?
+  wishlist      WishList?
+  messagesRecieved      Message[] @relation(name: "reciever")
+  messagesSent      Message[] @relation(name: "sender")
+  comments      ProdReview[]
+  posts          Post[]
+  postComments   PostReview[]
+  postReplies    CommentReply[]
+  ticket         Ticket[]
+  reviews         storeReview[] @relation(name: "reviewer")
+  subscriptions      Subscription?
+  notifications      Notification[]
+  storeSubscriptions  StoreSubscriptions[]
   @@map("user")
+}
+
+model Store {
+  id            String    @id @default(cuid())
+  storeId    String   @map("userinfo_id") @unique
+  businessName          String @map("business_name")
+  phone         String?
+  shopAddress         String?   @unique @map("shop_address")
+  email          String?
+  state         String?
+  emailVerified DateTime? @map("email_verified")
+  bizLogo         String? @map("biz_logo")
+  branches      Branche[]
+  storeOwner         User     @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  storeReviews  storeReview[]
+  storeSubscriptions    StoreSubscriptions[]
+  product Product[]
+  @@map("user_info")
 }
  
 model VerificationToken {
@@ -59,3 +91,257 @@ model VerificationToken {
   @@unique([identifier, token])
   @@map("verificationtoken")
 }
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  category    String
+  price       Float
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        Store     @relation(fields: [userId], references: [id])
+  userId      String   @map("user_id")
+  prodImage   ProdImage[]
+  availability Availability @default(IN_STOCK)
+  attribute  ProductAttribute?
+  wishlist    WishList[]
+  comment     ProdReview[]
+  post        Post[]
+  @@map("product")
+}
+
+model ProdImage{
+  id          String   @id @default(cuid())
+  productId   String   @map("product_id")
+  image       String?
+  product     Product @relation(fields: [productId], references: [id])
+  
+ 
+  @@map("prod_image")
+} 
+
+enum Availability {
+  IN_STOCK
+  OUT_OF_STOCK
+  COMING_SOON
+  LIMITED_STOCK
+}
+
+enum Status {  
+  NEW
+  FAIRLY_USED
+  REFURBISHED
+}
+
+enum Plan {  
+  PAID
+  FREE
+}
+
+enum Role {
+  ADMIN
+  USER
+  STORE_OWNER
+  MODERATOR
+  GUEST
+}
+
+model ProductAttribute{
+  id          String   @id @default(cuid())
+  productId   String   @map("product_id") @unique
+  color       String?
+  size        String?
+  width       Int?
+  height      Int?
+  weight      Int?
+  brand       String?
+  status      Status
+  product     Product @relation(fields: [productId], references: [id])
+ 
+ 
+  @@map("product_attribute")
+}
+
+model WishList {
+  id          String   @id @default(cuid())
+  userId      String   @map("user_id") @unique
+  productId   String   @map("product_id")
+  product     Product @relation(fields: [productId], references: [id])
+  user        User     @relation(fields: [userId], references: [id])
+ 
+  @@map("wishlist")
+}
+
+model Message {
+  id          String   @id @default(cuid())
+  message     String
+  messageId   String @map("message_id") 
+  userId      String @map("user_id")
+  senderId    String @map("sender_id")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  sender    User     @relation(name: "sender", fields: [senderId], references: [id])
+  recipient     User     @relation(name: "reciever",  fields: [userId], references: [id], map: "message_sende_ffk") 
+  ticket Ticket @relation(fields: [messageId], references: [id], map: "message_ffk")
+  @@map("message")
+  
+}
+
+model Ticket {
+  id String @id @default(cuid())
+  ticketId String @map("ticket_id") @unique
+  userId String @map("user_Id")
+  message Message[]
+  user  User @relation(fields: [userId], references: [id], map: "ticket_ffk")
+  @@map("ticket")
+}
+
+model Branche {
+  id String   @id @default(cuid())
+  branchName String? @map("branch_name")
+  branchAddress String? @map("branch_address")
+  state String?
+  branchId String @map("branch_id") @unique
+  user Store @relation(fields: [branchId], references: [id])
+  @@map("branche")
+}
+
+model ProdReview {
+  id          String   @id @default(cuid())
+  comment     String
+  commentId   String   @map("comment_id")@unique 
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  product     Product @relation(fields: [commentId], references: [id], map: "comment_ffk")
+  review      Int @default(0)
+  userId      String @map("user_id")
+  commenter   User     @relation( fields: [userId], references: [id])
+  reply      Reply[]
+  @@map("prod_review")
+}
+
+model Reply {
+  id String @id @default(cuid())
+  replyId String @map("reply_id") @unique
+  text String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  comment ProdReview @relation( fields: [replyId], references: [commentId])
+
+   @@map("reply")
+}
+
+
+model Post {
+  id String @id @default(cuid())
+  userId String @map("user_id")
+  postId String @unique
+  text String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  author User @relation(fields: [userId], references: [id], map: "post_key_ff")
+  postImage String?
+  likes Int @default(0)
+  productRef Product? @relation(fields: [id], references: [id])
+  postComment PostReview[] 
+   @@map("post")
+}
+
+model PostReview {
+  id String   @id @default(cuid())
+  content     String @map("post_comment")
+  postId      String   @map("post_id")@unique 
+  createdAt   DateTime @default(now())
+  userId String?  @map("user_id")
+  updatedAt   DateTime @updatedAt
+  review     Int @default(0)
+  user   User?   @relation( fields: [userId], references: [id])
+  post  Post @relation(fields: [postId], references: [postId], map: "post_ffk_comm")
+  postReply      CommentReply[] 
+  @@map("post_review")
+}
+
+
+
+model CommentReply {
+  id String @id @default(cuid())
+  commentId String @map("comment_id")
+  text String
+  authorId String  @map("author_id")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Comment PostReview @relation( fields: [commentId], references: [postId])
+  author User @relation(fields: [authorId], references: [id])
+  
+   @@map("comment_reply")
+    @@unique([authorId, commentId], name: "authorId_commentId_FK")
+}
+
+
+
+model storeReview {
+  id         String   @id @default(cuid())
+  comment     String
+  storeReviewId   String   @map("store_review_id")@unique 
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  review      Int @default(0)
+  storeOwnerId String @map("store_owner_id")
+  userId      String @map("user_id")
+  commenter   User     @relation(name: "reviewer" , fields: [userId], references: [id])
+  store       Store     @relation(fields: [storeOwnerId], references: [id], map: "store_review_ffk")
+  reply      StoreReply[]
+  @@map("store_review")
+}
+
+
+model StoreReply {
+  id String @id @default(cuid())
+  storeReplyId String @map("store_reply_id") @unique
+  text String
+  userId String  @map("user_id")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Comment storeReview @relation( fields: [storeReplyId], references: [storeReviewId])
+
+   @@map("store_reply")
+}
+
+model Subscription {
+  id          String   @id @default(cuid())
+  userId      String   @map("user_id") @unique
+  plan        Plan @default(FREE)
+  status      Status @default(NEW)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id])
+ 
+  @@map("subscription")
+}
+
+model Notification {
+  id          String   @id @default(cuid())
+  userId      String   @map("user_id")
+  message     String
+  read        Boolean @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id])
+ 
+  @@map("notification")
+}
+
+model StoreSubscriptions {
+  id          String   @id @default(cuid())
+  userId      String   @map("user_id")
+  storeId     String   @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  store        Store     @relation(fields: [storeId], references: [storeId])
+  user         User @relation(fields: [userId], references: [id])
+  @@map("store_subscription")
+  @@unique([userId, storeId], name: "unique_store_subscription")
+  
+}
+

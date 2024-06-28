@@ -6,7 +6,6 @@ import {register} from 'swiper/element-bundle'
 //import styles from "@/app/ui/swiper.module.css";
 import { useAppDispatch } from "../lib/hooks/hooks";
 import { setNav } from "../lib/features/Nav/navSlice";
-import Link from "next/link";
 import { MakeEllipsis } from "../lib/utills/Makelipsis";
 import getProductById from "../actions/users/getProductById";
 import { Chip } from "@mui/material";
