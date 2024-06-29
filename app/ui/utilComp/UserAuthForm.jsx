@@ -49,7 +49,7 @@ const UserAuthForm = () => {
     const initialState = { message: null, errors: {}, success: null };
     const [state, dispatch] = useFormState(addUser, initialState);
      const [states, dispatch2] = useFormState(validate, initialState);
-    console.log(states, typeof states?.errors?.error !== 'undefined')
+    console.log(state, typeof states?.errors?.error !== 'undefined')
   return (
     <div className='text-black  mx-auto'>
     
@@ -79,7 +79,7 @@ const UserAuthForm = () => {
             />
 
         <span id="customer-error"  aria-live="polite" className=" text-left" aria-atomic="true" >
-        {state?.errors.name === 'username' || states?.errors?.name === 'username' &&
+        {(state?.errors.name === 'username' || states?.errors?.name === 'username') &&
             <p className="text-sm text-red-500" >
               {state?.errors.error || states?.errors.error }
               
@@ -103,7 +103,7 @@ const UserAuthForm = () => {
 
               />
         <span id="customer-error"  aria-live="polite" className=" mx-auto text-left" aria-atomic="true" >
-        {state?.errors.name === 'email' || states?.errors.name === 'email' &&
+        {(state?.errors.name === 'email' || states?.errors.name === 'email') &&
             <p className="text-sm text-red-500" >
               {state?.errors.error || states?.errors.error}
               
@@ -130,15 +130,16 @@ const UserAuthForm = () => {
         {/* <Visibility className={`absolute right-4 inset-y-10 ${ptype === 'password' ? 'inline-block': 'hidden'}`} onClick={()=>setptype(ptype === 'password' ? 'text' : 'password')}/> */}
         { ptype === 'password' ? <VisibilityOff className={`absolute right-4 inset-y-10`} onClick={()=>setptype(ptype === 'text' ? 'password' : 'text')}/> : <Visibility className={`absolute right-4 inset-y-10 `} onClick={()=>setptype(ptype === 'password' ? 'text' : 'password')}/>}
         <span id="customer-error"  aria-live="polite" className=" mx-auto text-left" aria-atomic="true" >
-        {state?.errors.name === 'password' || states?.errors.name === 'password' &&
+        {(state?.errors.name === 'password' || states?.errors.name === 'password') &&
             <p className="text-sm text-red-500" >
-              {state?.errors.error || states?.errors.error}
+              {state?.errors.error || states?.errors.error }
+              
               
             </p>
           }
     </span>
         </section>
-        <button disabled={state.success === false || states.success === false} className='bg-blue-500 py-4 rounded-md text-white disabled:opacity-70' id='sign-up'> Sign up</button>
+        <button  className='bg-blue-500 py-4 rounded-md text-white disabled:opacity-70' id='sign-up'> Sign up</button>
       </form>
     </div>
   )

@@ -1,5 +1,6 @@
 "use server";
 import joi from "joi";
+import { headers } from "next/headers";
 import Router from "next/navigation";
 
 
@@ -32,6 +33,8 @@ const State = {
  * @returns {Promise<object>} An object containing success/failure information and optional updated state.
  */
 export const addUser = async function (State, formData) {
+  const headerList = headers();
+  const domain = headerList.get("host");
   // 1. Initialize validatedFields
   let validatedFields = {};
   // 2. Check provider ID and Authenticate (handle different providers)
@@ -47,14 +50,14 @@ export const addUser = async function (State, formData) {
     try {
       const { email, password, username } = validatedFields;
       
-      const response = await fetch("/api/auth/register", {
+      const response = await fetch(`http://${domain}/api/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password, name:username }),
       });
-      console.log(response)
+      
       if(!response.ok){
         throw new Error('Network failed')
       }
@@ -69,11 +72,13 @@ export const addUser = async function (State, formData) {
         errors: {}
     }
     } catch (error) {
+    
       return {
         errors: {
           error: ["Oops try again."],
           name: "something happaned try again...",
         },
+        message: "An error occurred. Please try again later.",
         success:false
       };
     }
