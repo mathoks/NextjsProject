@@ -69,8 +69,8 @@ export const addUser = async function (State, formData) {
       return {
         success: true,
         message: `Welcome ${
-          newUser?.data?.name
-        } account Successfully created  ${<Link href= {'/login'} className="hover:text-brand underline underline-offset-4"><p classname>click here to Login</p></Link>}`,
+          newUser?.name
+        } account Successfully created }`,
         errors: {}
     }
     } catch (error) {
