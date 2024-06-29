@@ -57,8 +57,8 @@ const UserAuthForm = () => {
     <span id="customer-error"  aria-live="polite" className=" mx-auto text-center" aria-atomic="true" >
         {state?.message &&
             <p className={`text-sm ${state.success ? 'text-green-400' :  'text-red-500'}`}>
-              {state?.message + " " + `${state.success ? <Link href= {'/login'} className="hover:text-brand underline underline-offset-4"><p classname>click here to Login</p></Link> : ''}`}
-              
+              {state?.message  + " "} 
+              {state?.success ?  <Link href= {'/login'} className="hover:text-brand underline underline-offset-4">click here to Login</Link> : ''}
             </p>
           }
     </span>

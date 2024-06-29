@@ -1,10 +1,9 @@
 "use server";
+import { signIn } from "@/auth";
 import joi from "joi";
 import { headers } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-
-
 
 const FormSchema = joi.object({
   username: joi.string().pattern(new RegExp("^[a-zA-Z0-9]{6,10}$")).required(),
@@ -51,37 +50,39 @@ export const addUser = async function (State, formData) {
 
     try {
       const { email, password, username } = validatedFields;
-      
+
       const response = await fetch(`http://${domain}/api/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password, name:username }),
+        body: JSON.stringify({ email, password, name: username }),
       });
-      
-      if(!response.ok){
-        throw new Error('Network failed')
+
+      if (!response.ok) {
+        throw new Error("Network failed");
       }
       // Destructure validated data
       const newUser = await response.json();
-      console.log(newUser)
-      return {
-        success: true,
-        message: `Welcome ${
-          newUser?.name
-        } account Successfully created`,
-        errors: {}
-    }
+      const lognewUser = await signIn({ email, password });
+      if (lognewUser) {
+        return redirect(`/Dashboard/${username}`);
+      } else {
+        return {
+          success: true,
+          message: `Welcome ${newUser?.name} account Successfully created `,
+          errors: {},
+        };
+      }
     } catch (error) {
-      console.error(error)
+      console.error(error);
       return {
         errors: {
           error: ["Oops try again."],
           name: "something happaned try again...",
         },
         message: "An error occurred. Please try again later.",
-        success:false
+        success: false,
       };
     }
   } catch (error) {
@@ -96,7 +97,7 @@ export const addUser = async function (State, formData) {
           name: error.details[0].context["label"],
         },
         message: "Validation failed. Please check your input.",
-        success:false
+        success: false,
       };
     } else
       return {
@@ -104,10 +105,7 @@ export const addUser = async function (State, formData) {
           error: ["An error occurred. Please try again later."],
           name: "Authentication failed.",
         },
-        success: false
+        success: false,
       };
   }
-
-  
-  
 };
