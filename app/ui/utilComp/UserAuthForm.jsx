@@ -46,7 +46,7 @@ import { validate } from '@/app/lib/utills/validator'
 
 const UserAuthForm = () => {
     const [ptype, setptype] = useState('password')
-    const initialState = { message: null, errors: {} };
+    const initialState = { message: null, errors: {}, success: null };
     const [state, dispatch] = useFormState(addUser, initialState);
      const [states, dispatch2] = useFormState(validate, initialState);
     console.log(states, typeof states?.errors?.error !== 'undefined')
@@ -138,7 +138,7 @@ const UserAuthForm = () => {
           }
     </span>
         </section>
-        <button disabled={state?.errors?.error !== undefined || states.errors.error !== undefined  } className='bg-blue-500 py-4 rounded-md text-white disabled:opacity-70' id='sign-up'> Sign up</button>
+        <button disabled={state.success === false || states.success === false} className='bg-blue-500 py-4 rounded-md text-white disabled:opacity-70' id='sign-up'> Sign up</button>
       </form>
     </div>
   )
