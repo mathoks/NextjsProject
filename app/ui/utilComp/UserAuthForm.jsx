@@ -4,6 +4,7 @@ import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { addUser } from '@/app/actions/users/addUsers'
 import { useFormState } from 'react-dom'
 import { validate } from '@/app/lib/utills/validator'
+import Link from 'next/link'
 
 
 // const Fields = {
@@ -56,7 +57,7 @@ const UserAuthForm = () => {
     <span id="customer-error"  aria-live="polite" className=" mx-auto text-center" aria-atomic="true" >
         {state?.message &&
             <p className={`text-sm ${state.success ? 'text-green-400' :  'text-red-500'}`}>
-              {state?.message}
+              {state?.message + " " + `${state.success ? <Link href= {'/login'} className="hover:text-brand underline underline-offset-4"><p classname>click here to Login</p></Link> : ''}`}
               
             </p>
           }

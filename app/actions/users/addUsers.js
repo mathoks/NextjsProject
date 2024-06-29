@@ -70,7 +70,7 @@ export const addUser = async function (State, formData) {
         success: true,
         message: `Welcome ${
           newUser?.name
-        } account Successfully created }`,
+        } account Successfully created`,
         errors: {}
     }
     } catch (error) {
