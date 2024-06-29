@@ -89,14 +89,16 @@ export  async function POST(req) {
       }
       const {password:pass, ...rest} = newUser
       
-      const account = await prisma.account.create({
+      const accounts = await prisma.account.create({
+       data: {
         user_id: newUser.id,
         type: 'credentials',
         provider:"credentials",
         provider_account_id: newUser.id
+       }
       }) 
       
-      if (!account){
+      if (!accounts){
         throw new Error({message: 'Account creation failed '})
       }
       return NextResponse.json(rest, { status: 201 });
