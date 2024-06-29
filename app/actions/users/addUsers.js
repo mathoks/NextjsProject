@@ -72,7 +72,7 @@ export const addUser = async function (State, formData) {
         errors: {}
     }
     } catch (error) {
-    
+      console.error(error)
       return {
         errors: {
           error: ["Oops try again."],

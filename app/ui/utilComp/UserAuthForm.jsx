@@ -55,7 +55,7 @@ const UserAuthForm = () => {
     
     <span id="customer-error"  aria-live="polite" className=" mx-auto text-center" aria-atomic="true" >
         {state?.message &&
-            <p className="text-sm text-red-500" >
+            <p className={`text-sm ${state.success ? 'text-green-400' :  'text-red-500'}`}>
               {state?.message}
               
             </p>
