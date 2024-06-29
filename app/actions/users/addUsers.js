@@ -46,7 +46,7 @@ export const addUser = async function (State, formData) {
 
     try {
       const { email, password, username } = validatedFields;
-      console.log('here')
+      
       const response = await fetch("/api/auth/register", {
         method: "POST",
         headers: {
@@ -54,6 +54,7 @@ export const addUser = async function (State, formData) {
         },
         body: JSON.stringify({ email, password, name:username }),
       });
+      console.log(response)
       if(!response.ok){
         throw new Error('Network failed')
       }
