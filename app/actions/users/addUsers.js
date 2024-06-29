@@ -1,7 +1,9 @@
 "use server";
 import joi from "joi";
 import { headers } from "next/headers";
-import Router from "next/navigation";
+import Link from "next/link";
+import { redirect } from "next/navigation";
+
 
 
 const FormSchema = joi.object({
@@ -63,12 +65,12 @@ export const addUser = async function (State, formData) {
       }
       // Destructure validated data
       const newUser = await response.json();
-      
+      console.log(newUser)
       return {
         success: true,
         message: `Welcome ${
-          newUser.username
-        } account Successfully created  ${Router.replace("/login")}`,
+          newUser?.data?.name
+        } account Successfully created  ${<Link href= {'/login'} className="hover:text-brand underline underline-offset-4"><p classname>click here to Login</p></Link>}`,
         errors: {}
     }
     } catch (error) {

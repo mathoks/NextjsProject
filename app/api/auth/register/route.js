@@ -72,8 +72,9 @@ export  async function POST(req) {
           name,
         },
       });
-        console.log(newUser)
-      return NextResponse.json(newUser, { status: 201 });
+        const {password:pass, ...rest} = newUser
+        console.log(rest)
+      return NextResponse.json(rest, { status: 201 });
     } catch (error) {
       return NextResponse.json({ error: "Failed to create user" }, { status: 500 });
     }
