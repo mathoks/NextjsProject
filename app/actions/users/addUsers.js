@@ -1,5 +1,5 @@
 "use server";
-import { signIn } from "@/auth";
+import { auth, signIn } from "@/auth";
 import joi from "joi";
 import { headers } from "next/headers";
 import Link from "next/link";
@@ -36,6 +36,7 @@ const State = {
 export const addUser = async function (State, formData) {
   const headerList = headers();
   const domain = headerList.get("host");
+  const session = await auth()
   // 1. Initialize validatedFields
   let validatedFields = {};
   // 2. Check provider ID and Authenticate (handle different providers)
@@ -64,9 +65,10 @@ export const addUser = async function (State, formData) {
       }
       // Destructure validated data
       const newUser = await response.json();
-      const lognewUser = await signIn({ email, password });
-      if (lognewUser) {
-        return redirect(`/Dashboard/${username}`);
+      const lognewUser = await signIn('credentials',{ email, password });
+      console.log(session)
+      if (lognewUser &&  typeof session.user.name !== '') {
+         redirect(`/Dashboard/${username}`);
       } else {
         return {
           success: true,

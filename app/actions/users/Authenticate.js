@@ -1,6 +1,7 @@
 "use server";
 import { auth, signIn } from "@/auth";
 import joi from "joi";
+import { AuthError } from "next-auth";
 
 const FormSchema = joi.object({
   email: joi
@@ -11,8 +12,8 @@ const FormSchema = joi.object({
 
 const State = {
   errors: {
-    email: [],
-    password: [],
+    error: [],
+    name: ''
   },
   message: "",
 };
@@ -29,7 +30,7 @@ const State = {
 export const Authenticate = async function (State, formData) {
   const formAction = formData?.get("Credentials");
   let validatedFields = {};
-  const session = await auth(); 
+  const session = await auth();
   // 2. Check provider ID and Authenticate (handle different providers)
   if (formAction === "credentials") {
     try {
@@ -61,34 +62,46 @@ export const Authenticate = async function (State, formData) {
     try {
       // Destructure validated data
       const { email, password } = validatedFields;
-    await signIn(formAction, { redirectTo: '/home', password, email, });
-      // Authentication successful (handle success state or redirect)
-        
-      return { success: true, message: "Successfully authenticated!" };
+      await signIn(formAction, { password, email });
+      return {
+        success: true,
+        message: "Successfully authenticated!",
+        errors: {},
+      };
     } catch (error) {
-      if (error.type === "CredentialsSignin") {
+      if (error instanceof AuthError) {
+        if (error.type === "CallbackRouteError" && !error?.cause) {
+          return {
+            errors: {
+              error: ["please try again network could not be reached..."],
+              name: "Authentication failed.",
+            },
+            message: "try again network could not be reached...",
+            success: false,
+          };
+        }
+
+        if (error.type === "CredentialsSignin" && !error?.cause) {
+          return {
+            errors: {
+              error: ["Invalid credentials."],
+              name: "credentials failed.",
+            },
+            message: "wrong credentials",
+            success: false,
+          };
+        }
         return {
           errors: {
-            error: ["Invalid credentials."],
+            error: [error?.cause?.err?.message],
             name: "credentials failed.",
           },
+          message: error?.cause?.err?.message,
+          success: false,
         };
       }
-      if (error.type === "CallbackRouteError") {
-        return {
-          errors: {
-            error: ["Invalid email or password."],
-            name: "Authentication failed.",
-          },
-        };
-      }
-        throw error
-      // return {
-      //   errors: {
-      //     error: ["something went wrong."],
-      //     name: "Authentication failed.",
-      //   },
-      // }; // Re-throw other errors for further handling
+
+      throw error;
     }
   } else {
     //const formAction2 = formData?.get("Google");

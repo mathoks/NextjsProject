@@ -1,21 +1,17 @@
-"use client"
+"use client";
 import { providerMap } from "@/auth";
-import imageFile from '@/app/assets/login_pattern.svg'
-import { useFormState } from 'react-dom'
+import imageFile from "@/app/assets/login_pattern.svg";
+import { useFormState } from "react-dom";
 import { Authenticate } from "@/app/actions/users/Authenticate";
 import Link from "next/link";
 import Image from "next/image";
 import { validate } from "@/app/lib/utills/validator";
 
-
-
-export default  function SignInPage() {
+export default function SignInPage() {
   const initialState = { message: null, errors: {} };
+  const initialState2 = { message: null, errors: {} };
   const [state, dispatch] = useFormState(Authenticate, initialState);
-  const [states, dispatch2] = useFormState(validate, initialState);
-  
-
-  
+  const [states, dispatch2] = useFormState(validate, initialState2);
 
   return (
     <div className="flex overflow-hidden relative w-screen h-screen">
@@ -48,8 +44,7 @@ export default  function SignInPage() {
             <span className="text-4xl font-medium text-black">Mymart</span>
           </h2>
           <div className="flex flex-col gap-2 p-6 m-8 w-full bg-white rounded shadow-lg relative">
-            {Object.values(providerMap).map(({id, name}) => 
-            (
+            {Object.values(providerMap).map(({ id, name }) => (
               <form
                 className="[&>div]:last-of-type:hidden"
                 key={id}
@@ -57,15 +52,17 @@ export default  function SignInPage() {
               >
                 {id === "credentials" && (
                   <>
-                  <span id="customer-error"  aria-live="polite" className=" mx-auto" aria-atomic="true" >
-        {state?.errors.name &&
-            <p className="text-sm text-red-500" >
-              {state?.errors.error}
-              
-            </p>
-          }
-      </span>
-                  <label className="text-base font-light text-neutral-800 ">
+                    <span
+                      id="customer-error"
+                      aria-live="polite"
+                      className=" mx-auto"
+                      aria-atomic="true"
+                    >
+                      {state?.message && (
+                        <p className="text-sm text-red-500">{state?.message}</p>
+                      )}
+                    </span>
+                    <label className="text-base font-light text-neutral-800 ">
                       Email
                       <input
                         className="block flex-1 p-3 w-full font-normal rounded-md border border-gray-200 transition sm:text-sm placeholder:font-light placeholder:text-zinc-400 focus:border-zinc-500 focus:ring-zinc-500"
@@ -76,14 +73,24 @@ export default  function SignInPage() {
                         type="email"
                         onBlur={dispatch2}
                       />
-                      <span id="customer-error"  aria-live="polite" className=" mx-auto text-left" aria-atomic="true" >
-        {state?.errors.name === 'email' || states?.errors.name === 'email' &&
-            <p className="text-sm text-red-500" >
-              {state?.errors.error || states?.errors.error}
-              
-            </p>
-          }
-    </span>
+                      <span
+                        id="customer-error"
+                        aria-live="polite"
+                        className=" mx-auto text-left"
+                        aria-atomic="true"
+                      >
+                        {state?.errors.name === "email" ? (
+                          <p className="text-sm text-red-500">
+                            {state?.errors.error}
+                          </p>
+                        ) : states?.errors.name === "email" ? (
+                          <p className="text-sm text-red-500">
+                            {states?.errors.error}
+                          </p>
+                        ) : (
+                          ""
+                        )}
+                      </span>
                     </label>
                     <label className="text-base font-light text-neutral-800">
                       Password
@@ -96,14 +103,24 @@ export default  function SignInPage() {
                         type="password"
                         onBlur={dispatch2}
                       />
-                      <span id="customer-error"  aria-live="polite" className=" mx-auto text-left" aria-atomic="true" >
-        {state?.errors.name === 'password' || states?.errors.name === 'password' &&
-            <p className="text-sm text-red-500" >
-              {state?.errors.error || states?.errors.error}
-              
-            </p>
-          }
-    </span>
+                      <span
+                        id="customer-error"
+                        aria-live="polite"
+                        className=" mx-auto text-left"
+                        aria-atomic="true"
+                      >
+                        {state?.errors.name === "password" ? (
+                          <p className="text-sm text-red-500">
+                            {state?.errors.error}
+                          </p>
+                        ) : states?.errors.name === "password" ? (
+                          <p className="text-sm text-red-500">
+                            {states?.errors.error}
+                          </p>
+                        ) : (
+                          ""
+                        )}
+                      </span>
                     </label>
                   </>
                 )}
@@ -112,7 +129,11 @@ export default  function SignInPage() {
                   className="flex justify-center items-center px-4 mt-4 space-x-2 w-full h-12 text-base font-light text-white rounded transition focus:ring-2 focus:ring-offset-2 focus:outline-none bg-[#6A0DAD] hover:bg-zinc-900 focus:ring-zinc-800 disabled:opacity-75"
                   value={id}
                   name={name}
-                  disabled = {name === 'Credentials' && states.errors.error !== undefined || state.errors.error !== undefined }
+                  disabled={
+                    (name === "Credentials" &&
+                      states.errors.error !== undefined) ||
+                    state.errors.error !== undefined
+                  }
                 >
                   <span>Sign in with {name}</span>
                 </button>
@@ -126,15 +147,14 @@ export default  function SignInPage() {
               </form>
             ))}
             <p className="px-8 text-center text-sm text-gray-700">
-          <Link
-            href="/register"
-            className="hover:text-brand underline underline-offset-4"
-          >
-            Don&apos;t have an account? Sign Up
-          </Link>
-        </p>
+              <Link
+                href="/register"
+                className="hover:text-brand underline underline-offset-4"
+              >
+                Don&apos;t have an account? Sign Up
+              </Link>
+            </p>
           </div>
-          
         </div>
       </div>
     </div>

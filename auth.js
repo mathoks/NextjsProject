@@ -7,6 +7,13 @@ import Credentials from "next-auth/providers/credentials";
 import { Pool } from "@neondatabase/serverless";
 import { PrismaNeon } from "@prisma/adapter-neon";
 import { PrismaClient } from "@prisma/client";
+import {encode} from 'next-auth/jwt'
+import { fromDate } from "./app/lib/utills/expiration";
+import Cookies from "cookies";
+
+
+
+
 
 const neon = new Pool({
   connectionString: process.env.POSTGRES_PRISMA_URL,
@@ -37,22 +44,22 @@ const providers = [
           },
         });
 
-        if (User && User.password) {
-          const match = bcrypt.compare(c.password, User?.passwordHash);
-          if (match) {
+        if (!User && !User?.password){
+          throw new Error(JSON.stringify("user does not exist"))
+        } 
+          const match = bcrypt.compare(c.password, User?.password);
+          if (!match) {
+            throw new Error(JSON.stringify("password does not match"))
+          }
             return {
               id: User.id,
               email: User.email,
               name: User.name,
             };
-          } else {
-            return { message: "user Not found / invalid Credentials" };
-          }
-        } else {
-          throw new Error("user Not found / invalid Credentials");
-        }
+        
       } catch (error) {
-        throw new Error("Try again something happened");
+        console.log(error)
+        throw error;
       }
     },
   }),
@@ -75,15 +82,38 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   pages: {
     signIn: "/login",
   },
+  session: {
+    strategy: "database",
+    maxAge: 60 * 60 * 24 * 4,
+  },
   callbacks: {
-    async session({ session, user, token }) {
-      return session;
+    async signIn(){
+
     },
-    async jwt({ session, token, user, account, profile }) {
-      return {
-        name: token.name ,
-        email: token.email,
-      };
+    
+    async jwt({ session, token, user, trigger, account, profile }) {
+      if(account?.provider === 'credentials'){
+        token.credentials = true
+      }
+      return token
+    },
+
+    jwt: {
+      encode: async function(params){
+          console.log(params)
+        if(params?.token?.credentials){
+          const maxAge = 60 * 60 * 7
+          const sessionToken = crypto.randomUUID()
+          const expiryDate = fromDate(maxAge)
+          await PrismaAdapter(prisma).createSession({sessionToken, userId: params.user.userId, expires: expiryDate})
+          
+        }
+        else return encode(params)
+      }
+    },
+    async session({ session, user,}) {
+      console.log(user)
+      return session;
     },
   },
 });
