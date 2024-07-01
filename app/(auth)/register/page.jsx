@@ -1,5 +1,6 @@
+import UserAuthForm from "@/app/ui/uiForms/UserAuthForm"
 import Link from "next/link"
-import  UserAuthForm  from "@/app/ui/utilComp/UserAuthForm"
+
 
 export const metadata = {
   title: "Create an account",
