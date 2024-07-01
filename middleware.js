@@ -1,12 +1,20 @@
 import { NextResponse } from "next/server";
 import { auth } from "./auth";
+import NextAuth from "next-auth";
+import { authConfig } from "./auth.cofig";
+
 
 // export {auth as middleware} from '@/auth'
 
-export default auth((request)=>{
-    const isLoggedIn = !!request.auth;
+// export default auth((request)=>{
+//     const isLoggedIn = !!request.auth;
+// console.log(request.nextUrl.pathname, isLoggedIn) 
+// })
+export default NextAuth(authConfig).auth((request)=>{
+  const isLoggedIn = !!request.auth;
+  
 console.log(request.nextUrl.pathname, isLoggedIn) 
-})
+});
 
 export const config = {
     matcher: [

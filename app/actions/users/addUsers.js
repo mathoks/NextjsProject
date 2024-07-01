@@ -59,7 +59,7 @@ export const addUser = async function (State, formData) {
         },
         body: JSON.stringify({ email, password, name: username }),
       });
-
+      console.log(response.ok)
       if (!response.ok) {
         throw new Error("Network failed");
       }
@@ -88,9 +88,9 @@ export const addUser = async function (State, formData) {
       };
     }
   } catch (error) {
-    console.log(error);
+    
     if (error?.details) {
-      console.log(error.details);
+      
       // Return user-friendly error messages
       validatedFields = {};
       return {

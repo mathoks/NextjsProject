@@ -7,13 +7,12 @@ import Credentials from "next-auth/providers/credentials";
 import { Pool } from "@neondatabase/serverless";
 import { PrismaNeon } from "@prisma/adapter-neon";
 import { PrismaClient } from "@prisma/client";
-import {encode} from 'next-auth/jwt'
+import {encode, decode} from 'next-auth/jwt'
 import { fromDate } from "./app/lib/utills/expiration";
 import Cookies from "cookies";
-
-
-
-
+import { authConfig } from "./auth.cofig";
+import { NextResponse as res } from "next/server";
+import { nanoid } from "@reduxjs/toolkit";
 
 const neon = new Pool({
   connectionString: process.env.POSTGRES_PRISMA_URL,
@@ -21,6 +20,7 @@ const neon = new Pool({
 
 const adapter = new PrismaNeon(neon);
 const prisma = new PrismaClient({ adapter });
+
 const providers = [
   Google({
     authorization: {
@@ -51,14 +51,15 @@ const providers = [
           if (!match) {
             throw new Error(JSON.stringify("password does not match"))
           }
-            return {
+
+        return {
               id: User.id,
               email: User.email,
               name: User.name,
+              image: User.image
             };
-        
+       
       } catch (error) {
-        console.log(error)
         throw error;
       }
     },
@@ -74,46 +75,85 @@ export const providerMap = providers.map((provider) => {
   }
 });
 
-export const { handlers, auth, signIn, signOut } = NextAuth({
-  basePath: "/api/auth",
-  adapter: PrismaAdapter(prisma),
-  debug: process.env.NODE_ENV !== "production" ? true : false,
-  providers,
-  pages: {
-    signIn: "/login",
-  },
-  session: {
-    strategy: "database",
-    maxAge: 60 * 60 * 24 * 4,
-  },
-  callbacks: {
-    async signIn(){
 
+export const {auth, handlers, signIn, signOut }= NextAuth(req => {
+  
+  return {
+    adapter: PrismaAdapter(prisma),
+    ...authConfig,
+    providers,
+    session: {
+    strategy: "jwt",
+  },
+//   jwt:  {
+//      encode: async function({maxAge, token, salt, secret }){ 
+//      if(token?.credentials){
+//       const sessionToken = crypto.randomUUID()
+//       const expiryDate = fromDate(maxAge)
+//       const createSession =  await PrismaAdapter(prisma).createSession({sessionToken, userId: token?.sub , expires: expiryDate})
+//       if(createSession){
+//         const response = res.next()
+//         response.cookies.set({ name: 'authjs.session-token', value: sessionToken, expires: expiryDate, maxAge })
+//         console.log(res.next().cookies)
+//         return sessionToken
+//       }
+//      }
+//      else return encode({token, salt, secret})
+//   },
+
+//   decode: async function({token, secret , salt }){
+//     if(token?.credentials){
+//       return null
+//     }
+//     return decode({token, secret, salt})
+//   }
+// },
+callbacks: {
+    async signIn({user, profile , account, credentials}){
+      // console.log(user, profile, account, credentials)
+      // const sessionToken = getCookie(req, 'authjs.session-token')
+
+      
+    //   if(sessionToken){
+    //     const hasSession = await prisma.session.findUnique({
+    //     where : {
+    //       sessionToken : sessionToken
+    //     }
+        
+    //   })
+    //   await PrismaAdapter(prisma).updateSession({sessionToken : hasSession.sessionToken})
+    // }
+    //   if(hasSession !== null){
+        
+    //   }
+      // const sessionToken = crypto.randomUUID()
+      // const expiryDate = fromDate(maxAge)
+      // const createSession =  await PrismaAdapter(prisma).createSession({sessionToken, userId: token?.sub , expires: expiryDate})
+      // if(createSession){
+      //   return true
+      // }
+      return true
     },
     
-    async jwt({ session, token, user, trigger, account, profile }) {
-      if(account?.provider === 'credentials'){
-        token.credentials = true
-      }
-      return token
+    // async redirect({ url, baseUrl }) {
+    //   // Allows relative callback URLs
+    //   if (url.startsWith("/")) return `${baseUrl}${url}`
+  
+    //   // Allows callback URLs on the same origin
+    //   if (new URL(url).origin === baseUrl) return url
+  
+    //   return baseUrl
+    // },
+
+    async jwt({ token, user, trigger, account, profile }) {
+        return token
     },
 
-    jwt: {
-      encode: async function(params){
-          console.log(params)
-        if(params?.token?.credentials){
-          const maxAge = 60 * 60 * 7
-          const sessionToken = crypto.randomUUID()
-          const expiryDate = fromDate(maxAge)
-          await PrismaAdapter(prisma).createSession({sessionToken, userId: params.user.userId, expires: expiryDate})
-          
-        }
-        else return encode(params)
-      }
+    async session({ session, user, token }) {
+      console.log(session, user, token, 'pimp')
+      return session
     },
-    async session({ session, user,}) {
-      console.log(user)
-      return session;
-    },
-  },
-});
+  }
+  }
+})
+

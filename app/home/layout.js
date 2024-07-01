@@ -4,6 +4,7 @@ import "@/app/globals.css";
 import Nav from "../ui/Nav";
 import { HeroPage } from "../ui/HeroPage";
 import Footer from "../ui/utilComp/Footer";
+import { SessionProvider } from "next-auth/react";
 
 
 
@@ -18,7 +19,7 @@ export const metadata = {
 };
 
 export default async function homeLayout({children, tab, arrivals, ...rest}) {
-//     const session = await auth()
+ 
   
   
 //   if(session?.user){
@@ -32,7 +33,7 @@ export default async function homeLayout({children, tab, arrivals, ...rest}) {
   return (
    
     <>
-     
+      <SessionProvider baseUrl={"/api/auth"}>
       <header className="bg-[#6A0DAD] fixed  top-0 z-50">
       
       <Nav/>
@@ -55,6 +56,7 @@ export default async function homeLayout({children, tab, arrivals, ...rest}) {
       
       
       </main>
+      </SessionProvider>
       </>
     
   );

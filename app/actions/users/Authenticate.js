@@ -2,6 +2,9 @@
 import { auth, signIn } from "@/auth";
 import joi from "joi";
 import { AuthError } from "next-auth";
+import { redirect } from "next/navigation";
+
+
 
 const FormSchema = joi.object({
   email: joi
@@ -16,6 +19,7 @@ const State = {
     name: ''
   },
   message: "",
+  success: null
 };
 
 /**
@@ -30,7 +34,7 @@ const State = {
 export const Authenticate = async function (State, formData) {
   const formAction = formData?.get("Credentials");
   let validatedFields = {};
-  const session = await auth();
+  
   // 2. Check provider ID and Authenticate (handle different providers)
   if (formAction === "credentials") {
     try {
@@ -62,12 +66,8 @@ export const Authenticate = async function (State, formData) {
     try {
       // Destructure validated data
       const { email, password } = validatedFields;
-      await signIn(formAction, { password, email });
-      return {
-        success: true,
-        message: "Successfully authenticated!",
-        errors: {},
-      };
+      await signIn(formAction, { password, email , redirectTo: `/Dashboard/${email}` });
+    
     } catch (error) {
       if (error instanceof AuthError) {
         if (error.type === "CallbackRouteError" && !error?.cause) {
@@ -113,4 +113,5 @@ export const Authenticate = async function (State, formData) {
       message: `Successfully authenticated with ${"google"}!`,
     };
   }
+  
 };

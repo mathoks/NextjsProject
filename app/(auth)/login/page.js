@@ -111,11 +111,11 @@ export default function SignInPage() {
                       >
                         {state?.errors.name === "password" ? (
                           <p className="text-sm text-red-500">
-                            {state?.errors.error}
+                            {state?.errors?.error}
                           </p>
-                        ) : states?.errors.name === "password" ? (
+                        ) : states?.errors?.name === "password" ? (
                           <p className="text-sm text-red-500">
-                            {states?.errors.error}
+                            {states?.errors?.error}
                           </p>
                         ) : (
                           ""
@@ -131,8 +131,8 @@ export default function SignInPage() {
                   name={name}
                   disabled={
                     (name === "Credentials" &&
-                      states.errors.error !== undefined) ||
-                    state.errors.error !== undefined
+                      states?.errors?.error !== undefined) ||
+                    state?.errors?.error !== undefined
                   }
                 >
                   <span>Sign in with {name}</span>

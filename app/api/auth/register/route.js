@@ -91,20 +91,20 @@ export  async function POST(req) {
       
       const accounts = await prisma.account.create({
        data: {
-        user_id: newUser.id,
+        userId: newUser?.id,
         type: 'credentials',
         provider:"credentials",
-        provider_account_id: newUser.id
-       }
-      }) 
+        providerAccountId: newUser?.id,
+       }}) 
       
       if (!accounts){
-        throw new Error({message: 'Account creation failed '})
+        throw new Error(JSON.stringify("Account creation failed"))
+        
       }
       return NextResponse.json(rest, { status: 201 });
     } catch (error) {
-      console.log(error?.message)
-      return NextResponse.json({ error: "Failed to create user" }, { status: 500 });
+    
+      return NextResponse.json({ error: "Failed to create user" }, { status: 500 }, );
     }
   } else {
     // Handle other HTTP methods if needed (e.g., GET for user details)
