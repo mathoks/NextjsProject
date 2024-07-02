@@ -201,7 +201,7 @@ import { CancelOutlined } from '@mui/icons-material';
     const selected = e.target.options[e.target.selectedIndex];
     console.log(selected);
 
-    if (val) {
+    if (val || ref.current) {
       const newMode = document.createElement('li');
       newMode.value = refs;
       newMode.dataset.from = ref.current;
@@ -246,7 +246,7 @@ import { CancelOutlined } from '@mui/icons-material';
   return () => {
     locationSelect?.removeEventListener('change', handleLocationChange);
   };
-}, [val])
+}, [val, refs])
 
     useEffect (()=> setcont(locations.map(({ country }) => country)) ,[])
     return (
