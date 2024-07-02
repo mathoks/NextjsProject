@@ -182,7 +182,7 @@ import { CancelOutlined } from '@mui/icons-material';
         }
        
       }
-            e?.target.selectedIndex = 0
+            e.target.selectedIndex = 0
       
     }
     else {
