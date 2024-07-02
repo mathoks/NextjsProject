@@ -189,72 +189,64 @@ import { CancelOutlined } from '@mui/icons-material';
     } 
         },[con])
 
-   
-    useEffect(() => {
-      document?.getElementById('location').addEventListener('change', (e)=>{
-        const selected = e.target.options[e.target.selectedIndex]
-        console.log(selected)
-      })
-    if(val){
-    const parent =  document?.getElementById('loc')
-    const newMode = document.createElement('Li')
-    newMode.setAttribute('value', refs)
-    newMode.setAttribute('data-from', ref.current)
-    const text = document.createTextNode(val)
-    // newMode.appendChild(text)
-    newMode.innerHTML = `<span id = ${refs}>${val} <i data-curr= ${refs} class="fa fa-close"></i></span>`
-    newMode.style.borderRadius = '9999px'
-       newMode.style.padding = '10px 16px'
-      newMode.style.backgroundColor='#6A0DAD'
-      newMode.style.boxShadow = '0px 5px 10px rgba(0,0,0,0.1)'
-      parent.appendChild(newMode)
-     newMode.addEventListener('click', (e)=> {
-        e.stopPropagation()
-        console.log(newMode.parentNode.children.length)
-      if(e.target.id === 'country'){
-        console.log(newMode.getAttribute('data-from'))
-        // newMode.parentNode.childNodes.forEach(element => {
-        // return element.remove()
-        // });
-        newMode.parentElement.innerHTML = '';
-        setcont(locations.map(({country})=> country))
-        setmessage('chose a country, state, market')
-      }
-      if(e.target.id === 'state'){
-    
-        newMode.remove()
-        newMode.nextElementSibling.remove()
-       let newfile =  locations.filter(({country})=> country === newMode.getAttribute('data-from') )
-        
-        setcont(newfile[0].state)
+   useEffect(() => {
+  const locationSelect = document?.getElementById('location');
 
-        setmessage('chose a country, state, market')
-      }
-      if(e.target.id === 'market'){
-        newMode.remove()
-        setcont((prev)=>prev)
-      }
-      })
+  if (!locationSelect) return; // Early return if element not found
 
-      
-    // newMode.style.display = 'absolute'
-    // newMode.style.outline = '1px solid #F5F5F5'
-      
-      // '#F5F5F5'
-    // newMode.style.position = 'absolute'
-      
-     
+  const parent = document.getElementById('loc');
+
+  const handleLocationChange = (e) => {
+    const selected = e.target.options[e.target.selectedIndex];
+    console.log(selected);
+
+    if (val) {
+      const newMode = document.createElement('li');
+      newMode.value = refs;
+      newMode.dataset.from = ref.current;
+      newMode.innerHTML = `<span id="${refs}">${val} <i data-curr="${refs}" class="fa fa-close"></i></span>`;
+
+      newMode.style.borderRadius = '9999px';
+      newMode.style.padding = '10px 16px';
+      newMode.style.backgroundColor = '#6A0DAD';
+      newMode.style.boxShadow = '0px 5px 10px rgba(0,0,0,0.1)';
+
+      parent.appendChild(newMode);
+
+      newMode.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const siblings = newMode.parentNode.children;
+
+        if (e.target.id === 'country') {
+          console.log(newMode.dataset.from);
+          newMode.parentElement.innerHTML = '';
+          setcont(locations.map(({ country }) => country));
+          setmessage('chose a country, state, market');
+        } else if (e.target.id === 'state') {
+          
+          newMode.nextElementSibling?.remove(); // Optional chaining for safety
+          newMode.remove();
+          const filteredLocations = locations.filter(
+            ({ country }) => country === newMode.dataset.from
+          );
+          setcont(filteredLocations[0]?.state || []); // Set to empty array if no state found
+          setmessage('chose a country, state, market');
+        } else if (e.target.id === 'market') {
+          newMode.remove();
+          setcont((prev) => prev); // No change for market selection
+        }
+      });
     }
-    
-     console.log(location) 
-    
-    
-    handle();
-    }, [val])
+  };
 
-    useEffect(()=>{
-     setcont(locations.map(({state, country}, id)=> country))
-    },[])
+  locationSelect.addEventListener('change', handleLocationChange);
+
+  // Cleanup function (optional)
+  return () => {
+    locationSelect?.removeEventListener('change', handleLocationChange);
+  };
+}, [val]);
+
     
     return (
         <div className='flex flex-col space-y-4 mx-auto w-[99%]'>
