@@ -38,7 +38,7 @@ const StoreForm = () => {
               autoCorrect="off"
               required
               onBlur={dispatch2}
-              className='w-full p-4 shadow  rounded-md'
+              className='w-full p-4 shadow  rounded-md fit_placeholder'
               pattern='[a-zA-Z0-9]{3,20}'
             //   disabled={isLoading || isGitHubLoading}
             />

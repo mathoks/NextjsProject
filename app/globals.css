@@ -170,17 +170,32 @@ swiper-container {
 }
 
 
-.fit-placeholder {
+.fit_placeholder {
   width: fit-content;
-  background-color: #6A0DAD;
-  color: #ffffff;
+  background-color: #ffff;
+  color: black;
   border: none;
   padding: 0.5em;
+  margin-left: 6px;
+
 }
 
-.fit-placeholder::placeholder {
+.fit_placeholder::placeholder {
   color: #ffffff;
 }
+
+.fit-placeholder {
+  color: #ffffff;
+}
+
+
+
+input[placeholder]{
+  width: auto;
+  border: none;
+}
+
+
 
 .shadow-photo {
   background-color: 'inherit';

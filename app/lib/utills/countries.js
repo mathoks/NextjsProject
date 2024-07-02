@@ -108,87 +108,92 @@ import { CancelOutlined } from '@mui/icons-material';
     const delimiter = ", ";
      const [message, setmessage] = useState('chose a country, state, market')
     const ref = useRef(null)
-    const handleInput = React.useCallback((e)=>
-        {
-            console.log(e.target)
-            const option1 = westAfricanCountries.filter(({name})=> { console.log(name === e?.target?.value); return name === e?.target?.value})
-            if(Array.isArray(option1) && option1?.length > 0 ){
-                setstate(option1[0].states)
-            }
-            
-        },[])
-
-
-        const handle = useCallback((e)=>{
-        
-          let size = 1;
-          let nation = null
-          console.log(e?.target?.selectedOptions[0].innerText)
-          if(e?.target?.selectedOptions?.length > 0){
-            // size = e?.target?.selectedOptions.length
-            
-            for (let i=0; i < size ; i++ ){
-              console.log(e?.target?.selectedOptions[0].dataset)
-              if(i === 0 && e?.target?.selectedOptions[0].dataset.location === 'country'){
-
-               nation =  locations.filter(({country})=> 
-                country === e?.target?.selectedOptions[0].innerText )
-              
-              if(Array.isArray(nation) && nation?.length > 0 ){
-                ref.current = e?.target?.selectedOptions[0].innerText
-                setref('country')
-                  console.log(ref.current)
-              
-              setval(e?.target.selectedOptions[0].innerText)
-              setcont(()=>nation[0].state)
-              setmessage('chose a state')
-              // setLocation((prev)=>prev.push(e?.target?.selectedOptions[0].innerText))
-              e.target.scrollTo({top: 0, behavior: 'smooth'})
-            }
-              
-          break;
-         } 
     
-         if(i === 0 && e?.target?.selectedOptions[0].dataset.location === 'state'){
-          nation =  con.filter(({name})=> 
-                 name === e?.target?.selectedOptions[0].innerText )
-            console.log(Array.isArray(nation[0].markets))
-            if(Array.isArray(nation) && nation?.length > 0 ){
-              // ref.current = 'state'
-              setref('state')
-              setval(e?.target.selectedOptions[0].innerText)
-              // ref.current = e?.target?.selectedOptions[0].innerText
-              setcont(nation[0].markets)
-              setmessage('chose a market')
-              e.target.scrollTo({top: 0, behavior: 'smooth'})
-          }
-          break;
-        }
 
-        if(i === 0 && e?.target?.selectedOptions[0].dataset.location === 'market'){
-          nation =  con.filter(({market})=> 
-                 market === e?.target?.selectedOptions[0].innerText )
-            console.log(Array.isArray(nation[0]))
-            if(Array.isArray(nation) && nation?.length > 0 ){
-              // ref.current = 'market'
-              setref('market')
-              setval(e?.target.selectedOptions[0].innerText)
-              // ref.current = e?.target?.selectedOptions[0].innerText
-              setmessage((prev)=>prev)
-              setcont((prev)=>prev)
-              //e.target.scrollTo({top: 0, behavior: 'smooth'})
-          }
-          break;
-        }
-       
-      }
-            e.target.selectedIndex = 0
-      
-    }
-    else {
-      
-    } 
-        },[con])
+
+        const handle = useCallback(
+          (e) => {
+            let size = 1;
+            let nation = null;
+            console.log(e?.target?.selectedOptions[0].innerText);
+            if (e?.target?.selectedOptions?.length > 0) {
+              // size = e?.target?.selectedOptions.length
+
+              for (let i = 0; i < size; i++) {
+                console.log(e?.target?.selectedOptions[0].dataset);
+                if (
+                  i === 0 &&
+                  e?.target?.selectedOptions[0].dataset.location === "country"
+                ) {
+                  nation = locations.filter(
+                    ({ country }) =>
+                      country === e?.target?.selectedOptions[0].innerText
+                  );
+
+                  if (Array.isArray(nation) && nation?.length > 0) {
+                    ref.current = e?.target?.selectedOptions[0].innerText;
+                    setref("country");
+                    console.log(ref.current);
+
+                    setval(e?.target.selectedOptions[0].innerText);
+                    setcont(() => nation[0].state);
+                    setmessage("chose a state");
+                    // setLocation((prev)=>prev.push(e?.target?.selectedOptions[0].innerText))
+                    e.target.scrollTo({ top: 0, behavior: "smooth" });
+                  }
+
+                  break;
+                }
+
+                if (
+                  i === 0 &&
+                  e?.target?.selectedOptions[0].dataset.location === "state"
+                ) {
+                  nation = con.filter(
+                    ({ name }) =>
+                      name === e?.target?.selectedOptions[0].innerText
+                  );
+                  console.log(Array.isArray(nation[0].markets));
+                  if (Array.isArray(nation) && nation?.length > 0) {
+                    // ref.current = 'state'
+                    setref("state");
+                    setval(e?.target.selectedOptions[0].innerText);
+                    // ref.current = e?.target?.selectedOptions[0].innerText
+                    setcont(nation[0].markets);
+                    setmessage("chose a market");
+                    e.target.scrollTo({ top: 0, behavior: "smooth" });
+                  }
+                  break;
+                }
+
+                if (
+                  i === 0 &&
+                  e?.target?.selectedOptions[0].dataset.location === "market"
+                ) {
+                  nation = con.filter(
+                    ({ market }) =>
+                      market === e?.target?.selectedOptions[0].innerText
+                  );
+                  console.log(Array.isArray(nation[0]));
+                  if (Array.isArray(nation) && nation?.length > 0) {
+                    // ref.current = 'market'
+                    setref("market");
+                    setval(e?.target.selectedOptions[0].innerText);
+                    const mainBox = document?.getElementById('location');
+                    setmessage("Done");
+                    mainBox.blur()
+                    setcont((prev) => prev);
+                    //e.target.scrollTo({top: 0, behavior: 'smooth'})
+                  }
+                  break;
+                }
+              }
+              e.target.selectedIndex = 0;
+            } else {
+            }
+          },
+          [con]
+        );
 
    useEffect(() => {
   const locationSelect = document?.getElementById('location');
@@ -200,14 +205,17 @@ import { CancelOutlined } from '@mui/icons-material';
   const handleLocationChange = (e) => {
     const selected = e.target.options[e.target.selectedIndex];
     console.log(selected);
-
-    if (val || ref.current) {
+    console.log(parent.childElementCount)
+    
+    if (val && parent.childElementCount < 3) {
+      
       const newMode = document.createElement('li');
       newMode.value = refs;
       newMode.dataset.from = ref.current;
-      newMode.innerHTML = `<input value=${refs} placeholder= ${refs} id="${refs}"> <i data-curr="${refs}" class="fa fa-close"></i></input>`;
-     nextMode.classList.add('fit-placeholder')
+      newMode.innerHTML = `<span id="${refs}"> ${val}  <i data-curr="${refs}" class="fa fa-close"></i></span>`;
+    
       newMode.style.borderRadius = '9999px';
+    
       newMode.style.padding = '10px 16px';
       newMode.style.backgroundColor = '#6A0DAD';
       newMode.style.boxShadow = '0px 5px 10px rgba(0,0,0,0.1)';
@@ -235,12 +243,18 @@ import { CancelOutlined } from '@mui/icons-material';
         } else if (e.target.id === 'market') {
           newMode.remove();
           setcont((prev) => prev); // No change for market selection
+          
         }
       });
+      console.log(parent.childElementCount)
+    }
+    else {
+      document.getElementById('market').innerHTML = `<span id="${refs}"> ${val}  <i data-curr="${refs}" class="fa fa-close"></i></span>`;
+      locationSelect.blur()
     }
   };
 
-  locationSelect.addEventListener('change', handleLocationChange);
+  locationSelect.addEventListener('change',  handleLocationChange);
 
   // Cleanup function (optional)
   return () => {
@@ -255,10 +269,10 @@ import { CancelOutlined } from '@mui/icons-material';
       <section className='flex flex-col justify-start  space-y-4  w-[99%]  m-1'>
        <label>choose location</label>
        
-       <ul id='loc' className='flex space-x-2 mb-8 overflow-x-scroll text-[12px] max-w-[99%] pl-1 text-nowrap m-1  text_shadow2' ></ul>
+       <ul id='loc' className=' z-50 flex space-x-2 mb-8 overflow-x-scroll text-[12px] max-w-[99%] pl-1 text-nowrap m-1  text_shadow2' ></ul>
        
-        <select onInput={handle} onBeforeInput={()=>console.log(';;;')}   id='location' name='location' enterKeyHint = 'done' required  className=' p-4 shadow flex w-[97%]'>
-        {<option disabled value= '' selected >{message}</option>}
+        <select suppressHydrationWarning suppressContentEditableWarning onInput={handle} onBeforeInput={()=>console.log(';;;')}   id='location' name='location' enterKeyHint = 'done' required  className=' p-4 shadow flex w-[97%] fit_placeholder'>
+        {<option disabled selected defaultValue={''} >{message}</option>}
       { con?.map((obj, id)=> <option   value={ obj.hasOwnProperty('name') ?  obj.name : obj.hasOwnProperty('market')? obj.market : obj} data-location ={ obj.hasOwnProperty('name') ? 'state' : obj.hasOwnProperty('market') ? 'market' : 'country'} key={id}  className='w-fit text-sm'>
                
                 {obj.hasOwnProperty('name') ?  obj.name : obj.hasOwnProperty('market') ? obj.market : obj}
