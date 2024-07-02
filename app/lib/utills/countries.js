@@ -152,6 +152,7 @@ import { CancelOutlined } from '@mui/icons-material';
               setval(e?.target.selectedOptions[0].innerText)
               
               setcont(nation[0].markets)
+              setmessage('chose a market')
               e.target.scrollTo({top: 0, behavior: 'smooth'})
           }
           break;
@@ -164,7 +165,7 @@ import { CancelOutlined } from '@mui/icons-material';
             if(Array.isArray(nation) && nation?.length > 0 ){
               ref.current = 'market'
               setval(e?.target.selectedOptions[0].innerText)
-              setmessage('chose a market')
+              setmessage((prev)=>prev)
               setcont((prev)=>prev)
               //e.target.scrollTo({top: 0, behavior: 'smooth'})
           }
@@ -197,10 +198,12 @@ import { CancelOutlined } from '@mui/icons-material';
     // newMode.appendChild(text)
     newMode.innerHTML = `${val} <i class="fa fa-close"></i>`
     // newMode.style.display = 'absolute'
-    newMode.style.outline = '1px solid #cccccc'
+    // newMode.style.outline = '1px solid #F5F5F5'
       newMode.style.borderRadius = '9999px'
-      newMode.style.padding = '6px 12px'
-      newMode.style.backgroundColor='#ddd'
+       newMode.style.padding = '10px 16px'
+      newMode.style.backgroundColor='#6A0DAD'
+      newMode.style.boxShadow = '0px 5px 10px rgba(0,0,0,0.1)'
+      // '#F5F5F5'
     // newMode.style.position = 'absolute'
       
      parent.appendChild(newMode)
@@ -220,9 +223,11 @@ import { CancelOutlined } from '@mui/icons-material';
     return (
         <div className='flex flex-col space-y-4 mx-auto w-[99%]'>
         
-      <section className='flex flex-col justify-start  space-y-4  w-[99%] overflow-y-clip m-1'>
+      <section className='flex flex-col justify-start  space-y-4  w-[99%]  m-1'>
        <label>choose location</label>
-       <ul id='loc' className='flex space-x-2 mb-8 overflow-x-scroll max-w-[99%] pl-1 text-nowrap m-1' onClick={handledelete}></ul>
+       
+       <ul id='loc' className='flex space-x-2 mb-8 overflow-x-scroll max-w-[99%] pl-1 text-nowrap m-1  text_shadow2' onClick={handledelete}></ul>
+       
         <select onInput={handle}   id='location' name='location' enterKeyHint = 'done' required  className=' p-4 shadow flex w-[97%]'>
        <option value= {undefined} >{message}</option>
       { con.map((obj, id)=> <option   value={ obj.hasOwnProperty('name') ?  obj.name : obj.hasOwnProperty('market')? obj.market : obj} data-location ={ obj.hasOwnProperty('name') ? 'state' : obj.hasOwnProperty('market') ? 'market' : 'country'} key={id} className='w-fit text-sm'>
