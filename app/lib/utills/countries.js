@@ -205,7 +205,7 @@ import { CancelOutlined } from '@mui/icons-material';
       const newMode = document.createElement('li');
       newMode.value = refs;
       newMode.dataset.from = ref.current;
-      newMode.innerHTML = `<span id="${refs}">${val} <i data-curr="${refs}" class="fa fa-close"></i></span>`;
+      newMode.innerHTML = `<input value=${refs} placeholder= ${refs} id="${refs}"> <i data-curr="${refs}" class="fa fa-close"></i></input>`;
 
       newMode.style.borderRadius = '9999px';
       newMode.style.padding = '10px 16px';
