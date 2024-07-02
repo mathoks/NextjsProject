@@ -206,7 +206,7 @@ import { CancelOutlined } from '@mui/icons-material';
       newMode.value = refs;
       newMode.dataset.from = ref.current;
       newMode.innerHTML = `<input value=${refs} placeholder= ${refs} id="${refs}"> <i data-curr="${refs}" class="fa fa-close"></i></input>`;
-
+     nextMode.classList.add('fit-placeholder')
       newMode.style.borderRadius = '9999px';
       newMode.style.padding = '10px 16px';
       newMode.style.backgroundColor = '#6A0DAD';
