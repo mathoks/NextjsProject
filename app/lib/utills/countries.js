@@ -103,7 +103,7 @@ import { CancelOutlined } from '@mui/icons-material';
     const [state, setstate] = useState([])
     const [con, setcont] = useState([])
     const [val, setval] = useState('')
-    // const [val, seton] = useState(true)
+     const [message, setmessage] = useState('chose a country, state, market')
     const ref = useRef(null)
     const handleInput = React.useCallback((e)=>
         {
@@ -136,6 +136,7 @@ import { CancelOutlined } from '@mui/icons-material';
                 console.log(ref.current)
               setval(e?.target.selectedOptions[0].innerText)
               setcont(()=>nation[0].state)
+              setmessage('chose a state')
               e.target.scrollTo({top: 0, behavior: 'smooth'})
             }
               
@@ -163,7 +164,7 @@ import { CancelOutlined } from '@mui/icons-material';
             if(Array.isArray(nation) && nation?.length > 0 ){
               ref.current = 'market'
               setval(e?.target.selectedOptions[0].innerText)
-              
+              setmessage('chose a market')
               setcont((prev)=>prev)
               //e.target.scrollTo({top: 0, behavior: 'smooth'})
           }
@@ -223,7 +224,7 @@ import { CancelOutlined } from '@mui/icons-material';
        <label>choose location</label>
        <ul id='loc' className='flex space-x-2 mb-8 overflow-x-scroll max-w-[99%] pl-1 text-nowrap m-1' onClick={handledelete}></ul>
         <select onInput={handle}   id='location' name='location' enterKeyHint = 'done' required  className=' p-4 shadow flex w-[97%]'>
-       <option>chose country, state, market</option>
+       <option value= {undefined} >{message}</option>
       { con.map((obj, id)=> <option   value={ obj.hasOwnProperty('name') ?  obj.name : obj.hasOwnProperty('market')? obj.market : obj} data-location ={ obj.hasOwnProperty('name') ? 'state' : obj.hasOwnProperty('market') ? 'market' : 'country'} key={id} className='w-fit text-sm'>
                 {obj.hasOwnProperty('name') ?  obj.name : obj.hasOwnProperty('market') ? obj.market : obj}
             </option>)
