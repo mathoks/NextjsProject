@@ -117,7 +117,7 @@ import { CancelOutlined } from '@mui/icons-material';
 
 
         const handle = useCallback((e)=>{
-          console.log(e?.target?.selectedOptions)
+        
           let size = 1;
           let nation = null
           console.log(e?.target?.selectedOptions[0].innerText)
@@ -130,7 +130,7 @@ import { CancelOutlined } from '@mui/icons-material';
 
               nation =  locations.filter(({country})=> 
                 country === e?.target?.selectedOptions[0].innerText )
-              console.log(nation[0].state)
+              
               if(Array.isArray(nation) && nation?.length > 0 ){
                 ref.current = 'country'
                 console.log(ref.current)
@@ -180,11 +180,7 @@ import { CancelOutlined } from '@mui/icons-material';
     } 
         },[con, val])
 
-    const handledelete = (e)=>{
-      e.stopPropagation()
-      console.log(e)
-    }    
-
+   
     useEffect(() => {
       document?.getElementById('location').addEventListener('change', (e)=>{
         const selected = e.target.options[e.target.selectedIndex]
@@ -196,17 +192,35 @@ import { CancelOutlined } from '@mui/icons-material';
     newMode.setAttribute('value', ref.current)
     const text = document.createTextNode(val)
     // newMode.appendChild(text)
-    newMode.innerHTML = `${val} <i class="fa fa-close"></i>`
-    // newMode.style.display = 'absolute'
-    // newMode.style.outline = '1px solid #F5F5F5'
-      newMode.style.borderRadius = '9999px'
+    newMode.innerHTML = `<span id = ${ref.current}>${val} <i data-curr= ${ref.current} class="fa fa-close"></i></span>`
+    newMode.style.borderRadius = '9999px'
        newMode.style.padding = '10px 16px'
       newMode.style.backgroundColor='#6A0DAD'
       newMode.style.boxShadow = '0px 5px 10px rgba(0,0,0,0.1)'
+      parent.appendChild(newMode)
+     newMode.addEventListener('click', (e)=> {
+        e.stopPropagation()
+      if(e.target.id === 'country'){
+        
+        newMode.remove()
+        setcont(locations.map(({state, country}, id)=> country))
+        setmessage('chose a country, state, market')
+      }
+      if(e.target.id === 'state'){
+        
+        newMode.remove()
+        console.log(con)
+        setcont(con)
+        setmessage('chose a country, state, market')
+      }
+      })
+    // newMode.style.display = 'absolute'
+    // newMode.style.outline = '1px solid #F5F5F5'
+      
       // '#F5F5F5'
     // newMode.style.position = 'absolute'
       
-     parent.appendChild(newMode)
+     
     }
     
       
@@ -217,7 +231,6 @@ import { CancelOutlined } from '@mui/icons-material';
 
     useEffect(()=>{
      setcont(locations.map(({state, country}, id)=> country))
-      console.log(con);
     },[])
     
     return (
@@ -226,7 +239,7 @@ import { CancelOutlined } from '@mui/icons-material';
       <section className='flex flex-col justify-start  space-y-4  w-[99%]  m-1'>
        <label>choose location</label>
        
-       <ul id='loc' className='flex space-x-2 mb-8 overflow-x-scroll max-w-[99%] pl-1 text-nowrap m-1  text_shadow2' onClick={handledelete}></ul>
+       <ul id='loc' className='flex space-x-2 mb-8 overflow-x-scroll text-[12px] max-w-[99%] pl-1 text-nowrap m-1  text_shadow2' ></ul>
        
         <select onInput={handle}   id='location' name='location' enterKeyHint = 'done' required  className=' p-4 shadow flex w-[97%]'>
        <option value= {undefined} >{message}</option>
