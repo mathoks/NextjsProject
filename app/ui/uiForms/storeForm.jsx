@@ -16,7 +16,7 @@ const StoreForm = () => {
      const [states, dispatch2] = useFormState(validate, initialState);
 
   return (
-    <div className='text-black  mx-auto'>
+    <div className='text-black  mx-auto w-[80%]'>
     
     <span id="customer-error"  aria-live="polite" className=" mx-auto text-center" aria-atomic="true" >
         {state?.message &&
@@ -104,12 +104,12 @@ const StoreForm = () => {
           }
         </span>
         </section>
-        
+        <section className='w- [97%]'>
             <Countries/>
-        
+        </section>
         <section className='flex flex-col justify-start  space-y-2'>
         <label className="" htmlFor="Username"> Username</label>
-        <input id="username"
+        <input id="usern"
               placeholder="name@123"
               type="text"
               autoCapitalize="none"
@@ -132,34 +132,10 @@ const StoreForm = () => {
           }
         </span>
         </section>
-        <section className='flex flex-col justify-start  space-y-2'>
-        <label className="" htmlFor="Username"> Username</label>
-        <input id="username"
-              placeholder="name@123"
-              type="text"
-              autoCapitalize="none"
-              autoComplete="name"
-              name='username'
-              autoCorrect="off"
-              required
-              onBlur={dispatch2}
-              className='w-full p-4 shadow  rounded-md'
-              pattern='[a-zA-Z0-9]{6,10}'
-            //   disabled={isLoading || isGitHubLoading}
-            />
 
-        <span id="customer-error"  aria-live="polite" className=" text-left" aria-atomic="true" >
-        {(state?.errors.name === 'username' || states?.errors?.name === 'username') &&
-            <p className="text-sm text-red-500" >
-              {state?.errors.error || states?.errors.error }
-              
-            </p>
-          }
-        </span>
-        </section>
         <section className='flex flex-col justify-start  space-y-2'>
         <label className="" htmlFor="Username"> Username</label>
-        <input id="username"
+        <input id="uername"
               placeholder="name@123"
               type="text"
               autoCapitalize="none"
