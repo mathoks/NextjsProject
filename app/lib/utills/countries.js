@@ -103,6 +103,9 @@ import { CancelOutlined } from '@mui/icons-material';
     const [state, setstate] = useState([])
     const [con, setcont] = useState([])
     const [val, setval] = useState('')
+    const [refs, setref] = useState('country')
+    const [location, setLocation] = useState([])
+    const delimiter = ", ";
      const [message, setmessage] = useState('chose a country, state, market')
     const ref = useRef(null)
     const handleInput = React.useCallback((e)=>
@@ -128,15 +131,18 @@ import { CancelOutlined } from '@mui/icons-material';
               console.log(e?.target?.selectedOptions[0].dataset)
               if(i === 0 && e?.target?.selectedOptions[0].dataset.location === 'country'){
 
-              nation =  locations.filter(({country})=> 
+               nation =  locations.filter(({country})=> 
                 country === e?.target?.selectedOptions[0].innerText )
               
               if(Array.isArray(nation) && nation?.length > 0 ){
-                ref.current = 'country'
-                console.log(ref.current)
+                ref.current = e?.target?.selectedOptions[0].innerText
+                setref('country')
+                  console.log(ref.current)
+              
               setval(e?.target.selectedOptions[0].innerText)
               setcont(()=>nation[0].state)
               setmessage('chose a state')
+              // setLocation((prev)=>prev.push(e?.target?.selectedOptions[0].innerText))
               e.target.scrollTo({top: 0, behavior: 'smooth'})
             }
               
@@ -148,9 +154,10 @@ import { CancelOutlined } from '@mui/icons-material';
                  name === e?.target?.selectedOptions[0].innerText )
             console.log(Array.isArray(nation[0].markets))
             if(Array.isArray(nation) && nation?.length > 0 ){
-              ref.current = 'state'
+              // ref.current = 'state'
+              setref('state')
               setval(e?.target.selectedOptions[0].innerText)
-              
+              // ref.current = e?.target?.selectedOptions[0].innerText
               setcont(nation[0].markets)
               setmessage('chose a market')
               e.target.scrollTo({top: 0, behavior: 'smooth'})
@@ -163,8 +170,10 @@ import { CancelOutlined } from '@mui/icons-material';
                  market === e?.target?.selectedOptions[0].innerText )
             console.log(Array.isArray(nation[0]))
             if(Array.isArray(nation) && nation?.length > 0 ){
-              ref.current = 'market'
+              // ref.current = 'market'
+              setref('market')
               setval(e?.target.selectedOptions[0].innerText)
+              // ref.current = e?.target?.selectedOptions[0].innerText
               setmessage((prev)=>prev)
               setcont((prev)=>prev)
               //e.target.scrollTo({top: 0, behavior: 'smooth'})
@@ -178,7 +187,7 @@ import { CancelOutlined } from '@mui/icons-material';
     else {
       
     } 
-        },[con, val])
+        },[con])
 
    
     useEffect(() => {
@@ -186,13 +195,14 @@ import { CancelOutlined } from '@mui/icons-material';
         const selected = e.target.options[e.target.selectedIndex]
         console.log(selected)
       })
-    if(val && ref.current){
+    if(val){
     const parent =  document?.getElementById('loc')
     const newMode = document.createElement('Li')
-    newMode.setAttribute('value', ref.current)
+    newMode.setAttribute('value', refs)
+    newMode.setAttribute('data-from', ref.current)
     const text = document.createTextNode(val)
     // newMode.appendChild(text)
-    newMode.innerHTML = `<span id = ${ref.current}>${val} <i data-curr= ${ref.current} class="fa fa-close"></i></span>`
+    newMode.innerHTML = `<span id = ${refs}>${val} <i data-curr= ${refs} class="fa fa-close"></i></span>`
     newMode.style.borderRadius = '9999px'
        newMode.style.padding = '10px 16px'
       newMode.style.backgroundColor='#6A0DAD'
@@ -200,20 +210,33 @@ import { CancelOutlined } from '@mui/icons-material';
       parent.appendChild(newMode)
      newMode.addEventListener('click', (e)=> {
         e.stopPropagation()
+        console.log(newMode.parentNode.children.length)
       if(e.target.id === 'country'){
-        
-        newMode.remove()
-        setcont(locations.map(({state, country}, id)=> country))
+        console.log(newMode.getAttribute('data-from'))
+        newMode.parentNode.childNodes.forEach(element => {
+        return element.remove()
+        });
+        // newMode.remove()
+        setcont(locations.map(({country})=> country))
         setmessage('chose a country, state, market')
       }
       if(e.target.id === 'state'){
-        
+    
         newMode.remove()
-        console.log(con)
-        setcont(con)
+      
+       let newfile =  locations.filter(({country})=> country === newMode.getAttribute('data-from') )
+        
+        setcont(newfile[0].state)
+
         setmessage('chose a country, state, market')
       }
+      if(e.target.id === 'market'){
+        newMode.remove()
+        setcont((prev)=>prev)
+      }
       })
+
+      
     // newMode.style.display = 'absolute'
     // newMode.style.outline = '1px solid #F5F5F5'
       
@@ -223,9 +246,9 @@ import { CancelOutlined } from '@mui/icons-material';
      
     }
     
-      
+     console.log(location) 
     
-    if(handle)
+    
     handle();
     }, [val])
 
@@ -241,9 +264,11 @@ import { CancelOutlined } from '@mui/icons-material';
        
        <ul id='loc' className='flex space-x-2 mb-8 overflow-x-scroll text-[12px] max-w-[99%] pl-1 text-nowrap m-1  text_shadow2' ></ul>
        
-        <select onInput={handle}   id='location' name='location' enterKeyHint = 'done' required  className=' p-4 shadow flex w-[97%]'>
-       <option value= {undefined} >{message}</option>
-      { con.map((obj, id)=> <option   value={ obj.hasOwnProperty('name') ?  obj.name : obj.hasOwnProperty('market')? obj.market : obj} data-location ={ obj.hasOwnProperty('name') ? 'state' : obj.hasOwnProperty('market') ? 'market' : 'country'} key={id} className='w-fit text-sm'>
+        <select onInput={handle} onBeforeInput={()=>console.log(';;;')}   id='location' name='location' enterKeyHint = 'done' required  className=' p-4 shadow flex w-[97%]'>
+        {<option disabled >{message}</option>}
+        {<option defaultChecked></option>}
+      { con?.map((obj, id)=> <option   value={ obj.hasOwnProperty('name') ?  obj.name : obj.hasOwnProperty('market')? obj.market : obj} data-location ={ obj.hasOwnProperty('name') ? 'state' : obj.hasOwnProperty('market') ? 'market' : 'country'} key={id}  className='w-fit text-sm'>
+               
                 {obj.hasOwnProperty('name') ?  obj.name : obj.hasOwnProperty('market') ? obj.market : obj}
             </option>)
       }
