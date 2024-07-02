@@ -213,17 +213,17 @@ import { CancelOutlined } from '@mui/icons-material';
         console.log(newMode.parentNode.children.length)
       if(e.target.id === 'country'){
         console.log(newMode.getAttribute('data-from'))
-        newMode.parentNode.childNodes.forEach(element => {
-        return element.remove()
-        });
-        // newMode.remove()
+        // newMode.parentNode.childNodes.forEach(element => {
+        // return element.remove()
+        // });
+        newMode.parentElement.innerHTML = '';
         setcont(locations.map(({country})=> country))
         setmessage('chose a country, state, market')
       }
       if(e.target.id === 'state'){
     
         newMode.remove()
-      
+        newMode.nextElementSibling.remove()
        let newfile =  locations.filter(({country})=> country === newMode.getAttribute('data-from') )
         
         setcont(newfile[0].state)
