@@ -247,7 +247,9 @@ import { CancelOutlined } from '@mui/icons-material';
   };
 }, [val]);
 
-    
+    useEffect (()=>
+      setcont(locations.map(({ country }) => country));
+    ,[])
     return (
         <div className='flex flex-col space-y-4 mx-auto w-[99%]'>
         
