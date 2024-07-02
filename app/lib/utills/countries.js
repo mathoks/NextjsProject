@@ -103,7 +103,7 @@ import { CancelOutlined } from '@mui/icons-material';
     const [state, setstate] = useState([])
     const [con, setcont] = useState([])
     const [val, setval] = useState('')
-    const [on, seton] = useState(true)
+    // const [val, seton] = useState(true)
     const ref = useRef(null)
     const handleInput = React.useCallback((e)=>
         {
@@ -117,12 +117,13 @@ import { CancelOutlined } from '@mui/icons-material';
 
 
         const handle = useCallback((e)=>{
-          console.log(e)
-          let size = 0;
+          console.log(e?.target?.selectedOptions)
+          let size = 1;
           let nation = null
           console.log(e?.target?.selectedOptions[0].innerText)
           if(e?.target?.selectedOptions?.length > 0){
-            size = e?.target?.selectedOptions.length
+            // size = e?.target?.selectedOptions.length
+            
             for (let i=0; i < size ; i++ ){
               console.log(e?.target?.selectedOptions[0].dataset)
               if(i === 0 && e?.target?.selectedOptions[0].dataset.location === 'country'){
@@ -183,6 +184,10 @@ import { CancelOutlined } from '@mui/icons-material';
     }    
 
     useEffect(() => {
+      document?.getElementById('location').addEventListener('change', (e)=>{
+        const selected = e.target.options[e.target.selectedIndex]
+        console.log(selected)
+      })
     if(val && ref.current){
     const parent =  document?.getElementById('loc')
     const newMode = document.createElement('Li')
@@ -217,8 +222,8 @@ import { CancelOutlined } from '@mui/icons-material';
       <section className='flex flex-col justify-start  space-y-4  w-[99%] overflow-y-clip m-1'>
        <label>choose location</label>
        <ul id='loc' className='flex space-x-2 mb-8 overflow-x-scroll max-w-[99%] pl-1 text-nowrap m-1' onClick={handledelete}></ul>
-        <select onInput={handle} data-native-menu = "false" multiple size={3} id='location' name='location' enterKeyHint = 'done' required  className=' p-4 shadow flex w-[97%]'>
-       <option  disabled>select an option</option>
+        <select onInput={handle}   id='location' name='location' enterKeyHint = 'done' required  className=' p-4 shadow flex w-[97%]'>
+       <option>chose country, state, market</option>
       { con.map((obj, id)=> <option   value={ obj.hasOwnProperty('name') ?  obj.name : obj.hasOwnProperty('market')? obj.market : obj} data-location ={ obj.hasOwnProperty('name') ? 'state' : obj.hasOwnProperty('market') ? 'market' : 'country'} key={id} className='w-fit text-sm'>
                 {obj.hasOwnProperty('name') ?  obj.name : obj.hasOwnProperty('market') ? obj.market : obj}
             </option>)
