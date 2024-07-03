@@ -104,7 +104,7 @@ import { CancelOutlined } from '@mui/icons-material';
     const [con, setcont] = useState([])
     const [val, setval] = useState('')
     const [refs, setref] = useState('country')
-    const [location, setLocation] = useState([])
+    const [show, setshow] = useState(' *')
     const delimiter = ", ";
      const [message, setmessage] = useState('chose a country, state, market')
     const ref = useRef(null)
@@ -265,7 +265,7 @@ import { CancelOutlined } from '@mui/icons-material';
     useEffect (()=> setcont(locations.map(({ country }) => country)) ,[])
     return (
         <div className='flex flex-col space-y-4 '>
-       <label className='block text-sm font-medium leading-6 text-gray-900' htmlFor='location'>Choose store location</label>
+       <label className='block text-sm font-medium leading-6 text-gray-900' htmlFor='location'>Choose store location {<p className='text-red-700 inline'>{show}</p>}</label>
        
        <ul id='loc' className=' z-50 flex space-x-2 mb-8 overflow-x-scroll text-[12px] max-w-[99%] py-2 pl-1 text-nowrap m-1  text_shadow2' ></ul>
        

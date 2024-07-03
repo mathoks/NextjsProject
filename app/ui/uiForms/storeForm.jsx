@@ -16,6 +16,7 @@ const StoreForm = () => {
     const [state, dispatch] = useFormState(addUser, initialState);
      const [states, dispatch2] = useFormState(validate, initialState);
      const [src, setsrc] = useState(null)
+     const [show, setshow] = useState(' *')
      const [ImageName, setImage]= useState('no Image choosen')
     const image = new FormData()
     
@@ -78,7 +79,7 @@ const StoreForm = () => {
           </div>
       </section>
           <section className='flex flex-col justify-start  space-y-2'>
-        <label className="text-sm font-medium leading-6 text-gray-900 required:after:content-['*'] required:after:text-red-500" htmlFor="Username"> Storename</label>
+        <label className="text-sm font-medium leading-6 text-gray-900 required:after:content-['*'] required:after:text-red-500" htmlFor="Username"> Storename{<p className='text-red-700 inline'>{show}</p>}</label>
         <input id="storename"
               placeholder="mercyStores"
               type="text"
@@ -103,7 +104,7 @@ const StoreForm = () => {
         </span>
         </section>
         <section className='flex flex-col justify-start  space-y-2'>
-        <label className="text-sm font-medium leading-6 text-gray-900 required:after:content-['*'] required:after:text-red-500" htmlFor="address">Address</label>
+        <label className="text-sm font-medium leading-6 text-gray-900 required:after:content-['*'] required:after:text-red-500" htmlFor="address">Address{<p className='text-red-700 inline'>{show}</p>}</label>
         <input id="address"
               placeholder=""
               type="text"
@@ -133,7 +134,7 @@ const StoreForm = () => {
         </section>
 
         <section className='flex flex-col justify-start  space-y-2'>
-        <label className="text-sm font-medium text-gray-900 leading-6 required:after:content-['*'] required:after:text-red-500" htmlFor="Username">Store Description</label>
+        <label className="text-sm font-medium text-gray-900 leading-6 required:after:content-['*'] required:after:text-red-500" htmlFor="Username">Store description{<p className='text-red-700 inline'>{show}</p>}</label>
         <textarea id="storedes"
               placeholder="Tell Your Story, Sell Your Brand...."
               type="text"
@@ -159,7 +160,7 @@ const StoreForm = () => {
         </span>
         </section>
         <section className='flex flex-col justify-start  space-y-2'>
-        <label className="text-sm font-medium text-gray-900 leading-6 required:after:content-['*'] required:after:text-red-500" htmlFor="phone"> Business Line</label>
+        <label className="text-sm font-medium text-gray-900 leading-6 required:after:content-['*'] required:after:text-red-500" htmlFor="phone"> Business Line{<p className='text-red-700 inline'>{show}</p>}</label>
         <input id="tel"
               placeholder="0809678945"
               type="tel"
