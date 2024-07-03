@@ -34,7 +34,7 @@ const StoreForm = () => {
       <h1 className='text-3xl font-bold text-gray-900 mb-4'>Lets Build Your Store Together</h1>
     </header>
     <span className='relative pb-10 space-y-3'>
-    <Avatar src={src} id='image-add'  sx={{width: 60 , height: 60, bgcolor: 'white'}} className='ring-2 shadow-md' ><AddPhotoAlternate color='primary' sx={{color :'#007bff'}} fontSize='large' /></Avatar>
+    <Avatar src={src} id='image-add'  sx={{width: 60 , height: 60, bgcolor: 'white'}} className='ring-2 shadow-md' ><AddPhotoAlternate  sx={{color :'#007bff'}} fontSize='large' /></Avatar>
     <input type='file' accept='image/*' id='image' className='bo rounded-[50%] w-[50px] h-[50px] border-none p-0 absolute mx-auto  -mt-10 opacity-0'/>
     <p className=''>Add a Logo</p>
     </span>
@@ -157,7 +157,7 @@ const StoreForm = () => {
         </section>
         
        
-        <button  className='bg-blue-500 py-4 rounded-md text-white disabled:opacity-70' id='sign-up'> Sign up</button>
+        <button  className='bg-blue-500 py-4 rounded-md text-white disabled:opacity-70' id='sign-up'> Create store</button>
       </form>
       </section>
     </div>
