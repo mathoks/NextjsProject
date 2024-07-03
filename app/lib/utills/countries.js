@@ -269,7 +269,7 @@ import { CancelOutlined } from '@mui/icons-material';
       <section className='flex flex-col justify-start  space-y-4  w-[99%]  m-1'>
        <label>choose location</label>
        
-       <ul id='loc' className=' z-50 flex space-x-2 mb-8 overflow-x-scroll text-[12px] max-w-[99%] pl-1 text-nowrap m-1  text_shadow2' ></ul>
+       <ul id='loc' className=' z-50 flex space-x-2 mb-8 overflow-x-scroll text-[12px] max-w-[99%] py-2 pl-1 text-nowrap m-1  text_shadow2' ></ul>
        
         <select suppressHydrationWarning suppressContentEditableWarning onInput={handle} onBeforeInput={()=>console.log(';;;')}   id='location' name='location' enterKeyHint = 'done' required  className=' p-4 shadow flex w-[97%] '>
         {<option disabled selected defaultValue={''} >{message}</option>}
