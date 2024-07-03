@@ -154,6 +154,11 @@ swiper-container {
   text-rendering: optimizeLegibility;
   color: white;
 }
+.text_shadow3 {
+  text-shadow: 0px 2px 4px rgba(0,0,0,0.2);
+  text-rendering: optimizeLegibility;
+  color: rgba(0, 0, 0, 0.897);
+}
 
 .glassy_nav {
   background-color: 'transparent';
@@ -172,7 +177,7 @@ swiper-container {
 
 .fit_placeholder {
   width: fit-content;
-  background-color: #ffff;
+  background-color: #ffffff;
   color: black;
   border: none;
   padding: 0.5em;

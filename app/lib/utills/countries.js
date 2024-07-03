@@ -217,15 +217,13 @@ import { CancelOutlined } from '@mui/icons-material';
       newMode.style.borderRadius = '9999px';
     
       newMode.style.padding = '10px 16px';
-      newMode.style.backgroundColor = '#007bff';
+      newMode.style.backgroundColor = '#ffffffcc';
       newMode.style.boxShadow = '0px 5px 10px rgba(0,0,0,0.1)';
 
       parent.appendChild(newMode);
 
       newMode.addEventListener('click', (e) => {
         e.stopPropagation();
-        const siblings = newMode.parentNode.children;
-
         if (e.target.id === 'country') {
           console.log(newMode.dataset.from);
           newMode.parentElement.innerHTML = '';
@@ -262,15 +260,18 @@ import { CancelOutlined } from '@mui/icons-material';
   };
 }, [val, refs])
 
-    useEffect (()=> setcont(locations.map(({ country }) => country)) ,[])
+    useEffect (()=> {
+      document.getElementById('location').selectedIndex = 0;
+     setcont(locations.map(({ country }) => country))} ,[])
+
     return (
         <div className='flex flex-col space-y-4 '>
        <label className='block text-sm font-medium leading-6 text-gray-900' htmlFor='location'>Choose store location {<p className='text-red-700 inline'>{show}</p>}</label>
        
-       <ul id='loc' className=' z-50 flex space-x-2 mb-8 overflow-x-scroll text-[12px] max-w-[99%] py-2 pl-1 text-nowrap m-1  text_shadow2' ></ul>
+       <ul id='loc' className=' z-50 flex space-x-2 mb-8 overflow-x-scroll text-sm max-w-[99%] py-2 pl-1 text-nowrap m-1  text_shadow3' ></ul>
        
-        <select suppressHydrationWarning suppressContentEditableWarning onInput={handle} onBeforeInput={()=>console.log(';;;')}   id='location' name='location' enterKeyHint = 'done' required  className=' p-4 shadow flex w-[97%] '>
-        <option className='block tex-sm  text-gray-900' disabled selected defaultValue={''} >{message}</option>
+        <select  onInput={handle}  id='location' name='location' enterKeyHint = 'done' required  className=' p-4 shadow flex  text-gray-900'>
+        <option className='block tex-sm  text-gray-900' disabled defaultValue={''} >{message}</option>
       { con?.map((obj, id)=> <option   value={ obj.hasOwnProperty('name') ?  obj.name : obj.hasOwnProperty('market')? obj.market : obj} data-location ={ obj.hasOwnProperty('name') ? 'state' : obj.hasOwnProperty('market') ? 'market' : 'country'} key={id}  className='w-fit text-sm'>
                
                 {obj.hasOwnProperty('name') ?  obj.name : obj.hasOwnProperty('market') ? obj.market : obj}

@@ -43,6 +43,7 @@ const StoreForm = () => {
      
 
   return (
+    <div className='m-12'>
     <div className=' mx-auto mt-4 md:flex md:justify-around border-b border-gray-900/10 pb-12'>
   
       <form className='flex flex-col space-y-4 mx-auto' action={dispatch}>
@@ -190,6 +191,7 @@ const StoreForm = () => {
        
         <button  className='bg-blue-500 py-4 rounded-md text-white disabled:opacity-70' id='sign-up'> Create store</button>
       </form>
+    </div>
     </div>
   )
 }

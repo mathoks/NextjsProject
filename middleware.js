@@ -4,6 +4,8 @@ import NextAuth from "next-auth";
 import { authConfig } from "./auth.cofig";
 
 
+
+
 // export {auth as middleware} from '@/auth'
 
 // export default auth((request)=>{
@@ -11,8 +13,11 @@ import { authConfig } from "./auth.cofig";
 // console.log(request.nextUrl.pathname, isLoggedIn) 
 // })
 export default NextAuth(authConfig).auth((request)=>{
-  const isLoggedIn = !!request.auth;
   
+  const isLoggedIn = !!request.auth;
+  if(request.nextUrl.pathname === '/home' ){
+   return NextResponse.redirect(new URL('/Test', request.url));
+  }
 console.log(request.nextUrl.pathname, isLoggedIn) 
 });
 
