@@ -186,7 +186,7 @@ const StoreForm = () => {
         </section>
         
        
-        <button  className='bg-blue-500 py-4 rounded-md text-white disabled:opacity-70' id='sign-up'> Sign up</button>
+        <button  className='bg-blue-500 py-4 rounded-md text-white disabled:opacity-70' id='sign-up'> Create store</button>
       </form>
     </div>
   )

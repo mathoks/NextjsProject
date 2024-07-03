@@ -217,7 +217,7 @@ import { CancelOutlined } from '@mui/icons-material';
       newMode.style.borderRadius = '9999px';
     
       newMode.style.padding = '10px 16px';
-      newMode.style.backgroundColor = '#6A0DAD';
+      newMode.style.backgroundColor = '#007bff';
       newMode.style.boxShadow = '0px 5px 10px rgba(0,0,0,0.1)';
 
       parent.appendChild(newMode);
@@ -267,7 +267,7 @@ import { CancelOutlined } from '@mui/icons-material';
         <div className='flex flex-col space-y-4 '>
        <label className='block text-sm font-medium leading-6 text-gray-900' htmlFor='location'>Choose store location</label>
        
-       <ul id='loc' className=' z-50 flex space-x-2 mb-8 overflow-x-scroll text-[12px] max-w-[99%] pl-1 text-nowrap m-1  text_shadow2' ></ul>
+       <ul id='loc' className=' z-50 flex space-x-2 mb-8 overflow-x-scroll text-[12px] max-w-[99%] py-2 pl-1 text-nowrap m-1  text_shadow2' ></ul>
        
         <select suppressHydrationWarning suppressContentEditableWarning onInput={handle} onBeforeInput={()=>console.log(';;;')}   id='location' name='location' enterKeyHint = 'done' required  className=' p-4 shadow flex w-[97%] '>
         <option className='block tex-sm  text-gray-900' disabled selected defaultValue={''} >{message}</option>
