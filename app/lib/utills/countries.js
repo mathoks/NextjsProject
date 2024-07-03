@@ -264,23 +264,20 @@ import { CancelOutlined } from '@mui/icons-material';
 
     useEffect (()=> setcont(locations.map(({ country }) => country)) ,[])
     return (
-        <div className='flex flex-col space-y-4 mx-auto w-[99%]'>
-        
-      <section className='flex flex-col justify-start  space-y-4  w-[99%]  m-1'>
-       <label>choose location</label>
+        <div className='flex flex-col space-y-4 '>
+       <label className='block text-sm font-medium leading-6 text-gray-900' htmlFor='location'>Choose store location</label>
        
        <ul id='loc' className=' z-50 flex space-x-2 mb-8 overflow-x-scroll text-[12px] max-w-[99%] pl-1 text-nowrap m-1  text_shadow2' ></ul>
        
         <select suppressHydrationWarning suppressContentEditableWarning onInput={handle} onBeforeInput={()=>console.log(';;;')}   id='location' name='location' enterKeyHint = 'done' required  className=' p-4 shadow flex w-[97%] '>
-        {<option disabled selected defaultValue={''} >{message}</option>}
+        <option className='block tex-sm  text-gray-900' disabled selected defaultValue={''} >{message}</option>
       { con?.map((obj, id)=> <option   value={ obj.hasOwnProperty('name') ?  obj.name : obj.hasOwnProperty('market')? obj.market : obj} data-location ={ obj.hasOwnProperty('name') ? 'state' : obj.hasOwnProperty('market') ? 'market' : 'country'} key={id}  className='w-fit text-sm'>
                
                 {obj.hasOwnProperty('name') ?  obj.name : obj.hasOwnProperty('market') ? obj.market : obj}
             </option>)
       }
         </select>
-        </section>
-      
+        
       </div>
     )
   }
