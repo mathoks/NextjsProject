@@ -217,7 +217,7 @@ import { CancelOutlined } from '@mui/icons-material';
       newMode.style.borderRadius = '9999px';
     
       newMode.style.padding = '10px 16px';
-      newMode.style.backgroundColor = '#6A0DAD';
+      newMode.style.backgroundColor = '#007bff';
       newMode.style.boxShadow = '0px 5px 10px rgba(0,0,0,0.1)';
 
       parent.appendChild(newMode);
