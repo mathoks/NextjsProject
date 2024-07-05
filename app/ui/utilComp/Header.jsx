@@ -13,12 +13,12 @@ const Header = ({params}) => {
   return (
     <nav
                 aria-label="main"
-                className={`fixed flex top-0 left-0 flex-col space-y-3 bg-white  pt-2 w-full text-gray-600 pl-4 pr-4 pb-0  even:pb-0 ${
+                className={`fixed flex text-sm top-0 left-0 flex-col space-y-3 bg-white  pt-2 w-full text-gray-600 pl-4 pr-4 pb-0  even:pb-0 ${
                   visi ? "shadow" : ""
                 }`}
               >
                 <div
-                  className={`flex justify-between flex-wrap items-center space-y-3 pb-4 ${
+                  className={`flex justify-between flex-wrap items-center space-y-3 pb-1 ${
                     visi ? "hidden transition duration-500" : ""
                   }`}
                 >
@@ -49,7 +49,7 @@ const Header = ({params}) => {
                     </span>
                   </div>
                 </div>
-                <hr className='bg-[#6A0DAD] h-[0.11rem]'/>
+                <hr className=' h-[0.1rem]'/>
                 <div
                   className={ `${
                     visi
@@ -59,7 +59,7 @@ const Header = ({params}) => {
                 >
                   <ul
                     role="subTab"
-                    className="flex justify-between items-center pl-4 pr-4 font-semibold"
+                    className="flex justify-between items-center pl-4 pr-4 text-sm text-gray-800"
                   >
                     <li
                       value={0}
@@ -92,6 +92,7 @@ const Header = ({params}) => {
                       <Link href={`${encodeURIComponent(params)}/recommended`} scroll>Recommended</Link>
                     </li>
                   </ul>
+                  <hr className=""/> 
                 </div>
               </nav>
   )

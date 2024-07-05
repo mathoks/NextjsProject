@@ -27,13 +27,13 @@ const page = ({params:{id}}) => {
   }, []);
   
   return (
-    <>
-    <h2 className='text-gray-900 font-semibold ml-4'>Branches</h2>
+    <div className='bg-white p-4'>
+    <h2 className='text-gray-800 '>Branches</h2>
     <div className='container  overflow-x-scroll w-[95%] flex md:mt-10  text-center p-4 space-x-4 text-gray-900'>
     
     <Branch/>
       </div>
-    </>
+    </div>
 
   )
 }

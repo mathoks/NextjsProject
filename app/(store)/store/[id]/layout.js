@@ -25,17 +25,18 @@ export default async function StoreLayout({children, recommended, branch, produc
    
     <>
       <SessionProvider baseUrl={"/api/auth"}>
-      <header className="mx-auto" >
+      <div className="block space-y-32 md:space-y-24">
+      <header className="mx-auto bg-white" >
       <Header params = {id}/>
       </header>
-        
-      <main className="grid grid-cols-1 gap-6 mt-[9.1rem]  text-sm">
-
+     
+      <main className="grid grid-cols-1 gap-1   text-sm ">
+      
       {/* <main className="flex flex-col m-4 space-y-14 mb-10 container  mt-40 md:flex text-black lg:flex md: justify-around"> */}
-      <section className=" bg-slate-50 text-gray-900 mt-4 space-y-4">
+      <section className=" bg-white text-gray-800 p-4 space-y-4">
       {children}
       </section>
-      <section>
+      <section className="bg-white">
       {branch}
       </section>
       <section>
@@ -45,6 +46,7 @@ export default async function StoreLayout({children, recommended, branch, produc
       {recommended}
       </section>
       </main>
+      </div>
       </SessionProvider>
       </>
     
