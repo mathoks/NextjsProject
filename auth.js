@@ -150,7 +150,7 @@ callbacks: {
     },
 
     async session({ session, user, token }) {
-      console.log(session, user, token, 'pimp')
+      
       return session
     },
   }

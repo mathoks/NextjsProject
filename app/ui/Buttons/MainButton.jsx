@@ -12,13 +12,13 @@ const MainButton = () => {
   const user = session?.data?.user?.name
   const handleCreateStore = useCallback(
     (e) => {
-      console.log(e)
+    
       if (session?.status === "loading")
         setchild(<CircularProgress size={18} color="primary" className=" text-cyan-50 " />);
       if (session?.status === "authenticated") {
         setchild("OPEN A STORE");
          if(e?.target?.innerText === 'OPEN A STORE'){
-          router.push(`/Dashboard/${user}/createstore/`)
+          router.push(`/store/${user}`)
         }
       }
       if (session?.status === "unauthenticated") {

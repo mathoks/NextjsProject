@@ -7,6 +7,7 @@ const nextConfig = {
         destination: "/home",
         permanent: true,
       },
+      
     ];
   },
   images: {

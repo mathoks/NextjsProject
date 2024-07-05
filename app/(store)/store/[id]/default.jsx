@@ -2,7 +2,7 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div className='bg-pink h-full'>
+    <div className='text-black h-full '>
       <p>set up your store</p>
     </div>
   )

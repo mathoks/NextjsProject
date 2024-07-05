@@ -15,9 +15,9 @@ import { authConfig } from "./auth.cofig";
 export default NextAuth(authConfig).auth((request)=>{
   
   const isLoggedIn = !!request.auth;
-  if(request.nextUrl.pathname === '/home' ){
-   return NextResponse.redirect(new URL('/Test', request.url));
-  }
+  // if(request.nextUrl.pathname === '/home' ){
+  //  return NextResponse.redirect(new URL('/Test', request.url));
+  // }
 console.log(request.nextUrl.pathname, isLoggedIn) 
 });
 

@@ -92,32 +92,52 @@ model VerificationToken {
   @@map("verificationtoken")
 }
 
+
+
 model Product {
   id          String   @id @default(cuid())
+  prodId      String   @map("user_id") @unique
   name        String
   description String
   category    String
   price       Float
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  user        Store     @relation(fields: [userId], references: [id])
-  userId      String   @map("user_id")
+  user        Store     @relation(fields: [prodId], references: [id])
   prodImage   ProdImage[]
   availability Availability @default(IN_STOCK)
   attribute  ProductAttribute?
   wishlist    WishList[]
   comment     ProdReview[]
   post        Post[]
+ branch      ProductBranch[] 
   @@map("product")
 }
 
+model Branche {
+  id String   @id @default(cuid())
+  branchName String? @map("branch_name")
+  branchAddress String? @map("branch_address")
+  state String?
+  branchId String @map("branch_id") @unique
+  user Store @relation(fields: [branchId], references: [id])
+  products ProductBranch[]
+  @@map("branche")
+}
+
+model ProductBranch {
+  id String @id @default(cuid())
+  productId String 
+  branId String 
+  branch Branche @relation(fields: [branId], references: [branchId])
+  product Product @relation(fields: [productId], references: [prodId])
+  @@unique([productId, branId])
+}
 model ProdImage{
   id          String   @id @default(cuid())
   productId   String   @map("product_id")
   image       String?
-  product     Product @relation(fields: [productId], references: [id])
-  
- 
+  product     Product @relation(fields: [productId], references: [id]) 
   @@map("prod_image")
 } 
 
@@ -158,8 +178,6 @@ model ProductAttribute{
   brand       String?
   status      Status
   product     Product @relation(fields: [productId], references: [id])
- 
- 
   @@map("product_attribute")
 }
 
@@ -197,15 +215,6 @@ model Ticket {
   @@map("ticket")
 }
 
-model Branche {
-  id String   @id @default(cuid())
-  branchName String? @map("branch_name")
-  branchAddress String? @map("branch_address")
-  state String?
-  branchId String @map("branch_id") @unique
-  user Store @relation(fields: [branchId], references: [id])
-  @@map("branche")
-}
 
 model ProdReview {
   id          String   @id @default(cuid())
