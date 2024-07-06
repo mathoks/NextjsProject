@@ -124,7 +124,7 @@ swiper-container::part(pagination) {
   background-color: aquamarine;
 } */
 
-swiper-container {
+.rootswiper swiper-container {
   /* height: 100%; */
   width: 100vw;
   padding: 4px;
@@ -136,6 +136,21 @@ swiper-container {
   justify-content: start;
   /* outline: #3b82fe; */
   /* background-color: #3b82fe; */
+}
+
+.mybranch swiper-container {
+  height: 150px;
+  /* width: 100vw; */
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  /* outline: #3b82fe; */
+  background-color: white;
+}
+
+.mybranch swiper-container::part(pagination) {
+  bottom: 0px;
+  color: #4f08ed;
 }
 
 .hide_nav {

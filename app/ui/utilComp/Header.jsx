@@ -13,7 +13,7 @@ const Header = ({params}) => {
   return (
     <nav
                 aria-label="main"
-                className={`fixed flex text-sm top-0 left-0 flex-col space-y-3 bg-white  pt-2 w-full text-gray-600 pl-4 pr-4 pb-0  even:pb-0 ${
+                className={` fixed flex text-sm top-0 left-0 flex-col space-y-3 w-screen bg-white  pt-2  text-gray-600 pl-4 pr-4 pb-0  even:pb-0 ${
                   visi ? "shadow" : ""
                 }`}
               >

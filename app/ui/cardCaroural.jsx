@@ -20,6 +20,7 @@ const Showcase = ({ info, userInfo }) => {
   const dispatch = useAppDispatch();
  const router = useRouter()
   return (
+    <div className="rootswiper">
     <swiper-container
       ref={swiperDiv}
       slides-per-view="1"
@@ -27,7 +28,7 @@ const Showcase = ({ info, userInfo }) => {
       pagination="true"
       // pagination-type="fraction"
       space-between="15"
-      // className="rootswiper"
+       
     >
       {info &&
         info.length &&
@@ -113,6 +114,7 @@ const Showcase = ({ info, userInfo }) => {
           )
         )}
     </swiper-container>
+    </div>
   );
 };
 

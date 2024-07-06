@@ -8,7 +8,7 @@ const page = () => {
   
   return (
     
-    <div className='flex flex-col space-y-4 p-4 mx-auto w-96 ' >
+    <div className='flex flex-col space-y-4 p-4  w-screen' >
     <div className='flex space-x-4'>
     <StoreOutlined fontSize='inherit' sx={{color: 'gray'}}/>
     <span>Chiby Stores</span>

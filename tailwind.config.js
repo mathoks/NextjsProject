@@ -10,6 +10,9 @@ export const theme = {
       "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
       "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
     },
+    screens : {
+      'mmd' : '450px'
+    }
   },
 };
 export const variants = {
@@ -17,4 +20,5 @@ export const variants = {
     sticky: ['responsive']
   }
 };
+
 export const plugins = [];
