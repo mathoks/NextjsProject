@@ -14,7 +14,7 @@ const Products = ({ data }) => {
 
   return (
    
-    <section className="flex flex-col bg-slate-50 pl-4 pr-4 pb-2 pt-4">
+    <section className="flex flex-col bg-slate-50 p-2 pt-4">
       <div className="w-full p-4 bg-white">
         <p className="text-gray-800 font-semibold text-lg">Dealers Reel</p>
       </div>
