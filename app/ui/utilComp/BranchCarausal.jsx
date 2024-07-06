@@ -28,7 +28,7 @@ const BranchCarousel = ({ slides = [], autoSlide = false, autoInterval = 3000, i
   return (
 
 
-    <div className='mybranch text-gray-800 p-4 w-screen  space-y-2 '>
+    <div className='mybranch text-gray-800 p-4 space-y-2 '>
     <h2>Branches</h2>
     <swiper-container
       ref={swiperDiv}

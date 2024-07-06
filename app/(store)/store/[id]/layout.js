@@ -36,7 +36,7 @@ export default async function StoreLayout({children, recommended, branch, produc
       <section className=" bg-white text-gray-800 p-4 w-screen">
       {children}
       </section>
-      <section className="bg-white mx-auto p-4">
+      <section className="bg-white w-screen p-4">
       {branch}
       </section>
       <section>

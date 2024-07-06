@@ -1,9 +1,12 @@
-import BranchCarousel from '@/app/ui/utilComp/BranchCarausal';
+
 import { Shop2Outlined , DescriptionOutlined, LocationOnOutlined, PhoneAndroid, StoreOutlined, StreetviewOutlined} from '@mui/icons-material';
+import dynamic from 'next/dynamic';
 import { headers } from 'next/headers';
 import Link from 'next/link';
 import React from 'react'
 
+
+const  BranchCarousel= dynamic(()=>import('@/app/ui/utilComp/BranchCarausal') , {ssr: false}) 
 
 // model Branche {
 //   id String   @id @default(cuid())

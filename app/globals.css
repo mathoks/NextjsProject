@@ -140,7 +140,6 @@ swiper-container::part(pagination) {
 
 .mybranch swiper-container {
   height: 150px;
-  /* width: 100vw; */
   display: flex;
   align-items: center;
   justify-content: start;
