@@ -20,7 +20,7 @@ const Showcase = ({ info, userInfo }) => {
   const dispatch = useAppDispatch();
  const router = useRouter()
   return (
-    <div className="rootswiper">
+    <div className="rootswiper rounded-md">
     <swiper-container
       ref={swiperDiv}
       slides-per-view="1"
@@ -52,10 +52,11 @@ const Showcase = ({ info, userInfo }) => {
               onClick={async () => {
                 dispatch(setNav(false));
                 await getProductById(userInfo, productId);
+                
               }}
             >
               
-                <div className="flex relative justify-start items-start  space-x-3 h-[16rem] " onClick={()=>router.push(`/pages/${encodeURIComponent(userInfo)}/${encodeURIComponent(productId)}`)}>
+                 <div className="flex relative justify-start items-start  space-x-3 h-[16rem] p-2" onClick={()=>router.push(`/pages/${encodeURIComponent(userInfo)}/${encodeURIComponent(productId)}`)}>
                   <div className="flex flex-col space-y-2">
                     <img
                       src={image[0]}
@@ -93,7 +94,8 @@ const Showcase = ({ info, userInfo }) => {
                         </span>
                         <span className="text-[#005B9A]">1123</span>
                       </span>
-                      <span onClick={(e)=>{ e.stopPropagation(); router.push(`/pages/${encodeURIComponent(userInfo)}`)}} className="text-sm absolute -right-[8.6rem] text-white"><Chip clickable label = 'Visit the Store' className="shadow-my" sx={{bgcolor:"#6A0DAD", color:'white', opacity:0.8, textRendering: 'optimizeLegibility'}} /></span>
+                      <span onClick={(e)=>{ e.stopPropagation(); router.push(`/pages/${encodeURIComponent(userInfo)}`)}} className="text-sm absolute -right-[8.6rem] text-white"><Chip variant= 'outlined' clickable label = 'Visit the Store' className="shadow-my" sx={{bgcolor:"white", color:'black', opacity:0.8, textRendering: 'optimizeLegibility',
+                  }} /></span>
                       </span>
                     </div>
                   </div>
@@ -108,12 +110,10 @@ const Showcase = ({ info, userInfo }) => {
                     </div>
                   </div>
                 </div>
-                
-            
-            </swiper-slide>
+            </swiper-slide> 
           )
         )}
-    </swiper-container>
+    </swiper-container> 
     </div>
   );
 };

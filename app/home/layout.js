@@ -39,7 +39,7 @@ export default async function homeLayout({children, tab, arrivals, store, ...res
       <Nav/>
       
       </header>
-      <section className="bg-[#6A0DAD] pt-28">
+      <section className="bg-[#6A0DAD] pt-28 w-screen">
         <HeroPage/>
       </section>
       <main className="">
@@ -49,7 +49,7 @@ export default async function homeLayout({children, tab, arrivals, store, ...res
       <section className=" bg-slate-50 text-black flex flex-col space-y-1 w-[100vw]">
       {arrivals}
       </section>
-      <section>
+      <section className=" p-2">
       {children}
       </section>
       <Footer/>

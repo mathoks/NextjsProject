@@ -20,7 +20,7 @@ export default async function page({searchParams}) {
     
     <StoreProvider>
 
-      <section className="flex min-h-screen mt-0 flex-col items-center">
+      <section className="flex min-h-screen mt-0 flex-col mx-auto">
       
         <div className="flex flex-col items-center">
          
