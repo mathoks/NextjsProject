@@ -14,8 +14,8 @@ const ProductCard = () => {
     <div className='grid grid-cols-2 gap-4 w-auto text-black '>
       {Array.from(Array(10)).map((_, ids)=>{
         return (
-        <div className='shadow-md rounded-md bg-white w-auto ' >
-        <div className='prodswiper' key={ids}>
+        <div className='shadow-md rounded-md bg-white w-auto ' key={ids} >
+        <div className='prodswiper' >
         <swiper-container
         ref = {swiperRef}
         slides-per-view="1"
