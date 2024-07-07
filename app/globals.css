@@ -164,12 +164,18 @@ swiper-container::part(pagination) {
   align-items: center;
   justify-content: start;
   /* outline: #3b82fe; */
-  background-color: rgb(189, 14, 14);
+  background-color: transparent;
 }
 
 .mybranch swiper-container::part(pagination) {
   bottom: 0px;
   color: #4f08ed;
+}
+
+.prodswiper swiper-container::part(pagination) {
+  bottom: 0px;
+  color: #4f08ed;
+  background-color: white;
 }
 
 .hide_nav {
