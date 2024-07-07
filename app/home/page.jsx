@@ -20,17 +20,12 @@ export default async function page({searchParams}) {
     
     <StoreProvider>
 
-      <section className="flex min-h-screen mt-0 flex-col mx-auto">
-      
+      <section className="flex min-h-screen mt-0 flex-col mx-auto space-y-1">
+      <div className="w-full p-4 bg-white">
+        <p className="text-gray-800 font-semibold text-base">Dealers Reel</p>
+      </div>
         <div className="flex flex-col items-center">
-         
-           <section>
-           
-          
            <Products data = {typeof usersList !== "undefined" ? JSON.parse(usersList): []}/>
-           
-           </section>
-          
             </div>
       </section>
       </StoreProvider>

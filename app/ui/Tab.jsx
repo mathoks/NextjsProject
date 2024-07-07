@@ -61,7 +61,7 @@ const Tab = () => {
 
   return (
     <section
-      className={`flex items-start justify-between  overflow-x-scroll gap-8 z-50   pb-0 w-[90%]`}
+      className={`flex items-start justify-between  overflow-x-scroll gap-8 z-50   pb-0 w-[90%] lg:w-[98%]`}
     >
       <Paper
         sx={{

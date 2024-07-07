@@ -18,6 +18,12 @@
   }
 }
 
+@media (min-width: 1080px) {
+  :root {
+    font-size: 1.2rem;
+  }
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background-color: azure;

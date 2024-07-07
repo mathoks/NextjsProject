@@ -15,10 +15,11 @@ export default async function Layout({ children }) {
   return (
     <html lang="en" className={inter.className}>
       <head>
+      {/* <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta> */}
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
       <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet"/>
       </head>
-          <body className={`${inter.className}  overflow-x-clip h-fit bg-slate-50`}>
+          <body className={`${inter.className}  overflow-x-clip h-fit bg-slate-50 `}>
           <SessionProvider baseUrl={"/api/auth"}>
         <StoreProvider>
             <AppRouterCacheProvider>

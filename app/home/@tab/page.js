@@ -4,8 +4,8 @@ import React from 'react'
 
 const defaultP = () => {
   return (
-    <div>
-    <div className="p-4 pb-0 font-semibold text-lg"><Link href={'/home/Discorver'}><p>Discount Sales</p></Link></div>
+    <div className=''>
+    <h2 className="p-4 pb-0 font-semibold text-base"><Link href={'/home/Discorver'}>Discount Sales</Link></h2>
       <Ads/>
     </div>
   )

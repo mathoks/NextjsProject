@@ -39,23 +39,27 @@ export default async function homeLayout({children, tab, arrivals, store, ...res
       <Nav/>
       
       </header>
-      <section className="bg-[#6A0DAD] pt-28 w-screen">
+      
+      <section className="bg-[#6A0DAD] pt-32 pb-0 w-screen">
         <HeroPage/>
       </section>
-      <main className="">
-      <section className=" bg-slate-50 text-black flex flex-col space-y-1 w-[100vw]">
+    
+      <main className="grid grid-cols-1 gap-0 md:grid-cols-2 md:gap-2 lg:grid-cols-1  lg:gap-2 lg:px-l-4">
+
+      <section className="pb-1  space-y-1">
+      <section className=" bg-white text-black ">
       {tab}
       </section>
-      <section className=" bg-slate-50 text-black flex flex-col space-y-1 w-[100vw]">
+      <section className=" bg-white text-black">
       {arrivals}
       </section>
-      <section className=" p-2">
+      </section>
+      <section className=" p-1 col-span-2">
       {children}
       </section>
-      <Footer/>
-      
-      
+     
       </main>
+      <Footer/>
       </SessionProvider>
       </>
     
