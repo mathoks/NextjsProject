@@ -24,7 +24,7 @@ const ProductCard = () => {
       pagination-type="fraction"
       space-between="2">
        {
-        [Logo, Logo2].map((pic, id)=> 
+        ['https://picsum.photos/id/28/200','https://picsum.photos/id/28/200' ].map((pic, id)=> 
             <swiper-slide key ={id}>
                 <img
                 src={pic}
