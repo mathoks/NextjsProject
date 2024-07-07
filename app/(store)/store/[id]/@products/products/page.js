@@ -1,10 +1,9 @@
+import productCard from '@/app/ui/productCard'
 import React from 'react'
 
 const page = () => {
   return (
-    <div className='text-black'>
-      Products
-    </div>
+   <productCard/>
   )
 }
 

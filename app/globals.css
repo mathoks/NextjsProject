@@ -137,6 +137,7 @@ swiper-container::part(pagination) {
   /* padding-right: 1px;
   padding-left: 2px; */
   width: 21rem;
+  /* width: auto; */
   display: flex;
   align-items: center;
   justify-content: start;
@@ -155,6 +156,15 @@ swiper-container::part(pagination) {
   justify-content: start;
   /* outline: #3b82fe; */
   background-color: white;
+}
+
+.prodswiper swiper-container {
+  display: flex;
+  width: auto;
+  align-items: center;
+  justify-content: start;
+  /* outline: #3b82fe; */
+  background-color: rgb(189, 14, 14);
 }
 
 .mybranch swiper-container::part(pagination) {

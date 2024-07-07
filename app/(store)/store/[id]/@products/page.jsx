@@ -1,9 +1,9 @@
 import React from 'react'
-
+import ProductCard from '@/app/ui/productCard'
 const page = () => {
   return (
     <div>
-    <p className='text-black'> show few</p>
+    <ProductCard/>
      
     </div>
   )
