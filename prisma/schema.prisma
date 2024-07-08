@@ -72,8 +72,10 @@ model Store {
   phone         String?
   shopAddress         String?   @unique @map("shop_address")
   email          String?
-  state         String?
-  emailVerified DateTime? @map("email_verified")
+  state         String
+  country        String
+  market         String
+  about          String
   bizLogo         String? @map("biz_logo")
   branches      Branche[]
   storeOwner         User     @relation(fields: [storeId], references: [id], onDelete: Cascade)

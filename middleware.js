@@ -20,6 +20,7 @@ export default NextAuth(authConfig).auth((request)=>{
   //  return NextResponse.redirect(new URL('/Test', request.url));
   }
 console.log(request.nextUrl.pathname, isLoggedIn) 
+
 });
 
 export const config = {

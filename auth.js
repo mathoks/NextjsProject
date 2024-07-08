@@ -7,12 +7,7 @@ import Credentials from "next-auth/providers/credentials";
 import { Pool } from "@neondatabase/serverless";
 import { PrismaNeon } from "@prisma/adapter-neon";
 import { PrismaClient } from "@prisma/client";
-import {encode, decode} from 'next-auth/jwt'
-import { fromDate } from "./app/lib/utills/expiration";
-import Cookies from "cookies";
 import { authConfig } from "./auth.cofig";
-import { NextResponse as res } from "next/server";
-import { nanoid } from "@reduxjs/toolkit";
 
 const neon = new Pool({
   connectionString: process.env.POSTGRES_PRISMA_URL,

@@ -9,6 +9,8 @@ const Countries = () => {
   const [refs, setref] = useState("country");
   const [message, setmessage] = useState("chose a country, state, market");
   const ref = useRef(null);
+  
+const data = new FormData()
 
   const handle = useCallback(
     (e) => {
@@ -34,10 +36,10 @@ const Countries = () => {
           break;
         case "state":
           nation = con.filter(({ name }) => name === selectedOption.innerText);
-          if (Array.isArray(nation) && nation.length > 0) {
+          if (Array.isArray(nation) && nation.length > 0 && document.getElementById('loc').childElementCount <= 2) {
             setref("state");
             setval(selectedOption.innerText);
-            setcont(nation[0].markets);
+            setcont(nation[0].markets); 
             setmessage("chose a market");
             e.target.scrollTo({ top: 0, behavior: "smooth" });
           }
@@ -49,16 +51,27 @@ const Countries = () => {
           if (Array.isArray(nation) && nation.length > 0) {
             setref("market");
             setval(selectedOption.innerText);
-            const mainBox = document.getElementById("location");
-            setmessage("Done");
+            
+            const mainBox = document.getElementById("location")
+           
+            // if(message !== " ")
+            //   setmessage(message.replace(/, \S*$/, ''));
+            if(document.getElementById('loc').childElementCount <= 2) 
+              setmessage('');
+            else {
+               console.log(message)
+              // setmessage(message.replace(/, \S*$/, ''))
+              
+            }
             mainBox.blur();
             setcont((prev) => prev); // No change for market selection
+            
           }
           break;
         default:
         // Handle unexpected location type (optional)
       }
-
+      // console.log(document.getElementById('loc').childNodes.forEach((node)=>console.log(node)))
       e.target.selectedIndex = 0;
     },
     [con, ref, setcont, setmessage, setref, setval] // Update dependencies
@@ -107,15 +120,27 @@ const Countries = () => {
           } else if (e.target.id === "market") {
             newMode.remove();
             setcont((prev) => prev); // No change for market selection
+            // if(parent.childElementCount === 3){
+            //   setmessage((prev)=>prev.replace(/, \S*$/, ''))
+            // }
+            setmessage('choose a market');
           }
         });
+        if(parent.childNodes.length === 3)
+        parent.childNodes.forEach((node, i)=>  setmessage((prev)=>prev.concat(i !== 0 ?`,${node.textContent}` : node.textContent).trim()))
         
-      } else {
+      } 
+      else {
         document.getElementById(
           "market"
         ).innerHTML = `<span id="${refs}"> ${val}  <i data-curr="${refs}" class="fa fa-close"></i></span>`;
         locationSelect.blur();
+        // console.log(message.replace(/,(.*)$/, `,${val}`))
+        setmessage((prev)=>prev.replace(/^([^,]*,[^,]*,)(.*)$/, `$1` + ` ${val}`))
+        // /\s\w+$/, ` ${val}`))
+        console.log(message)
       }
+     
     };
 
     locationSelect.addEventListener("change", handleLocationChange);
@@ -129,8 +154,9 @@ const Countries = () => {
   useEffect(() => {
     document.getElementById("location").selectedIndex = 0;
     setcont(locations.map(({ country }) => country));
+    
   }, []);
-
+  
   return (
     <div className="flex flex-col space-y-4 ">
       <label
@@ -144,18 +170,19 @@ const Countries = () => {
         id="loc"
         className=" z-50 flex space-x-2 mb-8 overflow-x-scroll text-sm max-w-[99%] py-2 pl-1 text-nowrap m-1  text_shadow2"
       ></ul>
-
+      
       <select
         onInput={handle}
         id="location"
         name="location"
+        value={''}
         enterKeyHint="done"
         required
         className=" p-4 shadow flex  text-gray-900"
       >
         <option
-          className="block tex-sm  text-gray-900"
-          disabled
+          id='selectedVal'
+          className="block tex-sm "
           defaultValue={""}
         >
           {message}
@@ -187,6 +214,9 @@ const Countries = () => {
           </option>
         ))}
       </select>
+      <i className="fas fa-check-circle" style={{color: 'green'}}></i>
+    
+      
     </div>
   );
 };

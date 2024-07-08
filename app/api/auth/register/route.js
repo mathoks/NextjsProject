@@ -49,7 +49,7 @@ const neon = new Pool({
 });
 
 const adapter = new PrismaNeon(neon);
-const {createSession } = databaseAdapter(prisma)
+
 export  async function POST(req) {
   // Ensure Prisma client is initialized only once per request
   if (!prisma) {

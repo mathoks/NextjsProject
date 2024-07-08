@@ -1,24 +1,24 @@
 'use client'
 import React, { useState, useEffect } from 'react'
-import { AddPhotoAlternate, Visibility, VisibilityOff } from '@mui/icons-material'
-import { addUser } from '@/app/actions/users/addUsers'
+import { AddPhotoAlternate } from '@mui/icons-material'
 import { useFormState } from 'react-dom'
 import { validate } from '@/app/lib/utills/validator'
 import Link from 'next/link'
 import Countries from '@/app/lib/utills/countries'
  import {Avatar} from '@mui/material'
+import { createStore } from '@/app/actions/users/createStore'
  
  
 
 const StoreForm = () => {
     const [ptype, setptype] = useState('password')
     const initialState = { message: null, errors: {}, success: null };
-    const [state, dispatch] = useFormState(addUser, initialState);
+    const [state, dispatch] = useFormState(createStore, initialState);
      const [states, dispatch2] = useFormState(validate, initialState);
      const [src, setsrc] = useState(null)
      const [show, setshow] = useState(' *')
      const [ImageName, setImage]= useState('no Image choosen')
-    const image = new FormData()
+    
     
     const handleImage = ()=>{
       const pic =  document?.getElementById('image').files[0]
@@ -36,6 +36,9 @@ const StoreForm = () => {
     return;
   }
 
+  const handleadd = ()=>{
+   console.log(document?.getElementById('gree'))
+  }
      useEffect(() => {
        if (src === null) 
          setsrc(<AddPhotoAlternate />);
@@ -43,10 +46,10 @@ const StoreForm = () => {
      
 
   return (
-    <div className=' mx-auto mt-4 md:flex md:justify-around border-b border-gray-900/10 pb-12'>
+    <div className='text-gray-900 mx-auto mt-4 md:flex md:justify-around border-b border-gray-900/10 pb-12'>
   
-      <form className='flex flex-col space-y-4 mx-auto' action={dispatch}>
-      <section className='md:mx-auto space-y-4 flex-col md:flex md:justify-start md:my-2'>
+      <form id='form' className='flex flex-col space-y-4 mx-auto text-gray-900' action={dispatch}>
+      <section className='md:mx-auto space-y-4 flex-col md:flex md:justify-start md:my-2 text-gray-900'>
     <header className='mb-8'>
       <h1 className='text-3xl font-bold text-gray-900 mb-4'>Lets Build Your Store Together</h1>
     </header>
@@ -78,7 +81,7 @@ const StoreForm = () => {
            <p id='sel' className='text-sm text-gray-800 overflow-hidden'>{ImageName}</p>
           </div>
       </section>
-          <section className='flex flex-col justify-start  space-y-2'>
+          <section className='flex flex-col justify-start  space-y-2 text-gray-900'>
         <label className="text-sm font-medium leading-6 text-gray-900 required:after:content-['*'] required:after:text-red-500" htmlFor="Username"> Storename{<p className='text-red-700 inline'>{show}</p>}</label>
         <input id="storename"
               placeholder="mercyStores"
@@ -89,7 +92,7 @@ const StoreForm = () => {
               autoCorrect="off"
               required
               // onBlur={dispatch2}
-              className=' p-3 shadow  rounded-md placeholder:focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+              className=' p-3 shadow text-gray-900 rounded-md placeholder:focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
               pattern='[a-zA-Z0-9]{3,20}'
             //   disabled={isLoading || isGitHubLoading}
             />
@@ -103,8 +106,8 @@ const StoreForm = () => {
           }
         </span>
         </section>
-        <section className=''>
-            <Countries/>
+        <section id='gree' name='locat' value='hhhyy' onBlur={handleadd} className=''>
+            <Countries />
         </section>
 
         <section className='flex flex-col justify-start  space-y-2'>
@@ -119,7 +122,7 @@ const StoreForm = () => {
               required
               // onBlur={dispatch2}
               className=' p-3 shadow  rounded-md'
-              pattern='[a-zA-Z0-9]{6,30}'
+              pattern='[a-zA-Z0-9\s]{6,100}'
               enterKeyHint='next'
             // disabled={isLoading || isGitHubLoading}
             />
@@ -135,11 +138,12 @@ const StoreForm = () => {
         </section>
 
         <section className='flex flex-col justify-start  space-y-2'>
-        <label className="text-sm font-medium text-gray-900 leading-6 required:after:content-['*'] required:after:text-red-500" htmlFor="Username">Store description{<p className='text-red-700 inline'>{show}</p>}</label>
+        <label className="text-sm font-medium text-gray-900 leading-6 required:after:content-['*'] required:after:text-red-500" htmlFor="store description">Store description{<p className='text-red-700 inline'>{show}</p>}</label>
         <textarea id="storedes"
               placeholder="Tell Your Story, Sell Your Brand...."
               type="text"
               cols={4}
+              rows={5}
               autoCapitalize="none"
               name='description'
               autoCorrect="off"
@@ -147,7 +151,7 @@ const StoreForm = () => {
               maxLength={200}
               // onBlur={dispatch2}
               className=' p-3 shadow  rounded-md focus:border-[#664982]'
-              pattern='[a-zA-Z0-9]{0,200}'
+              pattern='[a-zA-Z0-9\s]{10,200}'
             //   disabled={isLoading || isGitHubLoading}
             />
 
@@ -188,7 +192,7 @@ const StoreForm = () => {
         </section>
         
        
-        <button  className='bg-[#6A0DAD] py-4 rounded-md text-white disabled:opacity-70' id='sign-up'> Create store</button>
+        <button   className='bg-[#6A0DAD] py-4 rounded-md text-white disabled:opacity-70' id='sign-up'> Create store</button>
       </form>
     </div>
   )
