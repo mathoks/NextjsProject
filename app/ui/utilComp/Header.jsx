@@ -1,12 +1,14 @@
 
 import { AccessTimeOutlined, DiamondOutlined, LocationOnOutlined } from '@mui/icons-material'
-import { Divider } from '@mui/material'
 import Link from 'next/link'
 import React from 'react'
+import { headers } from 'next/headers'
+import Tab2 from '../Tab2'
 
-
-const Header = ({params}) => {
-   
+const Header = ({params, ...rest}) => {
+    const header = headers()
+   const path = header.get('referer')
+  console.log( path.split('/'))
   const visi=false,
   
   index = 'hhhh'
@@ -50,50 +52,7 @@ const Header = ({params}) => {
                   </div>
                 </div>
                 <hr className=' h-[0.1rem]'/>
-                <div
-                  className={ `${
-                    visi
-                      ? "invisible transition duration-500 opacity-100 h-0 "
-                      : "visible transition duration-500 opacity-100 "
-                  }`}
-                >
-                  <ul
-                    role="subTab"
-                    className="flex justify-between items-center pl-4 pr-4 text-sm text-gray-800"
-                  >
-                    <li
-                      value={0}
-                      className={` pb-3 ${
-                        index === "products"
-                          ? "text-indigo-600 border-b-2 transition duration-500 border-violet-600"
-                          : "border-none transition duration-500 text-gray-500 "
-                      }`}
-                    >
-                      <Link href={'#'}>About</Link>
-                    </li>
-                    <li
-                      value={1}
-                      className={` pb-3 ${
-                        index === "#Products"
-                          ? "text-indigo-600 border-b-2 transition duration-500  border-violet-600"
-                          : "border-none transition duration-500 text-gray-500"
-                      }`}
-                    >
-                      <Link href={`${encodeURIComponent(params)}/branch`}>Products</Link>
-                    </li>
-                    <li
-                      value={2}
-                      className={`pb-3 ${
-                        index === "#Recommended"
-                          ? "text-indigo-600 border-b-2  border-violet-600"
-                          : "border-none text-gray-500"
-                      }`}
-                    >
-                      <Link href={`${encodeURIComponent(params)}/recommended`} scroll>Recommended</Link>
-                    </li>
-                  </ul>
-                  <hr className=""/> 
-                </div>
+                <Tab2 params={params}/>
               </nav>
   )
 }

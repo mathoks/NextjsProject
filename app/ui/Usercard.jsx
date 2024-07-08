@@ -93,7 +93,7 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
           
       </section>
       <section className="flex flex-row justify-end  items-center w-[90%]">
-        <Link href={`/pages/${encodeURIComponent(4)}#Products`}>
+        <Link href={`/store/${encodeURIComponent(4)}/products`}>
         <div  className="flex space-x-1 text-[#005B9A]">
         <span className="text-sm ">See all</span>
           <span className="text-sm"><ArrowForward fontSize="inherit"/></span>

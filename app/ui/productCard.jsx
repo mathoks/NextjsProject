@@ -1,17 +1,14 @@
 'use client'
 import { BookmarkAddOutlined, StarRateOutlined } from '@mui/icons-material'
-import Image from 'next/image'
 import React, { useRef } from 'react'
 import {register} from 'swiper/element-bundle'
-import Logo from '@/app/assets/photo7.jpeg'
-import Logo2 from '@/app/assets/photo6.jpeg'
 
 register()
 
 const ProductCard = ({count}) => {
     const swiperRef = useRef()
   return (
-    <div className='grid grid-cols-2 gap-4 w-auto'>
+    <div className='grid grid-cols-2 gap-4 w-auto lg:grid-cols-4 lg:mx-auto '>
       {Array.from(Array(count)).map((_, ids)=>{
         return (
         <div className='shadow-md rounded-md bg-white w-auto ' key={ids} >
