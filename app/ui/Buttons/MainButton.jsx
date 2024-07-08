@@ -18,7 +18,7 @@ const MainButton = () => {
       if (session?.status === "authenticated") {
         setchild("OPEN A STORE");
          if(e?.target?.innerText === 'OPEN A STORE'){
-          router.push(`/store/${user}`)
+          router.push(`/Dashboard/${user}/createstore`)
         }
       }
       if (session?.status === "unauthenticated") {

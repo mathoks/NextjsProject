@@ -73,8 +73,7 @@ const Countries = () => {
 
     const handleLocationChange = (e) => {
       const selected = e.target.options[e.target.selectedIndex];
-      console.log(selected);
-      console.log(parent.childElementCount);
+      
 
       if (val && parent.childElementCount < 3) {
         const newMode = document.createElement("li");
@@ -93,7 +92,7 @@ const Countries = () => {
         newMode.addEventListener("click", (e) => {
           e.stopPropagation();
           if (e.target.id === "country") {
-            console.log(newMode.dataset.from);
+            
             newMode.parentElement.innerHTML = "";
             setcont(locations.map(({ country }) => country));
             setmessage("chose a country, state, market");
@@ -110,7 +109,7 @@ const Countries = () => {
             setcont((prev) => prev); // No change for market selection
           }
         });
-        console.log(parent.childElementCount);
+        
       } else {
         document.getElementById(
           "market"

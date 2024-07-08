@@ -6,12 +6,8 @@ import { headers } from 'next/headers'
 import Tab2 from '../Tab2'
 
 const Header = ({params, ...rest}) => {
-    const header = headers()
-   const path = header.get('referer')
-  console.log( path.split('/'))
-  const visi=false,
-  
-  index = 'hhhh'
+    
+ const visi=false
   return (
     <nav
                 aria-label="main"
