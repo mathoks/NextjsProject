@@ -87,7 +87,7 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
         
       </section>
     
-      <section className="flex flex-col  relative  ">
+      <section className="flex flex-col ">
         
             <UserComp info = {typeof product !== "undefined" ? newArr : []} userInfo = {userId}/>        
           

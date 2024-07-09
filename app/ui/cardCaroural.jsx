@@ -21,7 +21,7 @@ const Showcase = ({ info, userInfo }) => {
   const router = useRouter();
 
   return (
-    <div className="rootswiper rounded-md">
+    <div className="rootswiper rounded-md w-[18rem] md:w-[18rem] px-6 " >
       <swiper-container
         ref={swiperDiv}
         slides-per-view="1"
@@ -58,7 +58,7 @@ const Showcase = ({ info, userInfo }) => {
               >
                 {id !== info.length - 1 ? (
                   <div
-                    className="flex flex-col relative justify-start items-start  space-y-3  p-2"
+                    className="flex flex-col  space-y-3 pb-6"
                     onClick={() =>
                       router.push(
                         `/pages/${encodeURIComponent(
@@ -67,14 +67,14 @@ const Showcase = ({ info, userInfo }) => {
                       )
                     }
                   >
-                    <span className="flex flex-row space-x-60 items-center ">
+                    <span className="flex  justify-between items-center ">
                       <span className="font-semibold text-sm">{category}</span>
                       <span className="flex justify-end">
                         <BookmarkAddOutlined />
                       </span>
                     </span>
 
-                    <div className="flex mx-auto ">
+                    <div className="flex ">
                       <img
                         src={image[0]}
                         sizes="50vw"
@@ -82,11 +82,11 @@ const Showcase = ({ info, userInfo }) => {
                         width={200}
                         height={120}
                         loading="lazy"
-                        className="rounded-t-lg shadow-photo h-[9rem] "
+                        className="rounded-t-lg shadow-photo h-[9rem] w-full"
                       />
                     </div>
                     <div className=" flex flex-col space-y-3 ">
-                      <span className="flex justify-between w-[82%]">
+                      <span className="flex justify-between ">
                         <span className=" w-[95%] overflow-ellipsis font-semibold text-sm line-clamp-2 ">
                           {name}
                         </span>
@@ -98,7 +98,7 @@ const Showcase = ({ info, userInfo }) => {
                           </span>
                         </span>
                       </span>
-                      <div className="w-[97%]">
+                      <div className="w-[98%] ">
                         <MakeEllipsis text={description} size={60} flag={"A"} />
                       </div>
                       <div className="flex flex-col space-y-2">
@@ -142,6 +142,7 @@ const Showcase = ({ info, userInfo }) => {
               </swiper-slide>
             )
           )}
+          
       </swiper-container>
     </div>
   );

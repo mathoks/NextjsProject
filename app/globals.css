@@ -132,18 +132,18 @@ swiper-container::part(pagination) {
 
 .rootswiper swiper-container {
   /* height: 100%; */
-  /* width: 100vw; */
   /* padding: 4px; */
   /* padding-right: 1px;
   padding-left: 2px; */
-  width: 21rem;
-  /* width: auto; */
+  /* width: 21rem; */
+  width: auto;
   display: flex;
   align-items: center;
   justify-content: start;
   /* outline: #3b82fe; */
   /* background-color: #3b82fe; */
   border-radius: 5px;
+  
 }
 
 /* .rootswiper swiper-container swiper-slide{

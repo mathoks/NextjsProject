@@ -45,17 +45,17 @@ export default async function homeLayout({children, tab, arrivals, store}) {
         <HeroPage/>
       </section>
     
-      <main className="grid grid-cols-1 gap-0 md:grid-cols-2 md:gap-2 lg:grid-cols-1  lg:gap-2 lg:px-14 bg-['#f0e4f9']">
+      <main className="grid grid-cols-1 gap-0 md:grid-cols-2 md:gap-2 lg:grid-cols-1  lg:gap-2 lg:px-14 bg-['#f0e4f9'] mx-auto">
 
       <section className="pb-1  space-y-1">
-      <section className="bg-['#f0e4f9'] text-black ">
+      <section className="bg-['#f0e4f9']">
       {tab}
       </section>
-      <section className="bg-['#f0e4f9'] text-black">
+      <section className="bg-['#f0e4f9']">
       {arrivals}
       </section>
       </section>
-      <section className=" bg-['#f0e4f9'] p-1 col-span-2">
+      <section className=" bg-['#f0e4f9'] p-1 col-span-2 w-screen">
       {children}
       </section>
      

@@ -23,7 +23,7 @@ export default async function Layout({ children }) {
           <SessionProvider baseUrl={"/api/auth"}>
         <StoreProvider>
             <AppRouterCacheProvider>
-              <main>{children}</main>
+              <main className="w-screen">{children}</main>
               <footer className="bottom-0 static">
                 <ButtomNav />
               </footer>
