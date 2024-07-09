@@ -21,7 +21,7 @@ const Showcase = ({ info, userInfo }) => {
   const router = useRouter();
 
   return (
-    <div className="rootswiper rounded-md w-[18rem] md:w-[18rem] px-6 " >
+    <div className="rootswiper rounded-md w-[18rem] md:w-[18rem] px-6 py-2 bg-white shadow-md" >
       <swiper-container
         ref={swiperDiv}
         slides-per-view="1"
