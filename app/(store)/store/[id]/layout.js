@@ -25,7 +25,7 @@ export default async function StoreLayout({children, recommended, branch, produc
    
     <>
       <SessionProvider baseUrl={"/api/auth"}>
-      <div className="flex flex-col space-y-24 lg:space-y-14  md:space-y-14  w-screen">
+      <div className="flex flex-col space-y-24 lg:space-y-14  md:space-y-14  w-screen  bg-['#f0e4f9']">
       <header className="mx-auto bg-white z-50" >
       <Header params = {id}/>
       </header>

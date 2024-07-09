@@ -106,7 +106,7 @@ const Showcase = ({ info, userInfo }) => {
                       </p>
                     </div>
                     <div>
-                      <MakeEllipsis text={description} size={60} flag={"A"} />
+                      <MakeEllipsis text={description} size={60} flag={"A"} /> 
                     </div>
                   </div>
                 </div>
@@ -114,6 +114,7 @@ const Showcase = ({ info, userInfo }) => {
           )
         )}
     </swiper-container> 
+    <hr className="h-2 text-purple-600"></hr>
     </div>
   );
 };

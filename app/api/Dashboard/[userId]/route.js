@@ -5,7 +5,7 @@
  * @returns {Promise<void>}
  */
 
-import prisma from "@/models/model";
+
 import { Pool } from "@neondatabase/serverless";
 import { PrismaNeon } from "@prisma/adapter-neon";
 import { PrismaClient } from "@prisma/client";
@@ -21,11 +21,11 @@ const adapter = new PrismaNeon(neon);
 
 
 export async function POST(request) {
-    console.log(request)
+    
     if (!prisma) {
         prisma = new PrismaClient({ adapter });
       }
-      const {} = request.body
+      
   try {
     const newStore = await prisma.store.create({
         data: {

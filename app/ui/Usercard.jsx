@@ -31,7 +31,7 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
     // /pages/${encodeURIComponent(props?.id || 4)
   return (
     
-    <div className="flex flex-col space-y-2 text-gray-900  p-2 pr-1 pt-3 items-center grow-0 text-left shadow-md rounded-md bg-white  last:mt-0">
+    <div className="flex flex-col space-y-2 text-gray-900  p-2 pr-1 pt-3 items-center grow-0 text-left  rounded-md  last:mt-0">
     <span className=" first-letter:capitalize flex gap-1 w-3/4 justify-end items-center text-[12px]">
             <span>{ratings || 4.5}
             </span>
@@ -100,7 +100,7 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
         </div>
         </Link>
       </section>
-      
+      <hr className="h-4 pt-4 text-purple-600"></hr>
     </div>
     
   );

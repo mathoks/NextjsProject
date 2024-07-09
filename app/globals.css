@@ -35,7 +35,7 @@ body {
     /* rgb(var(--background-start-rgb));  */
   /* background: linear-gradient(to bottom, #4f08ed 0.005%, white 39.995% ,  white 60% ); */
   /* background-size: 100% 100%; */
-
+color: #1c0b29;
   ::-webkit-scrollbar {
     display: none;
   }
@@ -65,12 +65,12 @@ body {
     background-image: url('./assets/herobg.png');
     background-repeat: no-repeat;
     /* background-color: #4f08ed; */
-    background-color: #6A0DAD;
+    background-color: #1c0b29;
     background-position: center;
     height: auto;
     /* background-size: cover, 100% 50%; */
-
-
+    
+    /* #f0e4f9 */
   }
 
 }
