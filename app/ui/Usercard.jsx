@@ -1,5 +1,5 @@
 
-import { Avatar } from "@mui/material";
+import { Avatar , Chip} from "@mui/material";
 import React from "react";
 import { stringAvatar } from "../lib/utills/stringAvata";
 import { MakeEllipsis } from "../lib/utills/Makelipsis";
@@ -31,7 +31,7 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
     // /pages/${encodeURIComponent(props?.id || 4)
   return (
     
-    <div className="flex flex-col space-y-2 text-gray-900  p-2 pr-1 pt-3 items-center grow-0 text-left  rounded-md  last:mt-0">
+    <div className="flex flex-col space-y-2 text-gray-900 mx-auto p-2 pr-1 pt-3 items-center grow-0 text-left  rounded-md  ">
     <span className=" first-letter:capitalize flex gap-1 w-3/4 justify-end items-center text-[12px]">
             <span>{ratings || 4.5}
             </span>
@@ -60,7 +60,7 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
             <span>
               <LocationOnOutlined sx={{fontSize: "18px"}}/>
             </span>
-            <span className=" text-sm w-full leading-5 pt-[2px]">
+            <span className=" text-sm lg:text-base w-full leading-5 pt-[2px]">
               <span>{address || "shop 134b Electronic line Alaba international market ojo lagos" }</span>
             </span>
           </span>
@@ -92,15 +92,21 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
             <UserComp info = {typeof product !== "undefined" ? product : []} userInfo = {userId}/>        
           
       </section>
-      <section className="flex flex-row justify-end  items-center w-[90%]">
-        <Link href={`/store/${encodeURIComponent(4)}/products`}>
+      <section className="flex flex-row justify-between  items-center w-[90%]">
+       <Link href={`/store/${encodeURIComponent(userId)}/products`}>
         <div  className="flex space-x-1 text-[#005B9A]">
         <span className="text-sm ">See all</span>
           <span className="text-sm"><ArrowForward fontSize="inherit"/></span>
         </div>
         </Link>
+      <Link href={`/store/${encodeURIComponent(userId)}`} className="text-sm  text-white"><Chip variant= 'outlined' clickable label = 'Visit the Store' className="shadow-my" sx={{bgcolor:"#6A0DAD", color:'white', opacity:0.8, textRendering: 'optimizeLegibility',
+                  }} /></Link>
+       
       </section>
-      <hr className="h-4 pt-4 text-purple-600"></hr>
+      <div className="w-[22rem] h-4 ">
+      <hr className="h-6  pt-4 text-purple-600 mt-4"></hr>
+      </div>
+      
     </div>
     
   );

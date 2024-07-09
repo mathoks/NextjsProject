@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import { StarRate } from "@mui/icons-material";
+import { BookmarkAddOutlined, StarRate } from "@mui/icons-material";
 import {register} from 'swiper/element-bundle'
 //import styles from "@/app/ui/swiper.module.css";
 import { useAppDispatch } from "../lib/hooks/hooks";
@@ -56,22 +56,37 @@ const Showcase = ({ info, userInfo }) => {
               }}
             >
               
-                 <div className="flex relative justify-start items-start  space-x-3 h-[16rem] p-2" onClick={()=>router.push(`/pages/${encodeURIComponent(userInfo)}/${encodeURIComponent(productId)}`)}>
-                  <div className="flex flex-col space-y-2">
+                 <div className="flex flex-col relative justify-start items-start  space-y-3  p-2" onClick={()=>router.push(`/pages/${encodeURIComponent(userInfo)}/${encodeURIComponent(productId)}`)}>
+                 <span className="flex flex-row space-x-60 items-center ">
+                 <span className="font-semibold text-sm">
+                          {category}
+                        </span>
+                        <span className="flex justify-end">
+                        <BookmarkAddOutlined/>
+                        </span>
+                 </span>
+                 
+                  <div className="flex mx-auto ">
+                  
                     <img
                       src={image[0]}
                       sizes="50vw"
                       alt="DealerPic"
                       width={200}
-                      height={200}
+                      height={120}
                       loading="lazy"
-                      className="h-[9rem] rounded-t-lg shadow-photo"
+                      className="rounded-t-lg shadow-photo h-[9rem] "
                     />
-                    <div className="flex flex-col space-y-2">
-                      <span className="flex justify-between">
-                        <span className="font-semibold text-sm">
-                          {category}
-                        </span>
+
+                  
+                  </div>
+                  <div className=" flex flex-col space-y-3 ">
+                  <span className="flex justify-between w-[82%]">
+                  
+                      <span className=" w-[95%] overflow-ellipsis font-semibold text-sm line-clamp-2 ">
+                        {name}
+                      </span>
+                    
                         <span className="flex justify-between items-center">
                           <span className="flex justify-start items-center space-x-1">
                             <span className="text-[12px]">&#x20A6;</span>
@@ -79,8 +94,13 @@ const Showcase = ({ info, userInfo }) => {
                           </span>
                         </span>
                       </span>
+                    <div className="w-[97%]">
+                      <MakeEllipsis text={description} size={60} flag={"A"} /> 
+                    </div>
+                    <div className="flex flex-col space-y-2">
+                     
                       <span className="text-sm">{Availability}</span>
-                      <span className="flex items-center justify-between relative">
+                      <span className="flex items-center justify-between ">
                       <span className="flex space-x-1 items-center text-[12px]">
                         <span>{rating}</span>
                         <span>
@@ -94,19 +114,8 @@ const Showcase = ({ info, userInfo }) => {
                         </span>
                         <span className="text-[#005B9A]">1123</span>
                       </span>
-                      <span onClick={(e)=>{ e.stopPropagation(); router.push(`/store/${encodeURIComponent(userInfo)}`)}} className="text-sm absolute -right-[8.6rem] text-white"><Chip variant= 'outlined' clickable label = 'Visit the Store' className="shadow-my" sx={{bgcolor:"white", color:'black', opacity:0.8, textRendering: 'optimizeLegibility',
-                  }} /></span>
+                      <span onClick={(e)=>{ e.stopPropagation(); router.push(`/store/${encodeURIComponent(userInfo)}`)}} className="text-sm  text-white">see all</span>
                       </span>
-                    </div>
-                  </div>
-                  <div className=" flex flex-col space-y-3 w-[50%]">
-                    <div>
-                      <p className=" w-[95%] overflow-ellipsis font-semibold text-sm line-clamp-2 ">
-                        {name}
-                      </p>
-                    </div>
-                    <div>
-                      <MakeEllipsis text={description} size={60} flag={"A"} /> 
                     </div>
                   </div>
                 </div>
@@ -114,7 +123,7 @@ const Showcase = ({ info, userInfo }) => {
           )
         )}
     </swiper-container> 
-    <hr className="h-2 text-purple-600"></hr>
+    
     </div>
   );
 };
