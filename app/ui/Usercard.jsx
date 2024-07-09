@@ -26,7 +26,7 @@ const UserComp = dynamic(()=>import('@/app/ui/cardCaroural') , {ssr: false})
  * @returns {JSX.Element} - JSX Element
  */
 const Usercard = ({userId, Storename, storeDescription, email, avatar, registeredAt, address, product, ratings, subscriptionTier}) => {
-    
+    const newArr = [...product, {'link' : 'see all'}]
      
     // /pages/${encodeURIComponent(props?.id || 4)
   return (
@@ -89,16 +89,11 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
     
       <section className="flex flex-col  relative  ">
         
-            <UserComp info = {typeof product !== "undefined" ? product : []} userInfo = {userId}/>        
+            <UserComp info = {typeof product !== "undefined" ? newArr : []} userInfo = {userId}/>        
           
       </section>
-      <section className="flex flex-row justify-between  items-center w-[90%]">
-       <Link href={`/store/${encodeURIComponent(userId)}/products`}>
-        <div  className="flex space-x-1 text-[#005B9A]">
-        <span className="text-sm ">See all</span>
-          <span className="text-sm"><ArrowForward fontSize="inherit"/></span>
-        </div>
-        </Link>
+      <section className="flex flex-row justify-end  items-center w-[90%]">
+       
       <Link href={`/store/${encodeURIComponent(userId)}`} className="text-sm  text-white"><Chip variant= 'outlined' clickable label = 'Visit the Store' className="shadow-my" sx={{bgcolor:"#6A0DAD", color:'white', opacity:0.8, textRendering: 'optimizeLegibility',
                   }} /></Link>
        
