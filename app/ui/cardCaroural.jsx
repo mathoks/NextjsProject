@@ -130,9 +130,9 @@ const Showcase = ({ info, userInfo }) => {
                           `/store/${encodeURIComponent(userInfo)}/products`
                         );
                       }}
-                      className="flex space-x-1 text-[#005B9A] text-sm mx-auto pl-[10rem] pt-4"
+                      className="flex space-x-1 text-[#005B9A] text-sm mx-auto pl-[8rem] pt-4"
                     >
-                      <span className="text-base">See all</span>
+                      <span className="text-base">See all products</span>
                       <span className="text-sm">
                         <ArrowForward fontSize="inherit" />
                       </span>
