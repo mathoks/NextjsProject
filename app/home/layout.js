@@ -34,13 +34,14 @@ export default async function homeLayout({children, tab, arrivals, store}) {
    
     <>
       <SessionProvider baseUrl={"/api/auth"}>
-      <header className="bg-[#6A0DAD] fixed  top-0 z-50">
+  
+      <header className="bg-[#630ba2] fixed  top-0 z-50">
       
       <Nav/>
       
       </header>
       
-      <section className="bg-[#6A0DAD] pt-32 pb-0 w-screen">
+      <section className="bg-[#630ba2] pt-32 pb-0 w-screen">
         <HeroPage/>
       </section>
     
