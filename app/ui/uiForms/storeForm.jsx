@@ -21,7 +21,7 @@ const StoreForm = () => {
     const [src, setsrc] = useState(null)
     const router = useRouter()
     const [show, setshow] = useState(' *')
-    const [ImageName, setImage]= useState('no Image choosen')
+    const [ImageName, setImage]= useState('no Image choosen ggggggghhihijiojo')
     
     if(state.success === true){
       const notify = () => toast(state.message);
@@ -44,9 +44,7 @@ const StoreForm = () => {
     return;
   }
 
-  const handleadd = ()=>{
-   console.log(document?.getElementById('gree'))
-  }
+ 
      useEffect(() => {
        if (src === null) 
          setsrc(<AddPhotoAlternate />);
@@ -68,7 +66,7 @@ const StoreForm = () => {
     </section>
     <section>
       <span id="customer-error"  aria-live="polite" className=" mx-auto text-center" aria-atomic="true" >
-        {state?.message && state.success &&
+        {state?.message  &&
             <p className={`text-sm ${state.success ? 'text-green-400' :  'text-red-500'}`}>
               {state?.message  + " "} 
               {state?.success ?  <Link href= {'/login'} className="hover:text-brand underline underline-offset-4">click here to Login</Link> : ''}
@@ -81,16 +79,16 @@ const StoreForm = () => {
           <div className='flex  items-center gap-x-3'>
               <Avatar  src={src} id='image-add'  sx={{width: 60 , height: 60, bgcolor: 'white'}}  className=' ring-gray-300 shadow-md ring-1 ring-inset' ><AddPhotoAlternate sx={{color :'#ddd'}} fontSize='large' /></Avatar>
            <span className=' relative cursor-pointer'>
-           <button type='button'  className=' rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50'>
+           <button type='button'  className=' rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 text-nowrap'>
               Add Logo
             </button>
             <input type='file' name='picture' onChange={handleImage} accept='image/*' id='image' className=' opacity-0 border-none whitespace-nowrap p-0 absolute -inset-x-1 z-30 overflow-hidden'/>
            </span> 
-           <p id='sel' className='text-sm text-gray-800 overflow-hidden'>{ImageName}</p>
+           <p id='sel' className='text-sm text-gray-800 text-wrap line-clamp-2 overflow-ellipsis'>{ImageName}</p>
           </div>
       </section>
           <section className='flex flex-col justify-start  space-y-2 text-gray-900'>
-        <label className="text-sm font-medium leading-6 text-gray-900 required:after:content-['*'] required:after:text-red-500" htmlFor="Username"> Storename{<p className='text-red-700 inline'>{show}</p>}</label>
+        <label className="text-sm font-medium leading-6 text-gray-900 required:after:content-['*'] required:after:text-red-500" htmlFor="storename"> Storename{<p className='text-red-700 inline'>{show}</p>}</label>
         <input id="storename"
               placeholder="mercyStores"
               type="text"
@@ -99,7 +97,7 @@ const StoreForm = () => {
               name='storename'
               autoCorrect="off"
               required
-              // onBlur={dispatch2}
+              onBlur={dispatch2}
               className=' p-3 shadow text-gray-900 rounded-md placeholder:focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
               pattern='[a-zA-Z0-9]{3,20}'
             //   disabled={isLoading || isGitHubLoading}
@@ -114,12 +112,20 @@ const StoreForm = () => {
           }
         </span>
         </section>
-        <section id='gree' name='locat' value='hhhyy' onBlur={handleadd} className=''>
+        <section className='flex flex-col space-y-2'>
             <Countries />
+            <span id="customer-error"  aria-live="polite" className="text-left" aria-atomic="true" >
+        {(state?.errors.name === 'Location' || states?.errors.name === 'Location') &&
+            <p className="text-sm text-red-500" >
+              {state?.errors.error || states?.errors.error}
+              
+            </p>
+          }
+    </span>
         </section>
 
         <section className='flex flex-col justify-start  space-y-2'>
-        <label className="text-sm font-medium leading-6 text-gray-900 required:after:content-['*'] required:after:text-red-500" htmlFor="address">Store/Shop No</label>
+        <label className="text-sm font-medium leading-6 text-gray-900 required:after:content-['*'] required:after:text-red-500" htmlFor="address">Store/Shop No{<p className='text-red-700 inline'>{show}</p>}</label>
         <input id="address"
               placeholder=""
               type="text"
@@ -128,7 +134,7 @@ const StoreForm = () => {
               name='address'
               autoCorrect="off"
               required
-              // onBlur={dispatch2}
+              onBlur={dispatch2}
               className=' p-3 shadow  rounded-md'
               pattern='[a-zA-Z0-9\s]{6,100}'
               enterKeyHint='next'
@@ -157,7 +163,7 @@ const StoreForm = () => {
               autoCorrect="off"
               required
               maxLength={200}
-              // onBlur={dispatch2}
+              onBlur={dispatch2}
               className=' p-3 shadow  rounded-md focus:border-[#664982]'
               pattern='[a-zA-Z0-9\s]{10,200}'
             //   disabled={isLoading || isGitHubLoading}
@@ -175,22 +181,21 @@ const StoreForm = () => {
         <section className='flex flex-col justify-start  space-y-2'>
         <label className="text-sm font-medium text-gray-900 leading-6 required:after:content-['*'] required:after:text-red-500" htmlFor="phone"> Business Line{<p className='text-red-700 inline'>{show}</p>}</label>
         <input id="tel"
-              placeholder="0809678945"
+              placeholder="+234809678945"
               type="tel"
               autoCapitalize="none"
               autoComplete="email"
               autoCorrect="off"
               name='tel'
               inputMode='tel'
-
               required
-              // onBlur={dispatch2}
+        
               className=' p-3 shadow rounded-md '
-            //   disabled={isLoading || isGitHubLoading}
+            
 
               />
-        <span id="customer-error"  aria-live="polite" className=" mx-auto text-left" aria-atomic="true" >
-        {(state?.errors.name === 'email' || states?.errors.name === 'email') &&
+        <span id="customer-error"  aria-live="polite" className="text-left" aria-atomic="true" >
+        {(state?.errors.name === 'phone' || states?.errors.name === 'phone') &&
             <p className="text-sm text-red-500" >
               {state?.errors.error || states?.errors.error}
               

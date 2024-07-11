@@ -49,7 +49,7 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
           </span>
     
       <section className="flex flex-row pl-2 justify-between items-start" >
-        <div>
+        <div className="ring-2 rounded-full">
           <Avatar {...stringAvatar(Storename, avatar)} alt="userImg"/>
         </div>
         <div className="flex flex-col space-y-2 ml-3 ">

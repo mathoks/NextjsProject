@@ -1,9 +1,8 @@
 import { put } from "@vercel/blob";
 import sharp from "sharp";
-import fs from "fs";
 
 const ImageResize = async (File) => {
-  console.log(File);
+  
   try {
     const resize = sharp(await File.arrayBuffer());
     resize

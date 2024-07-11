@@ -19,7 +19,7 @@ export default async function Layout({ children }) {
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
       <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet"/>
       </head>
-          <body className={`${inter.className}  overflow-x-clip h-fit bg-slate-50 `}>
+          <body className={`${inter.className}  w-screen h-fit bg-[#fcfaff]`}>
           <SessionProvider baseUrl={"/api/auth"}>
         <StoreProvider>
             <AppRouterCacheProvider>

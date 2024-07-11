@@ -1,16 +1,11 @@
 "use server";
-import { auth, signIn } from "@/auth";
+import { auth } from "@/auth";
 import joi from "joi";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { NextRequest } from "next/server";
-
 import {
   isPossiblePhoneNumber,
-  isValidPhoneNumber,
-  validatePhoneNumberLength,
 } from "libphonenumber-js";
-import { parsePhoneNumberWithError, ParseError } from "libphonenumber-js";
 import ImageResize from "@/app/lib/utills/ImageResize";
 
 const FormSchema = joi.object({
@@ -65,25 +60,27 @@ export const createStore = async function (State, formData) {
   
   try {
     
-    const dbUrl = await ImageResize(file)
-    if(!dbUrl){
-        throw new Error('image upload failed')
-    }
+    // const dbUrl = await ImageResize(file)
+    // if(!dbUrl){
+    //     throw new Error('image upload failed')
+    // }
     if (!isPossiblePhoneNumber(phone))
       throw new Error("phone number not valid");
     // 1. Validate Form Fields using FormSchema
-    validatedFields = await FormSchema.validateAsync({
+      validatedFields = await FormSchema.validateAsync({
       storename: formData.get("storename"),
       address: formData.get("address"),
       description: formData.get("description").trim(),
       location: formData.get("location"),
     });
 
-    try {
       const { location } = validatedFields;
-      if (location !== "") {
+      console.log(location);
+      const hasMatch = location.indexOf('state') !== -1 ||
+                    location.indexOf('country') !== -1 ||
+                    location.indexOf('market') !== -1;
+      if (location !== "" && !hasMatch) {
         const Location = location.split(",");
-        console.log(Location);
         if (Array.isArray(Location) && Location.length === 3)
           locations = {
               country: Location[0].trim(),
@@ -92,7 +89,7 @@ export const createStore = async function (State, formData) {
             };
       } else throw new Error("Location is required");
 
-      try {
+    
         const { storename, address, description,  } = validatedFields;
         const response = await fetch(
           `http://${domain}/api/Dashboard/${session?.user.name}/createstore`,
@@ -114,48 +111,27 @@ export const createStore = async function (State, formData) {
             }),
           }
         );
-        console.log(response.ok);
+        
         if (!response.ok) {
           throw new Error("Network failed");
         }
-        // Destructure validated data
+        
         const store = await response.json();
-        //   const lognewUser = await signIn('credentials',{ email, password });
-        console.log(store)
+    
+       
         if (!store) {
           redirect(`/Dashboard/${session?.user.name}/settings`);
-        } else {
+        } 
           return {
             success: true,
             message: `${store.data.storename} store Successfully created `,
             errors: {},
             store: store.data.storename 
           };
-        }
-      } catch (error) {
-        console.error(error);
-        return {
-          errors: {
-            error: ["Oops try again."],
-            name: "something happaned try again...",
-          },
-          message: "An error occurred. Please try again later.",
-          success: false,
-        };
-      }
-    } catch (err) {
-      console.error(err);
-      return {
-        errors: {
-          error: ["Oops try again."],
-          name: "something happaned try again...",
-        },
-        message: "Please choose a Loacation .",
-        success: false,
-      };
-    }
+        
+    
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
     if (error?.details) {
       // Return user-friendly error messages
       validatedFields = {};
@@ -170,10 +146,13 @@ export const createStore = async function (State, formData) {
     } else
       return {
         errors: {
-          error: ["An error occurred. Please try again later."],
-          name: "Authentication failed.",
+          error: error.message,
+          name:  error.message.split(' ')[0]
+         
         },
+        message: `Validation failed. ${error.message}.`,
         success: false,
       };
+     
   }
 };

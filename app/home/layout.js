@@ -47,17 +47,17 @@ export default async function homeLayout({children, tab, arrivals, ...rest}) {
       </div> 
       
     
-      <main className="grid grid-cols-1 gap-0 md:grid-cols-2 md:gap-2 lg:grid-cols-1  lg:gap-2 lg:px-14 bg-['#f0e4f9'] mx-auto">
+      <main className="grid grid-cols-1 gap-0 md:grid-cols-2 md:gap-2 lg:grid-cols-1  lg:gap-2 lg:px-14  mx-auto">
 
       <section className="pb-1  space-y-1">
-      <section className="bg-['#f0e4f9']">
+      <section>
       {tab}
       </section>
-      <section className="bg-['#f0e4f9']">
+      <section className="">
       {arrivals}
       </section>
       </section>
-      <section className=" bg-['#f0e4f9'] p-1 col-span-2 w-screen">
+      <section className=" p-1 col-span-2 w-screen">
       {children}
       </section>
      

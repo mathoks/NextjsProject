@@ -214,7 +214,7 @@ const data = new FormData()
           </option>
         ))}
       </select>
-      <i className="fas fa-check-circle" style={{color: 'green'}}></i>
+     
     
       
     </div>
