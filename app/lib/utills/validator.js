@@ -1,12 +1,24 @@
 import joi from "joi";
 
 const Fields = {
+  storename: joi
+    .string()
+    .pattern(new RegExp("^[a-zA-Z0-9s]{6,20}$"))
+    .required(),
   username: joi.string().pattern(new RegExp("^[a-zA-Z0-9]{6,10}$")).required(),
   email: joi
     .string()
     .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } })
     .required(),
   password: joi.string().pattern(new RegExp("^[a-zA-Z0-9]{6,10}$")).required(),
+  location: joi.string().required(),
+  description: joi
+    .string()
+    .pattern(new RegExp("[a-zA-Z0-9s\u00A0.,:?]+$"))
+    .min(6)
+    .max(200)
+    .required(),
+  address: joi.string().pattern(new RegExp("[a-zA-Z0-9s]{10,200}$")).required(),
 };
 
 export const validate = (_, e) => {

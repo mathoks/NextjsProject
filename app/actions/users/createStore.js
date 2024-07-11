@@ -48,6 +48,7 @@ const State = {
  */
 export const createStore = async function (State, formData) {
   const phone = formData.get("tel");
+const Store = formData.get('storename')
   const picture = formData.get("picture");
   const headerList = headers();
   const domain = headerList.get("host");
@@ -60,10 +61,10 @@ export const createStore = async function (State, formData) {
   
   try {
     
-    // const dbUrl = await ImageResize(file)
-    // if(!dbUrl){
-    //     throw new Error('image upload failed')
-    // }
+    const dbUrl = typeof file.name !== undefined && file.size !== 0  ? await ImageResize(file) : {}
+    if(!dbUrl ){
+        throw new Error('image upload failed')
+    }
     if (!isPossiblePhoneNumber(phone))
       throw new Error("phone number not valid");
     // 1. Validate Form Fields using FormSchema
@@ -107,7 +108,7 @@ export const createStore = async function (State, formData) {
               state: locations.state,
               country: locations.country,
               market: locations.market,
-              image : dbUrl.url
+              image : dbUrl?.url
             }),
           }
         );
@@ -120,18 +121,23 @@ export const createStore = async function (State, formData) {
     
        
         if (!store) {
-          redirect(`/Dashboard/${session?.user.name}/settings`);
+          throw new Error('could not create store')
         } 
-          return {
-            success: true,
-            message: `${store.data.storename} store Successfully created `,
-            errors: {},
-            store: store.data.storename 
-          };
+
+        redirect(`http://${domain}/store/${store?.storename}`);
+        
+        //   return {
+        //     success: true,
+        //     message: `${store.data.storename} store Successfully created `,
+        //     errors: {},
+        //     store: store.data.storename 
+        //   };
         
     
   } catch (error) {
-    console.log(error.message);
+    if(error.message === 'NEXT_REDIRECT'){
+        redirect(`http://${domain}/store/${Store}`); 
+    }
     if (error?.details) {
       // Return user-friendly error messages
       validatedFields = {};
@@ -155,4 +161,5 @@ export const createStore = async function (State, formData) {
       };
      
   }
+  
 };

@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "@/app/globals.css";
 import { SessionProvider } from "next-auth/react";
 import Header from "@/app/ui/utilComp/Header";
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -16,10 +15,12 @@ export const metadata = {
 };
 
 export default async function StoreLayout({children, recommended, branch, products, ...rest}) {
-  
-  const id = rest?.params.id
-   
-  
+  const response =  await fetch(
+    `http://${domain}/api/Dashboard/${rest?.params.storeId}/createstore`,
+    
+    )
+   const data = response.json()
+   console.log(data)
   return (
    
     <>
@@ -28,7 +29,7 @@ export default async function StoreLayout({children, recommended, branch, produc
       <div className="flex flex-col space-y-24 lg:space-y-14  md:space-y-14  w-screen  bg-['#f0e4f9']">
       
       <header className="mx-auto bg-white z-50" >
-      <Header params = {id}/>
+      <Header params = {6}/>
       </header>
      
       <main id='tray' className="  flex flex-col space-y-1 text-sm md:text-base  lg:text-balance lg:text-base">

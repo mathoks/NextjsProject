@@ -51,6 +51,8 @@ model User {
   sessions      Session[]
   userInfo      Store?
   wishlist      WishList?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
   messagesRecieved      Message[] @relation(name: "reciever")
   messagesSent      Message[] @relation(name: "sender")
   comments      ProdReview[]
@@ -67,7 +69,7 @@ model User {
 
 model Store {
   id            String    @id @default(cuid())
-  storeId    String   @map("userinfo_id") @unique
+  storeId    String   @map("store_id") @unique
   businessName          String @map("business_name")
   phone         String?
   shopAddress         String?   @unique @map("shop_address")
@@ -77,12 +79,15 @@ model Store {
   market         String
   about          String
   bizLogo         String? @map("biz_logo")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
   branches      Branche[]
   storeOwner         User     @relation(fields: [storeId], references: [id], onDelete: Cascade)
   storeReviews  storeReview[]
   storeSubscriptions    StoreSubscriptions[]
   product Product[]
-  @@map("user_info")
+  @@map("store")
+  @@index([storeId, createdAt(sort: Desc)])
 }
  
 model VerificationToken {
@@ -120,6 +125,8 @@ model Branche {
   id String   @id @default(cuid())
   branchName String? @map("branch_name")
   branchAddress String? @map("branch_address")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
   state String?
   branchId String @map("branch_id") @unique
   user Store @relation(fields: [branchId], references: [id])
@@ -178,6 +185,8 @@ model ProductAttribute{
   height      Int?
   weight      Int?
   brand       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
   status      Status
   product     Product @relation(fields: [productId], references: [id])
   @@map("product_attribute")
@@ -189,6 +198,8 @@ model WishList {
   productId   String   @map("product_id")
   product     Product @relation(fields: [productId], references: [id])
   user        User     @relation(fields: [userId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
  
   @@map("wishlist")
 }

@@ -21,7 +21,7 @@ const StoreForm = () => {
     const [src, setsrc] = useState(null)
     const router = useRouter()
     const [show, setshow] = useState(' *')
-    const [ImageName, setImage]= useState('no Image choosen ggggggghhihijiojo')
+    const [ImageName, setImage]= useState('no Image choosen ')
     
     if(state.success === true){
       const notify = () => toast(state.message);

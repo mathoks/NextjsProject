@@ -1,6 +1,5 @@
 import { headers } from "next/headers";
 
-
 /**
  * GET /api/users
  * @route GET /api/users.

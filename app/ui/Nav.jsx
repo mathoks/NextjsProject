@@ -57,7 +57,7 @@ useEffect(()=>{
   return  ( 
     
     <nav aria-label="main" className={`flex bg-[#630ba2] flex-col space-y-0 fixed w-full z-50  ${col ? "shadow-lg" : ""}`} >
-    <div className={`sm: flex flex-col space-y-4 opacity-100  bg-[#6A0DAD] md:flex items-center justify-center  ${!navState ? "invisible h-0 opacity-0 transition-opacity" : "p-4"}` }>
+    <div className={`sm: flex flex-col space-y-4 opacity-100 md:flex items-center justify-center  ${!navState ? "invisible h-0 opacity-0 transition-opacity" : "p-4"}` }>
     <section>
       <Link href={"#"} className="flex  gap-4 items-center text_shadow">
       <p>Mymart</p>
@@ -80,7 +80,7 @@ useEffect(()=>{
       </div>
       </section>
       </div>
-      <div className={`flex items-center justify-between pr-4 ${navState ? 'bg-[#6A0DAD]' : 'bg-white'} `}>
+      <div className={`flex items-center justify-between pr-4 ${navState ? 'bg-[inherit]' : 'bg-white'} `}>
       <Tab/>
       <span className="mx-auto ">
       <ButtonBase onClick={DrawerHandler}>
