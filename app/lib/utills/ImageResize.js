@@ -12,7 +12,7 @@ const ImageResize = async (File) => {
       .jpeg({ quality: 80, mozjpeg: true })
       .toBuffer()
       .then(async (data) => {
-        const blob = await put(File.name, data.toString("base64"), {
+        const blob = await put(File.name, data, {
           access: "public",
         });
         if (blob) {
