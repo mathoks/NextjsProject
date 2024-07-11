@@ -7,19 +7,27 @@ import Link from 'next/link'
 import Countries from '@/app/lib/utills/countries'
  import {Avatar} from '@mui/material'
 import { createStore } from '@/app/actions/users/createStore'
- 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useRouter } from 'next/navigation'
+import { useSession } from 'next-auth/react'
  
 
 const StoreForm = () => {
-    const [ptype, setptype] = useState('password')
-    const initialState = { message: null, errors: {}, success: null };
+  const session = useSession()
+    const initialState = { message: null, errors: {}, success: null, store: null };
     const [state, dispatch] = useFormState(createStore, initialState);
-     const [states, dispatch2] = useFormState(validate, initialState);
-     const [src, setsrc] = useState(null)
-     const [show, setshow] = useState(' *')
-     const [ImageName, setImage]= useState('no Image choosen')
+    const [states, dispatch2] = useFormState(validate, initialState);
+    const [src, setsrc] = useState(null)
+    const router = useRouter()
+    const [show, setshow] = useState(' *')
+    const [ImageName, setImage]= useState('no Image choosen')
     
-    
+    if(state.success === true){
+      const notify = () => toast(state.message);
+      notify();
+      // router.replace(`/store/${state.store}`)
+    }
     const handleImage = ()=>{
       const pic =  document?.getElementById('image').files[0]
       if(pic){
@@ -46,9 +54,9 @@ const StoreForm = () => {
      
 
   return (
-    <div className='text-gray-900 mx-auto mt-4 md:flex md:justify-around border-b border-gray-900/10 pb-12'>
-  
-      <form id='form' className='flex flex-col space-y-4 mx-auto text-gray-900' action={dispatch}>
+    <div className='text-gray-900 mx-auto mt-8 md:flex md:justify-around border-b border-gray-900/10 pb-12'>
+       <ToastContainer className={'w-fit text-center text-green-400'}/>
+      <form  id='form' className='flex flex-col space-y-4 mx-auto text-gray-900' action={dispatch}>
       <section className='md:mx-auto space-y-4 flex-col md:flex md:justify-start md:my-2 text-gray-900'>
     <header className='mb-8'>
       <h1 className='text-3xl font-bold text-gray-900 mb-4'>Lets Build Your Store Together</h1>
@@ -60,7 +68,7 @@ const StoreForm = () => {
     </section>
     <section>
       <span id="customer-error"  aria-live="polite" className=" mx-auto text-center" aria-atomic="true" >
-        {state?.message &&
+        {state?.message && state.success &&
             <p className={`text-sm ${state.success ? 'text-green-400' :  'text-red-500'}`}>
               {state?.message  + " "} 
               {state?.success ?  <Link href= {'/login'} className="hover:text-brand underline underline-offset-4">click here to Login</Link> : ''}
@@ -192,7 +200,7 @@ const StoreForm = () => {
         </section>
         
        
-        <button   className='bg-[#6A0DAD] py-4 rounded-md text-white disabled:opacity-70' id='sign-up'> Create store</button>
+        <button disabled = {state.success === true}  className='bg-[#6A0DAD] py-4 rounded-md text-white disabled:opacity-70' id='sign-up'> Create store</button>
       </form>
     </div>
   )

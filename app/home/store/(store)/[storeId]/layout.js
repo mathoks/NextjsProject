@@ -5,6 +5,7 @@ import { SessionProvider } from "next-auth/react";
 import Header from "@/app/ui/utilComp/Header";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { headers } from "next/headers";
 
 
 
@@ -18,7 +19,7 @@ export const metadata = {
 export default async function StoreLayout({children, recommended, branch, products, ...rest}) {
   
   const id = rest?.params.id
-   
+  
   
   return (
    

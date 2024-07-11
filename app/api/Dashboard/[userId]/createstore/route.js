@@ -10,6 +10,7 @@ import { Pool } from "@neondatabase/serverless";
 import { PrismaNeon } from "@prisma/adapter-neon";
 import { PrismaClient } from "@prisma/client";
 import databaseAdapter from "@/app/actions/users/databaseAdapter";
+import { NextRequest, NextResponse } from "next/server";
 
 // Create a single instance of the Prisma client for efficiency
 let prisma;
@@ -27,20 +28,28 @@ export async function POST(request) {
       }
       
   try {
-    const newStore = await prisma.store.create({
-        data: {
-         businessName: 'credentials',
-         provider:"credentials",
-         providerAccountId: newUser?.id,
-        }}) 
-     
-    if (!response.ok) {
+    
+     const {picture, storename, address, description, phone, country, state, market, image}= await request.json()
+    //  const newStore = await prisma.store.create({
+    //     data: {
+    //      businessName: storename,
+    //      shopAddress: address,
+    //      phone:tel,
+    //      about:description,
+    //      country,
+    //      state,
+    //      market,
+    //      bizLogo:picture
+    //     }}) 
+    console.log(storename, address, description, phone, country, state, market)
+     const newStore = {storename: 'pop'}
+    if (!newStore) {
       throw new Error(`API request failed with status ${response.status}`);
     }
-    const todo = await response.json();
-    return Response.json({ data: todo });
+    //const todo = await response.json();
+    return NextResponse.json({ data: newStore });
   } catch (error) {
     console.error("Error fetching todo:", error);
-    Response.error({ error: "Internal server error" });
+    NextResponse.error({ error: "Internal server error" });
   }
 }

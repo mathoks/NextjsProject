@@ -74,15 +74,15 @@ const Showcase = ({ info, userInfo }) => {
                       </span>
                     </span>
 
-                    <div className="flex ">
+                    <div className="flex mx-auto">
                       <img
                         src={image[0]}
-                        sizes="50vw"
+                        // sizes="50vw"
                         alt="DealerPic"
                         width={200}
                         height={120}
                         loading="lazy"
-                        className="rounded-t-lg shadow-photo h-[9rem] w-full"
+                        className="rounded-t-lg shadow-photo h-[10rem] w-[15rem]"
                       />
                     </div>
                     <div className=" flex flex-col space-y-3 ">

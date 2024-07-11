@@ -31,7 +31,7 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
     // /pages/${encodeURIComponent(props?.id || 4)
   return (
     
-    <div className="flex flex-col space-y-2 text-gray-900 mx-auto p-2 pr-1 pt-3 items-center grow-0 text-left  rounded-md  ">
+    <div className="flex flex-col space-y-2 text-gray-900 mx-auto p-2  pt-3 items-center grow-0 text-left  rounded-md  ">
     <span className=" first-letter:capitalize flex gap-1 w-3/4 justify-end items-center text-[12px]">
             <span>{ratings || 4.5}
             </span>
@@ -94,9 +94,8 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
       </section>
       <section className="flex flex-row justify-end  items-center w-[90%]">
        
-      <Link href={`/store/${encodeURIComponent(userId)}`} className="text-sm  text-white"><Chip variant= 'outlined' clickable label = 'Visit the Store' className="shadow-my" sx={{bgcolor:"#6A0DAD", color:'white', opacity:0.8, textRendering: 'optimizeLegibility',
-                  }} /></Link>
-       
+      <Link href={`/store/${encodeURIComponent(userId)}`} className="text-sm rounded-full px-2.5 py-1 mt-2 ring-1">Visit the Store</Link>
+      
       </section>
       <div className="w-[22rem] h-4 ">
       <hr className="h-6  pt-4 text-purple-600 mt-4"></hr>

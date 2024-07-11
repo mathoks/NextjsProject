@@ -10,6 +10,7 @@ import { setNav } from "../lib/features/Nav/navSlice";
 import { connect } from "react-redux";
 import { ButtonBase, useScrollTrigger } from "@mui/material";
 import useHomeDrawer from "../lib/hooks/useHomeDrawer";
+import { usePathname } from "next/navigation";
 
 
 
@@ -17,6 +18,7 @@ import useHomeDrawer from "../lib/hooks/useHomeDrawer";
  const Nav = () => {
   
   const { DrawerHandler, DrawerWrapper } = useHomeDrawer();
+  const path = usePathname()
   const [col, setcol] = useState(false)
   const navState = useAppSelector((state)=>state.nav.navToggle)
   const trigger = useScrollTrigger({
@@ -52,7 +54,8 @@ useEffect(()=>{
 
 
 // #6A0DAD
-  return (
+  return  ( 
+    
     <nav aria-label="main" className={`flex bg-[#630ba2] flex-col space-y-0 fixed w-full z-50  ${col ? "shadow-lg" : ""}`} >
     <div className={`sm: flex flex-col space-y-4 opacity-100  bg-[#6A0DAD] md:flex items-center justify-center  ${!navState ? "invisible h-0 opacity-0 transition-opacity" : "p-4"}` }>
     <section>
@@ -88,7 +91,7 @@ useEffect(()=>{
       
       <DrawerWrapper/>
     </nav>
-  );
+    ) 
 };
 
 

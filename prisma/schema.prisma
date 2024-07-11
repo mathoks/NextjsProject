@@ -98,7 +98,7 @@ model VerificationToken {
 
 model Product {
   id          String   @id @default(cuid())
-  prodId      String   @map("user_id") @unique
+  prodId      String   @map("prod_id") @unique
   name        String
   description String
   category    String

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "./auth";
 import NextAuth from "next-auth";
 import { authConfig } from "./auth.cofig";
+import { headers } from "next/headers";
 
 
 
@@ -19,7 +20,8 @@ export default NextAuth(authConfig).auth((request)=>{
     request.headers.set('pathname', `${request.nextUrl.pathname}`)
   //  return NextResponse.redirect(new URL('/Test', request.url));
   }
-console.log(request.nextUrl.pathname, isLoggedIn) 
+request.headers.append('pathname', `${request.nextUrl.pathname}`)
+
 
 });
 

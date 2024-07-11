@@ -3,9 +3,10 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div className='p-6 w-screen'>
-      <StoreForm/>
+    <div className='m-12'>
+   <StoreForm/>
     </div>
+   
   )
 }
 
