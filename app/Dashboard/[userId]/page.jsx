@@ -22,6 +22,7 @@ import Link from "next/link";
 // const ProgressBar = dynamic(()=>import('../../ui/utilComp/ProgressBar'), {ssr: false})
 const page = async () => {
   const session = await auth();
+  console.log(session);
   const userInfo = session?.user?.name;
   const actionTab = [
     {
@@ -67,9 +68,7 @@ const page = async () => {
       icon: <MessageOutlined className={"text-gray-400"} fontSize="medium" />,
     },
   ];
-  const {
-    user: { name, image },
-  } = session;
+  
   return (
     <div className="bg-gray-100 flex flex-col space-y-4">
       <header className="bg-[#6A0DAD] h-44 p-4 text-white flex-col space-y-2">
@@ -80,9 +79,9 @@ const page = async () => {
         </span>
 
         <div className="flex space-x-2 items-center">
-          <Avatar src={image} />
+          <Avatar src={session?.user.image} />
           <span className="flex flex-col space-y-1">
-            <p className="f font-semibold">{name}</p>
+            <p className="f font-semibold">{session.user?.name}</p>
             <p className="text-sm">Lamb industries limited</p>
           </span>
         </div>

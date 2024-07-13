@@ -43,7 +43,17 @@ export const Authenticate = async function (State, formData) {
         email: formData.get("email"),
         password: formData.get("password"),
       });
+      
+      // Destructure validated data
+      const { email, password } = validatedFields;
+      await signIn(formAction, { password, email });
+           
+        
     } catch (error) {
+      console.log("error", error);
+      if(error.message === "NEXT_REDIRECT"){
+        redirect(`/Dashboard/${validatedFields.email}`)
+      }
       if (error?.details) {
         // Return user-friendly error messages
         validatedFields = {};
@@ -54,21 +64,7 @@ export const Authenticate = async function (State, formData) {
           },
           message: "Validation failed. Please check your input.",
         };
-      } else
-        return {
-          errors: {
-            error: ["An error occurred. Please try again later."],
-            name: "Authentication failed.",
-          },
-        };
-    }
-
-    try {
-      // Destructure validated data
-      const { email, password } = validatedFields;
-      await signIn(formAction, { password, email , redirectTo: `/Dashboard/${email}` });
-    
-    } catch (error) {
+      }
       if (error instanceof AuthError) {
         if (error.type === "CallbackRouteError" && !error?.cause) {
           return {

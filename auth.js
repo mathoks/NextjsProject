@@ -25,6 +25,7 @@ const providers = [
         response_type: "code",
       },
     },
+    
   }),
   Credentials({
     credentials: {
@@ -127,7 +128,8 @@ callbacks: {
       // if(createSession){
       //   return true
       // }
-      return true
+      
+      return user.id ? true : false
     },
     
     // async redirect({ url, baseUrl }) {
@@ -140,12 +142,13 @@ callbacks: {
     //   return baseUrl
     // },
 
-    async jwt({ token, user, trigger, account, profile }) {
+    async jwt({ token }) {
+        
         return token
     },
 
-    async session({ session, user, token }) {
-      
+    async session({ session, token }) {
+      session.user.id = token.sub
       return session
     },
   }

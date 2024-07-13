@@ -4,8 +4,10 @@ import "@/app/globals.css";
 import { SessionProvider } from "next-auth/react";
 import Header from "@/app/ui/utilComp/Header";
 import 'react-toastify/dist/ReactToastify.css';
+import { headers } from "next/headers";
+import dynamic from "next/dynamic";
 
-
+// const { toast, ToastContainer} = dynamic(()=> import(`react-toastify`), {ssr: false})
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,21 +17,28 @@ export const metadata = {
 };
 
 export default async function StoreLayout({children, recommended, branch, products, ...rest}) {
+  const header = headers()
+  const domain = header.get("host");
+  console.log(rest)
   const response =  await fetch(
-    `http://${domain}/api/Dashboard/${rest?.params.storeId}/createstore`,
+    `http://${domain}/api/store/${rest?.params.storeOwner}/${rest?.params.id}/`,
     
     )
-   const data = response.json()
-   console.log(data)
+   
+  
+  const users = await response.json()
+  if(users?.message){
+   
+  }
   return (
    
     <>
       <SessionProvider baseUrl={"/api/auth"}>
-     
+  
       <div className="flex flex-col space-y-24 lg:space-y-14  md:space-y-14  w-screen  bg-['#f0e4f9']">
       
       <header className="mx-auto bg-white z-50" >
-      <Header params = {6}/>
+      <Header params = {6} message = {users.message}/>
       </header>
      
       <main id='tray' className="  flex flex-col space-y-1 text-sm md:text-base  lg:text-balance lg:text-base">

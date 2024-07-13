@@ -1,12 +1,13 @@
 
 import { AccessTimeOutlined, DiamondOutlined, LocationOnOutlined } from '@mui/icons-material'
-import Link from 'next/link'
 import React from 'react'
-import { headers } from 'next/headers'
 import Tab2 from '../Tab2'
+// import { ToastContainer, toast } from 'react-toastify';
 
-const Header = ({params, ...rest}) => {
-    
+const Header = ({params, message, ...rest}) => {
+    if(message){
+        console.log(message)
+    }
  const visi=false
   return (
     <nav
@@ -15,6 +16,7 @@ const Header = ({params, ...rest}) => {
                   visi ? "shadow" : ""
                 }`}
               >
+               {/* <ToastContainer  className={'w-fit text-center text-red-600'}/>  */}
                 <div
                   className={`flex justify-between flex-wrap items-center space-y-3 pb-1 ${
                     visi ? "hidden transition duration-500" : ""

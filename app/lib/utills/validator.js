@@ -3,8 +3,7 @@ import joi from "joi";
 const Fields = {
   storename: joi
     .string()
-    .pattern(new RegExp("^[a-zA-Z0-9s]{6,20}$"))
-    .required(),
+    .pattern(new RegExp("[a-zA-Z0-9s]+$")).min(6).max(20).required(),
   username: joi.string().pattern(new RegExp("^[a-zA-Z0-9]{6,10}$")).required(),
   email: joi
     .string()
@@ -18,7 +17,7 @@ const Fields = {
     .min(6)
     .max(200)
     .required(),
-  address: joi.string().pattern(new RegExp("[a-zA-Z0-9s]{10,200}$")).required(),
+  address: joi.string().pattern(new RegExp("[a-zA-Z0-9s\u00A0.,-]+$")).min(6).max(50).required(),
 };
 
 export const validate = (_, e) => {

@@ -3,6 +3,9 @@ import { PrismaNeon } from "@prisma/adapter-neon";
 import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 
+
+
+
 // Create a single instance of the Prisma client for efficiency
 let prisma;
 const neon = new Pool({
@@ -18,23 +21,25 @@ const adapter = new PrismaNeon(neon);
  */
 
 export async function GET(req) {
-    const {storeId} = req.params
+    const storeId = (req.url).split('/')[6]
+
   if(!prisma){
     prisma = new PrismaClient({adapter})
   }
+
   try {
-    const response = await prisma.store.findUnique({
+    const store = await prisma.store.findUnique({
       where: {
-        storeId: storeId
+        id : storeId
       }
     })
-    if (!response) {
-      throw new Error(`API request failed with status ${response.status}`);
-    }
     
-    return Response.json({ data: response });
+    if(store === null){
+        return NextResponse.json({data: null})
+    }
+    return NextResponse.json({ data: store });
   } catch (error) {
-    console.error("Error fetching store:", error);
-    Response.error({ error: "Internal server error"});
+    
+   return Response.json({ message: "Internal server error"});
   }
 }

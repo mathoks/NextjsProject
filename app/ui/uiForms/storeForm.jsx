@@ -23,10 +23,11 @@ const StoreForm = () => {
     const [show, setshow] = useState(' *')
     const [ImageName, setImage]= useState('no Image choosen ')
     
+    const notify = () => toast(state.message);
     if(state.success === true){
-      const notify = () => toast(state.message);
+      
       notify();
-      // router.replace(`/store/${state.store}`)
+     
     }
     const handleImage = ()=>{
       const pic =  document?.getElementById('image').files[0]
@@ -99,7 +100,7 @@ const StoreForm = () => {
               required
               onBlur={dispatch2}
               className=' p-3 shadow text-gray-900 rounded-md placeholder:focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-              pattern='[a-zA-Z0-9]{3,20}'
+              pattern='[a-zA-Z0-9\s]{3,20}'
             //   disabled={isLoading || isGitHubLoading}
             />
 
@@ -136,7 +137,7 @@ const StoreForm = () => {
               required
               onBlur={dispatch2}
               className=' p-3 shadow  rounded-md'
-              pattern='[a-zA-Z0-9\s]{6,100}'
+              pattern='[a-zA-Z0-9s\u00A0.,-]{6,50}$'
               enterKeyHint='next'
             // disabled={isLoading || isGitHubLoading}
             />

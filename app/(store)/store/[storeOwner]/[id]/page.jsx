@@ -1,11 +1,20 @@
 import { DescriptionOutlined, LocationOnOutlined, PhoneAndroid, StoreOutlined, StreetviewOutlined } from '@mui/icons-material'
-import Link from 'next/link'
 import React from 'react'
-import {Divider} from '@mui/material'
+import { headers } from 'next/headers'
 
-const page = () => {
+const page = async({params:{id , storeOwner}}) => {
   
-  
+  const header = headers()
+  const domain = header.get("host");
+  const response =  await fetch(
+    `http://${domain}/api/store/${storeOwner}/${id}/`,
+    
+    )
+    const users = await response.json()
+    console.log(users)
+    if(users?.message){
+     console.log(users.message)
+    }
   return (
     
     <div className='flex flex-col space-y-4 p-4  ' >

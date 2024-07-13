@@ -8,10 +8,11 @@ import {
 } from "libphonenumber-js";
 import ImageResize from "@/app/lib/utills/ImageResize";
 
+
 const FormSchema = joi.object({
   storename: joi
     .string()
-    .pattern(new RegExp("^[a-zA-Z0-9s]{6,20}$"))
+    .pattern(new RegExp("[a-zA-Z0-9\s]+$")).min(6).max(20)
     .required(),
   email: joi
     .string()
@@ -24,7 +25,7 @@ const FormSchema = joi.object({
     .min(6)
     .max(200)
     .required(),
-  address: joi.string().pattern(new RegExp("[a-zA-Z0-9s]{10,200}$")).required(),
+  address: joi.string().pattern(new RegExp("[a-zA-Z0-9s\u00A0.,-]+$")).min(6).max(50).required(),
 });
 
 const State = {
@@ -49,11 +50,11 @@ const State = {
 export const createStore = async function (State, formData) {
   const phone = formData.get("tel");
 const Store = formData.get('storename')
-  const picture = formData.get("picture");
+  const file = formData.get("picture");
   const headerList = headers();
   const domain = headerList.get("host");
   const session = await auth();
-  const file = formData.get('picture')
+  
   // 1. Initialize validatedFields
   let validatedFields = {};
   let locations = {};
@@ -61,9 +62,10 @@ const Store = formData.get('storename')
   
   try {
     
-    const dbUrl = typeof file.name !== undefined && file.size !== 0  ? await ImageResize(file) : {}
-    if(!dbUrl ){
-        throw new Error('image upload failed')
+    const url = (typeof file.name !== "undefined" && file.size !== 0 ) ? await ImageResize(file) : null
+    
+    if(url === ''){
+        throw new Error("image upload failed")
     }
     if (!isPossiblePhoneNumber(phone))
       throw new Error("phone number not valid");
@@ -76,7 +78,7 @@ const Store = formData.get('storename')
     });
 
       const { location } = validatedFields;
-      console.log(location);
+      
       const hasMatch = location.indexOf('state') !== -1 ||
                     location.indexOf('country') !== -1 ||
                     location.indexOf('market') !== -1;
@@ -93,14 +95,14 @@ const Store = formData.get('storename')
     
         const { storename, address, description,  } = validatedFields;
         const response = await fetch(
-          `http://${domain}/api/Dashboard/${session?.user.name}/createstore`,
+          `http://${domain}/api/Dashboard/${session?.user.id}/createstore`,
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              picture,
+              id: session?.user.id,
               storename,
               address,
               description,
@@ -108,7 +110,7 @@ const Store = formData.get('storename')
               state: locations.state,
               country: locations.country,
               market: locations.market,
-              image : dbUrl?.url
+              image : url !== null ? url : null 
             }),
           }
         );
@@ -118,13 +120,13 @@ const Store = formData.get('storename')
         }
         
         const store = await response.json();
-    
+        const {id, businessName} = store.data;
        
         if (!store) {
           throw new Error('could not create store')
         } 
 
-        redirect(`http://${domain}/store/${store?.storename}`);
+        redirect(`http://${domain}/store/${encodeURIComponent(businessName)}/${encodeURIComponent(id)}`);
         
         //   return {
         //     success: true,
@@ -136,7 +138,7 @@ const Store = formData.get('storename')
     
   } catch (error) {
     if(error.message === 'NEXT_REDIRECT'){
-        redirect(`http://${domain}/store/${Store}`); 
+        throw error 
     }
     if (error?.details) {
       // Return user-friendly error messages

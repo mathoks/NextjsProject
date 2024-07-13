@@ -2,7 +2,6 @@
 import { auth, signIn } from "@/auth";
 import joi from "joi";
 import { headers } from "next/headers";
-import Link from "next/link";
 import { redirect } from "next/navigation";
 
 const FormSchema = joi.object({
@@ -49,7 +48,7 @@ export const addUser = async function (State, formData) {
       username: formData.get("username"),
     });
 
-    try {
+    // 2. Check if user already exists
       const { email, password, username } = validatedFields;
 
       const response = await fetch(`http://${domain}/api/auth/register`, {
@@ -59,36 +58,17 @@ export const addUser = async function (State, formData) {
         },
         body: JSON.stringify({ email, password, name: username }),
       });
-      console.log(response.ok)
       if (!response.ok) {
         throw new Error("Network failed");
       }
       // Destructure validated data
-      const newUser = await response.json();
-      const lognewUser = await signIn('credentials',{ email, password });
-      console.log(session)
-      if (lognewUser &&  typeof session.user.name !== '') {
-         redirect(`/Dashboard/${username}`);
-      } else {
-        return {
-          success: true,
-          message: `Welcome ${newUser?.name} account Successfully created `,
-          errors: {},
-        };
-      }
-    } catch (error) {
-      console.error(error);
-      return {
-        errors: {
-          error: ["Oops try again."],
-          name: "something happaned try again...",
-        },
-        message: "An error occurred. Please try again later.",
-        success: false,
-      };
-    }
-  } catch (error) {
+      redirect(`http://${domain}/login`)
     
+  } catch (error) {
+    console.log(error.message)
+    if(error.message === "NEXT_REDIRECT"){
+      throw error
+    }
     if (error?.details) {
       
       // Return user-friendly error messages
@@ -110,4 +90,5 @@ export const addUser = async function (State, formData) {
         success: false,
       };
   }
+  
 };

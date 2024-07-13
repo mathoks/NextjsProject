@@ -94,7 +94,7 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
       </section>
       <section className="flex flex-row justify-end  items-center w-[90%]">
        
-      <Link href={`/store/${encodeURIComponent(userId)}`} className="text-sm rounded-full px-2.5 py-1 mt-2 ring-1">Visit the Store</Link>
+      <Link href={`/store/${encodeURIComponent(Storename)}/${encodeURIComponent(userId)}`} className="text-sm rounded-full px-2.5 py-1 mt-2 ring-1">Visit the Store</Link>
       
       </section>
       <div className="w-[22rem] h-4 ">
