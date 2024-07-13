@@ -35,7 +35,7 @@ const State = {
 export const addUser = async function (State, formData) {
   const headerList = headers();
   const domain = headerList.get("host");
-  const session = await auth()
+  
   // 1. Initialize validatedFields
   let validatedFields = {};
   // 2. Check provider ID and Authenticate (handle different providers)
@@ -65,7 +65,7 @@ export const addUser = async function (State, formData) {
       redirect(`http://${domain}/login`)
     
   } catch (error) {
-    console.log(error.message)
+
     if(error.message === "NEXT_REDIRECT"){
       throw error
     }
@@ -81,7 +81,8 @@ export const addUser = async function (State, formData) {
         message: "Validation failed. Please check your input.",
         success: false,
       };
-    } else
+    } else{
+      console.log(error)
       return {
         errors: {
           error: ["An error occurred. Please try again later."],
@@ -89,6 +90,7 @@ export const addUser = async function (State, formData) {
         },
         success: false,
       };
+    }
   }
   
 };
