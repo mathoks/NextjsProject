@@ -2,6 +2,7 @@
 import { auth } from '@/auth';
 import dynamic from 'next/dynamic';
 import { headers } from 'next/headers';
+import Link from 'next/link';
 
 import React from 'react'
 
@@ -34,7 +35,7 @@ const page = async ({params:{id, storeOwner}}) => {
       <div className='' >
       <p className='p-6 mx-auto'>no branches availiable</p>
           <span className='flex justify-end'>
-          <button className={`ring-1 ring-[#6A0DAD] rounded-full px-2.5 py-1.5 ${id === session.user?.id ? 'visible' : "invisible"}`}>Add a branch</button>
+          <button className={`ring-1 ring-[#6A0DAD] rounded-full px-2.5 py-1.5 ${id === session.user?.id ? 'visible' : "invisible"}`}><Link href={`/Dashboard/${encodeURIComponent(session.user.name)}/settings/branch`}>Add a branch</Link></button>
           </span>
         </div>)
 

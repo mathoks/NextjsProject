@@ -3,11 +3,8 @@ import { Inter } from "next/font/google";
 import "@/app/globals.css";
 import { SessionProvider } from "next-auth/react";
 import Header from "@/app/ui/utilComp/Header";
-import 'react-toastify/dist/ReactToastify.css';
 import { headers } from "next/headers";
-import dynamic from "next/dynamic";
 
-// const { toast, ToastContainer} = dynamic(()=> import(`react-toastify`), {ssr: false})
 
 const inter = Inter({ subsets: ["latin"] });
 
