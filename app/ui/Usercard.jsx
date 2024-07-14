@@ -25,7 +25,7 @@ const UserComp = dynamic(()=>import('@/app/ui/cardCaroural') , {ssr: false})
  * @param {object} props - Component props
  * @returns {JSX.Element} - JSX Element
  */
-const Usercard = ({userId, Storename, storeDescription, email, avatar, registeredAt, address, product, ratings, subscriptionTier}) => {
+const Usercard = ({id, businessName, about, email, bizLogo, shopAddress, product, ratings = 4, phone}) => {
     const newArr = [...product, {'link' : 'see all'}]
      
     // /pages/${encodeURIComponent(props?.id || 4)
@@ -50,18 +50,18 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
     
       <section className="flex flex-row pl-2 justify-between items-start" >
         <div className="ring-2 rounded-full">
-          <Avatar {...stringAvatar(Storename, avatar)} alt="userImg"/>
+          <Avatar {...stringAvatar(businessName, bizLogo)} alt="userImg"/>
         </div>
         <div className="flex flex-col space-y-2 ml-3 ">
         <span className="font-semibold">
-            {Storename || "John Bull"}
+            {businessName || "John Bull"}
         </span>
           <span className="flex gap-2 w-[100%] items-start">
             <span>
               <LocationOnOutlined sx={{fontSize: "18px"}}/>
             </span>
             <span className=" text-sm lg:text-base w-full leading-5 pt-[2px]">
-              <span>{address || "shop 134b Electronic line Alaba international market ojo lagos" }</span>
+              <span>{shopAddress || "shop 134b Electronic line Alaba international market ojo lagos" }</span>
             </span>
           </span>
           <span className="flex gap-2 w-[100%] justify-start items-start">
@@ -70,10 +70,10 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
             </span>
             <span className="pt-[2px]">
               <MakeEllipsis
-                text={storeDescription + " " + "we sell the best contact us today what are you waiting for you can check my product gallery"}
+                text={about + " " + "we sell the best contact us today what are you waiting for you can check my product gallery"}
                 size={60}
                 flag={"A"}
-                userId={userId}
+                userId={id}
               />
             </span>
           </span>
@@ -81,20 +81,20 @@ const Usercard = ({userId, Storename, storeDescription, email, avatar, registere
         </div>
         <div className=" relative">
         
-        <HomeMore id={userId}/>
-        <Modal call={{'tag':'call', icon: <CallReceivedOutlined/>}} chat={{'tag':'chat', icon: <ChatOutlined/>}} share={{'tag':'share', icon: <ShareOutlined/>}} value={userId}/>
+        <HomeMore id={id}/>
+        <Modal call={{'tag':'call', icon: <CallReceivedOutlined/>}} chat={{'tag':'chat', icon: <ChatOutlined/>}} share={{'tag':'share', icon: <ShareOutlined/>}} value={id}/>
         </div>
         
       </section>
     
       <section className="flex flex-col ">
         
-            <UserComp info = {typeof product !== "undefined" ? newArr : []} userInfo = {userId}/>        
+            <UserComp info = {typeof product !== "undefined" ? newArr : []} userInfo = {id}/>        
           
       </section>
       <section className="flex flex-row justify-end  items-center w-[90%]">
        
-      <Link href={`/store/${encodeURIComponent(Storename)}/${encodeURIComponent(userId)}`} className="text-sm rounded-full px-2.5 py-1 mt-2 ring-1">Visit the Store</Link>
+      <Link href={`/store/${encodeURIComponent(businessName)}/${encodeURIComponent(id)}`} className="text-sm rounded-full px-2.5 py-1 mt-2 ring-1">Visit the Store</Link>
       
       </section>
       <div className="w-[22rem] h-4 ">

@@ -1,37 +1,37 @@
 
 import { AccessTimeOutlined, DiamondOutlined, LocationOnOutlined } from '@mui/icons-material'
+import {Avatar} from '@mui/material'
 import React from 'react'
 import Tab2 from '../Tab2'
-// import { ToastContainer, toast } from 'react-toastify';
+import getYear from '@/app/lib/utills/getYear'
+import { auth } from '@/auth'
+import Link from 'next/link'
 
-const Header = ({params, message, ...rest}) => {
-    if(message){
-        console.log(message)
-    }
+const Header =async ({params, message, storeInfo, ...rest}) => {
+    const {id, storeOwner, market, state, createdAt, country, bizLogo} = storeInfo
+    const session = await auth()
  const visi=false
   return (
     <nav
                 aria-label="main"
-                className={` fixed flex text-sm top-0 left-0 flex-col space-y-3 w-screen bg-white  pt-2  text-gray-600 pl-4 pr-4 pb-0  even:pb-0 ${
+                className={` fixed flex text-sm top-0 left-0  flex-col space-y-3 w-screen bg-white  pt-2  text-gray-600 p-8 pb-0  even:pb-0 ${
                   visi ? "shadow" : ""
                 }`}
               >
                {/* <ToastContainer  className={'w-fit text-center text-red-600'}/>  */}
                 <div
-                  className={`flex justify-between flex-wrap items-center space-y-3 pb-1 ${
+                  className={`flex justify-between flex-wrap items-center space-y-3 pt-4 ${
                     visi ? "hidden transition duration-500" : ""
                   }`}
                 >
-                  <div className="flex space-x-1 items-center pt-4">
-                    <span>
-                      <LocationOnOutlined fontSize="inherit" />
-                    </span>
-
-                    <span>
-                      <p>Alaba Lagos</p>
-                    </span>
-                  </div>
+                 
+                    <Avatar className=' ring-2'  src={bizLogo || null}/>
+                  
+                  
                   <div className="flex space-x-1 items-center">
+                  
+                   
+                  
                     <span>
                       <DiamondOutlined fontSize="inherit" />
                     </span>
@@ -40,15 +40,32 @@ const Header = ({params, message, ...rest}) => {
                       <p>Diamond Member</p>
                     </span>
                   </div>
-                  <div className="flex space-x-1 items-center">
+                  
+                </div>
+                <div>
+                <div className="flex space-x-1 items-center pt-1">
+                    <span>
+                      <LocationOnOutlined fontSize="inherit" />
+                    </span>
+
+                    <span>
+                      <p>{message ? '' 
+                      : market + " " + state + " " + country }</p>
+                    </span>
+                  </div>
+                </div>
+                <div className='flex justify-between items-center'>
+                <div className="flex space-x-1 items-center">
                     <span>
                       <AccessTimeOutlined fontSize="inherit"/>
                     </span>
                     <span>
-                      <p>Member since 2024</p>
-                    </span>
+                      <p>{`Member since ${getYear(createdAt)}`}</p>
+                    </span>  
                   </div>
+                <button className={`ring-1 rounded-full px-2.5 py-1.5 ${id === session.user?.id ? 'visible' : "invisible"}`}>Edit store</button>
                 </div>
+               
                 <hr className=' h-[0.1rem]'/>
                 <Tab2 params={params}/>
               </nav>

@@ -1,8 +1,8 @@
 
-import { Shop2Outlined , DescriptionOutlined, LocationOnOutlined, PhoneAndroid, StoreOutlined, StreetviewOutlined} from '@mui/icons-material';
+import { auth } from '@/auth';
 import dynamic from 'next/dynamic';
 import { headers } from 'next/headers';
-import Link from 'next/link';
+
 import React from 'react'
 
 
@@ -19,41 +19,30 @@ const  BranchCarousel= dynamic(()=>import('@/app/ui/utilComp/BranchCarausal') , 
 //   @@map("branche")
 // }
 
-const page = ({params:{id}}) => {
-  const heads = headers()
-  const Arr = [1, 2]
-  const Branch = React.memo(function Mybranch() {
-  
-    return(
-       [8,9].map((_, ids) => (
-        <section
-          key={ids}
-          className="flex flex-col text-sm text-gray-800 p-4 container  md:flex md:justify-evenly space-x-2  ring-inset shadow-md rounded-b-md h-fit border-t-2 border-[#6A0DAD]"
-        >
-          <div className='flex justify-start items-center space-x-3'>
-          <span><Shop2Outlined fontSize='inherit' sx={{color:'gray'}}/></span>
-          <span>Chizy stores 2</span>
-          </div>
-          <div className='flex justify-start items-center space-x-3'>
-          <span><LocationOnOutlined fontSize='inherit' sx={{color:'gray'}}/></span>
-          <span>Alaba international, Lagos Nigeria</span>
-          </div>
-          <div className='flex justify-start items-center space-x-3'>
-          <span><StreetviewOutlined fontSize='inherit' sx={{color:'gray'}}/></span>
-          <span>Block A23</span>
-          </div>
-          <button className="ring ring-inset rounded-md text-white px-2.5 py-1">
-            {" "}
-            <Link href={`${id}/branch/${encodeURIComponent(id)}`}>Add a branch</Link>
-          </button>
-        </section>
-      )));
+const page = async ({params:{id, storeOwner}}) => {
+  const header = headers()
+  const domain = header.get("host");
+  const session = await auth()
+  const response =  await fetch(
+    `http://${domain}/api/store/${storeOwner}/${id}/`,
     
-  }, []);
-  
+    )
+    const branchInfo =await response.json() 
+    if(!branchInfo?.data?.branches.length === 0){
+      return (
+      <div className='px-4'>
+      <p className='p-6 mx-auto'>no branches availiable</p>
+          <span className='flex justify-end'>
+          <button className={`ring-1 rounded-full px-2.5 py-1.5 ${id === session.user?.id ? 'visible' : "invisible"}`}>Add a branch</button>
+          </span>
+        </div>)
+
+    }
+
   return (
   
-   
+     
+    
   
     
     <BranchCarousel slides={[1,2, 3, 4]} id={id}/>

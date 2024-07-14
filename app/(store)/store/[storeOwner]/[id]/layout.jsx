@@ -19,7 +19,6 @@ export const metadata = {
 export default async function StoreLayout({children, recommended, branch, products, ...rest}) {
   const header = headers()
   const domain = header.get("host");
-  console.log(rest)
   const response =  await fetch(
     `http://${domain}/api/store/${rest?.params.storeOwner}/${rest?.params.id}/`,
     
@@ -27,18 +26,16 @@ export default async function StoreLayout({children, recommended, branch, produc
    
   
   const users = await response.json()
-  if(users?.message){
-   
-  }
+  console.log(users)
   return (
    
     <>
       <SessionProvider baseUrl={"/api/auth"}>
   
-      <div className="flex flex-col space-y-24 lg:space-y-14  md:space-y-14  w-screen  bg-['#f0e4f9']">
+      <div className="flex flex-col space-y-2 lg:space-y-14  md:space-y-14  w-screen  bg-['#f0e4f9']">
       
-      <header className="mx-auto bg-white z-50" >
-      <Header params = {6} message = {users.message}/>
+      <header className="mx-auto bg-white z-50 h-32" >
+      <Header params = {6} message = {users.message} storeInfo = {users?.data || {}}/>
       </header>
      
       <main id='tray' className="  flex flex-col space-y-1 text-sm md:text-base  lg:text-balance lg:text-base">

@@ -5,6 +5,7 @@ import '@/app/globals.css'
 import StoreProvider from "@/app/StoreProvider";
 import Products from "@/app/ui/Products";
 import { getRoutes } from "@/app/actions/users/getRoute";
+import { getUsers } from '../actions/users/getUsers';
 
 
 
@@ -12,11 +13,11 @@ export default async function page({searchParams}) {
 
 
   const usersList = await getRoutes()
-  
-  
+  const stores = await getUsers()
+  console.log(stores)
   return (
    
-    
+    // typeof usersList !== "undefined" ? JSON.parse(usersList): []
     
     <StoreProvider>
 
@@ -25,7 +26,7 @@ export default async function page({searchParams}) {
         <p className="text-gray-800 font-semibold text-base">Dealers Reel</p>
       </div>
         <div className="flex flex-col items-center">
-           <Products data = {typeof usersList !== "undefined" ? JSON.parse(usersList): []}/>
+           <Products data = {stores}/>
             </div>
       </section>
       </StoreProvider>

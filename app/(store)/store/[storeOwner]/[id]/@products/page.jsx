@@ -1,9 +1,28 @@
 import React from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
+import { headers } from 'next/headers'
+import { auth } from '@/auth'
 
 const ProductCard = dynamic(()=>import('@/app/ui/productCard') , {ssr: false})
-const page = ({params:{id}}) => {
+const page = async({params:{id, storeOwner}}) => {
+  const header = headers()
+  const domain = header.get("host");
+  const session = await auth()
+  const response =  await fetch(
+    `http://${domain}/api/store/${storeOwner}/${id}/`,
+    
+    )
+    const prodInfo =await response.json() 
+    if(!prodInfo?.data?.products.length === 0){
+      return (
+      <div className='px-6'>
+    <p className='p-6 mx-auto'>no Products </p>
+        <span className='flex justify-end'>
+        <button className={`ring-1 rounded-full px-2.5 py-1.5 ${id === session.user?.id ? 'visible' : "invisible"}`}>Add a product</button>
+        </span>
+      </div>)
+    }
   return (
     <div className=' space-y-4'>
     <h2 className=' font-semibold'>Products</h2>

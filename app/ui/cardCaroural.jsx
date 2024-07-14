@@ -31,7 +31,7 @@ const Showcase = ({ info, userInfo }) => {
         space-between="15"
       >
         {info &&
-          info.length &&
+          info.length > 1 &&
           info.map(
             (
               {

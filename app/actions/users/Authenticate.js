@@ -50,7 +50,7 @@ export const Authenticate = async function (State, formData) {
            
         
     } catch (error) {
-      console.log("error", error);
+      
       if(error.message === "NEXT_REDIRECT"){
         redirect(`/Dashboard/${validatedFields.email}`)
       }
@@ -100,10 +100,8 @@ export const Authenticate = async function (State, formData) {
       throw error;
     }
   } else {
-    //const formAction2 = formData?.get("Google");
-    // try {
+    
     await signIn("google", { redirectTo: "/Dashboard" });
-    // Authentication successful (handle success state or redirect)
     return {
       success: true,
       message: `Successfully authenticated with ${"google"}!`,
