@@ -17,7 +17,7 @@ const page = async({params:{id , storeOwner}}) => {
   
   return (
     
-    <div className='flex flex-col space-y-4 p-4  ' >
+    <div className='flex flex-col space-y-4' >
     <div className='flex space-x-4'>
     <StoreOutlined fontSize='inherit' sx={{color: 'gray'}}/>
     <span>{businessName}</span>

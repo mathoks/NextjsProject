@@ -31,10 +31,10 @@ const page = async ({params:{id, storeOwner}}) => {
     console.log(branchInfo)
     if(branchInfo?.data?.branches?.length === 0){
       return (
-      <div className='px-4'>
+      <div className='' >
       <p className='p-6 mx-auto'>no branches availiable</p>
           <span className='flex justify-end'>
-          <button className={`ring-1 rounded-full px-2.5 py-1.5 ${id === session.user?.id ? 'visible' : "invisible"}`}>Add a branch</button>
+          <button className={`ring-1 ring-[#6A0DAD] rounded-full px-2.5 py-1.5 ${id === session.user?.id ? 'visible' : "invisible"}`}>Add a branch</button>
           </span>
         </div>)
 

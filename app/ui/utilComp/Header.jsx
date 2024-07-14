@@ -14,7 +14,7 @@ const Header =async ({params, message, storeInfo, ...rest}) => {
   return (
     <nav
                 aria-label="main"
-                className={` fixed flex text-sm top-0 left-0  flex-col space-y-3 w-screen bg-white  pt-2  text-gray-600 p-8 pb-0  even:pb-0 ${
+                className={` fixed flex text-sm top-0 left-0  flex-col space-y-3  z-50 w-screen px-4 bg-[#6A0DAD]  pt-2  text-slate-100  pb-0  even:pb-0 ${
                   visi ? "shadow" : ""
                 }`}
               >
@@ -25,7 +25,7 @@ const Header =async ({params, message, storeInfo, ...rest}) => {
                   }`}
                 >
                  
-                    <Avatar className=' ring-2'  src={bizLogo || null}/>
+                    <Avatar className=' ring-2 ring-white'  src={bizLogo || null}/>
                   
                   
                   <div className="flex space-x-1 items-center">
@@ -63,11 +63,11 @@ const Header =async ({params, message, storeInfo, ...rest}) => {
                       <p>{`Member since ${getYear(createdAt)}`}</p>
                     </span>  
                   </div>
-                <button className={`ring-1 rounded-full px-2.5 py-1.5 ${id === session.user?.id ? 'visible' : "invisible"}`}>Edit store</button>
+                <button className={`ring-1 ring-[#6A0DAD] bg-white text-gray-800 rounded-full px-2.5 py-1.5 ${id === session.user?.id ? 'visible' : "invisible"}`}>Edit store</button>
                 </div>
-               
-                <hr className=' h-[0.1rem]'/>
                 <Tab2 params={params}/>
+                
+                
               </nav>
   )
 }

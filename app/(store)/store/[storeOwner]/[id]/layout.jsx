@@ -32,30 +32,30 @@ export default async function StoreLayout({children, recommended, branch, produc
     <>
       <SessionProvider baseUrl={"/api/auth"}>
   
-      <div className="flex flex-col space-y-2 lg:space-y-14  md:space-y-14  w-screen  bg-['#f0e4f9']">
+      <div className="flex flex-col space-y-40 lg:space-y-40  md:space-y-40  w-screen overflow-x-clip">
       
-      <header className="mx-auto bg-white z-50 h-32" >
+    
       <Header params = {6} message = {users.message} storeInfo = {users?.data || {}}/>
-      </header>
+      
      
       <main id='tray' className="  flex flex-col space-y-1 text-sm md:text-base  lg:text-balance lg:text-base">
       
       {/* <main className="flex flex-col m-4 space-y-14 mb-10 container  mt-40 md:flex text-black lg:flex md: justify-around"> */}
-      <section id='focal' className="w-screen fixed invisible h-10 mb-24"></section>
-      <section id='abouts' className=" bg-white">
-      <section  className=" bg-white  text-gray-800 p-4 w-screen md:w-auto ">
+      <section id='focal' className="w-screen fixed bg-pink-700 invisible h-10 mb-24"></section>
+      <section id='abouts' className=" bg-white p-4">
+      <section  className=" bg-white  text-gray-800 md:w-auto pb-2 ">
       {children}
       </section>
-      <hr className="h-4"/>
-      <section className="bg-white w-screen lg:w-auto p-4 md:w-auto md:text-wrap">
+      {/* <hr className="h-4"/> */}
+      <section className="bg-white  lg:w-auto md:w-auto md:text-wrap p-2 px-2">
       {branch}
       </section>
       </section>
-      <section id='product' className="p-2 bg-white text-gray-900 lg:p-12 lg:w-screen">
+      <section id='product' className=" p-4 px-6  bg-white text-gray-900 lg:p-12 lg:w-screen">
       {products}
       </section>
       <section id = 'reco' className="bg-white">
-      {recommended}
+      {/* {recommended} */}
       </section>
       </main>
       </div>

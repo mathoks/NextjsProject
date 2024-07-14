@@ -31,8 +31,8 @@ const Usercard = ({id, businessName, about, email, bizLogo, shopAddress, product
     // /pages/${encodeURIComponent(props?.id || 4)
   return (
     
-    <div className="flex flex-col space-y-2 text-gray-900 mx-auto p-2  pt-3 items-center grow-0 text-left  rounded-md  ">
-    <span className=" first-letter:capitalize flex gap-1 w-3/4 justify-end items-center text-[12px]">
+    <div className="flex flex-col space-y-2 text-gray-900 mx-auto p-2  pt-0 items-center grow-0 text-left  rounded-md  ">
+    {/* <span className=" first-letter:capitalize flex gap-1 w-3/4 justify-end items-center text-[12px]">
             <span>{ratings || 4.5}
             </span>
             <div suppressHydrationWarning={true}>
@@ -46,10 +46,10 @@ const Usercard = ({id, businessName, about, email, bizLogo, shopAddress, product
                     ))}
             </div>
             <span>{"200"}</span>
-          </span>
+          </span> */}
     
       <section className="flex flex-row pl-2 justify-between items-start" >
-        <div className="ring-2 rounded-full">
+        <div className="ring-2 rounded-full ring-[#6A0DAD] p-[0.5px]">
           <Avatar {...stringAvatar(businessName, bizLogo)} alt="userImg"/>
         </div>
         <div className="flex flex-col space-y-2 ml-3 ">
@@ -60,7 +60,7 @@ const Usercard = ({id, businessName, about, email, bizLogo, shopAddress, product
             <span>
               <LocationOnOutlined sx={{fontSize: "18px"}}/>
             </span>
-            <span className=" text-sm lg:text-base w-full leading-5 pt-[2px]">
+            <span className=" text-sm lg:text-base w-full leading-5 pt-[2px] first-letter:capitalize">
               <span>{shopAddress || "shop 134b Electronic line Alaba international market ojo lagos" }</span>
             </span>
           </span>
@@ -68,7 +68,7 @@ const Usercard = ({id, businessName, about, email, bizLogo, shopAddress, product
             <span>
               <StorefrontOutlined sx={{fontSize: "18px"}} />
             </span>
-            <span className="pt-[2px]">
+            <span className="pt-[2px] first-letter:capitalize">
               <MakeEllipsis
                 text={about + " " + "we sell the best contact us today what are you waiting for you can check my product gallery"}
                 size={60}
@@ -93,9 +93,23 @@ const Usercard = ({id, businessName, about, email, bizLogo, shopAddress, product
           
       </section>) : null
     }
-      <section className="flex flex-row justify-end  items-center w-[90%]">
-       
-      <Link href={`/store/${encodeURIComponent(businessName)}/${encodeURIComponent(id)}`} className="text-sm rounded-full px-2.5 py-1 mt-2 ring-1">Visit the Store</Link>
+      <section className="flex flex-row justify-between  items-center w-[90%]">
+      <span className=" first-letter:capitalize flex gap-1  justify-start items-center text-[12px]">
+            <span>{ratings || 4.5}
+            </span>
+            <div suppressHydrationWarning={true}>
+            {Array.from(Array(5)).map((_, index) => (
+                      <StarRate
+                        key={index}
+                        fontSize="inherit"
+                        sx={{ color: "#f2c464" }}
+                        
+                      />
+                    ))}
+            </div>
+            <span>{"200"}</span>
+          </span>
+      <Link href={`/store/${encodeURIComponent(businessName)}/${encodeURIComponent(id)}`} className="text-sm text-center rounded-full shadow_button px-2.5 py-1 mt-2 ring-1 ring-[#6A0DAD]">Visit the Store</Link>
       
       </section>
       <div className="w-[22rem] h-4 ">

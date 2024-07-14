@@ -12,7 +12,7 @@ import { getUsers } from '../actions/users/getUsers';
 export default async function page({searchParams}) {
 
 
-  const usersList = await getRoutes()
+  // const usersList = await getRoutes()
   const stores = await getUsers()
   console.log(stores)
   return (

@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import Usercard from "./Usercard";
 import { ProdSkeleton } from "./Buttons/ProdSkeleton";
+import { productSort } from "../lib/utills/productSort";
 
 /**
  * @component - The Products component
@@ -11,14 +12,14 @@ const Products = ({ data }) => {
   if (!data || !data.length) {
     return <ProdSkeleton />; // Show skeleton if no data
   }
-
+ 
   return (
    
     <section className="flex flex-col p-1 md:px-8">
       <Suspense fallback={<ProdSkeleton/>}>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4 last:pb-0 lg:gap-2">
       
-        {data.map((user, index) => (
+        {productSort(data).map((user, index) => (
           
           <Usercard key={index} {...user} />
         ))}

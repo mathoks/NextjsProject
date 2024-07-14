@@ -60,7 +60,7 @@ const Tab2 = ({ params }) => {
   }, [handleScroll, trigger]);
   return (
     <div
-      className={`${
+      className={`px-4 ${
         visi
           ? "invisible transition duration-500 opacity-100 h-0 "
           : "visible transition duration-500 opacity-100 "
@@ -68,14 +68,14 @@ const Tab2 = ({ params }) => {
     >
       <ul
         role="subTab"
-        className="flex justify-between items-center pl-4 pr-4 text-sm text-gray-800"
+        className="flex justify-between items-center  text-sm text-slate-100"
       >
         <li
           value={0}
           className={` pb-3 ${
             active[0]
-              ? "text-indigo-600 border-b-2 transition duration-500 border-violet-600"
-              : "border-none transition duration-500 text-gray-500 "
+              ? "text-slate-100 border-b-[3px] transition duration-500 border-slate-100"
+              : "border-none transition duration-500 text-slate-300 "
           }`}
         >
           <Link scroll href={{ pathname: `/store/${params}` }}>
@@ -86,8 +86,8 @@ const Tab2 = ({ params }) => {
           value={1}
           className={` pb-3 ${
             active[1]
-              ? "text-indigo-600 border-b-2 transition duration-500  border-violet-600"
-              : "border-none transition duration-500 text-gray-500"
+              ? "text-slate-100 border-b-[3px] transition duration-500  border-slate-100"
+              : "border-none transition duration-500 text-slate-300"
           }`}
         >
           <Link
@@ -101,8 +101,8 @@ const Tab2 = ({ params }) => {
           value={2}
           className={`pb-3 ${
             active[2]
-              ? "text-indigo-600 border-b-2  border-violet-600"
-              : "border-none text-gray-500"
+              ? "text-indigo-600 border-b-[3px]  border-violet-600"
+              : "border-none text-slate-300 transition duration-500"
           }`}
         >
           <Link
@@ -114,7 +114,7 @@ const Tab2 = ({ params }) => {
           </Link>
         </li>
       </ul>
-      <hr className="" />
+      {/* <hr className="" /> */}
     </div>
   );
 };

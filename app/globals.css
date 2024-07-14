@@ -220,6 +220,16 @@ swiper-container::part(pagination) {
 
 }
 
+.shadow_button {
+  background-color: 'inherit';
+  box-shadow: 0px 5px 10px rgba(8, 6, 6, 0.1);
+  padding: 5px;
+  outline: #630ba2;
+  outline: 2px;
+  border: 2px solid #630ba2;
+
+}
+
 
 .fit_placeholder {
   width: fit-content;
