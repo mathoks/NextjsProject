@@ -43,15 +43,7 @@ export async function GET(req) {
             comment: true
           },
         },
-        branches: {
-        select:  {
-          id: true,
-          branchName: true,
-          state: true,
-          country: true,
-          market: true,
-        }
-      },
+        
         storeReviews: {
           select: {
             id: true,

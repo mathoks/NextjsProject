@@ -28,6 +28,7 @@ const page = async ({params:{id, storeOwner}}) => {
     
     )
     const branchInfo =await response.json() 
+    console.log(branchInfo)
     if(branchInfo?.data?.branches?.length === 0){
       return (
       <div className='px-4'>
