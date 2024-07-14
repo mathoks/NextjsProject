@@ -86,12 +86,13 @@ const Usercard = ({id, businessName, about, email, bizLogo, shopAddress, product
         </div>
         
       </section>
-    
-      <section className="flex flex-col ">
+    { product.length > 0 ?
+      (<section className="flex flex-col ">
         
             <UserComp info = {typeof product !== "undefined" ? newArr : []} userInfo = {id}/>        
           
-      </section>
+      </section>) : null
+    }
       <section className="flex flex-row justify-end  items-center w-[90%]">
        
       <Link href={`/store/${encodeURIComponent(businessName)}/${encodeURIComponent(id)}`} className="text-sm rounded-full px-2.5 py-1 mt-2 ring-1">Visit the Store</Link>
