@@ -14,7 +14,7 @@ const page = async({params:{id, storeOwner}}) => {
     
     )
     const prodInfo =await response.json() 
-    if(!prodInfo?.data?.product?.length === 0){
+    if(prodInfo?.data?.product?.length === 0){
       return (
       <div className='px-6'>
     <p className='p-6 mx-auto'>no Products </p>

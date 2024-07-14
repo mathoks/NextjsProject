@@ -28,7 +28,7 @@ const page = async ({params:{id, storeOwner}}) => {
     
     )
     const branchInfo =await response.json() 
-    if(!branchInfo?.data?.branches.length === 0){
+    if(branchInfo?.data?.branches?.length === 0){
       return (
       <div className='px-4'>
       <p className='p-6 mx-auto'>no branches availiable</p>
