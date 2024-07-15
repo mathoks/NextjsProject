@@ -29,7 +29,7 @@ export default async function StoreLayout({children, recommended, branch, produc
     <>
       <SessionProvider baseUrl={"/api/auth"}>
   
-      <div className="flex flex-col space-y-40 lg:space-y-40  md:space-y-40  w-screen overflow-x-clip">
+      <div className="flex flex-col space-y-40 lg:space-y-40  md:space-y-40  w-screen overflow-x-clip pb-16">
       
     
       <Header params = {6} message = {users.message} storeInfo = {users?.data || {}}/>
@@ -39,8 +39,8 @@ export default async function StoreLayout({children, recommended, branch, produc
       
       {/* <main className="flex flex-col m-4 space-y-14 mb-10 container  mt-40 md:flex text-black lg:flex md: justify-around"> */}
       <section id='focal' className="w-screen fixed bg-pink-700 invisible h-10 mb-24"></section>
-      <section id='abouts' className=" bg-white p-4">
-      <section  className=" bg-white  text-gray-800 md:w-auto pb-2 ">
+      <section id='abouts' className=" bg-white p-4 space-y-2 ">
+      <section  className=" bg-white  text-gray-800 md:w-auto pb-2 px-2">
       {children}
       </section>
       {/* <hr className="h-4"/> */}
@@ -48,7 +48,8 @@ export default async function StoreLayout({children, recommended, branch, produc
       {branch}
       </section>
       </section>
-      <section id='product' className=" p-4 px-6  bg-white text-gray-900 lg:p-12 lg:w-screen">
+      {/* <hr className="h-4"/> */}
+      <section id='product' className="  px-6  bg-white text-gray-900 lg:p-12 lg:w-screen">
       {products}
       </section>
       <section id = 'reco' className="bg-white">

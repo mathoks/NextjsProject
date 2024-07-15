@@ -31,7 +31,7 @@ const Usercard = ({id, businessName, about, email, bizLogo, shopAddress, product
     // /pages/${encodeURIComponent(props?.id || 4)
   return (
     
-    <div className="flex flex-col space-y-2 text-gray-900 mx-auto p-2  pt-0 items-center grow-0 text-left  rounded-md  ">
+    <div className="flex flex-col space-y-2 text-gray-900 mx-auto px-2 py-6 items-center grow-0 text-left  rounded-md shadow_cus ">
     {/* <span className=" first-letter:capitalize flex gap-1 w-3/4 justify-end items-center text-[12px]">
             <span>{ratings || 4.5}
             </span>
@@ -49,7 +49,7 @@ const Usercard = ({id, businessName, about, email, bizLogo, shopAddress, product
           </span> */}
     
       <section className="flex flex-row pl-2 justify-between items-start" >
-        <div className="ring-2 rounded-full ring-[#6A0DAD] p-[0.5px]">
+        <div className="ring-2 rounded-full ring-[#5a595b] p-[0.5px]">
           <Avatar {...stringAvatar(businessName, bizLogo)} alt="userImg"/>
         </div>
         <div className="flex flex-col space-y-2 ml-3 ">
@@ -93,7 +93,7 @@ const Usercard = ({id, businessName, about, email, bizLogo, shopAddress, product
           
       </section>) : null
     }
-      <section className="flex flex-row justify-between  items-center w-[90%]">
+      <section className="flex flex-row justify-between items-end w-[90%] pb-2">
       <span className=" first-letter:capitalize flex gap-1  justify-start items-center text-[12px]">
             <span>{ratings || 4.5}
             </span>
@@ -109,12 +109,12 @@ const Usercard = ({id, businessName, about, email, bizLogo, shopAddress, product
             </div>
             <span>{"200"}</span>
           </span>
-      <Link href={`/store/${encodeURIComponent(businessName)}/${encodeURIComponent(id)}`} className="text-sm text-center rounded-full shadow_button px-2.5 py-1 mt-2 ring-1 ring-[#6A0DAD]">Visit the Store</Link>
+      <Link href={`/store/${encodeURIComponent(businessName)}/${encodeURIComponent(id)}`} className="text-sm text-center rounded-full  px-2.5 py-1 mt-2 ring-1 ring-[#6b4a82]">Visit the Store</Link>
       
       </section>
-      <div className="w-[22rem] h-4 ">
+      {/* <div className="w-[22rem] h-4 ">
       <hr className="h-6  pt-4 text-purple-600 mt-4"></hr>
-      </div>
+      </div> */}
       
     </div>
     

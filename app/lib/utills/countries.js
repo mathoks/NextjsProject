@@ -178,7 +178,7 @@ const data = new FormData()
         value={''}
         enterKeyHint="done"
         required
-        className=" p-4 shadow flex  text-gray-900"
+        className=" p-4 shadow flex  text-gray-900  border-l-2 border-[#730fbb] rounded-md"
       >
         <option
           id='selectedVal'

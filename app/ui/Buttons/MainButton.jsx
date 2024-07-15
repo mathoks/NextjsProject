@@ -15,10 +15,16 @@ const MainButton = () => {
     
       if (session?.status === "loading")
         setchild(<CircularProgress size={18} color="primary" className=" text-cyan-50 " />);
-      if (session?.status === "authenticated") {
+      if (session?.status === "authenticated" && !sessionStorage.getItem('hasStore')) {
         setchild("OPEN A STORE");
          if(e?.target?.innerText === 'OPEN A STORE'){
           router.push(`/Dashboard/${user}/createstore`)
+        }
+      }
+      if(session?.status === "authenticated" && sessionStorage.getItem('hasStore')){
+        setchild("ADD A PRODUCT");
+         if(e?.target?.innerText === 'ADD A PRODUCT'){
+          router.push(`/Dashboard/${user}/addproduct`)
         }
       }
       if (session?.status === "unauthenticated") {

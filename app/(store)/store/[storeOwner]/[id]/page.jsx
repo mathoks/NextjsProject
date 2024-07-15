@@ -1,11 +1,10 @@
 import { DescriptionOutlined, LocationOnOutlined, PhoneAndroid, StoreOutlined, StreetviewOutlined } from '@mui/icons-material'
 import React from 'react'
 import { headers } from 'next/headers'
-import { auth } from '@/auth'
+
 
 const page = async({params:{id , storeOwner}}) => {
-  const session = await auth()
-  console.log(session)
+
   const header = headers()
   const domain = header.get("host");
   const response =  await fetch(
@@ -13,14 +12,15 @@ const page = async({params:{id , storeOwner}}) => {
     
     )
     const users = await response.json()
+    if(users.hasOwnProperty('data')){
     const { businessName, market, state, country, about, phone, shopAddress} = users?.data;
   
   return (
     
-    <div className='flex flex-col space-y-4' >
+    <div className='flex flex-col space-y-4 shadow_cus p-4' >
     <div className='flex space-x-4'>
     <StoreOutlined fontSize='inherit' sx={{color: 'gray'}}/>
-    <span>{businessName}</span>
+    <span className='font-semibold'>{businessName}</span>
     </div>
     <div className='flex space-x-4'>
     <LocationOnOutlined fontSize='inherit' sx={{color: 'gray'}}/>
@@ -46,6 +46,10 @@ const page = async({params:{id , storeOwner}}) => {
     
     </div>
   )
+}
+else return (
+  <div><p>cant fetch data</p></div>
+) 
 }
 
 export default page

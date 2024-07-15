@@ -14,9 +14,10 @@ export const HeroPage = () => {
 
   return (
     
-      <section className="bg_image bg-center">
-        <div className="flex w-[60%]  text-white flex-col space-y-4 py-24 h-auto pl-6 items-start">
-          <div className="min-w-min">
+      <section className="">
+        <div className="flex justify-around items-center">
+        <div className="flex   text-white flex-col space-y-4 py-24 h-auto pl-6 items-start">
+        <div className="min-w-min">
             <h2 className="text-2xl  w-2/3 text-left md:text-left font-semibold text_shadow">
               Welcome To Mymart
             </h2>
@@ -25,6 +26,10 @@ export const HeroPage = () => {
             <h2>Get a Store Today</h2>
             <MainButton />
           </div>
+        </div>
+         <div className="bg_image2 h-48 w-48 mr-4">
+         
+         </div>
         </div>
       </section>
   );

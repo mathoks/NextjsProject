@@ -58,16 +58,16 @@ useEffect(()=>{
     
     <nav aria-label="main" className={`flex bg-[#630ba2] flex-col space-y-0 fixed w-full z-50  ${col ? "shadow-lg" : ""}`} >
     <div className={`sm: flex flex-col space-y-4 opacity-100 md:flex items-center justify-center  ${!navState ? "invisible h-0 opacity-0 transition-opacity" : "p-4"}` }>
-    <section>
-      <Link href={"#"} className="flex  gap-4 items-center text_shadow">
+    <section className="flex float-left">
+      <Link href={"#"} className="flex text-left gap-4 items-center text_shadow">
       <p>Mymart</p>
-      <Image
+      {/* <Image
         src={Logo}
         alt="logo"
         width={20}
         height={20}
         className="rounded-full"
-      />
+      /> */}
       </Link>
       </section>
       <section>

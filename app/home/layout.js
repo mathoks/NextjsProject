@@ -35,7 +35,7 @@ export default async function homeLayout({children, tab, arrivals, ...rest}) {
     <>
       <SessionProvider baseUrl={"/api/auth"}>
       <div>
-      <header className="bg-[#630ba2] fixed  top-0 z-50">
+      <header className=" fixed  top-0 z-50">
       
        <Nav/>
       
@@ -57,7 +57,7 @@ export default async function homeLayout({children, tab, arrivals, ...rest}) {
       {arrivals}
       </section>
       </section>
-      <section className=" p-1 col-span-2 w-screen">
+      <section className=" p-2 col-span-2 w-screen">
       {children}
       </section>
      

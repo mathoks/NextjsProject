@@ -54,7 +54,7 @@ return (
       name="priceOption"
       enterKeyHint="done"
       required
-      className=" p-4 shadow flex  text-gray-900 border-l-4 border-[#6A0DAD]">
+      className=" p-4 shadow flex  text-gray-900 border-l-4 border-[#6A0DAD] w-full">
       <option disabled>Price flexibility</option>
       {options}</select>
       
@@ -63,10 +63,10 @@ return (
 }
 
 export const LinkToBranch = ({option = []}) => {
-  console.log(option)
   
-  if(option.hasOwnProperty('data') && option.data.length > 0){
-  const options = (branch.data.map(({branchName}, id)=>{
+  
+  if(option.length > 0){
+  const options = (option.map(({branchName}, id)=>{
     
    return  <option key={id} >{branchName}</option>
   })) 
@@ -76,15 +76,15 @@ return (
       name="priceOption"
       enterKeyHint="done"
       required
-      className=" p-4 shadow flex  text-gray-900 border-l-4 border-[#6A0DAD]">
-      <option disabled>Price flexibility</option>
+      className=" p-4 shadow flex  text-gray-900 border-l-4 border-[#6A0DAD] w-full">
+      <option disabled> choose a branch</option>
       { options }</select>
       
   </div>
 )
 }
 else if(option.length === 0) {
-  return <p className='text-red-400'>you have not added any branch</p>
+  return <p className='text-green-400'>You have no branch</p>
 }
 else {
   return <p className='text-red-400'>cant fetch branch</p>

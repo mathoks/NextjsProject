@@ -62,19 +62,32 @@ color: #1c0b29;
   }
 
   .bg_image {
-    background-image: url('./assets/herobg.png');
-    background-repeat: no-repeat;
-    /* background-color: #4f08ed; */
-    background-color: #630ba2;
+    background-position: center; /* Center the image */
+    /* background-image: url('./assets/herobg.png'); */
+    background-color:  #630ba2 ;
+   background-repeat: no-repeat; /* Prevent image tiling */
+   background-size: cover; /* Ensure image covers the entire div */
+   /* background: linear-gradient(to bottom, #630ba2 0%, rgba(0, 0, 0, 0.5)  100%);   */
+
+  /* Gradient definition on top of the background image */
+    /* background-repeat: no-repeat;
     background-position: center;
     height: auto;
-    /* background-size: cover, 100% 50%; */
+    
+
+    background-size: cover, 100% 50%; */
     
     /* #f0e4f9 */
   }
 
 }
 
+.bg_image2{
+  background-image: url('./assets/herobg.png');
+ background-repeat: no-repeat; 
+ background-size: cover;  
+ background-position: center;
+}
 /* .swiper {
   padding: 4px 4px ; 
   background-color: white;
@@ -150,12 +163,12 @@ swiper-container::part(pagination) {
   padding: 4px;
 } */
 .mybranch swiper-container {
-  height: 150px;
+  height: 180px;
   display: flex;
   align-items: center;
   justify-content: start;
   /* outline: #3b82fe; */
-  background-color: white;
+  /* background-color: rgb(44, 242, 13); */
 }
 
 .prodswiper swiper-container {

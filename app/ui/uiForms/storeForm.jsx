@@ -14,7 +14,7 @@ import { useSession } from 'next-auth/react'
  
 
 const StoreForm = () => {
-  const session = useSession()
+  
     const initialState = { message: null, errors: {}, success: null, store: null };
     const [state, dispatch] = useFormState(createStore, initialState);
     const [states, dispatch2] = useFormState(validate, initialState);

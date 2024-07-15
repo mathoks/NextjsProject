@@ -49,9 +49,11 @@ export async function GET(req) {
         select:  {
           id: true,
           branchName: true,
+          branchAddress: true,
           state: true,
           country: true,
           market: true,
+          phone:true
         }
       },
         storeReviews: {

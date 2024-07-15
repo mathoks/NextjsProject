@@ -5,10 +5,9 @@ import React from 'react'
 import Tab2 from '../Tab2'
 import getYear from '@/app/lib/utills/getYear'
 import { auth } from '@/auth'
-import Link from 'next/link'
 
 const Header =async ({params, message, storeInfo, ...rest}) => {
-    const {id, storeOwner, market, state, createdAt, country, bizLogo} = storeInfo
+    const {id,  market, state, createdAt, country, bizLogo} = storeInfo
     const session = await auth()
  const visi=false
   return (
@@ -37,7 +36,7 @@ const Header =async ({params, message, storeInfo, ...rest}) => {
                     </span>
 
                     <span>
-                      <p>Diamond Member</p>
+                      <p >Diamond Member</p>
                     </span>
                   </div>
                   
@@ -63,7 +62,7 @@ const Header =async ({params, message, storeInfo, ...rest}) => {
                       <p>{`Member since ${getYear(createdAt)}`}</p>
                     </span>  
                   </div>
-                <button className={`ring-1 ring-[#6A0DAD] bg-white text-gray-800 rounded-full px-2.5 py-1.5 ${id === session.user?.id ? 'visible' : "invisible"}`}>Edit store</button>
+                <button className={` font-semibold ring-1 ring-[#6A0DAD] bg-white text-gray-800 rounded-full px-2.5 py-1.5 ${id === session?.user?.id ? 'visible' : "invisible"}`}>Edit store</button>
                 </div>
                 <Tab2 params={params}/>
                 
