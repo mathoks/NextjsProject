@@ -7,6 +7,7 @@ import {
   isPossiblePhoneNumber,
 } from "libphonenumber-js";
 import ImageResize from "@/app/lib/utills/ImageResize";
+import { revalidatePath } from "next/cache";
 
 
 const FormSchema = joi.object({
@@ -125,7 +126,7 @@ const Store = formData.get('storename')
         if (!store) {
           throw new Error('could not create store')
         } 
-
+        revalidatePath('/home')
         redirect(`http://${domain}/store/${encodeURIComponent(businessName)}/${encodeURIComponent(id)}`);
         
         //   return {

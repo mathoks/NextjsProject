@@ -19,7 +19,7 @@ const page = async({params:{id, storeOwner}}) => {
       <div>
     <p className='pl-10 mx-auto'>no Products </p>
         <span className='flex justify-end'>
-        <button className={`ring-1 ring-[#6A0DAD] rounded-full px-2.5 py-1.5 ${id === session.user?.id ? 'visible' : "invisible"}`}>Add a product</button>
+        <button className={`ring-1 ring-[#6A0DAD] rounded-full px-2.5 py-1.5 ${id === session.user?.id ? 'visible' : "invisible"}`}><Link href={`/Dashboard/${encodeURIComponent(session.user.name)}/settings/product`}>Add a product</Link></button>
         </span>
       </div>)
     }

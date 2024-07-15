@@ -6,6 +6,7 @@ import StoreProvider from "@/app/StoreProvider";
 import Products from "@/app/ui/Products";
 import { getRoutes } from "@/app/actions/users/getRoute";
 import { getUsers } from '../actions/users/getUsers';
+import { getStores } from '../lib/actions/getStores';
 
 
 
@@ -13,8 +14,8 @@ export default async function page({searchParams}) {
 
 
   // const usersList = await getRoutes()
-  const stores = await getUsers()
-  console.log(stores)
+  const stores = await getStores()
+  
   return (
    
     // typeof usersList !== "undefined" ? JSON.parse(usersList): []

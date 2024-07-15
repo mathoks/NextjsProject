@@ -104,6 +104,7 @@ model Product {
   description  String
   category     String
   price        Float
+  negotiable   OPTIONS
   createdAt    DateTime          @default(now())
   updatedAt    DateTime          @updatedAt
   store        Store             @relation(fields: [storeId], references: [id])
@@ -118,6 +119,10 @@ model Product {
   @@map("product")
 }
 
+enum OPTIONS {
+  NEGOTIABLE
+  BESTPRICE
+}
 model Branch {
   id            String          @id @default(cuid())
   storeId       String          @map("store_id")
