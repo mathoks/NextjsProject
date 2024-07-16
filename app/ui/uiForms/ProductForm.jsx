@@ -2,11 +2,13 @@
 
 import { ProductCart, PricePolicy, LinkToBranch } from '@/app/ui/uiForms/productCart'
 import React from 'react'
+import ImageUploader from '../utilComp/ImageUploader'
 
 
 const ProductForm = ({data}) => {
+    
   return (
-    <div className='mx-auto flex flex-col space-y-2 bg-white'>
+    <div className='mx-auto flex flex-col space-y-2 bg-white mb-16'>
       <form className='flex flex-col space-y-4 min-w-80 p-6 rounded-md  shadow-md'>
       <section className='flex flex-col space-y-1'>
       <label htmlFor='name' className='font-semibold'>Name</label>
@@ -16,6 +18,11 @@ const ProductForm = ({data}) => {
             <label htmlFor='address' className='font-semibold '>Product Description</label>
             <input name='text' className='p-2.5 bg-[#fcfaff] ring-1 ring-[#6A0DAD] rounded-md shadow-md'/>
         </section>
+        <section>
+        <label className='font-semibold'>Add an Image <span className='font-light text-[12px] ml-4 text-red-600'>minimum 2 pictures</span></label>
+        <ImageUploader/>
+        </section>
+        
         <section className='flex flex-col space-y-2'>
             <label className='font-semibold'>category</label>
             <ProductCart/>
@@ -31,7 +38,7 @@ const ProductForm = ({data}) => {
         <label>link to a branch</label>
             <LinkToBranch option={data}/>
         </section>
-        <button type='submit' className='rounded-md bg-[#6A0DAD] py-2.5  text-white'>Submit</button>
+        <button type='submit'  className='rounded-md bg-[#6A0DAD] py-2.5  text-white'>Submit</button>
       </form>
     </div>
   )
