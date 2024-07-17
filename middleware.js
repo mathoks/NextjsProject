@@ -20,6 +20,7 @@ export default NextAuth(authConfig).auth((request)=>{
     request.headers.set('pathname', `${request.nextUrl.pathname}`)
   //  return NextResponse.redirect(new URL('/Test', request.url));
   }
+
 request.headers.append('pathname', `${request.nextUrl.pathname}`)
 
 

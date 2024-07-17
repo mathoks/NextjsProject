@@ -1,41 +1,110 @@
 "use client"
 
-import { ProductCart, PricePolicy, LinkToBranch } from '@/app/ui/uiForms/productCart'
+import { ProductCart, PricePolicy, LinkToBranch, Availability } from '@/app/ui/uiForms/productCart'
 import React from 'react'
 import ImageUploader from '../utilComp/ImageUploader'
+import { useFormState } from 'react-dom'
+import { addProduct } from '@/app/actions/users/addProduct'
+import { validate } from '@/app/lib/utills/validator'
 
 
 const ProductForm = ({data}) => {
-    
+    const initialState = { message: null, errors: {}, success: null, store: null };
+    const [state, dispatch] = useFormState(addProduct, initialState);
+    const [states, dispatch2] = useFormState(validate, initialState);
+    const show = " *" 
   return (
-    <div className='mx-auto flex flex-col space-y-2 bg-white mb-16'>
-      <form className='flex flex-col space-y-4 min-w-80 p-6 rounded-md  shadow-md'>
+    <div className='mx-auto flex flex-col space-y-2 bg-white mb-16 pb-20'>
+     <section>
+      <span id="customer-error"  aria-live="polite" className=" mx-auto text-center" aria-atomic="true" >
+        {state?.message  &&
+            <p className={`text-sm ${state.success ? 'text-green-400' :  'text-red-500'}`}>
+              {state?.message  + " "} 
+              {state?.success ?  <Link href= {'/login'} className="hover:text-brand underline underline-offset-4">click here to Login</Link> : ''}
+            </p>
+          }
+    </span>
+    </section>
+      <form action={dispatch} className='flex flex-col space-y-4 min-w-80 p-6 rounded-md  shadow-md'>
       <section className='flex flex-col space-y-1'>
-      <label htmlFor='name' className='font-semibold'>Name</label>
-      <input type='text' className='p-2.5 bg-[#fcfaff] ring-1 ring-[#6A0DAD] rounded-md shadow-md'/>
+      <label htmlFor='name' className='font-semibold'>Name{<p className='text-red-700 inline'>{show}</p>}</label>
+      <input onBlur={dispatch2} type='text' name='name' className='p-2.5 bg-[#fcfaff]  rounded-md shadow-md'/>
+      <span id="customer-error"  aria-live="polite" className=" text-left" aria-atomic="true" >
+        {(state?.errors.name === 'name' || states?.errors?.name === 'name') &&
+            <p className="text-sm text-red-500" >
+              {state?.errors.error || states?.errors.error }
+              
+            </p>
+          }
+        </span>
       </section>
         <section className='flex flex-col space-y-1'>
-            <label htmlFor='address' className='font-semibold '>Product Description</label>
-            <input name='text' className='p-2.5 bg-[#fcfaff] ring-1 ring-[#6A0DAD] rounded-md shadow-md'/>
+            <label htmlFor='description' className='font-semibold '>Product Description{<p className='text-red-700 inline'>{show}</p>}</label>
+            <input onBlur={dispatch2} type='text' name='description' className='p-2.5 bg-[#fcfaff] rounded-md shadow-md'/>
+            <span id="customer-error"  aria-live="polite" className=" text-left" aria-atomic="true" >
+        {(state?.errors.name === 'description' || states?.errors?.name === 'description') &&
+            <p className="text-sm text-red-500" >
+              {state?.errors.error || states?.errors.error }
+              
+            </p>
+          }
+        </span>
         </section>
         <section>
-        <label className='font-semibold'>Add an Image <span className='font-light text-[12px] ml-4 text-red-600'>minimum 2 pictures</span></label>
+        <label className='font-semibold'>Add an Image{<p className='text-red-700 inline'>{show}</p>} <span className='font-light text-[12px] ml-4 text-red-600'>minimum 2 pictures</span></label>
         <ImageUploader/>
         </section>
         
         <section className='flex flex-col space-y-2'>
-            <label className='font-semibold'>category</label>
+            <label className='font-semibold'>category{<p className='text-red-700 inline'>{show}</p>}</label>
             <ProductCart/>
+            <span id="customer-error"  aria-live="polite" className=" text-left" aria-atomic="true" >
+        {(state?.errors.name === 'category' || states?.errors?.name === 'category') &&
+            <p className="text-sm text-red-500" >
+              {state?.errors.error || states?.errors.error }
+              
+            </p>
+          }
+        </span>
         </section>
         <section className='flex flex-col space-y-1'>
-            <label htmlFor='price' className='font-semibold'> Price</label>
-            <input type='number' className='p-2.5 bg-[#fcfaff] ring-1 ring-[#6A0DAD] rounded-md shadow-md'/>
+            <label htmlFor='price' className='font-semibold'> Price{<p className='text-red-700 inline'>{show}</p>}</label>
+            <input onBlur={dispatch2} type='number' name='price' className='p-2.5 bg-[#fcfaff] rounded-md shadow-md'/>
+            <span id="customer-error"  aria-live="polite" className=" text-left" aria-atomic="true" >
+        {(state?.errors.name === 'price' || states?.errors?.name === 'price') &&
+            <p className="text-sm text-red-500" >
+              {state?.errors.error || states?.errors.error }
+              
+            </p>
+          }
+        </span>
         </section>
-        <section className='pb-2'>
+        <section className='flex flex-col space-y-1'>
+        <label className='font-semibold'>Price flexibility{<p className='text-red-700 inline'>{show}</p>}</label>
         <PricePolicy/>
+        <span id="customer-error"  aria-live="polite" className=" text-left" aria-atomic="true" >
+        {(state?.errors.name === 'negotiation' || states?.errors?.name === 'negotiation') &&
+            <p className="text-sm text-red-500" >
+              {state?.errors.error || states?.errors.error }
+              
+            </p>
+          }
+        </span>
         </section>
-        <section className='pb-2'>
-        <label>link to a branch</label>
+        <section className='flex flex-col space-y-1'>
+        <label className='font-semibold pb-2'>Availability{<p className='text-red-700 inline'>{show}</p>}</label>
+        <Availability/>
+        <span id="customer-error"  aria-live="polite" className=" text-left" aria-atomic="true" >
+        {(state?.errors.name === 'availability' || states?.errors?.name === 'availability') &&
+            <p className="text-sm text-red-500" >
+              {state?.errors.error || states?.errors.error }
+              
+            </p>
+          }
+        </span>
+        </section>
+        <section className='pb-2 space-y-1'>
+        <label className='font-semibold'>Link to a branch</label>
             <LinkToBranch option={data}/>
         </section>
         <button type='submit'  className='rounded-md bg-[#6A0DAD] py-2.5  text-white'>Submit</button>

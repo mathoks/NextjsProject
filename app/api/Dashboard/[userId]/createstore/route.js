@@ -7,7 +7,6 @@
 
 
 import { Pool } from "@neondatabase/serverless";
-import { createId } from "@paralleldrive/cuid2";
 import { PrismaNeon } from "@prisma/adapter-neon";
 import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";

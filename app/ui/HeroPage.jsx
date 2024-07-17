@@ -14,9 +14,9 @@ export const HeroPage = () => {
 
   return (
     
-      <section className="">
+      <section className="pt-8">
         <div className="flex justify-around items-center">
-        <div className="flex   text-white flex-col space-y-4 py-24 h-auto pl-6 items-start">
+        <div className="flex text-white flex-col space-y-4  h-auto pl-6 items-start">
         <div className="min-w-min">
             <h2 className="text-2xl  w-2/3 text-left md:text-left font-semibold text_shadow">
               Welcome To Mymart

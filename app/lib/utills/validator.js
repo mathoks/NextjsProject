@@ -18,6 +18,16 @@ const Fields = {
     .max(200)
     .required(),
   address: joi.string().pattern(new RegExp("[a-zA-Z0-9s\u00A0.,-]+$")).min(6).max(50).required(),
+  name: joi
+  .string()
+  .pattern(new RegExp("[a-zA-Z0-9s]+$"))
+  .min(4)
+  .max(20)
+  .required(),
+  category: joi.string().required(),
+  price: joi.number().required(),
+  negotiable: joi.string().required(),
+  availability: joi.string().required(),
 };
 
 export const validate = (_, e) => {

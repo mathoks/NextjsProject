@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import {
   isPossiblePhoneNumber,
 } from "libphonenumber-js";
-import ImageResize from "@/app/lib/utills/ImageResize";
+import {ImageResize} from "@/app/lib/utills/ImageResize";
 import { revalidatePath } from "next/cache";
 
 

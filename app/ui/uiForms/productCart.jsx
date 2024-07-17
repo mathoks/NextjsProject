@@ -27,7 +27,7 @@ const productCategories = [
   
 export const ProductCart = () => {
     const options = productCategories.map((choice, id)=>{
-     return  <option key={id} >{choice}</option>
+     return  <option value= {choice} key={id} >{choice}</option>
     })
   return (
     <div className=' '>
@@ -46,12 +46,12 @@ const price =  ['Negotiable', 'Best price']
 
 export const PricePolicy = () => {
   const options = price.map((choice, id)=>{
-   return  <option key={id} >{choice}</option>
+   return  <option key={id} value={choice} >{choice}</option>
   })
 return (
   <div className='flex'>
       <select 
-      name="priceOption"
+      name="negotiable"
       enterKeyHint="done"
       required
       className=" p-4 shadow flex  text-gray-900 border-l-4 border-[#6A0DAD] w-full">
@@ -66,14 +66,14 @@ export const LinkToBranch = ({option = []}) => {
   
   
   if(option.length > 0){
-  const options = (option.map(({branchName}, id)=>{
+  const options = (option.map(({branchName, id}, ids)=>{
     
-   return  <option key={id} >{branchName}</option>
+   return  <option key={ids} value={id} >{branchName}</option>
   })) 
 return (
   <div className='flex'>
       <select 
-      name="priceOption"
+      name="link"
       enterKeyHint="done"
       required
       className=" p-4 shadow flex  text-gray-900 border-l-4 border-[#6A0DAD] w-full">
@@ -89,5 +89,26 @@ else if(option.length === 0) {
 else {
   return <p className='text-red-400'>cant fetch branch</p>
 }
+}
+
+const Avail = [{name:"IN_STOCK", vis: "IN STOCK" }, {name: "OUT_OF_STOCK", vis: "OUT OF STOCK" }, {name:"COMING_SOON", vis: 'COMING SOON'}, {name:"LIMITED_STOCK", vis:"LIMITED STOCK"}];
+
+export const Availability = () => {
+  
+  const options = Avail.map(({name , vis}, id)=>{
+    return  <option value={name} key={id} >{vis}</option>
+   })
+ return (
+   <div className='flex text-sm'>
+       <select 
+       name="availability"
+       enterKeyHint="done"
+       required
+       className=" p-4 shadow flex  text-gray-900 border-l-4 border-[#6A0DAD] w-full">
+       <option disabled> Availability</option>
+       {options}</select>
+       
+   </div>
+ )
 }
 

@@ -54,7 +54,7 @@ export async function GET(req) {
       },
     })
     
-    console.log('hhh', stores)
+   
     if(Array.isArray(stores)){
         return NextResponse.json({data: stores})
     }
