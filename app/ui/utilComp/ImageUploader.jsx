@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 "use client";
 import React, { useState, useEffect } from "react";
 import { AddPhotoAlternate } from "@mui/icons-material";
@@ -35,7 +36,6 @@ const ImageUploader = () => {
                 setIsloading(false);
                 setsrc((prev) => [URL.createObjectURL(blob), prev[1]]);
                 
-                pic.files[0].rm = true;
                 
               })
             :  setIsloading(false); setsrc((prev) => [e?.target.result, prev[1]]);
