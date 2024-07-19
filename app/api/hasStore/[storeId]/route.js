@@ -1,7 +1,6 @@
 import { Pool } from "@neondatabase/serverless";
 import { PrismaNeon } from "@prisma/adapter-neon";
 import { PrismaClient } from "@prisma/client";
-import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 
@@ -22,7 +21,8 @@ const adapter = new PrismaNeon(neon);
  */
 
 export async function GET(req) {
-    const storeId = (req.url).split('/')[6]
+  
+    const storeId = (req.url).split('/')[5]
 
   if(!prisma){
     prisma = new PrismaClient({adapter})
@@ -33,45 +33,29 @@ export async function GET(req) {
       where: {
         id : storeId
       },
-      include: {
-        product: {
-          select: {
-            storeId: true,
-            category: true,
-            price:true,
-            name: true,
-            description: true,
-            prodImage: true,
-            availability:true,
-            comment: true
-          },
-        },
-        branches: {
-        select:  {
-          id: true,
-          branchName: true,
-          branchAddress: true,
-          state: true,
-          country: true,
-          market: true,
-          phone:true
-        }
-      },
-        storeReviews: {
+      
           select: {
             id: true,
-            comment: true,
-            review: true
-          }
-        }
-      },
+            businessName: false,
+            phone: false,
+            shopAddress: false,
+            state: false,
+            country:false,
+            market: false,
+            about:false,
+            bizLogo:false,
+            email:false,
+            createdAt:false,
+            updatedAt: false
+          },
+        
     })
     
     if(store === null){
-        return NextResponse.json({data: null})
+        return NextResponse.json({data: false})
     }
     
-    return NextResponse.json({ data: store });
+    return NextResponse.json({ data: true });
   } catch (error) {
     
    return Response.json({ message: "Internal server error"});

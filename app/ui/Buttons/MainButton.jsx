@@ -1,7 +1,8 @@
 "use client";
+import { getStoreStatus } from "@/app/actions/users/getStoreStatus";
 import { CircularProgress } from "@mui/material";
 import { signIn, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 
 
@@ -15,34 +16,45 @@ const MainButton = () => {
     
       if (session?.status === "loading")
         setchild(<CircularProgress size={18} color="primary" className=" text-cyan-50 " />);
-      if (session?.status === "authenticated" && !sessionStorage.getItem('hasStore')) {
-        setchild("OPEN A STORE");
+        
          if(e?.target?.innerText === 'OPEN A STORE'){
           router.push(`/Dashboard/${user}/createstore`)
         }
-      }
-      if(session?.status === "authenticated" && sessionStorage.getItem('hasStore')){
-        setchild("ADD A PRODUCT");
          if(e?.target?.innerText === 'ADD A PRODUCT'){
-          router.push(`/Dashboard/${user}/addproduct`)
+          router.push(`Dashboard/${encodeURIComponent(user)}/settings/product`)
         }
-      }
-      if (session?.status === "unauthenticated") {
-        setchild("SIGN IN");
-
         if (e?.target?.innerText === 'SIGN IN') {
         signIn();
-        }
-      }
-        
+        }    
     },
-    [session]
+    [session.status]
   );
 
   useEffect(() => {
+    async function checkHasStore() {
+      if (session?.data?.user?.id && session.status === "authenticated") {
+        const status = localStorage.getItem("hasStore");
+        if (status === null) {
+          const hasStore = await getStoreStatus(session?.data?.user?.id);
+          console.log(hasStore, status);
+          if (hasStore.data !== null) {
+            localStorage.setItem("hasStore", hasStore.data);
+            if (hasStore.data) setchild("ADD A PRODUCT");
+            else setchild("OPEN A STORE");
+          }
+          return;
+        }
+       else if(status)
+        setchild("ADD A PRODUCT");
+      else setchild("OPEN A STORE")
+      }
+      else if(session.status === "unauthenticated")
+      setchild("SIGN IN");
+    }
+    checkHasStore();
     handleCreateStore();
-  }, [handleCreateStore]);
-  // #FF4500
+  }, [handleCreateStore, session?.data?.user?.id, session?.status]);
+  
   return (
     <button
       className="p-2 rounded bg-[#FF4500] text-sm text_shadow"

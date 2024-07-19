@@ -66,7 +66,7 @@ const Showcase = ({ info, userInfo }) => {
                       </span>
                       
                     </span>
-                    {/* <hr className=" w-full"/> */}
+                    <hr className=" w-full"/>
                     </div>
                   <div
                     className="flex flex-col  space-y-3 pb-6"
@@ -87,7 +87,7 @@ const Showcase = ({ info, userInfo }) => {
                         width={200}
                         height={120}
                         loading="lazy"
-                        className="rounded-t-lg  h-[10rem] w-[14.5rem] shadow-photo"
+                        className="rounded-b-lg  h-[10rem] w-[14.5rem]"
                       />
                     </div>
                     <div className=" flex flex-col space-y-3">

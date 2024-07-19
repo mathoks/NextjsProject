@@ -9,11 +9,15 @@ const ProductCard = ({count, info}) => {
     const swiperRef = useRef()
   
   return (
-    <div className='grid grid-cols-2 gap-4 w-auto lg:grid-cols-4 lg:mx-auto '>
+    <div className='grid grid-cols-2 gap-4 w-auto lg:grid-cols-4 lg:mx-auto'>
       {info.map(({id, prodImage, name, category, price, description,availability }, ids)=>{
         return (
-        <div className='shadow-md rounded-md bg-white w-auto ' key={ids} >
-        <div className='prodswiper relative' >
+        <div className='shadow-md rounded-md bg-white w-auto relative' key={ids} >
+        <div className=' bg-[#6A0DAD] w-full rounded-t-sm py-1 p-1'>
+        <span className='font-semibold text-white'>{category}</span>
+        </div>
+       
+        <div className='prodswiper' >
         <swiper-container
         ref = {swiperRef}
         slides-per-view="1"
@@ -31,7 +35,7 @@ const ProductCard = ({count, info}) => {
                 loading='lazy'
                 width={200}
                  height={200}
-                className='rounded-md bg-white w-auto h-auto'
+                className=' bg-white w-auto h-auto'
                 />
 
                 
@@ -40,12 +44,6 @@ const ProductCard = ({count, info}) => {
        )
        } 
        </swiper-container>
-       
-       <span className='flex justify-between pr-2'>
-       <span className=' inset-full bg-[#6A0DAD] px-2.5 py-1.5 shadow-sm rounded-e-sm text-white'>{availability}</span>
-       <span className=' line-clamp-1 overflow-ellipsis'>{}</span>
-       </span>
-       <span className='font-semibold'>{category}</span>
        </div>
         <div className='block space-y-2 p-2'>
         <div className='flex justify-between items-center font-semibold'>
@@ -67,6 +65,9 @@ const ProductCard = ({count, info}) => {
           <span><BookmarkAddOutlined fontSize='inherit'/></span>  
         </div>
         </div>
+        <span className='flex justify-between pr-2 absolute'>
+       <span className=' inset-full bg-[#6A0DAD] px-2.5 py-1 shadow-sm rounded-r-sm text-white text-[0.75rem] leading-4'>{availability}</span>
+       </span>
         </div>
         )
       })}
