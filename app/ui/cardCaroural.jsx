@@ -66,7 +66,7 @@ const Showcase = ({ info, userInfo }) => {
                       </span>
                       
                     </span>
-                    <hr className=" w-full"/>
+                    {/* <hr className=" w-full"/> */}
                     </div>
                   <div
                     className="flex flex-col  space-y-3 pb-6"
