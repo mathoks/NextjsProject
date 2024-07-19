@@ -27,7 +27,7 @@ name: joi
     .max(100)
     .required(),
   category: joi.string().required(),
-  link: joi.string(),
+  link: joi.string().allow(null),
   price: joi.number().required(),
   negotiable: joi.string().required(),
   availability: joi.string().required(),
