@@ -33,12 +33,17 @@ export async function GET(req) {
       include: {
         product: {
           select: {
+            id:true,
             storeId: true,
             category: true,
             price:true,
             name: true,
             description: true,
-            prodImage: true,
+            prodImage: {
+              select: { id: true,
+                image: true
+              }
+            },
             availability:true,
             comment: true
           },

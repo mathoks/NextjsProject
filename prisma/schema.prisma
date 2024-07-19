@@ -107,7 +107,7 @@ model Product {
   negotiable   OPTIONS
   createdAt    DateTime          @default(now())
   updatedAt    DateTime          @updatedAt
-  store        Store             @relation(fields: [storeId], references: [id])
+  store        Store             @relation(fields: [storeId], references: [id], onDelete: Cascade)
   prodImage    ProdImage[]
   availability Availability      @default(IN_STOCK)
   attribute    ProductAttribute?
@@ -144,21 +144,22 @@ model ProductBranch {
   id        String  @id @default(cuid())
   productId String
   branchId  String
-  branch    Branch  @relation(fields: [branchId], references: [id])
-  product   Product @relation(fields: [productId], references: [id])
+  branch    Branch  @relation(fields: [branchId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id] ,onDelete: Cascade)
 
   @@unique([productId, branchId])
-  @@map("product_branch")
+  @@map("productbranch")
 }
 
 model ProdImage {
   id        String   @id @default(cuid())
-  image     String?
+  prodId    String
+  image     String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  product   Product  @relation(fields: [id], references: [id])
+  product   Product  @relation(fields: [prodId], references: [id], onDelete: Cascade)
 
-  @@map("prod_image")
+  @@map("prodimage")
 }
 
 enum Availability {
@@ -198,7 +199,7 @@ model ProductAttribute {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   status    Status
-  product   Product  @relation(fields: [id], references: [id])
+  product   Product  @relation(fields: [id], references: [id], onDelete: Cascade)
 
   @@map("product_attribute")
 }

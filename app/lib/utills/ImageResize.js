@@ -25,26 +25,29 @@ export const ImageResize = async (file) => {
     }
   };
   
-  export const ImageResize2 = async (file=[]) => {
-console.log(file)
+  export const ImageResize3 = async (file=[]) => {
+
+let con = [];
     try {
       if(Array.isArray(file) && file.length > 0){
-        file.map(async(img)=>{
-          if(img.size === 0)return;
+      file.map(async(img)=>{
+          if(img.size === 0){
+            throw new Error('image size is not allowed')
+          }
           const data = await img.arrayBuffer() 
           const resizedBuffer = await sharp(data)
-        .resize(200, 200, { withoutEnlargement: true, fit: "inside" })
+        .resize(250, 150, { withoutEnlargement: true })
         .withMetadata()
-        .jpeg({ quality: 80, mozjpeg: true })
+        .jpeg({quality: 80, mozjpeg: true})
         .toBuffer();
-        const blob = {url: "kkk"} 
-        // await put(file.name, resizedBuffer, { access: "public" });
-        if (blob?.url) {
-          return blob.url;
-        } else {
+        const blob = await put(img.name, resizedBuffer, { access: "public" });
+        if (!blob) {
           throw new Error("Upload failed, please try again.");
         }
+        con.push(blob.url)
         })
+        
+        return con;
       }
       
        else throw new Error("image is required")
@@ -54,4 +57,43 @@ console.log(file)
     }
   };
 
+  export const ImageResize2 = async (files = []) => {
+    // Validate input type and length
+    if (!Array.isArray(files) || files.length === 0) {
+      throw new Error("Invalid input: Please provide an array of image files.");
+    }
   
+    const processedUrls = []; // Array to store processed image URLs
+  
+    try {
+      // Process each image file asynchronously using Promise.all
+      await Promise.all(
+        files.map(async (img) => {
+          if (img.size === 0) {
+            throw new Error("Image size is not allowed (empty file).");
+          }
+  
+          const data = await img.arrayBuffer();
+          const resizedBuffer = await sharp(data)
+            .resize(250, 150, { withoutEnlargement: true })
+            .withMetadata()
+            .jpeg({ quality: 80, mozjpeg: true })
+            .toBuffer();
+  
+          // Upload the resized image using your preferred storage method (replace with actual implementation)
+          const uploadedBlob = await put(img.name, resizedBuffer,  { access: "public" });
+  
+          if (!uploadedBlob) {
+            throw new Error("Upload failed, please try again.");
+          }
+  
+          processedUrls.push(uploadedBlob.url);
+        })
+      );
+  
+      return processedUrls;
+    } catch (error) {
+      console.error(error); // Log the actual error for debugging
+      throw new Error("Image resize or upload operation failed."); // More specific error message
+    }
+  };

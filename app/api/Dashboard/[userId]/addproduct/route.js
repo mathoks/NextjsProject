@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import bcrypt from "bcryptjs";
 import { Pool } from "@neondatabase/serverless";
 import { PrismaNeon } from "@prisma/adapter-neon";
 import { PrismaClient } from "@prisma/client";
@@ -30,9 +29,9 @@ export async function POST(req) {
         description,
         prodImage,
         storeId
-     } =  req.body
-       const result = await prisma.$transaction(async (prisma) => {
-        const newProd = await prisma.product.create({
+     } = await req.json();
+       const result = await prisma.$transaction(async(prima) => {
+        const newProd = await prima.product.create({
           data: {
             storeId,
             name,
@@ -44,21 +43,27 @@ export async function POST(req) {
           },
           select: { id: true }, // Only select necessary fields
         });
-
-        const linked = await prisma.product_branch.create({
+        
+     
+        const linked = await prima.ProductBranch.create({
           data: {
-           poductId: newProd.id,
+           productId: newProd.id,
            branchId: link
           },
         });
-            const Images = [{'image' : prodImage[0]}, {'image' : prodImage[1]}]
-        const Image = await prisma.prod_image.createMany({
-            data: {
-             product: newProd.id,
-             Images
+       
+            const Images = [ prodImage[0],  prodImage[1]]
+        const Imagee = await prima.ProdImage.createMany({
+            data: [{
+             prodId: newProd.id,
+             image: Images[0]
             },
+            {
+              prodId: newProd.id,
+              image: Images[1]
+             }]
           });
-        return { newProd, linked, Image };
+        return  newProd.id;
       });
       if (!result) {
         throw new Error("product not added");

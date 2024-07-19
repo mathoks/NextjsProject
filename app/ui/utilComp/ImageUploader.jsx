@@ -5,12 +5,11 @@ import { AddPhotoAlternate } from "@mui/icons-material";
 import { Avatar } from "@mui/material";
 import { removeBackground } from "modern-rembg/index.mjs";
 import { CircularProgress } from "@mui/material";
+import { blobToFile } from "@/app/lib/utills/blobToFile";
 
 // const {removeBackground} = dynamic(()=>import('@imgly/background-removal-node') , {ssr: false})
 const ImageUploader = () => {
   const [entry, setentry] = useState(0);
-  const [entry1, setentry1] = useState(null);
-  const [entry2, setentry2] = useState(null);
   const [pics, setpics] = useState(0);
   const [src, setsrc] = useState([
     <AddPhotoAlternate fontSize="large" sx={{ width: 60, height: 60 }} />,
@@ -19,7 +18,6 @@ const ImageUploader = () => {
   const [label1, setlabel1] = useState("");
   const [label, setlabel] = useState("");
   const [loading, setIsloading] = useState(false);
-  const nefor = new FormData
   const handleImage = async (e) => {
     const pic = document?.getElementById(e?.target.id);
     const tog = document?.getElementById("bg");
@@ -31,14 +29,16 @@ const ImageUploader = () => {
         setIsloading(true);
         reader.onload = (e) => {
           if (entry > 1) setentry(0);
-          tog.checked
-            ? removeBackground(e.target.result).then((blob) => {
-                setIsloading(false);
-                setsrc((prev) => [URL.createObjectURL(blob), prev[1]]);
+          // tog.checked
+          //   ? removeBackground(e.target.result).then((blob) => {
+          //       setIsloading(false);
+          //       setsrc((prev) => [URL.createObjectURL(blob), prev[1]]);
+          //      const newFile = blobToFile(blob, file.name, file.type);
+          //       fom.append('to', e.target.result)
+          //       setentry1(e.target.result)
                 
-                
-              })
-            :  setIsloading(false); setsrc((prev) => [e?.target.result, prev[1]]);
+          //     })
+              setIsloading(false); setsrc((prev) => [e?.target.result, prev[1]]);
           setlabel(file.name);
           setentry((prev) => ++prev);
         };
@@ -46,14 +46,14 @@ const ImageUploader = () => {
         setpics(2);
         setIsloading(true);
         reader.onload = (e) => {
-          tog.checked
-            ? removeBackground(e.target.result).then((blob) => {
-                setIsloading(false);
-                setsrc((prev) => [prev[0], URL.createObjectURL(blob)]);
+          // tog.checked
+          //   ? removeBackground(e.target.result).then((blob) => {
+          //       setIsloading(false);
+          //       setsrc((prev) => [prev[0], URL.createObjectURL(blob)]);
                 
-                setentry1(URL.createObjectURL(blob))
-              })
-            : setIsloading(false); setsrc((prev) => [prev[0], e?.target.result]);
+          //       setentry1(URL.createObjectURL(blob))
+          //     })
+           setIsloading(false); setsrc((prev) => [prev[0], e?.target.result]);
           setlabel1(file.name);
           setentry((prev) => prev);
         };
@@ -126,13 +126,14 @@ const ImageUploader = () => {
           />
         </div>
       </div>
-      <span className="flex justify-end pt-4 px-2">
+      {/* <span className="flex justify-end pt-4 px-2">
         <label className="pr-2">remove background</label>
         <label className="switch">
           <input type="checkbox" id="bg" />
           <span className="slider round"></span>
         </label>
       </span>
+      <input className="sr-only" id='tem' defaultValue={entry1} name="in" /> */}
     </div>
   );
 };

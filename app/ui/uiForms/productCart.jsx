@@ -42,9 +42,10 @@ export const ProductCart = () => {
   )
 }
 
-const price =  ['Negotiable', 'Best price']
 
 export const PricePolicy = () => {
+  const price =  ['NEGOTIABLE', 'BESTPRICE']
+
   const options = price.map((choice, id)=>{
    return  <option key={id} value={choice} >{choice}</option>
   })
@@ -91,10 +92,10 @@ else {
 }
 }
 
-const Avail = [{name:"IN_STOCK", vis: "IN STOCK" }, {name: "OUT_OF_STOCK", vis: "OUT OF STOCK" }, {name:"COMING_SOON", vis: 'COMING SOON'}, {name:"LIMITED_STOCK", vis:"LIMITED STOCK"}];
 
 export const Availability = () => {
-  
+  const Avail = [{name:"IN_STOCK", vis: "IN STOCK" }, {name: "OUT_OF_STOCK", vis: "OUT OF STOCK" }, {name:"COMING_SOON", vis: 'COMING SOON'}, {name:"LIMITED_STOCK", vis:"LIMITED STOCK"}];
+
   const options = Avail.map(({name , vis}, id)=>{
     return  <option value={name} key={id} >{vis}</option>
    })
@@ -110,5 +111,27 @@ export const Availability = () => {
        
    </div>
  )
+}
+
+
+
+export const ProductStatus = () => {
+ const values = [{name: 'NEW', vis: 'NEW'}, {name: 'FAIRLY_USED', vis: 'FAIRLY USED'}, {name: 'REFURBISHED', vis: 'REFURBISHED' }]
+  
+ const options = values.map(({name , vis}, id)=>{
+  return  <option value={name} key={id} >{vis}</option>
+ })
+return (
+ <div className='flex text-sm'>
+     <select 
+     name="status"
+     enterKeyHint="done"
+     required
+     className=" p-4 shadow flex  text-gray-900 border-l-4 border-[#6A0DAD] w-full">
+     <option disabled> Status</option>
+     {options}</select>
+     
+ </div>)
+  
 }
 

@@ -35,8 +35,8 @@ const Showcase = ({ info, userInfo }) => {
           info.map(
             (
               {
-                productId,
-                image,
+               id,
+                prodImage,
                 price,
                 description,
                 category,
@@ -44,19 +44,19 @@ const Showcase = ({ info, userInfo }) => {
                 name,
                 Availability,
               },
-              id
+              ids
             ) => (
               <swiper-slide
-                lazy={id !== info.length - 1}
-                key={productId || id}
+                lazy={ids !== info.length - 1}
+                key={id || ids}
                 onClick={async () => {
-                  if (id !== info.length - 1) {
+                  if (ids !== info.length - 1) {
                     dispatch(setNav(false));
-                    await getProductById(userInfo, productId);
+                    await getProductById(userInfo, id);
                   }
                 }}
               >
-                {id !== info.length - 1 ? (
+                {ids !== info.length - 1 ? (
                   <div
                     className="flex flex-col  space-y-3 pb-6"
                     onClick={() =>
@@ -76,7 +76,7 @@ const Showcase = ({ info, userInfo }) => {
 
                     <div className="flex mx-auto">
                       <img
-                        src={image[0]}
+                        src={prodImage[1].image}
                         // sizes="50vw"
                         alt="DealerPic"
                         width={200}

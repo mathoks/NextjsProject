@@ -1,48 +1,11 @@
 "use server";
 import { auth } from "@/auth";
-import joi from "joi";
 import { headers } from "next/headers";
 import { revalidateTag } from "next/cache";
 import { ImageResize2 } from "@/app/lib/utills/ImageResize";
-import { NextRequest } from "next/server";
+import { validateProduct } from "@/app/lib/utills/actionValidator";
 
-const FormSchema = joi.object({
-  name: joi
-    .string()
-    .pattern(new RegExp("[a-zA-Z0-9s]+$"))
-    .min(4)
-    .max(15)
-    .required(),
-  email: joi
-    .string()
-    .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } }),
-  description: joi
-    .string()
-    .pattern(new RegExp("[a-zA-Z0-9s\u00A0.,:?]+$"))
-    .min(6)
-    .max(100)
-    .required(),
-  category: joi.string().required(),
-  price: joi.number().required(),
-  negotiable: joi.string().required(),
-  availability: joi.string().required(),
-  address: joi
-    .string()
-    .pattern(new RegExp("[a-zA-Z0-9s\u00A0.,-]+$"))
-    .min(6)
-    .max(50)
-    .required(),
-});
 
-const State = {
-  success: null,
-  errors: {
-    email: [],
-    password: [],
-    username: [],
-  },
-  message: "",
-};
 
 /**
  * @typedef {Object} Invoice
@@ -53,77 +16,63 @@ const State = {
  * @param {FormData} formData - The form data containing invoice information.
  * @returns {Promise<object>} An object containing success/failure information and optional updated state.
  */
-export const addProduct = async function (State, formData) {
+export const addProduct = async function ({}, formData) {
   const headerList = headers();
   const domain = headerList.get("host");
   const session = await auth();
-  const file = formData.get("imgR1");
+  const file = formData.get("img1");
   const file2 = formData.get("img2");
-  
-  // 1. Initialize validatedFields
-  let validatedFields = {};
-
-  console.log(file, file2)
   // 2. Check provider ID and Authenticate (handle different providers)
 
   try {
-    if (!file || !file2) {
-      throw new Error("An image is required");
+    if (!session.user.id) {
+      throw new Error("you are unauthorized please sign in");
     }
-     const url = await ImageResize2([file, file2]);
-
-    // if (url === "") {
-    //   throw new Error("image upload failed");
-    // }
-
-    // 1. Validate Form Fields using FormSchema
-    validatedFields = await FormSchema.validateAsync({
-      name: formData.get("name"),
-      description: formData.get("description"),
-      negotiable: formData.get("negotiable"),
-      category: formData.get("category"),
-      availability: formData.get("availability"),
-      link: formData.get("link"),
-      price: formData.get("price"),
-    });
-
     const {
       name,
+      description,
+      negotiable,
       category,
       availability,
-      price,
       link,
-      negotiable,
-      description,
-    } = validatedFields;
-    // const response = await fetch(
-    //   `http://${domain}/api/Dashboard/${session?.user.id}/addproduct`,
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       storeId : session?.user.id,  
-    //       name,
-    //       category,
-    //       price,
-    //       availability,
-    //       negotiable,
-    //       link,
-    //       description,
-    //       prodImage: url,
-    //     }),
-    //   }
-    // );
+      price,
+    } = await validateProduct(formData);
 
-    // if (!response.ok) {
-    //   throw new Error("Network failed");
-    // }
+    if (file.size === 0 && file2.size === 0) {
+      throw new Error("An image is required");
+    }
+    const url = await ImageResize2([file, file2]);
+    if (url.length < 2) {
+      throw new Error("image upload failed");
+    }
+    const response = await fetch(
+      `http://${domain}/api/Dashboard/${session?.user.id}/addproduct`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          storeId: session?.user.id,
+          name,
+          category,
+          price,
+          availability,
+          negotiable,
+          link,
+          description,
+          prodImage: url,
+        }),
+      }
+    );
 
-    // const store = await response.json();
-    // const { id } = store.data;
-    const store = true;
+    if (!response.ok) {
+      throw new Error("Network failed");
+    }
+
+    const store = await response.json();
+  
+
     if (!store) {
       throw new Error("could not create store");
     }
@@ -140,8 +89,7 @@ export const addProduct = async function (State, formData) {
       throw error;
     }
     if (error?.details) {
-      // Return user-friendly error messages
-      validatedFields = {};
+      console.log(error)
       return {
         errors: {
           error: error.details[0].message,
