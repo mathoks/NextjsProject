@@ -21,7 +21,7 @@ const Showcase = ({ info, userInfo }) => {
   const router = useRouter();
 
   return (
-    <div className="rootswiper rounded-md w-[18rem] md:w-[18rem] px-6 py-2 bg-white shadow-md" >
+    <div className="rootswiper rounded-md w-[18rem] md:w-[18rem] px-6 py-2 shadow-md bg-white" >
       <swiper-container
         ref={swiperDiv}
         slides-per-view="1"
@@ -57,6 +57,17 @@ const Showcase = ({ info, userInfo }) => {
                 }}
               >
                 {ids !== info.length - 1 ? (
+                  <>
+                  <div className="space-y-1">
+                    <span className="flex  justify-between items-center ">
+                      <span className="font-semibold text-sm">{category}</span>
+                      <span className="flex justify-end">
+                        <BookmarkAddOutlined />
+                      </span>
+                      
+                    </span>
+                    <hr className=" w-full"/>
+                    </div>
                   <div
                     className="flex flex-col  space-y-3 pb-6"
                     onClick={() =>
@@ -67,14 +78,8 @@ const Showcase = ({ info, userInfo }) => {
                       )
                     }
                   >
-                    <span className="flex  justify-between items-center ">
-                      <span className="font-semibold text-sm">{category}</span>
-                      <span className="flex justify-end">
-                        <BookmarkAddOutlined />
-                      </span>
-                    </span>
-
-                    <div className="flex mx-auto">
+                   
+                    <div className="flex mx-auto  rounded-md">
                       <img
                         src={prodImage[1].image}
                         // sizes="50vw"
@@ -82,10 +87,10 @@ const Showcase = ({ info, userInfo }) => {
                         width={200}
                         height={120}
                         loading="lazy"
-                        className="rounded-t-lg shadow-photo h-[10rem] w-[15rem]"
+                        className="rounded-t-lg  h-[10rem] w-[14.5rem] shadow-photo"
                       />
                     </div>
-                    <div className=" flex flex-col space-y-3 ">
+                    <div className=" flex flex-col space-y-3">
                       <span className="flex justify-between ">
                         <span className=" w-[95%] overflow-ellipsis font-semibold text-sm line-clamp-2 ">
                           {name}
@@ -120,7 +125,9 @@ const Showcase = ({ info, userInfo }) => {
                         </span>
                       </div>
                     </div>
+                    
                   </div>
+                  </>
                 ) : (
                   <div className="  mt-[7rem]">
                     <div
@@ -136,7 +143,9 @@ const Showcase = ({ info, userInfo }) => {
                       <span className="text-sm">
                         <ArrowForward fontSize="inherit" />
                       </span>
+                      
                     </div>
+                    
                   </div>
                 )}
               </swiper-slide>
@@ -144,6 +153,7 @@ const Showcase = ({ info, userInfo }) => {
           )}
           
       </swiper-container>
+      
     </div>
   );
 };
