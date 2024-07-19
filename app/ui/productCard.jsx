@@ -9,20 +9,21 @@ const ProductCard = ({count, info}) => {
     const swiperRef = useRef()
   
   return (
-    <div className='grid grid-cols-2 gap-4 w-auto lg:grid-cols-4 lg:mx-auto'>
+    // <div className='grid grid-cols-2 gap-4 w-auto lg:grid-cols-4 lg:mx-auto'>
+    <div className='flex overflow-x-scroll space-x-4 py-4 px-8'>
       {info.map(({id, prodImage, name, category, price, description,availability }, ids)=>{
         return (
-        <div className='shadow-md rounded-md bg-white w-auto relative' key={ids} >
-        <div className=' bg-[#6A0DAD] w-full rounded-t-sm py-1 p-1'>
-        <span className='font-semibold text-white'>{category}</span>
+        <div className='shadow-md rounded-md bg-white  relative w-64 space-y-1' key={ids} >
+        <div className=' bg-[#f9f5fb] w-full rounded-t-sm py-1 p-1'>
+        <span className='font-semibold text-gray-800'>{category}</span>
         </div>
        
-        <div className='prodswiper' >
+        <div className='prodswiper mx-auto' >
         <swiper-container
         ref = {swiperRef}
         slides-per-view="1"
       // navigation="true"
-      pagination="true"
+      pagination="true" 
     //   pagination-type="fraction"
       space-between="2">
        {
@@ -35,7 +36,7 @@ const ProductCard = ({count, info}) => {
                 loading='lazy'
                 width={200}
                  height={200}
-                className=' bg-white w-auto h-auto'
+                className=' bg-white mx-auto'
                 />
 
                 
