@@ -44,16 +44,16 @@ export async function POST(req) {
           select: { id: true }, // Only select necessary fields
         });
         
-     
-        const linked = await prima.ProductBranch.create({
+        if(link !== null){
+        await prima.ProductBranch.create({
           data: {
            productId: newProd.id,
            branchId: link
           },
         });
-       
+      }
             const Images = [ prodImage[0],  prodImage[1]]
-        const Imagee = await prima.ProdImage.createMany({
+            await prima.ProdImage.createMany({
             data: [{
              prodId: newProd.id,
              image: Images[0]
@@ -72,6 +72,7 @@ export async function POST(req) {
 
       return NextResponse.json(result, { status: 201 });
     } catch (error) {
+      console.log(error)
       return NextResponse.json(
         { error: "Failed to add Product" },
         { status: 500 }
