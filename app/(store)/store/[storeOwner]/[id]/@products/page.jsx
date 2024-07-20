@@ -26,9 +26,9 @@ const page = async({params:{id, storeOwner}}) => {
       </div>)
     }
   return (
-    <div className=' space-y-4 shadow_cus p-4 overflow-scroll'>
+    <div className=' space-y-4  p-4 overflow-x-scroll '>
     <h2 className=' font-semibold'>Products</h2>
-    <div className='flex justify-center '>
+    <div className='flex justify-center min-h-fit overflow-y-clip'>
     
     <ProductCard count={4} info = {prodInfo?.data?.product}/>
     </div>

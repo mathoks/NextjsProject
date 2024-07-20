@@ -13,12 +13,12 @@ const ProductCard = ({count, info}) => {
     <div className='flex overflow-x-scroll space-x-4 py-4 px-8'>
       {info.map(({id, prodImage, name, category, price, description,availability }, ids)=>{
         return (
-        <div className='shadow-md rounded-md bg-white  relative w-64 space-y-1' key={ids} >
+        <div className='shadow_cus rounded-md bg-white   w-64 space-y-1 relative' key={ids} >
         <div className=' bg-[#f9f5fb] w-full rounded-t-sm py-1 p-1'>
         <span className='font-semibold text-gray-800'>{category}</span>
         </div>
        
-        <div className='prodswiper mx-auto' >
+        <div className='prodswiper mx-auto ' >
         <swiper-container
         ref = {swiperRef}
         slides-per-view="1"
@@ -36,7 +36,7 @@ const ProductCard = ({count, info}) => {
                 loading='lazy'
                 width={200}
                  height={200}
-                className=' bg-white mx-auto'
+                className=' bg-white mx-auto h-[10rem]'
                 />
 
                 
@@ -46,10 +46,17 @@ const ProductCard = ({count, info}) => {
        } 
        </swiper-container>
        </div>
-        <div className='block space-y-2 p-2'>
+       <span className='block absolute inset-x-0 inset-y-[9rem] z-40'>
+       <span className='  bg-[#6A0DAD] px-2.5 py-1 shadow-sm rounded-r-sm text-white text-[0.75rem] leading-4'>{availability}</span>
+       </span>
+        <div className='block space-y-2 p-2 '>
+       
         <div className='flex justify-between items-center font-semibold'>
             <span className='line-clamp-2 overflow-ellipsis font-semibold'>{name}</span>
-            <span className=' font-semibold'>{price}</span>
+            <span className="flex justify-start items-center space-x-1">
+                            <span className="text-[12px]">&#x20A6;</span>
+                            <p className="text-[12px] font-semibold">{price}</p>
+                          </span>
         </div>
 
         <div className='flex font-semibold'>
@@ -66,9 +73,7 @@ const ProductCard = ({count, info}) => {
           <span><BookmarkAddOutlined fontSize='inherit'/></span>  
         </div>
         </div>
-        <span className='flex justify-between pr-2 absolute'>
-       <span className=' inset-full bg-[#6A0DAD] px-2.5 py-1 shadow-sm rounded-r-sm text-white text-[0.75rem] leading-4'>{availability}</span>
-       </span>
+        
         </div>
         )
       })}
