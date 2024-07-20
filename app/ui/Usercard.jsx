@@ -31,10 +31,10 @@ const Usercard = ({id, businessName, about, email, bizLogo, shopAddress, product
     // /pages/${encodeURIComponent(props?.id || 4)
   return (
     
-    <div className="flex flex-col border-b-[0.2px]  border-gray-300 space-y-2 text-gray-900 mx-auto px-2 py-3 items-center grow-0 text-left    leading-[0.5rem]">
+    <div className="flex flex-col border-b-[0.2px]  border-gray-300 space-y-2 text-gray-900 mx-auto px-2 py-3 items-center grow-0 text-left    leading-[0.5rem] text-sm">
    
     
-      <section className="flex flex-row pl-1 justify-between items-start" >
+      <section className="flex flex-row  justify-between items-start" >
         <div className="ring-1 rounded-full ring-gray-400 p-[0.5px]">
           <Avatar {...stringAvatar(businessName, bizLogo)} alt="userImg"/>
         </div>
