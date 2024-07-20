@@ -9,16 +9,14 @@ const ProductCard = ({count, info}) => {
     const swiperRef = useRef()
   
   return (
-    // <div className='grid grid-cols-2 gap-4 w-auto lg:grid-cols-4 lg:mx-auto'>
-    <div className='flex overflow-x-scroll space-x-4 py-4 px-8'>
-      {info.map(({id, prodImage, name, category, price, description,availability }, ids)=>{
+      info.map(({id, prodImage, name, category, price, description,availability }, ids)=>{
         return (
-        <div className='shadow_cus rounded-md bg-white   w-64 space-y-1 relative' key={ids} >
-        <div className=' bg-[#f9f5fb] w-full rounded-t-sm py-1 p-1'>
+        <div className='shadow_cus rounded-md bg-white  space-y-1 relative h-fit' key={ids} >
+        <div className=' bg-[#f9f5fb]  rounded-t-sm py-1 p-1'>
         <span className='font-semibold text-gray-800'>{category}</span>
         </div>
        
-        <div className='prodswiper mx-auto ' >
+        <div className='prodswiper mx-auto h-[9.5rem]' >
         <swiper-container
         ref = {swiperRef}
         slides-per-view="1"
@@ -36,7 +34,7 @@ const ProductCard = ({count, info}) => {
                 loading='lazy'
                 width={200}
                  height={200}
-                className=' bg-white mx-auto h-[10rem]'
+                className=' bg-white mx-auto h-[8rem] pb-4'
                 />
 
                 
@@ -46,8 +44,8 @@ const ProductCard = ({count, info}) => {
        } 
        </swiper-container>
        </div>
-       <span className='block absolute inset-x-0 inset-y-[9rem] z-40'>
-       <span className='  bg-[#6A0DAD] px-2.5 py-1 shadow-sm rounded-r-sm text-white text-[0.75rem] leading-4'>{availability}</span>
+       <span className='block absolute inset-x-0 inset-y-[10rem] z-40'>
+       <span className='  bg-[#6A0DAD] px-2.5 py-1 shadow-sm rounded-r-sm text-white text-[0.75rem] leading-4'>{availability.replace(/_/g, " ")}</span>
        </span>
         <div className='block space-y-2 p-2 '>
        
@@ -76,8 +74,8 @@ const ProductCard = ({count, info}) => {
         
         </div>
         )
-      })}
-    </div>
+      })
+    // </div>
   )
 }
 

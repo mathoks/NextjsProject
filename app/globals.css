@@ -186,7 +186,7 @@ swiper-container::part(pagination) {
 }
 
 .prodswiper swiper-container::part(pagination) {
-  bottom: 0px;
+  bottom: -4px;
   color: #4f08ed;
   background-color: white;
 }
