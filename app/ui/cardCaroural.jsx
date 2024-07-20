@@ -21,6 +21,7 @@ const Showcase = ({ info, userInfo }) => {
   const router = useRouter();
 
   return (
+    
     <div className="rootswiper rounded-md w-[18rem] md:w-[18rem] px-6 py-2 shadow-md bg-white" >
       <swiper-container
         ref={swiperDiv}
@@ -129,7 +130,7 @@ const Showcase = ({ info, userInfo }) => {
                   </div>
                   </>
                 ) : (
-                  <div className="  mt-[7rem]">
+                  <div className="flex justify-center  mt-[9rem]">
                     <div
                       onClick={(e) => {
                         e.stopPropagation();
@@ -137,7 +138,7 @@ const Showcase = ({ info, userInfo }) => {
                           `/store/${encodeURIComponent(userInfo)}/products`
                         );
                       }}
-                      className="flex space-x-1 text-[#005B9A] text-sm mx-auto pl-[7rem] pt-4"
+                      className="flex space-x-1 text-[#005B9A] text-sm justify-center items-center mx-auto"
                     >
                       <span className="text-base">See all products</span>
                       <span className="text-sm">
@@ -153,7 +154,6 @@ const Showcase = ({ info, userInfo }) => {
           )}
           
       </swiper-container>
-      
     </div>
   );
 };

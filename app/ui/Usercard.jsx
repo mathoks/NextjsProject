@@ -1,5 +1,5 @@
 
-import { Avatar , Chip} from "@mui/material";
+import { Avatar , Chip, Divider} from "@mui/material";
 import React from "react";
 import { stringAvatar } from "../lib/utills/stringAvata";
 import { MakeEllipsis } from "../lib/utills/Makelipsis";
@@ -31,25 +31,11 @@ const Usercard = ({id, businessName, about, email, bizLogo, shopAddress, product
     // /pages/${encodeURIComponent(props?.id || 4)
   return (
     
-    <div className="flex flex-col space-y-2 text-gray-900 mx-auto px-2 py-6 items-center grow-0 text-left  rounded-md shadow_cus leading-[0.6rem]">
-    {/* <span className=" first-letter:capitalize flex gap-1 w-3/4 justify-end items-center text-[12px]">
-            <span>{ratings || 4.5}
-            </span>
-            <div suppressHydrationWarning={true}>
-            {Array.from(Array(5)).map((_, index) => (
-                      <StarRate
-                        key={index}
-                        fontSize="inherit"
-                        sx={{ color: "#f2c464" }}
-                        
-                      />
-                    ))}
-            </div>
-            <span>{"200"}</span>
-          </span> */}
+    <div className="flex flex-col border-b-[0.2px]  border-gray-300 space-y-2 text-gray-900 mx-auto px-2 py-3 items-center grow-0 text-left    leading-[0.5rem]">
+   
     
       <section className="flex flex-row pl-2 justify-between items-start" >
-        <div className="ring-2 rounded-full ring-[#5a595b] p-[0.5px]">
+        <div className="ring-1 rounded-full ring-gray-400 p-[0.5px]">
           <Avatar {...stringAvatar(businessName, bizLogo)} alt="userImg"/>
         </div>
         <div className="flex flex-col space-y-2 ml-3 ">
@@ -87,14 +73,14 @@ const Usercard = ({id, businessName, about, email, bizLogo, shopAddress, product
         
       </section>
     { product.length > 0 ?
-      (<section className="flex flex-col ">
+      (<section className="flex flex-col ring-1 ring-gray-300 rounded-md">
         
             <UserComp info = {typeof product !== "undefined" ? newArr : []} userInfo = {id}/>        
           
       </section>) : null
     }
-      <section className="flex flex-row justify-between items-end w-[90%] pb-2">
-      <span className=" first-letter:capitalize flex gap-1  justify-start items-center text-[12px]">
+      <section className="flex flex-row justify-between items-center w-[90%] pb-2">
+      <span className=" first-letter:capitalize flex gap-1  justify-start items-center text-[12px] pt-2">
             <span>{ratings || 4.5}
             </span>
             <div suppressHydrationWarning={true}>
@@ -109,13 +95,9 @@ const Usercard = ({id, businessName, about, email, bizLogo, shopAddress, product
             </div>
             <span>{"200"}</span>
           </span>
-      <Link href={`/store/${encodeURIComponent(businessName)}/${encodeURIComponent(id)}`} className="text-sm text-center rounded-full  px-2.5 py-1 mt-2 ring-1 ring-[#6b4a82]">Visit the Store</Link>
+      <Link href={`/store/${encodeURIComponent(businessName)}/${encodeURIComponent(id)}`} className="text-sm  rounded-full  px-2.5 py-1 mt-2 text-[#005B9A] ">Visit the Store</Link>
       
-      </section>
-      {/* <div className="w-[22rem] h-4 ">
-      <hr className="h-6  pt-4 text-purple-600 mt-4"></hr>
-      </div> */}
-      
+      </section>  
     </div>
     
   );

@@ -134,10 +134,13 @@ swiper-container::part(button-prev) {
 }
 
 swiper-container::part(pagination) {
-  bottom: -4px;
+  bottom: 0px;
   color: #4f08ed;
 }
 
+.gap-4 {
+  grid-gap: 1rem; /* Adjust gap size as needed */
+}
 /* swiper-container::part(wrapper){
   height: 80%;
   background-color: aquamarine;

@@ -17,11 +17,12 @@ const Products = ({ data }) => {
    
     <section className="flex flex-col p-1 md:px-8">
       <Suspense fallback={<ProdSkeleton/>}>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4 last:pb-0 lg:gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-1 last:pb-0 lg:gap-2">
       
         {productSort(data).map((user, index) => (
-          
+      
           <Usercard key={index} {...user} />
+         
         ))}
       </div>
       </Suspense>

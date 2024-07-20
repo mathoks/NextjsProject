@@ -19,7 +19,7 @@ const HomeMore = ({id}) => {
 
   return (
     <button onClick={handleOpen} data-fab={id} key={id} aria-label="modal" >
-        <MoreVertOutlined  data-fab={id}/>  
+        <MoreVertOutlined  data-fab={id} sx={{color: '#6A0DAD'}}/>  
     </button>
   );
 };
