@@ -27,13 +27,17 @@ const page = async({params:{id, storeOwner}}) => {
     }
   return (
     <div className=' space-y-4  p-4 px-0 '>
+    <div className='flex justify-between items-center'>
     <h2 className=' font-semibold'>Products</h2>
+    <span className='flex justify-end text-gray-900 pr-4 bg-white '><button className='ring-1 px-2.5 py-1.5 rounded-full bg-[#6A0DAD] ring-inset ring-white text-white'><Link href={`${encodeURIComponent(id)}/products`}>See All</Link></button></span>
+    </div>
+    
+
     <div className='grid grid-cols-2 gap-4 w-auto lg:grid-cols-4 lg:mx-auto'>
     
     <ProductCard count={4} info = {prodInfo?.data?.product}/>
     </div>
    
-    <span className='flex justify-end text-gray-900 pr-4 bg-white p-4 pb-2'><button className='ring-1 px-2.5 py-1.5 rounded-full bg-[#6A0DAD] ring-inset ring-white text-white'><Link href={`${encodeURIComponent(id)}/products`}>See All</Link></button></span>
     </div>
   )
 }

@@ -4,8 +4,6 @@
 import '@/app/globals.css'
 import StoreProvider from "@/app/StoreProvider";
 import Products from "@/app/ui/Products";
-import { getRoutes } from "@/app/actions/users/getRoute";
-import { getUsers } from '../actions/users/getUsers';
 import { getStores } from '../lib/actions/getStores';
 
 

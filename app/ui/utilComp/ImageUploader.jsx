@@ -65,9 +65,9 @@ const ImageUploader = () => {
 
   return (
     <div className="flex flex-col space-y-2">
-      <span className=" flex flex-col space-y-1 text-gray-800 text-sm w-[97%] text-wrap">
-        <pre>{label}</pre>
-        <pre>{label1}</pre>
+      <span className=" flex flex-col space-y-1 text-gray-800 text-sm w-[97%] ">
+        <pre className="text-wrap">{label}</pre>
+        <pre className="text-wrap">{label1}</pre>
       </span>
 
       <div className=" flex space-x-2">

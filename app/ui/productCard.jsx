@@ -5,7 +5,7 @@ import {register} from 'swiper/element-bundle'
 
 register()
 
-const ProductCard = ({count, info}) => {
+const ProductCard = ({count, info = []}) => {
     const swiperRef = useRef()
   
   return (
