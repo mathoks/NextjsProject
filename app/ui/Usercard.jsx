@@ -34,7 +34,7 @@ const Usercard = ({id, businessName, about, email, bizLogo, shopAddress, product
     <div className="flex flex-col border-b-[0.2px]  border-gray-300 space-y-2 text-gray-900 mx-auto px-2 py-3 items-center grow-0 text-left    leading-[0.5rem]">
    
     
-      <section className="flex flex-row pl-2 justify-between items-start" >
+      <section className="flex flex-row pl-1 justify-between items-start" >
         <div className="ring-1 rounded-full ring-gray-400 p-[0.5px]">
           <Avatar {...stringAvatar(businessName, bizLogo)} alt="userImg"/>
         </div>
@@ -63,7 +63,13 @@ const Usercard = ({id, businessName, about, email, bizLogo, shopAddress, product
               />
             </span>
           </span>
+          { product.length > 0 ?
+      (<section className="flex flex-col ring-1 ring-gray-300 rounded-md ">
+        
+            <UserComp info = {typeof product !== "undefined" ? newArr : []} userInfo = {id}/>        
           
+      </section>) : null
+    }
         </div>
         <div className=" relative">
         
@@ -72,13 +78,7 @@ const Usercard = ({id, businessName, about, email, bizLogo, shopAddress, product
         </div>
         
       </section>
-    { product.length > 0 ?
-      (<section className="flex flex-col ring-1 ring-gray-300 rounded-md">
-        
-            <UserComp info = {typeof product !== "undefined" ? newArr : []} userInfo = {id}/>        
-          
-      </section>) : null
-    }
+   
       <section className="flex flex-row justify-between items-center w-[90%] pb-2">
       <span className=" first-letter:capitalize flex gap-1  justify-start items-center text-[12px] pt-2">
             <span>{ratings || 4.5}
