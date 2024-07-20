@@ -31,7 +31,7 @@ const Usercard = ({id, businessName, about, email, bizLogo, shopAddress, product
     // /pages/${encodeURIComponent(props?.id || 4)
   return (
     
-    <div className="flex flex-col space-y-2 text-gray-900 mx-auto px-2 py-6 items-center grow-0 text-left  rounded-md shadow_cus ">
+    <div className="flex flex-col space-y-2 text-gray-900 mx-auto px-2 py-6 items-center grow-0 text-left  rounded-md shadow_cus leading-[0.6rem]">
     {/* <span className=" first-letter:capitalize flex gap-1 w-3/4 justify-end items-center text-[12px]">
             <span>{ratings || 4.5}
             </span>
@@ -61,7 +61,7 @@ const Usercard = ({id, businessName, about, email, bizLogo, shopAddress, product
               <LocationOnOutlined sx={{fontSize: "18px"}}/>
             </span>
             <span className=" text-sm lg:text-base w-full leading-5 pt-[2px] first-letter:capitalize">
-              <span>{shopAddress || "shop 134b Electronic line Alaba international market ojo lagos" }</span>
+              <span >{shopAddress || "shop 134b Electronic line Alaba international market ojo lagos" }</span>
             </span>
           </span>
           <span className="flex gap-2 w-[100%] justify-start items-start">

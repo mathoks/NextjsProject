@@ -5,6 +5,7 @@ export const content = [
   "./app/**/*.{js,ts,jsx,tsx,mdx}",
 ];
 export const theme = {
+  
   extend: {
     backgroundImage: {
       "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -12,6 +13,9 @@ export const theme = {
     },
     screens : {
       'mmd' : '450px'
+    }, 
+    leading : {
+      'extra-tight' : '0.6rem'
     }
   },
 };
