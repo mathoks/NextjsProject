@@ -3,8 +3,6 @@ import { Inter } from "next/font/google";
 import "@/app/globals.css";
 import { SessionProvider } from "next-auth/react";
 import Header from "@/app/ui/utilComp/Header";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { headers } from "next/headers";
 
 
