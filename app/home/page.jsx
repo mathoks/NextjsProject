@@ -13,6 +13,7 @@ export default async function page({searchParams}) {
 
   // const usersList = await getRoutes()
   const stores = await getStores()
+  console.log(stores)
   return (
    
     // typeof usersList !== "undefined" ? JSON.parse(usersList): []

@@ -40,6 +40,11 @@ const nextConfig = {
     ],
   },
   trailingSlash: false,
+  logging: {
+    fetches: {
+      fullUrl:true
+    }
+  }
 };
 
  export default nextConfig;

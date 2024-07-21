@@ -1,7 +1,7 @@
 "use server";
 import { auth } from "@/auth";
 import { headers } from "next/headers";
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { ImageResize2 } from "@/app/lib/utills/ImageResize";
 import { validateProduct } from "@/app/lib/utills/actionValidator";
 
@@ -76,7 +76,8 @@ export const addProduct = async function ({}, formData) {
     if (!store) {
       throw new Error("could not create store");
     }
-    revalidateTag("store");
+    revalidateTag('store')
+    revalidatePath('/api/home')
     // redirect(`http://${domain}/store/${encodeURIComponent(businessName)}/${encodeURIComponent(id)}`);
 
     return {

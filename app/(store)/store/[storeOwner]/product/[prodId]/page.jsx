@@ -1,4 +1,4 @@
-   "use client";
+"use client";
 import React, { Suspense, useEffect, useRef, useState } from "react";
 import { useScrollTrigger } from "@mui/material";
 import Loading from "@/app/loading";
@@ -42,7 +42,6 @@ const Page = () => {
   };
 
   useEffect(() => {
-    console.log(ref)
     if (trigger) {
       throttle(setDom(true), 100);
     } else {

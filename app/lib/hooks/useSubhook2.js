@@ -19,7 +19,7 @@ export const useGethook = (func) => {
 
 export const useSubhook2 = (visi) => {
   const [index, setIndex] = useState("");
-  const route = useRouter()
+
   const Tabs = [
     { id: 0, tag: "Overview", child: <ProductPage1 visi={visi} index={index} /> },
     { id: 1, tag: "ProductDetails", child: <Page2 /> },
@@ -40,7 +40,8 @@ export const useSubhook2 = (visi) => {
         root={null}
         rootMargin={id === 0 ? "10px" : "100px"}
         key={id}
-        threshold={id === 0 ? 0.01 : 0.75}
+        threshold={id === 0 ? 1 : 0.75}
+        initialInView = {id === 0}
       >
         {({ inView, ref, entry }) => {
           if (inView) {

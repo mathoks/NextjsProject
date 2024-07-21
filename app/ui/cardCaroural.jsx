@@ -78,9 +78,9 @@ const Showcase = ({ info, userInfo }) => {
                     className="flex flex-col  space-y-3 pb-6"
                     onClick={() =>
                       router.push(
-                        `/pages/${encodeURIComponent(
+                        `/store/${encodeURIComponent(
                           userInfo
-                        )}/${encodeURIComponent(productId)}`
+                        )}/product/${encodeURIComponent(id)}`
                       )
                     }
                   >

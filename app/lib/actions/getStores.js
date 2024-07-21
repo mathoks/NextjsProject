@@ -13,7 +13,8 @@ export async function getStores() {
       }
       
       const users = await response.json();
-      return users.data || []; // Return an empty array if data is missing
+      
+      return users || []; // Return an empty array if data is missing
     } catch (error) {
       return( {error:`${error.message}`});
     }
