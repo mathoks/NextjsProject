@@ -36,7 +36,7 @@ let con = [];
           }
           const data = await img.arrayBuffer() 
           const resizedBuffer = await sharp(data)
-        .resize(250, 150, { withoutEnlargement: true })
+        .resize(250, 150, { withoutEnlargement: true , fit: "inside"})
         .withMetadata()
         .jpeg({quality: 80, mozjpeg: true})
         .toBuffer();

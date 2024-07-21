@@ -58,9 +58,9 @@ useEffect(()=>{
     
     <nav aria-label="main" className={`flex bg-[#630ba2] flex-col space-y-0 fixed w-full z-50  ${col ? "shadow-lg" : ""}`} >
     <div className={`sm: flex flex-col space-y-4 opacity-100 md:flex items-center justify-center  ${!navState ? "invisible h-0 opacity-0 transition-opacity" : "p-4"}` }>
-    <section className="flex float-left">
+    {/* <section className="flex float-left">
       <Link href={"#"} className="flex text-left gap-4 items-center text_shadow">
-      <p>Mymart</p>
+      <p>Mymart</p> */}
       {/* <Image
         src={Logo}
         alt="logo"
@@ -68,13 +68,13 @@ useEffect(()=>{
         height={20}
         className="rounded-full"
       /> */}
-      </Link>
-      </section>
+      {/* </Link>
+      </section> */}
       <section>
       <div className="flex justify-center">
-        <div className=" flex items-center justify-between bg-white p-2 shadow-my">
+        <div className=" flex items-center justify-between bg-white p-2 shadow-my mysearch">
         <SearchOutlined className=" text-[#6A0DAD]" fontSize="medium" sx={{ zIndex: 80}}/>
-        <input placeholder="find here" className="placeholder:text-center text-zinc-950  pl-4 pr-4 focus:outline-none w-[98%]"/>
+        <input placeholder="Mymart find here " className=" text-zinc-950  pl-4 pr-4 focus:outline-none w-[98%]"/>
         <LocationOn onClick={DrawerHandler} className="text-[#6A0DAD] sm:pr-2" fontSize="medium" />
       </div>
       </div>

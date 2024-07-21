@@ -67,7 +67,7 @@ color: #1c0b29;
     background-color:  #630ba2 ;
    background-repeat: no-repeat; /* Prevent image tiling */
    background-size: cover; /* Ensure image covers the entire div */
-   /* background: linear-gradient(to bottom, #630ba2 0%, rgba(0, 0, 0, 0.5)  100%);   */
+   /* background: linear-gradient(to bottom, #630ba2 0%, rgba(0, 0, 0, 0.5)  100%);   */ 
 
   /* Gradient definition on top of the background image */
     /* background-repeat: no-repeat;
@@ -146,6 +146,11 @@ swiper-container::part(pagination) {
   background-color: aquamarine;
 } */
 
+.mysearch input::placeholder{
+  color: #6A0DAD;
+  text-align: center;
+  opacity: 0.7;
+}
 .rootswiper swiper-container {
   /* height: 100%; */
   /* padding: 4px; */

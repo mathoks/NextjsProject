@@ -1,5 +1,12 @@
+// import  withPlugins  from "next-compose-plugins";
+import  withoptimizeImage  from "next-optimized-images";
+
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
+//   experimental: {
+// swcPlugins : [['import * from "next-optimized-images"', {}]]
+//   },
   redirects: async () => {
     return [
       {
@@ -35,4 +42,4 @@ const nextConfig = {
   trailingSlash: false,
 };
 
-export default nextConfig;
+ export default nextConfig;
