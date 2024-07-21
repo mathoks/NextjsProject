@@ -99,7 +99,7 @@ export const addProduct = async function ({}, formData) {
         success: false,
       };
     } else {
-      console.log(error)
+      
       return {
         errors: {
           error: error.message,

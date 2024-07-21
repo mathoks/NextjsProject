@@ -39,6 +39,11 @@ export async function POST(request) {
       select: {
         id: true, // Include user ID in the response
         branchName: true, // Include user email in the response
+          store: {
+            select: {
+              businessName: true,
+            },
+        },
       },
     });
     if (!newBranch) {

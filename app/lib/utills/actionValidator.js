@@ -7,8 +7,7 @@ const FormSchema = joi.object({
     .required(),
   email: joi
     .string()
-    .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } }),
-  phone: joi.string().pattern(new RegExp("[0-9]{11,15}")).required(),
+    .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } }).allow(null),
   location: joi.string().required(),
   address: joi.string().pattern(new RegExp("[a-zA-Z0-9s\u00A0.,-]+$")).min(6).max(50).required(),
 });
@@ -67,8 +66,7 @@ export const validateBranch = async (formData) => {
             location: formData.get('location')
           });
 
-      return (
-         { storename, address, location} = validatedFields )
+      return validatedFields;
     } catch (error) {
         validatedFields= {};
       throw error;

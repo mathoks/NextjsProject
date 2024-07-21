@@ -7,10 +7,7 @@ import Link from 'next/link'
 import Countries from '@/app/lib/utills/countries'
  import {Avatar} from '@mui/material'
 import { createStore } from '@/app/actions/users/createStore'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useRouter } from 'next/navigation'
-import { useSession } from 'next-auth/react'
+import toast, { Toaster } from 'react-hot-toast'
  
 
 const StoreForm = () => {
@@ -19,16 +16,15 @@ const StoreForm = () => {
     const [state, dispatch] = useFormState(createStore, initialState);
     const [states, dispatch2] = useFormState(validate, initialState);
     const [src, setsrc] = useState(null)
-    const router = useRouter()
     const [show, setshow] = useState(' *')
     const [ImageName, setImage]= useState('no Image choosen ')
     
-    const notify = () => toast(state.message);
-    if(state.success === true){
-      
+    useEffect(() => {
+      const notify = () => toast(state.message);  
+      if (state.success === true)
       notify();
-     
-    }
+    },[state.success, state.message]);
+
     const handleImage = ()=>{
       const pic =  document?.getElementById('image').files[0]
       if(pic){
@@ -54,7 +50,6 @@ const StoreForm = () => {
 
   return (
     <div className='text-gray-900 mx-auto mt-8 md:flex md:justify-around border-b border-gray-900/10 pb-12'>
-       <ToastContainer className={'w-fit text-center text-green-400'}/>
       <form  id='form' className='flex flex-col space-y-4 mx-auto text-gray-900' action={dispatch}>
       <section className='md:mx-auto space-y-4 flex-col md:flex md:justify-start md:my-2 text-gray-900'>
     <header className='mb-8'>
@@ -136,7 +131,7 @@ const StoreForm = () => {
               autoCorrect="off"
               required
               onBlur={dispatch2}
-              className=' p-3 shadow  rounded-md'
+              className=' p-3 ring-1 ring-slate-300'
               pattern='[a-zA-Z0-9s\u00A0.,-]{6,50}$'
               enterKeyHint='next'
             // disabled={isLoading || isGitHubLoading}

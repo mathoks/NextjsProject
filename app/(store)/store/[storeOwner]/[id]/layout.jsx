@@ -17,7 +17,7 @@ export default async function StoreLayout({children, recommended, branch, produc
   const header = headers()
   const domain = header.get("host");
   const response =  await fetch(
-    `http://${domain}/api/store/${rest?.params.storeOwner}/${rest?.params.id}/`,
+    `http://${domain}/api/store/${rest?.params.storeOwner}/${rest?.params.id}/`
     
     )
    

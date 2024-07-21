@@ -4,6 +4,7 @@ import StoreProvider from "./StoreProvider";
 import ButtomNav from "./ui/buttomNav";
 import { SessionProvider } from "next-auth/react";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
+import { Toaster } from "react-hot-toast";
 const inter = Inter({ subsets: ["latin"], display: 'swap'});
 
 export const metadata = {
@@ -23,6 +24,7 @@ export default async function Layout({ children }) {
           <SessionProvider baseUrl={"/api/auth"}>
         <StoreProvider>
             <AppRouterCacheProvider>
+            <Toaster/>
               <main className="w-screen">{children}</main>
               <footer className="bottom-0 static">
                 <ButtomNav />

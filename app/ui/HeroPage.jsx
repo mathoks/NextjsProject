@@ -27,7 +27,7 @@ export const HeroPage = () => {
             <MainButton />
           </div>
         </div>
-         <div className="bg_image2 h-48 w-48 mr-4">
+         <div className="bg_image2 h-[13rem] mb-8 w-48 mr-4">
          
          </div>
         </div>

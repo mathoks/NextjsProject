@@ -6,7 +6,7 @@ import {
   StarRate,
   ArrowForward,
 } from "@mui/icons-material";
-import { register } from "swiper/element-bundle";
+import { register} from "swiper/element-bundle";
 //import styles from "@/app/ui/swiper.module.css";
 import { useAppDispatch } from "../lib/hooks/hooks";
 import { setNav } from "../lib/features/Nav/navSlice";
@@ -26,10 +26,15 @@ const Showcase = ({ info, userInfo }) => {
       <swiper-container
         ref={swiperDiv}
         slides-per-view="1"
-        // navigation="true"
+      //  navigation="true"
         pagination="true"
         // pagination-type="fraction"
         space-between="15"
+        auto-play={{
+          delay: 5000,
+          disableOnInteraction: true,
+        }}
+        loop="true"
       >
         {info &&
           info.length > 1 &&

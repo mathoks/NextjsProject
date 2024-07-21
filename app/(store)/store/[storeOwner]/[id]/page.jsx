@@ -8,7 +8,7 @@ const page = async({params:{id , storeOwner}}) => {
   const header = headers()
   const domain = header.get("host");
   const response =  await fetch(
-    `http://${domain}/api/store/${storeOwner}/${id}/`,
+    `http://${domain}/api/store/${storeOwner}/${id}/`
     
     )
     const users = await response.json()

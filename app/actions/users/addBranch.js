@@ -2,7 +2,7 @@
 import { auth } from "@/auth";
 import { headers } from "next/headers";
 import { isPossiblePhoneNumber } from "libphonenumber-js";
-import { revalidateTag } from "next/cache";
+import { revalidatePath } from "next/cache";
 import { validateBranch } from "@/app/lib/utills/actionValidator";
 
 const State = {
@@ -82,13 +82,13 @@ export const addBranch = async function (State, formData) {
     }
 
     const store = await response.json();
-    const { branchName } = store.data;
+    const { branchName,  businessName  } = store.data;
 
     if (!store) {
       throw new Error("could not create store");
     }
-    revalidateTag("store");
-    // redirect(`http://${domain}/store/${encodeURIComponent(businessName)}/${encodeURIComponent(id)}`);
+    revalidatePath(`http://${domain}/api/store/${ businessName }/${session.user.id}/`);
+    
 
     return {
       success: true,
@@ -101,8 +101,7 @@ export const addBranch = async function (State, formData) {
       throw error;
     }
     if (error?.details) {
-      // Return user-friendly error messages
-      validatedFields = {};
+      console.log(error);
       return {
         errors: {
           error: error.details[0].message,

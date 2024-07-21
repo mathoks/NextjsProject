@@ -3,7 +3,9 @@ import { useRef } from "react";
 import { Provider } from "react-redux";
 import { makeStore } from "./lib/store/store";
 
+
 export default function StoreProvider({ children }) {
+  
   const storeRef = useRef();
   if (!storeRef.current) {
     storeRef.current = makeStore();
@@ -11,8 +13,8 @@ export default function StoreProvider({ children }) {
     // storeRef.current.subscribe((state = storeRef.current.getState()) => {
     //     console.log(state)
     //     if(state?.nav?.path  !== '/' && state?.nav?.nav === true){
-    //         console.log('path', state)
-    //        storeRef.current.dispatch(setNav(false))
+    //         notify()
+    //       //  storeRef.current.dispatch(setNav(false))
     //     }
     //     else {}
     // })

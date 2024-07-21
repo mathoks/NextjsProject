@@ -72,9 +72,9 @@ useEffect(()=>{
       </section> */}
       <section>
       <div className="flex justify-center">
-        <div className=" flex items-center justify-between bg-white p-2 shadow-my mysearch">
+        <div className=" flex items-center justify-between bg-white p-2 shadow_cus rounded-md">
         <SearchOutlined className=" text-[#6A0DAD]" fontSize="medium" sx={{ zIndex: 80}}/>
-        <input placeholder="Mymart find here " className=" text-zinc-950  pl-4 pr-4 focus:outline-none w-[98%]"/>
+        <input placeholder="Mymart find here " className="placeholder:text-center text-zinc-950  pl-4 pr-4 focus:outline-none w-[98%]"/>
         <LocationOn onClick={DrawerHandler} className="text-[#6A0DAD] sm:pr-2" fontSize="medium" />
       </div>
       </div>

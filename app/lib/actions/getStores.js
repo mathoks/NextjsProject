@@ -5,8 +5,9 @@ export async function getStores() {
     const headerList = headers();
     const domain = headerList.get("host");
     const abort = new AbortController()
+    
     try {
-      const response = await fetch(`http://${domain}/api/home`, { next: {tags:['store']}});
+      const response = await fetch(`http://${domain}/api/home`, {signal: abort.signal},{ next: {tags:['store']}});
       if (!response.ok) {
         throw new Error(`API request failed with status ${response.status}`);
       }

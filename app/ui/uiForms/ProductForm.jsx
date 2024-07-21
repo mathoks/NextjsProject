@@ -1,13 +1,14 @@
 "use client"
 
 import { ProductCart, PricePolicy, LinkToBranch, Availability } from '@/app/ui/uiForms/productCart'
-import React from 'react'
+import React, { useEffect } from 'react'
 import ImageUploader from '../utilComp/ImageUploader'
-import { useFormState } from 'react-dom'
+import { useFormState,  } from 'react-dom'
 import { addProduct } from '@/app/actions/users/addProduct'
 import { validate } from '@/app/lib/utills/validator'
-import Link from 'next/link'
-import ProductAttri from './ProductAttri'
+import toast from 'react-hot-toast'
+
+
 
 
 const ProductForm = ({data}) => {
@@ -15,6 +16,15 @@ const ProductForm = ({data}) => {
     const [state, dispatch] = useFormState(addProduct, initialState);
     const [states, dispatch2] = useFormState(validate, initialState);
     const show = " *" 
+
+    
+    useEffect(() => {
+      const notify = () => toast(state.message);  
+      if (state.success === true)
+      notify();
+    },[state.success, state.message]);
+    
+
   return (
     <div className='mx-auto flex flex-col space-y-2 bg-white mb-16 pb-20'>
      <section>
@@ -30,7 +40,7 @@ const ProductForm = ({data}) => {
        <form action={dispatch} className='flex flex-col space-y-4 min-w-80 p-6 rounded-md  shadow-md'>
       <section className='flex flex-col space-y-1'>
       <label htmlFor='name' className='font-semibold'>Name{<p className='text-red-700 inline'>{show}</p>}</label>
-      <input onBlur={dispatch2} type='text' name='name' className='p-2.5 bg-[#fcfaff]  rounded-md shadow-md'/>
+      <input onBlur={dispatch2} type='text' name='name' className='p-2.5 bg-[#fcfaff]  rounded-md ring-1 ring-slate-300'/>
       <span id="customer-error"  aria-live="polite" className=" text-left" aria-atomic="true" >
         {(state?.errors.name === 'name' || states?.errors?.name === 'name') &&
             <p className="text-sm text-red-500" >
@@ -42,7 +52,7 @@ const ProductForm = ({data}) => {
       </section>
         <section className='flex flex-col space-y-1'>
             <label htmlFor='description' className='font-semibold '>Product Description{<p className='text-red-700 inline'>{show}</p>}</label>
-            <input onBlur={dispatch2} type='text' name='description' className='p-2.5 bg-[#fcfaff] rounded-md shadow-md'/>
+            <input onBlur={dispatch2} type='text' name='description' className='p-2.5 bg-[#fcfaff] rounded-md ring-1 ring-slate-300'/>
             <span id="customer-error"  aria-live="polite" className=" text-left" aria-atomic="true" >
         {(state?.errors.name === 'description' || states?.errors?.name === 'description') &&
             <p className="text-sm text-red-500" >
@@ -71,7 +81,7 @@ const ProductForm = ({data}) => {
         </section>
         <section className='flex flex-col space-y-1'>
             <label htmlFor='price' className='font-semibold'> Price{<p className='text-red-700 inline'>{show}</p>}</label>
-            <input onBlur={dispatch2} type='number' name='price' className='p-2.5 bg-[#fcfaff] rounded-md shadow-md'/>
+            <input onBlur={dispatch2} type='number' name='price' className='p-2.5 bg-[#fcfaff] rounded-md ring-1 ring-slate-300'/>
             <span id="customer-error"  aria-live="polite" className=" text-left" aria-atomic="true" >
         {(state?.errors.name === 'price' || states?.errors?.name === 'price') &&
             <p className="text-sm text-red-500" >

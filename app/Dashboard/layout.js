@@ -1,7 +1,6 @@
 import { Inter } from "next/font/google";
 import "@/app/globals.css";
 import { SessionProvider } from "next-auth/react";
-import "react-toastify/dist/ReactToastify.css";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 
