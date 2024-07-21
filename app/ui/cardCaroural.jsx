@@ -22,7 +22,7 @@ const Showcase = ({ info, userInfo }) => {
 
   return (
     
-    <div className="rootswiper rounded-md w-[18rem] md:w-[18rem] px-6 py-2 shadow-md bg-white" >
+    <div className="rootswiper rounded-md w-[17rem] md:w-[18rem] px-6 py-2 shadow-md bg-white ring-1 ring-gray-200" >
       <swiper-container
         ref={swiperDiv}
         slides-per-view="1"

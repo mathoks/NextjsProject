@@ -64,7 +64,7 @@ const Usercard = ({id, businessName, about, email, bizLogo, shopAddress, product
             </span>
           </span>
           { product.length > 0 ?
-      (<section className="flex flex-col ring-1 ring-gray-200 rounded-md ">
+      (<section className="flex flex-col rounded-md ">
         
             <UserComp info = {typeof product !== "undefined" ? newArr : []} userInfo = {id}/>        
           
