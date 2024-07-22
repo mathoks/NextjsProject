@@ -1,65 +1,46 @@
-"use client";
-import React, { Suspense, useEffect, useRef, useState } from "react";
-import { useScrollTrigger } from "@mui/material";
-import Loading from "@/app/loading";
-import { useSubhook2 } from "@/app/lib/hooks/useSubhook2";
-import { useParams } from "next/navigation";
 
-function debounce(func, delay) {
-  let timeout;
-  return function debounced() {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func, delay);
-  };
-}
+import React from "react";
+import { ProTab } from "@/app/ui/proTab";
+import ProductPage1 from "@/app/ui/ProductPage1";
+import { getProductByIds } from "./layout";
+
+// function debounce(func, delay) {
+//   let timeout;
+//   return function debounced() {
+//     clearTimeout(timeout);
+//     timeout = setTimeout(() => func, delay);
+//   };
+// }
+
+// let throttle = function (func, limit) {
+//   let inthrottle;
+
+//   return function () {
+//     if (!inthrottle) {
+//       debounce(func, 50);
+//       inthrottle = true;
+//       setTimeout(() => {
+//         inthrottle = false;
+//       }, limit);
+//     }
+//   };
+// };
 
 
-const Page = () => {
-  const params = useParams()
-  //const info = getProductById()
-  const [Dom, setDom] = useState(false);
-  const [Prop, setProp] = useState(false);
-  const ref = useRef();
-
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 1,
-    //target: ref.current,
-  });
-
-  let throttle = function (func, limit) {
-    let inthrottle;
-
-    return function () {
-      if (!inthrottle) {
-        debounce(func, 50);
-        inthrottle = true;
-        setTimeout(() => {
-          inthrottle = false;
-        }, limit);
-      }
-    };
-  };
-
-  useEffect(() => {
-    if (trigger) {
-      throttle(setDom(true), 100);
-    } else {
-      throttle(setDom(false), 100);
-    }
-  }, [trigger]);
-
-  const ProductWrapper = useSubhook2(Dom, Prop);
+const Page = async({params}) => {
+  
+  const product = await getProductByIds(params)
 
   return (
-    <div
-      className=" bg-white"
-    >
-    <Suspense fallback={<Loading/>}>
-{ProductWrapper}
-      </Suspense>
+    <div className=" bg-white flex flex-col">
+      <div className="">
+        <ProTab visi={null} index={null} />
+      </div>
+      <div className="mt-16">
+        <ProductPage1 data = { product.data ||  {}} />
+      </div>
     </div>
   );
 };
 
-export default Page
+export default Page;

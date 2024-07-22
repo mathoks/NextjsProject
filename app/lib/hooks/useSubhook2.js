@@ -8,60 +8,69 @@ import ProductPage1 from "@/app/ui/ProductPage1";
 
 
 
-export const useGethook = (func) => {
-  const [val, setval] = useState(null);
-  useEffect(() => {
-    setval(document.getElementById(func));
-  }, [func]);
+// export const useGethook = (func) => {
+//   const [val, setval] = useState(null);
+//   useEffect(() => {
+//     setval(document.getElementById(func));
+//   }, [func]);
 
-  return val;
-};
+//   return val;
+// };
 
-export const useSubhook2 = (visi) => {
-  const [index, setIndex] = useState("");
-
+export const useSubhook2 = () => {
+  const [index, setIndex] = useState("#Overview");
+ 
   const Tabs = [
-    { id: 0, tag: "Overview", child: <ProductPage1 visi={visi} index={index} /> },
+     { id: 0, tag: "Overview", child: <ProductPage1/> },
     { id: 1, tag: "ProductDetails", child: <Page2 /> },
     { id: 2, tag: "Recommended", child: <Page3 /> },
   ];
 
-  useEffect(() => {
-    window.addEventListener("beforeunload", () => {
-      localStorage.setItem("tabs", window.location.hash);
-    });
+  // useEffect(() => {
+  //   window.addEventListener("beforeunload", () => {
+  //     localStorage.setItem("tabs", window.location.hash);
+  //   });
     
-    setIndex(localStorage.getItem("tabs"));
-  }, []);
+  //   setIndex(localStorage.getItem("tabs"));
+  // }, []);
 
+ 
   const ProductWrapper = () =>
     Tabs.map((Tab, id) => (
       <InView
         root={null}
-        rootMargin={id === 0 ? "10px" : "100px"}
+        rootMargin={id === 0 ? "0px" : "0px"}
         key={id}
-        threshold={id === 0 ? 1 : 0.75}
-        initialInView = {id === 0}
+        threshold={id === 0 ? 1 : 1}
+        initialInView={id === 0 ? true : false}
       >
         {({ inView, ref, entry }) => {
-          if (inView) {
-            setIndex(`#${Tab.tag}`);
+          
+          if (entry?.isIntersecting ) {
+           if (!Object.is(index,`#${Tab.tag}`)){
+             setIndex(`#${entry.target.id}`);
+           window.location.hash = `#${entry.target.id}`;
+           }
           }
+          
           return (
+          
+           
             <div
               ref={ref}
               data-curr={Tab.tag}
               id={Tab.tag}
-              className="min-h-screen p-2 pt-10 "
+              className={` p-2  ${inView && id !== 0 ? 'pt-20 min-h-fit' : 'pt-12 min-h-[40rem]'}`}
             >
+            <h2 className="text-black ">{`Header inside viewport ${inView}.`}</h2>
               {Tab.child}
-              {id === 0 ? <p className="mt-40">{inView}</p> : ""}
-              <h2 className="text-black ">{`Header inside viewport ${inView}.`}</h2>
+              
             </div>
+            
           );
         }}
       </InView>
     ));
 
-  return <ProductWrapper />;
+  return { index, ProductWrapper}
 };

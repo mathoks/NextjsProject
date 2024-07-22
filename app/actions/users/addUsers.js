@@ -82,7 +82,7 @@ export const addUser = async function (State, formData) {
         success: false,
       };
     } else{
-      console.log(error)
+  
       return {
         errors: {
           error: ["An error occurred. Please try again later."],

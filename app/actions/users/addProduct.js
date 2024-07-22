@@ -90,7 +90,7 @@ export const addProduct = async function ({}, formData) {
       throw error;
     }
     if (error?.details) {
-      console.log(error)
+    
       return {
         errors: {
           error: error.details[0].message,

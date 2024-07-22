@@ -7,7 +7,7 @@ export default async function getProductById(userInfo, productId) {
     const headerList = headers();
     const domain = headerList.get("host");
     try {
-        const response = await fetch(`http://${domain}/api/pages/${userInfo}/${productId}`)
+        const response = await fetch(`http://${domain}/api/store/${userInfo}/product/${productId}`)
         if (!response.ok) {
             throw new Error(`API request failed with status ${Response.status}`)
         }

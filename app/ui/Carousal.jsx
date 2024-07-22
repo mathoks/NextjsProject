@@ -1,7 +1,9 @@
+"use client"
 import React, { useEffect, useState } from 'react';
 import ChevronLeft from '@mui/icons-material/ChevronLeft';
 import ChevronRight from '@mui/icons-material/ChevronRight';
 import Image from 'next/image';
+import Link from 'next/link';
 
 
 /**
@@ -16,6 +18,7 @@ import Image from 'next/image';
 const Carousel = ({ slides = [], autoSlide = false, autoInterval = 3000 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideCount = slides.length; // Pre-calculate slide count for efficiency
+
 
   const handlePrev = () => {
     const newSlideIndex = currentSlide === 0 ? slideCount - 1 : currentSlide - 1;
@@ -37,32 +40,32 @@ const Carousel = ({ slides = [], autoSlide = false, autoInterval = 3000 }) => {
   }, [autoSlide, autoInterval, slideCount, currentSlide]); // Include slideCount in dependency array
 
   return (
-    <div className="overflow-hidden relative h-[19.2rem]">
+    <div className="overflow-hidden relative  w-[19.2rem] h-[14.1rem]">
       <div
-        className="flex transition-transform ease-out duration-500"
-        style={{ transform: `translateX(-${currentSlide * 111}%)` }}
+        className="flex transition-transform ease-out duration-500 mx-auto"
+        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
       >
      
       {slides.map((slide, i) => (
-            
-            <Image
+       
+            <img
               key={slide.id || i}
-              src ={slide.pics}
+              src ={ slide.image }
               height={400}
               width={400}
               loading='lazy'
-              className='shrink-0  w-auto cursor-pointer mr-10'
+              className='shrink-0 cursor-pointer mr-10 '
               alt='pics'
-             
+              
             />
             
-            
+           
           ))}
           </div>
           
       
       
-      <div className="absolute inset-0 -top-24 flex  items-center p-4 justify-between">
+      <div className="absolute inset-x-0 inset-y-20 flex  items-center p-4 justify-between">
         <button onClick={handlePrev} className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white">
           <ChevronLeft fontSize="medium" />
         </button>
@@ -70,7 +73,7 @@ const Carousel = ({ slides = [], autoSlide = false, autoInterval = 3000 }) => {
           <ChevronRight fontSize="medium" />
         </button>
       </div>
-      <div className="absolute bottom-4 right-0 left-0">
+      <div className="absolute pt-8 right-0 left-0 bottom-0">
         <div className="flex items-center justify-center gap-2">
           {slides.map((_, i) => (
             <div

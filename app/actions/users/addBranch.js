@@ -101,7 +101,7 @@ export const addBranch = async function (State, formData) {
       throw error;
     }
     if (error?.details) {
-      console.log(error);
+    
       return {
         errors: {
           error: error.details[0].message,
