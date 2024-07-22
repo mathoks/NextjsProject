@@ -9,8 +9,8 @@ const ProductPage1 = (props) => {
  return (
  <div>
     <section className="text-gray-900  flex flex-col w-full space-y-4 ">
-              <div className='mx-auto space-y-1 rounded-md shadow_cus pb-2 ring-1 ring-slate-300'>
-                <h1 className='text-xl font-semibold'>{props?.data?.name}</h1>
+              <div className='mx-auto space-y-1 rounded-md shadow-md pb-2 ring-1 ring-slate-300'>
+                <h1 className='text-xl font-semibold p-2'>{props?.data?.name}</h1>
                 <div className='relative '>
                 <Carousel slides={props?.data.prodImage} autoSlide={false}/> 
                 <span className='text-[12px] px-2 text-white absolute top-2 bg-[#FF4500]'>{props.data.availability}</span>
