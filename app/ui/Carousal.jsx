@@ -43,7 +43,7 @@ const Carousel = ({ slides = [], autoSlide = false, autoInterval = 3000 }) => {
     <div className="overflow-hidden relative  w-[19.2rem] h-[17rem]">
       <div
         className="flex transition-transform ease-out duration-500 mx-auto"
-        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+        style={{ transform: `translateX(-${currentSlide * 111}%)` }}
       >
      
       {slides.map((slide, i) => (

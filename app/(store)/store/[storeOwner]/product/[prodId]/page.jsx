@@ -30,13 +30,14 @@ import { getProductByIds } from "./layout";
 const Page = async({params}) => {
   
   const product = await getProductByIds(params)
-
+  if(!product.data) return <div>Product not found</div>
   return (
     <div className=" bg-white flex flex-col">
       {/* <div className="">
         <ProTab visi={null} index={null} />
       </div> */}
       <div className="mt-16">
+        
         <ProductPage1 data = { product.data ||  {}} />
       </div>
     </div>
