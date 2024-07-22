@@ -33,9 +33,9 @@ const Page = async({params}) => {
 
   return (
     <div className=" bg-white flex flex-col">
-      <div className="">
+      {/* <div className="">
         <ProTab visi={null} index={null} />
-      </div>
+      </div> */}
       <div className="mt-16">
         <ProductPage1 data = { product.data ||  {}} />
       </div>

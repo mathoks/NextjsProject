@@ -23,7 +23,7 @@ export async function getProductByIds(context) {
 export default async function Layout({ children, ...rest }) {
   
   return (
-    <div className="flex flex-col space-y-2 text-sm">
+    <div className="flex flex-col space-y-2 text-sm pb-12">
       <header className="z-50 fixed top-0">
         <div className="h-16 flex justify-between items-center fixed bg-white w-full text-gray-950 p-4">
           <ProductBack/>
