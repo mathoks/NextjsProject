@@ -3,23 +3,19 @@ import { Avatar, Divider, Rating } from '@mui/material'
 import Link from 'next/link'
 import React from 'react'
 import Carousel from './Carousal'
-import Logo from "@/app/assets/photo4.jpeg";
-import Logo1 from "@/app/assets/photo6.jpeg";
-import Logo2 from "@/app/assets/photo7.jpeg";
-import Logo3 from "@/app/assets/photo3.jpeg";
 
 
 const ProductPage1 = (props) => {
  return (
  <div>
     <section className="text-gray-900  flex flex-col w-full space-y-4 ">
-              <div className='mx-auto space-y-1'>
+              <div className='mx-auto space-y-1 rounded-md shadow_cus pb-2 ring-1 ring-slate-300'>
                 <h1 className='text-xl font-semibold'>{props?.data?.name}</h1>
-                <div className='relative'>
+                <div className='relative '>
                 <Carousel slides={props?.data.prodImage} autoSlide={false}/> 
                 <span className='text-[12px] px-2 text-white absolute top-2 bg-[#FF4500]'>{props.data.availability}</span>
-                </div>
-                 <div className=' font-semibold space-y-2'>
+               
+                 <div className=' font-semibold space-y-2 px-2'>
                  <span className="flex justify-between items-center space-x-1 text-base font-semibold">
                             <span className='flex items-center space-x-1'>
                             <span className="text-[12px]">&#x20A6;</span>
@@ -33,11 +29,15 @@ const ProductPage1 = (props) => {
                           <Rating size="small"/>
                           <span className='text-blue-400'>10,052</span>
                           </div>
-                         
-                  <button className='w-full ring-1 ring-slate-300 py-1.5 text-white  bg-[#FF4500] rounded-full'>Add to wishlist</button>
+                          </div>      
+                 
                  </div>
                 
                  </div> 
+                 <div className='flex mx-auto'>
+                 <button className=' w-[19rem] ring-1 ring-slate-300 py-1.5 text-white  bg-[#FF4500] rounded-full'>Add to wishlist</button>
+                 </div>
+                 
                  <div className='p-2'>
                   <div className='flex justify-between items-start p-2 text-sm'>
                   
