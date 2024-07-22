@@ -35,7 +35,6 @@ export default async function Layout({ children, ...rest }) {
             <MoreVertOutlined color="primary" />
           </div>
         </div>
-        {/* <hr className="w-full h-4 bg-black z-50"/> */}
         <Divider variant= "fullWidth"/>
       </header>
       

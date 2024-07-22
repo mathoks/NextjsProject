@@ -1,17 +1,18 @@
 'use client'
 import { BookmarkAddOutlined, StarRateOutlined } from '@mui/icons-material'
+import  { useRouter } from 'next/navigation'
 import React, { useRef } from 'react'
 import {register} from 'swiper/element-bundle'
 
 register()
 
-const ProductCard = ({count, info = []}) => {
+const ProductCard = ({storeId, info = []}) => {
     const swiperRef = useRef()
-  
+const Router = useRouter()
   return (
       info.map(({id, prodImage, name, category, price, description,availability }, ids)=>{
         return (
-        <div className='shadow_cus rounded-md bg-white  space-y-1 relative h-fit' key={ids} >
+        <div onClick={()=>Router.push(`/store/${storeId}/product/${id}`)} className='shadow_cus rounded-md bg-white  space-y-1 relative h-fit' key={ids} >
         <div className=' bg-[#f9f5fb]  rounded-t-sm py-1 p-1'>
         <span className='font-semibold text-gray-800'>{category}</span>
         </div>

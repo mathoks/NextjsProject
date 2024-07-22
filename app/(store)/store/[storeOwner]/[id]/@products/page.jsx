@@ -35,7 +35,7 @@ const page = async({params:{id, storeOwner}}) => {
 
     <div className='grid grid-cols-2 gap-4 w-auto lg:grid-cols-4 lg:mx-auto'>
     
-    <ProductCard count={4} info = {prodInfo?.data?.product}/>
+    <ProductCard storeId={id} info = {prodInfo?.data?.product}/>
     </div>
    
     </div>

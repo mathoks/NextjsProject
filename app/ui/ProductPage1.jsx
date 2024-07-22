@@ -3,15 +3,20 @@ import { Avatar, Divider, Rating } from '@mui/material'
 import Link from 'next/link'
 import React from 'react'
 import Carousel from './Carousal'
+import { auth } from '@/auth'
 
 
-const ProductPage1 = (props) => {
+const ProductPage1 = async(props) => {
+  const session = await auth()
  return (
  <div>
     <section className="text-gray-900  flex flex-col w-full space-y-4 text-[15px]">
               <div className='mx-auto space-y-1 rounded-md shadow-md pb-2 ring-1 ring-slate-300'>
-                <h1 className='text-lg font-semibold p-2'>{props?.data?.name}</h1>
-                <div className='relative '>
+              <span className='flex justify-between items-center pr-1'>
+              <h1 className='text-lg font-semibold p-2'>{props?.data?.name}</h1>
+              {props.data.storeId === session?.user?.id ? <button className='ring-1 ring-slate-300 rounded-full px-4 py-[2px] text-white bg-[#FF4500] font-semibold'>Edit</button> : ''}
+              </span>
+                              <div className='relative '>
                 <Carousel slides={props?.data.prodImage} autoSlide={false}/> 
                 <span className='text-[12px] px-2 text-white absolute top-2 bg-[#FF4500]'>{props.data.availability}</span>
                 <Divider variant='fullWidth'/>

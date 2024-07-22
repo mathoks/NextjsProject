@@ -36,6 +36,7 @@ export async function GET(req) {
       include: {
         product: {
           select: {
+            id: true,
             storeId: true,
             category: true,
             price:true,
