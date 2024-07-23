@@ -4,7 +4,7 @@ import Link from 'next/link'
 import React from 'react'
 import Carousel from './Carousal'
 import { auth } from '@/auth'
-import { Call, CallOutlined, MessageOutlined } from '@mui/icons-material'
+import { BusinessCenterOutlined, Call, CallOutlined, LocationOnOutlined, MessageOutlined, StorefrontOutlined, StreetviewOutlined } from '@mui/icons-material'
 
 
 const ProductPage1 = async(props) => {
@@ -21,12 +21,15 @@ const ProductPage1 = async(props) => {
                 <Carousel slides={props?.data.prodImage} autoSlide={false}/> 
                 <span className='text-[12px] px-2 text-white absolute top-2 bg-[#FF4500]'>{props.data.availability}</span>
                 <Divider variant='fullWidth'/>
-                 <div className=' font-semibold space-y-2 px-2'>
-                 
+                 <div className=' font-semibold space-y-1 px-2'>
+                 <span className='flex space-x-1 items-center text-[12px] text-slate-500 pt-2'>
+                  <LocationOnOutlined fontSize='inherit'/>
+                  <span>{props.data.store.market + " " + props.data.store.state + " " +  props.data.store.country}</span>
+                 </span>
                  <span className="flex justify-between items-center space-x-1 text-base font-semibold">
                             <span className='flex items-center space-x-1'>
                             <span className="text-[12px]">&#x20A6;</span>
-                            <p className="">{props.data.price}</p>
+                            <p className="text-[#6A0DAD] font-bold">{props.data.price}</p>
                           </span>
                           <span className='text-sm'>{props?.data?.negotiable}</span>
                             </span>
@@ -40,11 +43,17 @@ const ProductPage1 = async(props) => {
                  
                  </div>
                 
-                 </div> 
-                 <div className='flex mx-auto'>
+                 </div>
+                 <div className=' space-y-3 mx-auto'>
+                 <div className='flex '>
                  <button className=' w-[19rem] ring-1 ring-slate-300 py-1.5 text-white  bg-[#FF4500] rounded-full font-semibold'>Add to wishlist</button>
                  </div>
-                 
+                 <span className='flex items-center space-x-4 justify-end'>
+                     <a href={`tel:${props.data.store.phone}`}><CallOutlined fontSize='meduim' className='text-slate-500'/></a>
+                     <MessageOutlined fontSize='meduim' className='text-slate-500'/>
+                     </span>
+                 </div> 
+                 <Divider/>
                  <div className='p-2'>
                   <div className='flex justify-start items-start space-x-1'>
                   <Avatar src = {props?.data?.store?.bizLogo}/>
@@ -60,15 +69,19 @@ const ProductPage1 = async(props) => {
                       <span className='text-blue-400'>10,052</span>
                     </div>
                       
-                    <span className=' text-blue-400'><Link href={`/store/${props.data.store.businessName}/${props.data.storeId}`}><p className='ring-1'>Visit the Store</p></Link></span>
-                    <span className='flex items-center space-x-3 '>
-                     <a href={`tel:${props.data.store.phone}`}><CallOutlined fontSize='meduim' className='text-slate-500'/></a>
-                     <MessageOutlined fontSize='meduim' className='text-slate-500'/>
-                     </span> 
+                    <span className=' text-blue-400'><Link href={`/store/${props.data.store.businessName}/${props.data.storeId}`}><p>Visit the Store</p></Link></span>
+                    
                     <div>
-                      <span className=''>Product availiable at these branches</span>
+                    <div className='flex space-x-1 items-center text-base font-semibold'>
+                    <StorefrontOutlined fontSize='meduim' className='text-slate-800 '/>
+                    <span className='text-semibold'>Store Branches</span>
+                    </div>
+                     
                       <div className='flex flex-col text-gray-700'>
-                      {props?.data.branch?.map(({branch}, i)=><div key={i} className='flex flex-col '> <span className='font-semibold first-letter:uppercase'>{branch.branchName}</span><span >{branch.branchAddress}</span><span>{branch.market + " " + branch.state + " " +  branch.country}</span></div>)}
+                      {props?.data.branch?.map(({branch}, i)=><div key={i} className='flex flex-col '> 
+                      <span className='flex space-x-2 items-center' ><span><BusinessCenterOutlined fontSize='meduim'/></span><span className='font-semibold first-letter:uppercase'>{branch.branchName}</span></span>
+                      <span className='flex space-x-2 items-center' ><span><StreetviewOutlined fontSize='meduim'/></span><span>{branch.branchAddress}</span></span>
+                      <span className='flex space-x-2 items-center' ><span><LocationOnOutlined fontSize='meduim'/></span><span>{branch.market + " " + branch.state + " " +  branch.country}</span></span></div>)}
 
                       </div>
                   </div>

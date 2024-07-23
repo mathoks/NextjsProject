@@ -46,6 +46,9 @@ export async function GET(req) {
             businessName: true,
             bizLogo: true,
             phone: true,
+            state: true,
+            country: true,
+            market: true,
           }
         },
         branch: {
