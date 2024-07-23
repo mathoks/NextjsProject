@@ -11,7 +11,7 @@ const ProductPage1 = async(props) => {
   const session = await auth()
  return (
  <div>
-    <section className="text-gray-900  flex flex-col w-full space-y-4 text-[15px]">
+    <section className="text-gray-900  flex flex-col w-full space-y-4 text-[15px] md:flex lg:flex">
               <div className='mx-auto space-y-1 rounded-md shadow-md pb-2 ring-1 ring-slate-300'>
               <span className='flex justify-between items-center pr-1'>
               <h1 className='text-lg font-semibold p-2'>{props?.data?.name}</h1>
@@ -50,12 +50,9 @@ const ProductPage1 = async(props) => {
                   <Avatar src = {props?.data?.store?.bizLogo}/>
                   <div className='flex flex-col space-y-1'>
                   
-                      <span className='flex justify-between items-center'>
+                      <span className='flex justify-between items-center w-full'>
                       <span className='font-semibold line-clamp-2 text-wrap'>{props?.data?.store?.businessName}</span>
-                     <span className='flex items-center space-x-3 '>
-                     <a href={`tel:${props.data.store.phone}`}><CallOutlined fontSize='meduim' className='text-slate-500'/></a>
-                     <MessageOutlined fontSize='meduim' className='text-slate-500'/>
-                     </span> 
+                    
                       </span>
                       <div className='flex items-center space-x-1 text-[12px]'>
                       <span>4.0</span>
@@ -63,7 +60,11 @@ const ProductPage1 = async(props) => {
                       <span className='text-blue-400'>10,052</span>
                     </div>
                       
-                    <span className=' text-blue-400'><Link href={`/store/${props.data.store.businessName}/${props.data.storeId}`}><p>Visit the Store</p></Link></span>
+                    <span className=' text-blue-400'><Link href={`/store/${props.data.store.businessName}/${props.data.storeId}`}><p className='ring-1'>Visit the Store</p></Link></span>
+                    <span className='flex items-center space-x-3 '>
+                     <a href={`tel:${props.data.store.phone}`}><CallOutlined fontSize='meduim' className='text-slate-500'/></a>
+                     <MessageOutlined fontSize='meduim' className='text-slate-500'/>
+                     </span> 
                     <div>
                       <span className=''>Product availiable at these branches</span>
                       <div className='flex flex-col text-gray-700'>
