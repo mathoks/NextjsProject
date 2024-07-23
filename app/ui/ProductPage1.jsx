@@ -46,7 +46,7 @@ const ProductPage1 = async(props) => {
                  </div>
                  <div className=' space-y-3 mx-auto'>
                  <div className='flex '>
-                 <button className=' w-[19rem] ring-1 ring-slate-300 py-1.5 text-white  bg-[#FF4500] rounded-full font-semibold'>Add to wishlist</button>
+                 <button className=' w-[19rem] ring-1 ring-slate-300 py-1.5 text-white  bg-[#FF4500] rounded-full shadow-md font-semibold'>Add to wishlist</button>
                  </div>
                  <span className='flex items-center space-x-4 justify-end'>
                      <a href={`tel:${props.data.store.phone}`}><CallOutlined fontSize='meduim' className='text-slate-500'/></a>
@@ -56,7 +56,7 @@ const ProductPage1 = async(props) => {
                  <Divider/>
                  <div className='p-2'>
                   <div className='flex justify-start items-start space-x-1'>
-                  <Avatar src = {props?.data?.store?.bizLogo}/>
+                  <Avatar className='ring-1' src = {props?.data?.store?.bizLogo}/>
                   <div className='flex flex-col space-y-1'>
                   
                       <span className='flex justify-between items-center w-full'>
