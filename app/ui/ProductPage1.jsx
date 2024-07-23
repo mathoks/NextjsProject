@@ -15,7 +15,7 @@ const ProductPage1 = async(props) => {
               <div className='mx-auto space-y-1 rounded-md shadow-md pb-2 ring-1 ring-slate-300'>
               <span className='flex justify-between items-center pr-1'>
               <h1 className='text-lg font-semibold p-2'>{props?.data?.name}</h1>
-              {props.data.storeId === session?.user?.id ? <Link href={`/store/${props.data.storeId}/product/${props.data.id}/edit`}><button className='ring-1 ring-slate-300 rounded-full px-4 py-[2px] text-white bg-[#FF4500] font-semibold'>Edit</button></Link> : ''}
+              {props.data.storeId === session?.user?.id ? <Link href={`/store/${props.data.storeId}/product/${props.data.id}/edit`}><button className='ring-1 shadow-md ring-slate-300 rounded-full px-4 py-[2px] text-white bg-[#FF4500] font-semibold'>Edit</button></Link> : ''}
               </span>
                               <div className='relative '>
                 <Carousel slides={props?.data.prodImage} autoSlide={false}/> 
@@ -90,7 +90,7 @@ const ProductPage1 = async(props) => {
                           
                   </div>
                   <Divider/>
-                  <div className='px-8 pl-14 min-h-20 flex justify-center items-center'>
+                  <div className='px-8 pl-14 min-h-20 flex justify-left items-start'>
                   
                   <p className=''>{props?.data.description}</p>
                   

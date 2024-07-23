@@ -349,5 +349,5 @@ input:checked + .slider:before {
 .no_border input:focus {
   border: none;
   outline: none;
-  box-shadow: 0 1px 0 0 rgba(31, 42, 234, 0.2);
+  box-shadow: 0 2px 0 0 #630ba2;
 }

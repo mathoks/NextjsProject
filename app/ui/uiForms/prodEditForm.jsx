@@ -90,7 +90,7 @@ const ProdEditForm = ({data}) => {
         </section>
         <section className='flex flex-col space-y-1 no_border'>
         <label  className='font-semibold'>Price</label>
-        <input maxLength={10} onChange={handleFocus} onBlur={handleBlur} className='w-full py-1.5 placeholder:text-gray-500 placeholder:px-0 ' placeholder={price}/>
+        <input maxLength={10} onChange={handleFocus} onBlur={handleBlur} className='w-full py-1.5 placeholder:text-gray-500' placeholder={price}/>
         <pre className='text-slate-400  text-sm text-right'></pre>
         </section>
         <button className='w-full bg-violet-800 p-2 rounded-md font-semibold text-white '>Update</button>
