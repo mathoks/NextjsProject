@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react'
-import {Fab, CircularProgress} from '@mui/material'
+import {Fab, CircularProgress, Divider} from '@mui/material'
 import { AddAPhoto } from '@mui/icons-material'
 
 const ProdEditForm = ({data}) => {
@@ -37,10 +37,29 @@ const ProdEditForm = ({data}) => {
         }
       };
 
+      const handleFocus = (e) => {
+        e.target.nextElementSibling.style.visibility = 'visible'
+        if (e.target){
+        e.target.nextElementSibling.textContent = e.target.value.length + `/${e.target.maxLength}`;
+        if(e.target.value.length === e.target.maxLength){
+            e.target.nextElementSibling.style.color = 'red'
+        }else{
+            e.target.nextElementSibling.style.color = 'black'
+        
+        }
+        }
+      }
+
+      const handleBlur = (e) => {  
+        // if (e.target.value.length === 0)
+         e.target.nextElementSibling.style.visibility = 'hidden'
+      }
+
     return (
-    <div className='flex flex-col  p-4  text-base w-full'>
-      <form className='mx-auto space-y-2'>
-      <section className='flex overflow-x-scroll space-x-2 w-full'>
+    <div className='flex flex-col  p-4  text-base '>
+      <form className='mx-auto space-y-4 w-full md:flex'>
+      <label className='font-semibold'>Images</label>
+      <section className='flex overflow-x-scroll space-x-2 mx-auto'>
         {prodImage.map(({id}, ids)=>(
         <div key={id || ids} className='relative'>
         <img
@@ -58,20 +77,25 @@ const ProdEditForm = ({data}) => {
         </div>))
         }
       </section>
-      <section>
-      <section className='space-y-1 w-full'>
+      <section className='pr-8 space-y-2'>
+      <section className='no_border flex flex-col'>
         <label className='font-semibold'>Name</label>
-        <input className='w-full py-1.5 placeholder:text-gray-500 placeholder:px-2 shadow-md rounded-sm ring-1 ring-slate-400 block' placeholder={name}/>
+        <input maxLength={30} onChange={handleFocus} onBlur={handleBlur} className='py-1.5 placeholder:text-gray-500 ' placeholder={name}/>
+        <pre className='text-slate-400  text-sm text-right'></pre>
         </section>
-        <section className='space-y-1 w-full'>
+        <section className='space-y-1 flex flex-col no_border'>
         <label  className='font-semibold'>Description</label>
-        <input className='w-full py-1.5 placeholder:text-gray-500 placeholder:px-2 shadow-md rounded-sm ring-1 ring-slate-400 block' placeholder={description}/>
+        <input maxLength={200} onChange={handleFocus} onBlur={handleBlur} className='w-full py-1.5 placeholder:text-gray-500 ' placeholder={description}/>
+        <pre className='text-slate-400  text-sm text-right '> </pre>
         </section>
-        <section className='space-y-1 w-full'>
+        <section className='flex flex-col space-y-1 no_border'>
         <label  className='font-semibold'>Price</label>
-        <input className='w-full py-1.5 placeholder:text-gray-500 placeholder:px-2 shadow-md rounded-sm ring-1 ring-slate-400 block' placeholder={price}/>
+        <input maxLength={10} onChange={handleFocus} onBlur={handleBlur} className='w-full py-1.5 placeholder:text-gray-500 placeholder:px-0 ' placeholder={price}/>
+        <pre className='text-slate-400  text-sm text-right'></pre>
         </section>
+        <button className='w-full bg-violet-800 p-2 rounded-md font-semibold text-white '>Update</button>
         </section>
+        
       </form>
     </div>
   )

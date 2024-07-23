@@ -8,8 +8,15 @@ const page = async({params}) => {
     
  
     return (
-    <div className='mt-16 flex flex-col  p-4  text-base w-full'>
+    <div className='mt-16 flex flex-col  p-4  text-base w-full space-y-2'>
+    <div>
+    <h1 className='md:text-center font-semibold text-xl px-4'>Product Details</h1>
     <ProdEditForm data = {product.data}/>
+    </div>
+    
+    <div>
+    <h1 className='md:text-center font-semibold text-xl px-4'>Product Attributes</h1>
+    </div>
       </div>
   )
 }
