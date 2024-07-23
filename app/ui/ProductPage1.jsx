@@ -4,6 +4,7 @@ import Link from 'next/link'
 import React from 'react'
 import Carousel from './Carousal'
 import { auth } from '@/auth'
+import { Call, CallOutlined, MessageOutlined } from '@mui/icons-material'
 
 
 const ProductPage1 = async(props) => {
@@ -14,7 +15,7 @@ const ProductPage1 = async(props) => {
               <div className='mx-auto space-y-1 rounded-md shadow-md pb-2 ring-1 ring-slate-300'>
               <span className='flex justify-between items-center pr-1'>
               <h1 className='text-lg font-semibold p-2'>{props?.data?.name}</h1>
-              {props.data.storeId === session?.user?.id ? <button className='ring-1 ring-slate-300 rounded-full px-4 py-[2px] text-white bg-[#FF4500] font-semibold'>Edit</button> : ''}
+              {props.data.storeId === session?.user?.id ? <Link href={`/store/${props.data.storeId}/product/${props.data.id}/edit`}><button className='ring-1 ring-slate-300 rounded-full px-4 py-[2px] text-white bg-[#FF4500] font-semibold'>Edit</button></Link> : ''}
               </span>
                               <div className='relative '>
                 <Carousel slides={props?.data.prodImage} autoSlide={false}/> 
@@ -51,14 +52,20 @@ const ProductPage1 = async(props) => {
                   <Avatar src = {props?.data?.store?.bizLogo}/>
                   <div className='flex flex-col space-y-1'>
                   
-                      <span className='font-semibold'>{props?.data?.store?.businessName}</span>
+                      <span className='flex justify-between items-center'>
+                      <span className='font-semibold line-clamp-2 text-wrap'>{props?.data?.store?.businessName}</span>
+                     <span className='flex items-center space-x-3'>
+                     <a href={`tel:${props.data.store.phone}`}><CallOutlined  className='text-slate-500'/></a>
+                     <MessageOutlined className='text-slate-500'/>
+                     </span> 
+                      </span>
                       <div className='flex items-center space-x-1 text-[12px]'>
                       <span>4.0</span>
                       <Rating size="small"/>
                       <span className='text-blue-400'>10,052</span>
                     </div>
                       
-                    <span className=' text-blue-400'><Link href={'#'}><p>Visit the Store</p></Link></span>
+                    <span className=' text-blue-400'><Link href={`/store/${props.data.store.businessName}/${props.data.storeId}`}><p>Visit the Store</p></Link></span>
                     <div>
                       <span className=''>Product availiable at these branches</span>
                       <div className='flex flex-col text-gray-700'>

@@ -45,6 +45,7 @@ export async function GET(req) {
           select: {
             businessName: true,
             bizLogo: true,
+            phone: true,
           }
         },
         branch: {
