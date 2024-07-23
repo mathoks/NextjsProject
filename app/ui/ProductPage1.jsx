@@ -46,17 +46,15 @@ const ProductPage1 = async(props) => {
                  </div>
                  
                  <div className='p-2'>
-                  <div className='flex justify-between items-start p-2'>
-                  
                   <div className='flex justify-start items-start space-x-1'>
                   <Avatar src = {props?.data?.store?.bizLogo}/>
                   <div className='flex flex-col space-y-1'>
                   
                       <span className='flex justify-between items-center'>
                       <span className='font-semibold line-clamp-2 text-wrap'>{props?.data?.store?.businessName}</span>
-                     <span className='flex items-center space-x-3'>
-                     <a href={`tel:${props.data.store.phone}`}><CallOutlined  className='text-slate-500'/></a>
-                     <MessageOutlined className='text-slate-500'/>
+                     <span className='flex items-center space-x-3 '>
+                     <a href={`tel:${props.data.store.phone}`}><CallOutlined fontSize='meduim' className='text-slate-500'/></a>
+                     <MessageOutlined fontSize='meduim' className='text-slate-500'/>
                      </span> 
                       </span>
                       <div className='flex items-center space-x-1 text-[12px]'>
@@ -75,9 +73,7 @@ const ProductPage1 = async(props) => {
                   </div>
                     </div>
                     </div>
-                    
-                  </div>
-                  
+                          
                   </div>
                   <Divider/>
                   <div className='px-8 pl-14 min-h-20 flex justify-center items-center'>
