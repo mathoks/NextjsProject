@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react'
-import {Fab, CircularProgress, Divider} from '@mui/material'
+import {Fab, CircularProgress,} from '@mui/material'
 import { AddAPhoto } from '@mui/icons-material'
 
 const ProdEditForm = ({data}) => {
@@ -41,7 +41,7 @@ const ProdEditForm = ({data}) => {
         e.target.nextElementSibling.style.visibility = 'visible'
         if (e.target){
         e.target.nextElementSibling.textContent = e.target.value.length + `/${e.target.maxLength}`;
-        if(e.target.value.length === e.target.maxLength){
+        if(e.target.value.length === e.target.maxLength || e.target.value.length > e.target.maxLength){
             e.target.nextElementSibling.style.color = 'red'
         }else{
             e.target.nextElementSibling.style.color = 'black'
@@ -71,7 +71,7 @@ const ProdEditForm = ({data}) => {
         <div className='absolute inset-12'>
         <div className='relative'>
         <input disabled = {loading} id={`edit-${ids}`} onClick={handleImage} className='sr-only'/>
-        <Fab>{loading ? <CircularProgress/> : <AddAPhoto/> }</Fab>
+        <Fab sx={{zIndex: 5, backgroundColor: 'white'}}>{loading ? <CircularProgress/> : <AddAPhoto/> }</Fab>
         </div>
         </div>
         </div>))

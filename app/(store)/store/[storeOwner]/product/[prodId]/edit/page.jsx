@@ -1,6 +1,9 @@
 import React from 'react'
 import { getProductByIds } from '../layout'
 import ProdEditForm from '@/app/ui/uiForms/prodEditForm'
+import {Accordion, AccordionSummary, AccordionDetails} from '@mui/material'
+import { ExpandMore } from '@mui/icons-material'
+import ProductAttri from '@/app/ui/uiForms/ProductAttri'
 const page = async({params}) => {
     
     const product = await getProductByIds(params)
@@ -8,14 +11,28 @@ const page = async({params}) => {
     
  
     return (
-    <div className='mt-16 flex flex-col  p-4  text-base w-full space-y-2'>
+    <div className='mt-20 flex flex-col  p-4  text-base w-full space-y-2 md:flex'>
     <div>
     <h1 className='md:text-center font-semibold text-xl px-4'>Product Details</h1>
     <ProdEditForm data = {product.data}/>
     </div>
     
     <div>
-    <h1 className='md:text-center font-semibold text-xl px-4'>Product Attributes</h1>
+    <div className='mx-auto md:max-w-80'>
+    <Accordion sx={{border: "none", boxShadow: 'none', }} defaultExpanded>
+        <AccordionSummary
+        expandIcon = {<ExpandMore/>}
+        aria-controls='panel-content'
+        id='panel-content'
+        className='font-semibold text-center mx-auto'
+        >
+        Product Attributes
+        </AccordionSummary>
+        <AccordionDetails>
+            <ProductAttri data={product.data}/>
+        </AccordionDetails>
+    </Accordion>
+    </div>
     </div>
       </div>
   )
