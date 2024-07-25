@@ -55,7 +55,7 @@ const ProdEditForm = ({data}) => {
       <form className='mx-auto space-y-4 w-full md:flex md:space-x-4' action={dispatch}>
      <ImageEdit data={prodImage} trigger = {toggleActive} hide={loading}/>
       
-      <section className='mx-auto space-y-2'>
+      <section className='mx-auto space-y-4'>
       <section className='no_border flex flex-col'>
         <label className='font-semibold'>Name</label>
         <input name='name' defaultValue={null} maxLength={30} onChange={handleFocus} onBlur={handleBlur} className='py-1.5 placeholder:text-gray-500 ' placeholder={name}/>
@@ -88,7 +88,7 @@ const ProdEditForm = ({data}) => {
             <LinkToBranch option={datas}/>
         </section>
         <input name='id' type='text' defaultValue={id} className='text-violet-800 sr-only'/>
-        <button disabled = {loading} className='w-full bg-violet-800 p-2 rounded-md font-semibold text-white disabled:opacity-5'>Update</button>
+        <button disabled = {loading} className='w-full bg-violet-800 p-2 rounded-md font-semibold text-white disabled:opacity-5 mt-4'>Update</button>
         </section>
         
       </form>

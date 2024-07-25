@@ -77,8 +77,8 @@ return (
       enterKeyHint="done"
       required
       multiple
-      className="px-0 flex  text-gray-900  w-full bg-slate-50">
-      <option defaultValue={null} disabled>Link Product to Branches</option>
+      className="px-0 flex  text-gray-900  w-full bg-slate-50 rounded-t-md">
+      <option defaultValue={null} className='text-slate-400' disabled>Link Product to Branches</option>
       { options }</select>
       
   </div>
@@ -100,7 +100,7 @@ export const Availability = () => {
     return  <option value={name} key={id} >{vis}</option>
    })
  return (
-   <div className='flex no_border_select'>
+   <div className='flex no_border_select '>
        <select 
        name="availability"
        enterKeyHint="done"

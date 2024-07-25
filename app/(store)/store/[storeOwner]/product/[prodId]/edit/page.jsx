@@ -19,7 +19,7 @@ const page = async({params}) => {
     
     <div>
     <div className='mx-auto md:max-w-80'>
-    <Accordion sx={{border: "none", boxShadow: 'none', }} defaultExpanded>
+    <Accordion sx={{border: "none", boxShadow: 'none', }} >
         <AccordionSummary
         expandIcon = {<ExpandMore/>}
         aria-controls='panel-content'
