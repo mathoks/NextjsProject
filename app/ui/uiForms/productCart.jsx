@@ -35,8 +35,8 @@ export const ProductCart = () => {
         name="category"
         enterKeyHint="done"
         required
-        className=" p-4 px-0 flex  text-gray-900 w-full bg-slate-100">
-        <option defaultValue={null} disabled>choose a category</option>
+        className=" p-4 px-0 flex  text-gray-900 w-full bg-slate-50">
+        <option defaultValue={null} className='text-slate-400' >Choose a category</option>
         {options}</select>
     </div>
   )
@@ -54,9 +54,8 @@ return (
       <select 
       name="negotiable"
       enterKeyHint="done"
-      required
       className=" p-4 px-0 flex  text-gray-900  w-full bg-slate-50">
-      <option defaultValue={null} disabled>Price flexibility</option>
+      <option  defaultValue={null} className='text-slate-400' >Price flexibility</option>
       {options}</select>
       
   </div>
@@ -77,8 +76,9 @@ return (
       name="link"
       enterKeyHint="done"
       required
-      className=" p-4 px-0 flex  text-gray-900  w-full">
-      <option defaultValue={null} disabled> choose a branch</option>
+      multiple
+      className="px-0 flex  text-gray-900  w-full bg-slate-50">
+      <option defaultValue={null} disabled>Link Product to Branches</option>
       { options }</select>
       
   </div>
@@ -105,8 +105,8 @@ export const Availability = () => {
        name="availability"
        enterKeyHint="done"
        required
-       className=" p-4 px-0 flex  text-gray-900 w-full ">
-       <option defaultValue={null} disabled> Availability</option>
+       className=" p-4 px-0 flex  text-gray-900 w-full bg-slate-50">
+       <option defaultValue={null} className='text-slate-400'> Availability</option>
        {options}</select>
        
    </div>
@@ -127,8 +127,8 @@ return (
      name="status"
      enterKeyHint="done"
      required
-     className=" p-4 px-0 flex  text-gray-900  w-full ">
-     <option defaultValue={null} disabled> Status</option>
+     className=" p-4 px-0 flex  text-gray-900  w-full bg-slate-50">
+     <option defaultValue={null} className='text-slate-400'>Product status</option>
      {options}</select>
      
  </div>)

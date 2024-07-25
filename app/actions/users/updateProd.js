@@ -83,7 +83,7 @@ export const updateProduct = async function ({}, formData) {
       
         fields.forEach((field, index) => {
           const key = Object.keys(field)[0];  
-          if(field[key] !== '' && field[key] !== null) {
+          if(field[key] !== '' && field[key] !== null && field[key] !== 'Price flexibility' && field[key] !== 'Product status' && field[key] !== 'Availability' && field[key] !== 'Choose a category'){
             return formBody[key] = field[key];
           }
          else return;

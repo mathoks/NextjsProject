@@ -1,10 +1,14 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useState , useEffect} from 'react'
 import { validate } from '@/app/lib/utills/validator'
 import { updateProduct } from '@/app/actions/users/updateProd'
 import { useFormState } from 'react-dom'
 import ImageEdit from '../utilComp/imageEdit'
 import { Availability, LinkToBranch, PricePolicy, ProductCart } from './productCart'
+import { getBranch } from '@/app/lib/actions/getbranch'
+import { useSession } from 'next-auth/react'
+import { set } from 'zod'
+
 
 const ProdEditForm = ({data}) => {
     const {id, name, description, category, price, negotiable, availability, prodImage } = data
@@ -12,11 +16,21 @@ const ProdEditForm = ({data}) => {
     const [state, dispatch] = useFormState(updateProduct, initialState);
     const [states, dispatch2] = useFormState(validate, initialState);
     const [loading, setLoading] = useState(false)
+    const [datas, setDatas] = useState([])
+    const session = useSession()
 
         const toggleActive = ()=>{
             setLoading((prev)=>!prev)
     
         }
+
+       useEffect(()=>{
+        const branch = async ()=>{
+            const res = await getBranch(session.data.user.id)
+            setDatas(res)
+        }
+        branch()
+       },[])
 
       const handleFocus = (e) => {
         e.target.nextElementSibling.style.visibility = 'visible'
@@ -71,7 +85,7 @@ const ProdEditForm = ({data}) => {
         </section>
         <section className='flex flex-col space-y-1 no_border'>
         <label  className='font-semibold'>Link to a Branch</label>
-            <LinkToBranch/>
+            <LinkToBranch option={datas}/>
         </section>
         <input name='id' type='text' defaultValue={id} className='text-violet-800 sr-only'/>
         <button disabled = {loading} className='w-full bg-violet-800 p-2 rounded-md font-semibold text-white disabled:opacity-5'>Update</button>

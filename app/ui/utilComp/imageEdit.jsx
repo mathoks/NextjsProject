@@ -93,7 +93,7 @@ const ImageEdit = ({ data, trigger , hide}) => {
               src={src[index] || image}
               alt={"product image"}
               name={`imgup-${index}`}
-              className="w-[16rem] h-[10rem] object-cover rounded-md "
+              className="w-[14rem] h-[10rem] object-cover rounded-md max-w-[14rem]"
             />
             <div
               className={`absolute bottom-0 right-0 bg-white rounded-tl-md ${
