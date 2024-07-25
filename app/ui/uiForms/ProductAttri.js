@@ -13,7 +13,7 @@ const ProductAttri = ({data}) => {
     const initialState = { message: null, errors: {}, success: null, store: null };
     const [state, dispatch] = useFormState(addProduct, initialState);
     const [states, dispatch2] = useFormState(validate, initialState);
-    const show = " *" 
+    
 
     const handleFocus = (e) => {
       e.target.nextElementSibling.style.visibility = 'visible'
@@ -46,7 +46,7 @@ const ProductAttri = ({data}) => {
     </section>
       <form action={dispatch} className='flex flex-col space-y-4 md:mx-auto'>
       <section className='flex flex-col space-y-1 no_border'>
-      <label htmlFor='brand' className='font-semibold'>Brand{<p className='text-red-700 inline'>{show}</p>}</label>
+      <label htmlFor='brand' className='font-semibold'>Brand</label>
       <input maxLength={30} onChange={handleFocus} type='text' name='brand' onBlur={handleBlur} className='py-1.5 placeholder:text-gray-500 ' placeholder={name}/>
         <pre className='text-slate-400  text-sm text-right'></pre>
       <span id="customer-error"  aria-live="polite" className=" text-left" aria-atomic="true" >
@@ -59,7 +59,7 @@ const ProductAttri = ({data}) => {
         </span>
       </section>
         <section className='flex flex-col space-y-1'>
-        <label className='font-semibold'  htmlFor='status'>Status{<p className='text-red-700 inline'>{show}</p>}</label>
+        <label className='font-semibold'  htmlFor='status'>Status</label>
            <ProductStatus/>
             <span id="customer-error"  aria-live="polite" className=" text-left" aria-atomic="true" >
         {(state?.errors.name === 'status' || states?.errors?.name === 'status') &&
@@ -71,7 +71,7 @@ const ProductAttri = ({data}) => {
         </span>
         </section>
         <section className='flex flex-col space-y-2 no_border'>
-        <label className='font-semibold'>Color{<p className='text-red-700 inline'>{show}</p>}</label>    
+        <label className='font-semibold'>Color</label>    
         <input maxLength={10} onChange={handleFocus} type='text' name='color' onBlur={handleBlur} className='py-1.5 placeholder:text-gray-500 ' placeholder={name}/>
         <pre className='text-slate-400  text-sm text-right'></pre>
         </section>
@@ -90,7 +90,7 @@ const ProductAttri = ({data}) => {
         </span>
         </section>
         <section className='flex flex-col space-y-1 no_border'>
-            <label htmlFor='warranty' className='font-semibold'>Warranty{<p className='text-red-700 inline'>{show}</p>}</label>
+            <label htmlFor='warranty' className='font-semibold'>Warranty</label>
             <input maxLength={100} onChange={handleFocus} type='text' name='warranty' onBlur={handleBlur} className='py-1.5 placeholder:text-gray-500 ' placeholder={name}/>
         <pre className='text-slate-400  text-sm text-right'></pre>
             <span id="customer-error"  aria-live="polite" className=" text-left" aria-atomic="true" >

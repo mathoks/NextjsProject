@@ -63,7 +63,6 @@ const ImageEdit = ({ data, trigger , hide}) => {
     }
    
     setTimeout(()=>trigger(), 200)
-    console.log(prodId)
   };
 
   const handleDelete = (e) => {
@@ -82,14 +81,14 @@ const ImageEdit = ({ data, trigger , hide}) => {
       prev[e.target.id] = "";
       return [...prev];
     });
-    console.log(prodId)
+    
   };
 
   const Pictures = useMemo(() => {
     const Image = data.map(({ id, image }, index) => {
       return (
         <div key={index} className="relative w-[16rem]">
-          <div className="relative">
+          <div className="relative max-w-[16rem]">
             <img
               src={src[index] || image}
               alt={"product image"}

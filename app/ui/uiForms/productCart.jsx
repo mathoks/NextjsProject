@@ -30,13 +30,13 @@ export const ProductCart = () => {
      return  <option value= {choice} key={id} >{choice}</option>
     })
   return (
-    <div className=' '>
+    <div className=' no_border_select w-full'>
         <select 
         name="category"
         enterKeyHint="done"
         required
-        className=" p-4 shadow flex  text-gray-900 border-l-4 border-[#6A0DAD]">
-        <option disabled>choose a category</option>
+        className=" p-4 px-0 flex  text-gray-900 w-full">
+        <option defaultValue={null} disabled>choose a category</option>
         {options}</select>
     </div>
   )
@@ -50,13 +50,13 @@ export const PricePolicy = () => {
    return  <option key={id} value={choice} >{choice}</option>
   })
 return (
-  <div className='flex'>
+  <div className='flex no_border_select'>
       <select 
       name="negotiable"
       enterKeyHint="done"
       required
-      className=" p-4 shadow flex  text-gray-900 border-l-4 border-[#6A0DAD] w-full">
-      <option disabled>Price flexibility</option>
+      className=" p-4 px-0 flex  text-gray-900  w-full">
+      <option defaultValue={null} disabled>Price flexibility</option>
       {options}</select>
       
   </div>
@@ -72,13 +72,13 @@ export const LinkToBranch = ({option = []}) => {
    return  <option key={ids} value={id} >{branchName}</option>
   })) 
 return (
-  <div className='flex'>
+  <div className='flex no_border_select'>
       <select 
       name="link"
       enterKeyHint="done"
       required
-      className=" p-4 shadow flex  text-gray-900 border-l-4 border-[#6A0DAD] w-full">
-      <option disabled> choose a branch</option>
+      className=" p-4 px-0 flex  text-gray-900  w-full">
+      <option defaultValue={null} disabled> choose a branch</option>
       { options }</select>
       
   </div>
@@ -100,13 +100,13 @@ export const Availability = () => {
     return  <option value={name} key={id} >{vis}</option>
    })
  return (
-   <div className='flex text-sm'>
+   <div className='flex no_border_select'>
        <select 
        name="availability"
        enterKeyHint="done"
        required
-       className=" p-4 shadow flex  text-gray-900 border-l-4 border-[#6A0DAD] w-full">
-       <option disabled> Availability</option>
+       className=" p-4 px-0 flex  text-gray-900 w-full ">
+       <option defaultValue={null} disabled> Availability</option>
        {options}</select>
        
    </div>
@@ -122,13 +122,13 @@ export const ProductStatus = () => {
   return  <option value={name} key={id} >{vis}</option>
  })
 return (
- <div className='flex text-sm'>
+ <div className='flex no_border_select'>
      <select 
      name="status"
      enterKeyHint="done"
      required
-     className=" p-4 shadow flex  text-gray-900 border-l-4 border-[#6A0DAD] w-full">
-     <option disabled> Status</option>
+     className=" p-4 px-0 flex  text-gray-900  w-full ">
+     <option defaultValue={null} disabled> Status</option>
      {options}</select>
      
  </div>)
