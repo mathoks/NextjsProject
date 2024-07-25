@@ -35,7 +35,7 @@ export const ProductCart = () => {
         name="category"
         enterKeyHint="done"
         required
-        className=" p-4 px-0 flex  text-gray-900 w-full">
+        className=" p-4 px-0 flex  text-gray-900 w-full bg-slate-100">
         <option defaultValue={null} disabled>choose a category</option>
         {options}</select>
     </div>
@@ -55,7 +55,7 @@ return (
       name="negotiable"
       enterKeyHint="done"
       required
-      className=" p-4 px-0 flex  text-gray-900  w-full">
+      className=" p-4 px-0 flex  text-gray-900  w-full bg-slate-50">
       <option defaultValue={null} disabled>Price flexibility</option>
       {options}</select>
       
