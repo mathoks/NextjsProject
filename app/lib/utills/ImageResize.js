@@ -52,7 +52,7 @@ let con = [];
       
        else throw new Error("image is required")
     } catch (error) {
-      console.error(error); // Log the actual error for debugging
+      // Log the actual error for debugging
       throw new Error("Image resize operation failed."); // More specific error message
     }
   };
@@ -75,11 +75,11 @@ let con = [];
   
           const data = await img.arrayBuffer();
           const resizedBuffer = await sharp(data)
-            .resize(250, 150, { withoutEnlargement: true })
+            .resize(400, 300, { withoutEnlargement: true })
             .withMetadata()
             .jpeg({ quality: 80, mozjpeg: true })
             .toBuffer();
-  
+    
           // Upload the resized image using your preferred storage method (replace with actual implementation)
           const uploadedBlob = await put(img.name, resizedBuffer,  { access: "public" });
   
@@ -90,7 +90,10 @@ let con = [];
           processedUrls.push(uploadedBlob.url);
         })
       );
-  
+      
+      if (processedUrls.length === 0) {
+        throw new Error("image upload failed");
+      }
       return processedUrls;
     } catch (error) {
       console.error(error); // Log the actual error for debugging

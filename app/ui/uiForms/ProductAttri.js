@@ -90,8 +90,8 @@ const ProductAttri = ({data}) => {
         </span>
         </section>
         <section className='flex flex-col space-y-1 no_border'>
-            <label htmlFor='waranty' className='font-semibold'>Waranty{<p className='text-red-700 inline'>{show}</p>}</label>
-            <input maxLength={100} onChange={handleFocus} type='text' name='waranty' onBlur={handleBlur} className='py-1.5 placeholder:text-gray-500 ' placeholder={name}/>
+            <label htmlFor='warranty' className='font-semibold'>Warranty{<p className='text-red-700 inline'>{show}</p>}</label>
+            <input maxLength={100} onChange={handleFocus} type='text' name='warranty' onBlur={handleBlur} className='py-1.5 placeholder:text-gray-500 ' placeholder={name}/>
         <pre className='text-slate-400  text-sm text-right'></pre>
             <span id="customer-error"  aria-live="polite" className=" text-left" aria-atomic="true" >
         {(state?.errors.name === 'waranty' || states?.errors?.name === 'waranty') &&

@@ -32,6 +32,26 @@ name: joi
   availability: joi.string().required(),
 })
 
+const FormSchema3 = joi.object({
+  name: joi
+      .string()
+      .pattern(new RegExp("[a-zA-Z0-9s]+$"))
+      .min(4)
+      .max(20)
+      .allow(''),
+    description: joi
+      .string()
+      .pattern(new RegExp("[a-zA-Z0-9s\u00A0.,:?]+$"))
+      .min(6)
+      .max(100)
+      .allow(''),
+    category: joi.string().allow(null),
+    link: joi.string().allow(null),
+    price: joi.number().allow(''),
+    negotiable: joi.string().allow(null),
+    availability: joi.string().allow(null),
+  })
+  
 export const validateProduct = async (formData) => {
 
   let validatedFields = {};
@@ -49,7 +69,29 @@ export const validateProduct = async (formData) => {
     
     return  validatedFields;
   } catch (error) {
-    console.log(error)
+  
+    throw error;
+  }
+};
+
+export const validateProdEdit = async (formData) => {
+
+  let validatedFields = {};
+  try {
+    validatedFields = await FormSchema3.validateAsync({
+      name: formData.get("name"),
+      description: formData.get("description"),
+      negotiable: formData.get("negotiable"),
+      category: formData.get("category"),
+      availability: formData.get("availability"),
+      link: formData.get("link"),
+      price: formData.get("price"),
+    });
+
+    
+    return  validatedFields;
+  } catch (error) {
+  console.log(error)
     throw error;
   }
 };

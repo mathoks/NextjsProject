@@ -192,13 +192,13 @@ model ProductAttribute {
   id        String   @id @default(cuid()) @unique
   color     String?
   size      String?
-  width     Int?
-  height    Int?
+  warranty   Int?
+  material    String?
   weight    Int?
   brand     String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  status    Status
+  status    Status?  @default(NEW)
   product   Product  @relation(fields: [id], references: [id], onDelete: Cascade)
 
   @@map("product_attribute")
