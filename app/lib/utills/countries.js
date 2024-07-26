@@ -59,7 +59,7 @@ const data = new FormData()
             if(document.getElementById('loc').childElementCount <= 2) 
               setmessage('');
             else {
-               console.log(message)
+              
               // setmessage(message.replace(/, \S*$/, ''))
               
             }

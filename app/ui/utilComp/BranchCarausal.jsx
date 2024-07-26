@@ -24,7 +24,7 @@ const BranchCarousel = ({ slides = [], autoSlide = true, autoInterval = 3000, id
   return (
 
 
-    <div className='mybranch text-gray-800 p-4 space-y-2 shadow_cus'>
+    <div className='mybranch text-gray-800  space-y-2 '>
     <div className='flex justify-between items-center'>
     <h2 className='font-semibold'>Branches</h2>
     { slides.length <  3 && session?.data?.user?.id === id ? (
@@ -51,26 +51,26 @@ const BranchCarousel = ({ slides = [], autoSlide = true, autoInterval = 3000, id
               
             >
             <div className='flex flex-col space-y-2  p-4'>
-<div className='flex justify-start items-center space-x-3 '>
+<div className='flex justify-start items-center space-x-2 '>
  <span><Shop2Outlined fontSize='inherit' sx={{color:'gray'}}/></span>
  <span>{branchName}</span>
  </div>
- <div className='flex justify-start items-center space-x-3'>
+ <div className='flex justify-start items-center space-x-2'>
  <span><LocationOnOutlined fontSize='inherit' sx={{color:'gray'}}/></span>
  <span className='line-clamp-3 overflow-ellipsis  break-words'>{market + " " + state + " " + country }</span>
  </div>
- <div className='flex justify-start items-center space-x-3'>
+ <div className='flex justify-start items-center space-x-2'>
  <span><StreetviewOutlined fontSize='inherit' sx={{color:'gray'}}/></span>
  <span>{branchAddress}</span>
  </div>
- <div className='flex justify-start items-center space-x-3'>
+ <div className='flex justify-start items-center space-x-2'>
  <span><PhoneAndroid fontSize='inherit' sx={{color:'gray'}}/></span>
  <span>{phone}</span>
  </div>
  <div className='flex justify-end mt-2 '>
- <button className="ring-1 ring-inset rounded-md ring-gray-600 px-2.5 py-1.5 text-blue-500">
+ <button className="ring-1 ring-inset rounded-md ring-blue-500 px-2.5 py-1.5 text-blue-500">
    {" "}
-   <Link href={`${id}/branch/${encodeURIComponent(id)}`}>view products</Link>
+   <Link href={`${id}/branch/${encodeURIComponent(id)}`}>View products</Link>
  </button>
  </div>
  </div>

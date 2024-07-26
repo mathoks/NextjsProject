@@ -13,7 +13,7 @@ const Header =async ({params, message, storeInfo, ...rest}) => {
   return (
     <nav
                 aria-label="main"
-                className={` fixed flex text-sm top-0 left-0  flex-col space-y-3  z-50 w-screen px-4 bg-[#6A0DAD]  pt-2  text-slate-100  pb-0  even:pb-0 ${
+                className={` fixed flex text-sm top-0 left-0  flex-col space-y-2  z-50 w-screen px-4 bg-[#6A0DAD]  pt-2  text-slate-100  pb-0  even:pb-0 ${
                   visi ? "shadow" : ""
                 }`}
               >

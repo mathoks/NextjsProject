@@ -17,24 +17,24 @@ const page = async({params:{id , storeOwner}}) => {
   
   return (
     
-    <div className='flex flex-col space-y-4 shadow_cus p-4' >
-    <div className='flex space-x-4'>
+    <div className='flex flex-col space-y-2' >
+    <div className='flex space-x-2 items-center'>
     <StoreOutlined fontSize='inherit' sx={{color: 'gray'}}/>
     <span className='font-semibold'>{businessName}</span>
     </div>
-    <div className='flex space-x-4'>
+    <div className='flex space-x-2 items-center'>
     <LocationOnOutlined fontSize='inherit' sx={{color: 'gray'}}/>
     <span>{market + " " + state + " " + country || 'Idumota lagos Nigeria' }</span>
     </div>
-    <div className='flex space-x-4'>
+    <div className='flex space-x-2 items-center'>
     <StreetviewOutlined fontSize='inherit' sx={{color: 'gray'}}/>
     <span>{shopAddress || 'Line 245/A Electronics Line'}</span>
     </div>
-    <div className='flex space-x-4 w-[95%] text-wrap'>
+    <div className='flex space-x-2 items-center w-[95%] text-wrap'>
     <DescriptionOutlined fontSize='inherit' sx={{color: 'gray'}}/>
     <span className='text-wrap md:text-wrap'> { about || 'we deal in all kinds of Tv sets Electronics and other assecories please let us know if you are interested'}</span>
     </div>
-    <div className='flex space-x-4'>
+    <div className='flex space-x-2 items-center'>
     <PhoneAndroid fontSize='inherit' sx={{color: 'gray'}}/>
     <span>
     
