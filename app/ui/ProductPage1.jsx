@@ -46,7 +46,7 @@ const ProductPage1 = async(props) => {
                  </div>
                  <div className=' space-y-3 mx-auto'>
                  <div className='flex '>
-                 <button className=' w-[19rem] ring-1 ring-slate-300 py-1.5 text-white  bg-[#FF4500] rounded-full shadow-md font-semibold'>Add to wishlist</button>
+                 <button className=' w-[19rem]  py-1.5 text-white  bg-[#FF4500] rounded-full shadow-md font-semibold'>Add to wishlist</button>
                  </div>
                  <span className='flex items-center space-x-4 justify-end'>
                      <a href={`tel:${props.data.store.phone}`}><CallOutlined fontSize='meduim' className='text-slate-500'/></a>
@@ -72,9 +72,9 @@ const ProductPage1 = async(props) => {
                     <span className=' text-blue-400'><Link href={`/store/${props.data.store.businessName}/${props.data.storeId}`}><p>Visit the Store</p></Link></span>
                     
                     <div>
-                    <div className='flex space-x-1 items-center text-base font-semibold'>
+                    <div className='flex space-x-1 items-center  font-semibold'>
                     <StorefrontOutlined fontSize='meduim' className='text-slate-800 '/>
-                    <span className='text-semibold'>Store Branches</span>
+                    <span className='text-semibold text-base'>Store Branches</span>
                     </div>
                      
                       <div className='flex flex-col text-gray-700'>

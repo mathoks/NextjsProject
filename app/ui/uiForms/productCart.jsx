@@ -62,10 +62,7 @@ export const PricePolicy = () => {
   const options = price.map((choice, id)=>{
    return  <option key={id} value={choice} >{choice}</option>
   })
-  useEffect(()=>{
-    const El = document.getElementById('flexi')
-    if(El) El.selectedIndex = 0;
-   },[price])
+ 
 
 return (
   <div className='no_border_select'>
@@ -74,7 +71,7 @@ return (
       id='flexi'
       enterKeyHint="done"
       className=" p-4 px-0 flex  text-gray-900  w-full bg-white">
-      <option  disabled className='text-slate-400' >Price flexibility</option>
+      <option  defaultValue={''} className='text-slate-400' >Price flexibility</option>
       {options}</select>
       
   </div>
