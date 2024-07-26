@@ -29,7 +29,7 @@ export default async function Layout({ children, ...rest }) {
         <div className="h-16 flex justify-between items-center bg-white  text-gray-950 p-4">
           <ProductBack/>
           <div>
-            <p className="font-semibold">Product Information</p>
+            <p className="font-semibold text-xl">Product Information</p>
           </div>
           <div>
             <MoreVertOutlined color="primary" />

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const productCategories = [
     // General Categories
@@ -25,6 +25,16 @@ const productCategories = [
     "Luxury Goods",
   ];
   
+ const handleCount = ()=>{
+const selectElement = document.getElementById('link_branch');
+const countElement = document.getElementById('selectedCount');
+
+selectElement.addEventListener('change', () => {
+  const selectedOptions = selectElement.selectedOptions;
+  countElement.textContent = selectedOptions.length;
+});
+ }
+
 export const ProductCart = () => {
     const options = productCategories.map((choice, id)=>{
      return  <option value= {choice} key={id} >{choice}</option>
@@ -35,7 +45,8 @@ export const ProductCart = () => {
         name="category"
         enterKeyHint="done"
         required
-        className=" p-4 px-0 flex  text-gray-900 w-full bg-slate-50">
+        id='cat'
+        className=" p-4 px-0 flex  text-gray-900 w-full bg-white">
         <option defaultValue={null} className='text-slate-400' >Choose a category</option>
         {options}</select>
     </div>
@@ -44,26 +55,51 @@ export const ProductCart = () => {
 
 
 export const PricePolicy = () => {
+
+
   const price =  ['NEGOTIABLE', 'BESTPRICE']
 
   const options = price.map((choice, id)=>{
    return  <option key={id} value={choice} >{choice}</option>
   })
+  useEffect(()=>{
+    const El = document.getElementById('flexi')
+    if(El) El.selectedIndex = 0;
+   },[price])
+
 return (
-  <div className='flex no_border_select'>
+  <div className='no_border_select'>
       <select 
       name="negotiable"
+      id='flexi'
       enterKeyHint="done"
-      className=" p-4 px-0 flex  text-gray-900  w-full bg-slate-50">
-      <option  defaultValue={null} className='text-slate-400' >Price flexibility</option>
+      className=" p-4 px-0 flex  text-gray-900  w-full bg-white">
+      <option  disabled className='text-slate-400' >Price flexibility</option>
       {options}</select>
       
   </div>
 )
 }
 
-export const LinkToBranch = ({option = []}) => {
-  
+export const LinkToBranch = ({option = [], branches = []}) => {
+
+  useEffect(()=>{
+   const El = document.getElementById('link_branch')
+   if(El) El.selectedIndex = 0;
+  },[option])
+
+  for (let i = 0; i < option.length; i++) {
+    for (let j = 0; j < branches.length; j++) {
+      if (option[i].branchName === branches[j].branch.branchName) {
+        option.splice(i, 1);
+      }
+    }
+    // if (branches[i].branchName === 'All Branches') {
+    //   branches.splice(i, 1);
+    // }
+    
+  }
+
   
   if(option.length > 0){
   const options = (option.map(({branchName, id}, ids)=>{
@@ -71,16 +107,15 @@ export const LinkToBranch = ({option = []}) => {
    return  <option key={ids} value={id} >{branchName}</option>
   })) 
 return (
-  <div className='flex no_border_select'>
+  <div className='no_border_select'>
       <select 
       name="link"
       enterKeyHint="done"
-      required
       multiple
-      className="px-0 flex  text-gray-900  w-full bg-slate-50 rounded-t-md">
-      <option defaultValue={null} className='text-slate-400' disabled>Link Product to Branches</option>
+      id='link_branch'
+      className="px-0 flex  text-gray-900  w-full bg-white rounded-t-md h-10 overflow-y-scroll">
+      <option  disabled className='text-slate-400' >Link Product to Branches</option>
       { options }</select>
-      
   </div>
 )
 }
@@ -105,7 +140,8 @@ export const Availability = () => {
        name="availability"
        enterKeyHint="done"
        required
-       className=" p-4 px-0 flex  text-gray-900 w-full bg-slate-50">
+       id='avail'
+       className=" p-4 px-0 flex  text-gray-900 w-full bg-white">
        <option defaultValue={null} className='text-slate-400'> Availability</option>
        {options}</select>
        
@@ -127,6 +163,7 @@ return (
      name="status"
      enterKeyHint="done"
      required
+     id='status'
      className=" p-4 px-0 flex  text-gray-900  w-full bg-slate-50">
      <option defaultValue={null} className='text-slate-400'>Product status</option>
      {options}</select>

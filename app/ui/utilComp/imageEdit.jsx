@@ -87,8 +87,8 @@ const ImageEdit = ({ data, trigger , hide}) => {
   const Pictures = useMemo(() => {
     const Image = data.map(({ id, image }, index) => {
       return (
-        <div key={index} className="relative w-[16rem]">
-          <div className="relative max-w-[16rem]">
+        <div key={index} className="relative w-[15rem]">
+          <div className="relative max-w-[15rem]">
             <img
               src={src[index] || image}
               alt={"product image"}

@@ -25,8 +25,16 @@ export const updateProduct = async function ({}, formData) {
   const id = formData.get("id");
   const prodid1 = formData.get("prodId-0");
   const prodid2 = formData.get("prodId-1");
-   
-
+  const link = () => {
+    let links = [];
+    formData.forEach((value, key) => {
+      if (key === "link") {
+        links.push(value);
+      }
+    });
+    return links;
+  };
+  
   try {
     if (!session.user.id) {
       throw new Error("you are unauthorized please sign in");
@@ -37,7 +45,6 @@ export const updateProduct = async function ({}, formData) {
       negotiable,
       category,
       availability,
-      link,
       price,
     } = await validateProdEdit(formData);
     
@@ -71,19 +78,18 @@ export const updateProduct = async function ({}, formData) {
           { description },
           { negotiable },
           { category },
-          { link },
           { price },
           { availability },
           {url: url.length === 0 ? null : url},
           {prodid1: prodid1},
           {prodid2: prodid2},
-          {id: id}
-
+          {id: id},
+          {link: link()}
         ];
       
         fields.forEach((field, index) => {
           const key = Object.keys(field)[0];  
-          if(field[key] !== '' && field[key] !== null && field[key] !== 'Price flexibility' && field[key] !== 'Product status' && field[key] !== 'Availability' && field[key] !== 'Choose a category'){
+          if(field[key] !== '' && field[key] !== null && field[key] !== 'Price flexibility' && field[key] !== 'Product status' && field[key] !== 'Availability' && field[key] !== 'Choose a category' && field[key] !== 'Link Product to Branches'){
             return formBody[key] = field[key];
           }
          else return;
