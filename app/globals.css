@@ -364,3 +364,7 @@ input:checked + .slider:before {
   outline: none;
   box-shadow: 0 2px 0 0 #630ba2;
 }
+
+.hide_header {
+  display: none;
+}

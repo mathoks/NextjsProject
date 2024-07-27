@@ -2,27 +2,26 @@
 import Link from 'next/link'
 import Divider from '@mui/material/Divider'
 import { useScrollTrigger } from "@mui/material";
-export const ProTab = ({visi, index}) => {
+export const ProTab = () => {
 
-    const trigger = useScrollTrigger({
-        disableHysteresis: true,
-        threshold: 1,
-      });
-
+    // const trigger = useScrollTrigger({
+    //     disableHysteresis: true,
+    //     threshold: 1,
+    //   });
+    const index = "#Overview"
+    const trigger = false
   return (
         <nav
                 aria-label="main"
-                className={`fixed z-50 flex top-14 left-0 flex-col space-y-0 bg-white text-sm pt-2 w-full text-gray-600 pl-4 pr-4 pb-0  even:pb-0 ${
-                  trigger ? "shadow" : ""
-                }`}
+                id='prod_tab'
+                className={`fixed shadow z-50 flex invisible left-0 flex-col space-y-0 bg-white text-sm pt-2 w-full text-gray-600 pl-4 pr-4 pb-10 `}
               >
-            <Divider className={`right-0 left-0 fixed top-16${!visi ? "visible"  : "invisible opacity-0"}`}/>
+            <Divider className={`right-0 left-0 fixed top-16`}/>
                 <div
-                  className={`opacity-0  ${
-                    !trigger
-                      ? "invisible  h-0 "
-                      : "visible transition-opacity opacity-100 "
-                  }`}
+                  className={`
+                    
+                       "visible transition-opacity opacity-100 "
+                  `}
                 >
                   <ul
                     role="subTab"
@@ -30,7 +29,7 @@ export const ProTab = ({visi, index}) => {
                   >
                     <li
                       value={0}
-                      className={` pb-3 ${
+                      className={` pb-4 ${
                         index === "#Overview"
                           ? "text-indigo-600 border-b-2 transition duration-500 border-violet-600"
                           : "border-none transition duration-500 text-gray-500 "
@@ -40,7 +39,7 @@ export const ProTab = ({visi, index}) => {
                     </li>
                     <li
                       value={1}
-                      className={` pb-3 ${
+                      className={` ${
                         index === "#ProductDetails"
                           ? "text-indigo-600 border-b-2 transition duration-500  border-violet-600"
                           : "border-none transition duration-500 text-gray-500"
@@ -50,7 +49,7 @@ export const ProTab = ({visi, index}) => {
                     </li>
                     <li
                       value={2}
-                      className={`pb-3 ${
+                      className={` ${
                         index === "#Recommended"
                           ? "text-indigo-600 border-b-2  border-violet-600"
                           : "border-none text-gray-500"

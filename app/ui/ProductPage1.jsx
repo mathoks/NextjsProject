@@ -5,13 +5,16 @@ import React from 'react'
 import Carousel from './Carousal'
 import { auth } from '@/auth'
 import { BusinessCenterOutlined, Call, CallOutlined, LocationOnOutlined, MessageOutlined, StorefrontOutlined, StreetviewOutlined } from '@mui/icons-material'
+import Scroll from './scroll'
+import BranchAccor from './branchAccor'
 
 
 const ProductPage1 = async(props) => {
   const session = await auth()
  return (
- <div>
-    <section className="text-gray-900  flex flex-col w-full space-y-4 text-[15px] md:flex lg:flex">
+ <div >
+ <Scroll/>
+    <section id='prod_about' className="text-gray-900  flex flex-col w-full space-y-4 text-[15px] md:flex lg:flex">
               <div className='mx-auto space-y-1 rounded-md shadow-md pb-2 ring-1 ring-slate-300'>
               <span className='flex justify-between items-center pr-1'>
               <h1 className='text-lg font-semibold p-2'>{props?.data?.name}</h1>
@@ -71,18 +74,13 @@ const ProductPage1 = async(props) => {
                       
                     <span className=' text-blue-400'><Link href={`/store/${props.data.store.businessName}/${props.data.storeId}`}><p>Visit the Store</p></Link></span>
                     
-                    <div>
+                  <div>
                     <div className='flex space-x-1 items-center  font-semibold'>
                     <StorefrontOutlined fontSize='meduim' className='text-slate-800 '/>
                     <span className='text-semibold text-base'>Store Branches</span>
                     </div>
-                     
-                      <div className='flex flex-col text-gray-700'>
-                      {props?.data.branch?.map(({branch}, i)=><div key={i} className='flex flex-col '> 
-                      <span className='flex space-x-2 items-center' ><span><BusinessCenterOutlined fontSize='meduim'/></span><span className='font-semibold first-letter:uppercase'>{branch.branchName}</span></span>
-                      <span className='flex space-x-2 items-center' ><span><StreetviewOutlined fontSize='meduim'/></span><span>{branch.branchAddress}</span></span>
-                      <span className='flex space-x-2 items-center' ><span><LocationOnOutlined fontSize='meduim'/></span><span>{branch.market + " " + branch.state + " " +  branch.country}</span></span></div>)}
-
+                    <div>
+                      <BranchAccor branches={props?.data?.branch}/>
                       </div>
                   </div>
                     </div>

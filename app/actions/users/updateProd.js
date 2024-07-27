@@ -2,10 +2,12 @@
 import { auth } from "@/auth";
 import { headers } from "next/headers";
 import { revalidatePath, revalidateTag } from "next/cache";
-import { ImageResize2 } from "@/app/lib/utills/ImageResize";
-import { validateProdEdit, validateProduct } from "@/app/lib/utills/actionValidator";
-
-
+import { createObjectURL, } from "@/app/lib/utills/ImageResize";
+import {
+  validateProdEdit,
+} from "@/app/lib/utills/actionValidator";
+import { createFormbody } from "@/app/lib/utills/createFormBody";
+import { createLink } from "@/app/lib/utills/generateLink";
 
 /**
  * @typedef {Object} Invoice
@@ -25,107 +27,80 @@ export const updateProduct = async function ({}, formData) {
   const id = formData.get("id");
   const prodid1 = formData.get("prodId-0");
   const prodid2 = formData.get("prodId-1");
-  const link = () => {
-    let links = [];
-    formData.forEach((value, key) => {
-      if (key === "link") {
-        links.push(value);
-      }
-    });
-    return links;
-  };
-  
+  const url1 = formData.get("imgUrl-0");
+  const url22 = formData.get("imgUrl-1");
+
   try {
     if (!session.user.id) {
       throw new Error("you are unauthorized please sign in");
     }
-    const {
-      name,
-      description,
-      negotiable,
-      category,
-      availability,
-      price,
-    } = await validateProdEdit(formData);
+    const { name, description, negotiable, category, availability, price } =
+      await validateProdEdit(formData);
+
+    const files = [
+        { img: file, ids: prodid1, url: url1 },
+        { img: file2, ids: prodid2, url: url22 },
+      ];
+    const processedUrls = await createObjectURL(files);
     
-     const url = []
+    const fields = [
+      { name },
+      { description },
+      { negotiable },
+      { category },
+      { price },
+      { availability },
+      { url: processedUrls.length === 0 ? null : processedUrls },
+      { id: id },
+      { link: createLink(formData) },
+    ];
 
-     const createObjectURL = async()=>{
-        const processed = []
-       const files = [file, file2];
-       files.forEach((fil)=>{
-        if(fil.size !== 0){
-          return processed.push(fil)
-        }
-        else return
-       })
-       if(processed.length > 0)
-      return  await ImageResize2(processed);
-       else return []
-     }
+    const formBody = await createFormbody(fields);
+    
 
-    //  const processedUrls = await createObjectURL()
-    //  console.log(processedUrls)
+    //  const createObjectURL = async()=>{
+    //     const processed = []
+    //    const files = [{img: file, ids:prodid1}, {img:file2, ids:prodid2}];
+    //    files.forEach((image)=>{
+    //     if(image.img.size !== 0){
+    //       return processed.push(image)
+    //     }
+    //     else return
+    //    })
+    //    if(processed.length > 0)
+    //   return  await ImageResize2(processed);
+    //    else return []
+    //  }
+   
+    
     //;
 
-     const createFormbody = () => {
-        // Create an empty object to store form data
-        const formBody = {};
-      
-        // Define the fields you want to include in the form
-        const fields = [
-          { name },
-          { description },
-          { negotiable },
-          { category },
-          { price },
-          { availability },
-          {url: url.length === 0 ? null : url},
-          {prodid1: prodid1},
-          {prodid2: prodid2},
-          {id: id},
-          {link: link()}
-        ];
-      
-        fields.forEach((field, index) => {
-          const key = Object.keys(field)[0];  
-          if(field[key] !== '' && field[key] !== null && field[key] !== 'Price flexibility' && field[key] !== 'Product status' && field[key] !== 'Availability' && field[key] !== 'Choose a category' && field[key] !== 'Link Product to Branches'){
-            return formBody[key] = field[key];
-          }
-         else return;
-        });
-      
-        return formBody;
-      };
-
-      const formBody = createFormbody();
-      console.log(formBody);
     
-    // const response = await fetch(
-    //   `http://${domain}/api/store/${session?.user.id}/product/${id}/update`,
-    //   {
-    //     method: "PATCH",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       storeId: session?.user.id,
-    //         ...formBody,
-    //     }),
-    //   }
-    // );
 
-    // if (!response.ok) {
-    //   throw new Error("Network failed");
-    // }
+    const response = await fetch(
+      `http://${domain}/api/store/${session?.user.id}/product/${id}/update`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          storeId: session?.user.id,
+            ...formBody,
+        }),
+      }
+    );
 
-    // const store = await response.json();
-  
+    if (!response.ok) {
+      throw new Error("Network failed");
+    }
 
-    // if (!store) {
-    //   throw new Error("could not update product");
-    // }
-   // revalidateTag('store')
+    const store = await response.json();
+
+    if (!store) {
+      throw new Error("could not update product");
+    }
+    // revalidateTag('store')
     // revalidatePath('/api/home')
     // redirect(`http://${domain}/store/${encodeURIComponent(businessName)}/${encodeURIComponent(id)}`);
 
@@ -139,7 +114,6 @@ export const updateProduct = async function ({}, formData) {
       throw error;
     }
     if (error?.details) {
-    
       return {
         errors: {
           error: error.details[0].message,
@@ -149,7 +123,6 @@ export const updateProduct = async function ({}, formData) {
         success: false,
       };
     } else {
-      
       return {
         errors: {
           error: error.message,

@@ -52,7 +52,8 @@ export async function GET(req) {
           }
         },
         branch: {
-        include:  {
+          select:{
+            id: true,
             branch: {
                 select:{
                 branchName: true,
@@ -61,8 +62,7 @@ export async function GET(req) {
                 country: true,
                 market: true
           }}
-        }
-      },
+      }},
         comment: {
           select: {
             id: true,
@@ -84,7 +84,7 @@ export async function GET(req) {
     
     return NextResponse.json({ data: product });
   } catch (error) {
-    
+    console.log(error)
    return Response.json({ message: "Internal server error"});
   }
 }

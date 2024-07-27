@@ -24,7 +24,7 @@ const BranchCarousel = ({ slides = [], autoSlide = true, autoInterval = 3000, id
   return (
 
 
-    <div className='mybranch text-gray-800  space-y-2 '>
+    <div className='mybranch text-gray-800  space-y-2'>
     <div className='flex justify-between items-center'>
     <h2 className='font-semibold'>Branches</h2>
     { slides.length <  3 && session?.data?.user?.id === id ? (

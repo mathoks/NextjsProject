@@ -7,7 +7,7 @@ import ImageEdit from '../utilComp/imageEdit'
 import { Availability, LinkToBranch, PricePolicy, ProductCart } from './productCart'
 import { getBranch } from '@/app/lib/actions/getbranch'
 import { useSession } from 'next-auth/react'
-import { set } from 'zod'
+
 
 
 const ProdEditForm = ({data}) => {
@@ -25,12 +25,15 @@ const ProdEditForm = ({data}) => {
         }
 
        useEffect(()=>{
+    
         const branch = async ()=>{
-            const res = await getBranch(session.data.user.id)
+            const res = await getBranch(session?.data?.user?.id)
             setDatas(res)
         }
-        branch()
-       },[])
+        if(datas.length === 0)
+        branch();
+        else return;
+       },[datas])
 
       const handleFocus = (e) => {
         e.target.nextElementSibling.style.visibility = 'visible'

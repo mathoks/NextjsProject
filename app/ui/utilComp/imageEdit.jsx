@@ -106,7 +106,8 @@ const ImageEdit = ({ data, trigger , hide}) => {
                 id={index}
               />
             </div>
-            <input type="text" defaultValue={prodId[index]} name={`prodId-${index}`} className="sr-only"/>
+            <input type="text" defaultValue={id} name={`prodId-${index}`} className="sr-only"/>
+            <input type="text" defaultValue={image} name={`imgUrl-${index}`} className="sr-only"/>
           </div>
           <div id="parent">
             <label
@@ -133,7 +134,7 @@ const ImageEdit = ({ data, trigger , hide}) => {
       );
     });
     return (
-      <div className="flex w-[30rem] overflow-x-scroll space-x-10 px-8">
+      <div className="flex  overflow-x-scroll space-x-10 px-8">
         {Image}
       </div>
     );

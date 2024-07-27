@@ -1,171 +1,266 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from "react";
 
 const productCategories = [
-    // General Categories
-    "Apparel & Accessories",
-    "Electronics & Appliances",
-    "Home & Garden",
-    "Beauty & Personal Care",
-    "Health & Wellness",
-    "Food & Beverages",
-    "Toys & Games",
-    "Sports & Outdoors",
-    "Books & Stationery",
-    "Office Supplies & Electronics",
-    "Arts & Crafts",
-    "Pets & Pet Supplies",
-    "Travel & Luggage",
-  
-    // Industry-Specific Categories
-    "Baby & Kids",
-    "Automotive",
-    "Instruments & Music",
-    "DIY & Hardware",
-    "Jewelry & Watches",
-    "Luxury Goods",
-  ];
-  
- const handleCount = ()=>{
-const selectElement = document.getElementById('link_branch');
-const countElement = document.getElementById('selectedCount');
+  // General Categories
+  "Apparel & Accessories",
+  "Electronics & Appliances",
+  "Home & Garden",
+  "Beauty & Personal Care",
+  "Health & Wellness",
+  "Food & Beverages",
+  "Toys & Games",
+  "Sports & Outdoors",
+  "Books & Stationery",
+  "Office Supplies & Electronics",
+  "Arts & Crafts",
+  "Pets & Pet Supplies",
+  "Travel & Luggage",
 
-selectElement.addEventListener('change', () => {
-  const selectedOptions = selectElement.selectedOptions;
-  countElement.textContent = selectedOptions.length;
-});
- }
+  // Industry-Specific Categories
+  "Baby & Kids",
+  "Automotive",
+  "Instruments & Music",
+  "DIY & Hardware",
+  "Jewelry & Watches",
+  "Luxury Goods",
+];
+
+const handleCount = () => {
+  const selectElement = document.getElementById("link_branch");
+  const countElement = document.getElementById("selectedCount");
+
+  selectElement.addEventListener("change", () => {
+    const selectedOptions = selectElement.selectedOptions;
+    countElement.textContent = selectedOptions.length;
+  });
+};
 
 export const ProductCart = () => {
-    const options = productCategories.map((choice, id)=>{
-     return  <option value= {choice} key={id} >{choice}</option>
-    })
+  const options = productCategories.map((choice, id) => {
+    return (
+      <option value={choice} key={id}>
+        {choice}
+      </option>
+    );
+  });
   return (
-    <div className=' no_border_select w-full'>
-        <select 
+    <div className=" no_border_select w-full">
+      <select
         name="category"
         enterKeyHint="done"
         required
-        id='cat'
-        className=" p-4 px-0 flex  text-gray-900 w-full bg-white">
-        <option defaultValue={null} className='text-slate-400' >Choose a category</option>
-        {options}</select>
+        id="cat"
+        className=" p-4 px-0 flex  text-gray-900 w-full bg-white"
+      >
+        <option defaultValue={null} className="text-slate-400">
+          Choose a category
+        </option>
+        {options}
+      </select>
     </div>
-  )
-}
-
+  );
+};
 
 export const PricePolicy = () => {
+  const price = ["NEGOTIABLE", "BESTPRICE"];
 
+  const options = price.map((choice, id) => {
+    return (
+      <option key={id} value={choice}>
+        {choice}
+      </option>
+    );
+  });
 
-  const price =  ['NEGOTIABLE', 'BESTPRICE']
+  return (
+    <div className="no_border_select">
+      <select
+        name="negotiable"
+        id="flexi"
+        enterKeyHint="done"
+        className=" p-4 px-0 flex  text-gray-900  w-full bg-white"
+      >
+        <option defaultValue={""} className="text-slate-400">
+          Price flexibility
+        </option>
+        {options}
+      </select>
+    </div>
+  );
+};
 
-  const options = price.map((choice, id)=>{
-   return  <option key={id} value={choice} >{choice}</option>
-  })
- 
+export const LinkToBranch = ({ option = [], branches = [] }) => {
+  useEffect(() => {
+    const El = document.getElementById("link_branch");
+    if (El) El.selectedIndex = 0;
+  }, [option]);
 
-return (
-  <div className='no_border_select'>
-      <select 
-      name="negotiable"
-      id='flexi'
-      enterKeyHint="done"
-      className=" p-4 px-0 flex  text-gray-900  w-full bg-white">
-      <option  defaultValue={''} className='text-slate-400' >Price flexibility</option>
-      {options}</select>
-      
-  </div>
-)
-}
+  if (option.length > 0 && branches.length > 0) {
+    const Options = () => {
+      return option.map((option) => {
+        const matchingBranch = branches.find(
+          ({ branch }) => option.branchName === branch.branchName
+        );
 
-export const LinkToBranch = ({option = [], branches = []}) => {
+        return (
+          <React.Fragment key={option.id}>
+            {matchingBranch && (
+              <option
+                key={matchingBranch.id}
+                value={matchingBranch.id}
+                className="text-green-400"
+              >
+                {matchingBranch.branch.branchName}
+              </option>
+            )}
+            {!matchingBranch && (
+              <option
+                key={option.id}
+                value={option.id}
+                className="text-slate-950"
+              >
+                {option.branchName}
+              </option>
+            )}
+          </React.Fragment>
+        );
+      });
+    };
 
-  useEffect(()=>{
-   const El = document.getElementById('link_branch')
-   if(El) El.selectedIndex = 0;
-  },[option])
+    return (
+      <div className="no_border_select">
+        <select
+          name="link"
+          enterKeyHint="done"
+          multiple
+          id="link_branch"
+          className="px-0 flex  text-gray-900  w-full bg-white rounded-t-md h-10 overflow-y-scroll"
+        >
+          <option disabled className="text-slate-400">
+            Link Product to Branches
+          </option>
+          <Options />
+        </select>
+      </div>
+    );
+  } else if (option.length > 0 && branches.length === 0) {
+    const options2 = option.map(({ id, branchName }, ids) => {
+      return (
+        <option key={ids} value={id} className="text-slate-950">
+          {branchName}
+        </option>
+      );
+    });
 
-  for (let i = 0; i < option.length; i++) {
-    for (let j = 0; j < branches.length; j++) {
-      if (option[i].branchName === branches[j].branch.branchName) {
-        option.splice(i, 1);
-      }
-    }
-    // if (branches[i].branchName === 'All Branches') {
-    //   branches.splice(i, 1);
-    // }
-    
+    return (
+      <div className="no_border_select">
+        <select
+          name="link"
+          enterKeyHint="done"
+          multiple
+          id="link_branch"
+          className="px-0 flex  text-gray-900  w-full bg-white rounded-t-md h-10 overflow-y-scroll"
+        >
+          <option disabled className="text-slate-400">
+            Link Product to Branches
+          </option>
+          {options2}
+        </select>
+      </div>
+    );
+  } else if (option.length === 0 && branches.length > 0) {
+    const options3 = branches.map(({ id, branch: { branchName } }, ids) => {
+      return (
+        <option key={ids} value={id} className=" text-green-400">
+          {branchName}
+        </option>
+      );
+    });
+    return (
+      <div className="no_border_select">
+        <select
+          name="link"
+          enterKeyHint="done"
+          multiple
+          id="link_branch"
+          className="px-0 flex  text-gray-900  w-full bg-white rounded-t-md h-10 overflow-y-scroll"
+        >
+          <option disabled className="text-slate-400">
+            unLink Product to Branches
+          </option>
+          {options3}
+        </select>
+      </div>
+    );
+  } else if (option.length === 0 && branches.length === 0) {
+    return <p className="text-red-400">You have not created any branch</p>;
+  } else {
+    return <p className="text-red-400">cant fetch branch</p>;
   }
-
-  
-  if(option.length > 0){
-  const options = (option.map(({branchName, id}, ids)=>{
-    
-   return  <option key={ids} value={id} >{branchName}</option>
-  })) 
-return (
-  <div className='no_border_select'>
-      <select 
-      name="link"
-      enterKeyHint="done"
-      multiple
-      id='link_branch'
-      className="px-0 flex  text-gray-900  w-full bg-white rounded-t-md h-10 overflow-y-scroll">
-      <option  disabled className='text-slate-400' >Link Product to Branches</option>
-      { options }</select>
-  </div>
-)
-}
-else if(option.length === 0) {
-  return <p className='text-green-400'>You have no branch</p>
-}
-else {
-  return <p className='text-red-400'>cant fetch branch</p>
-}
-}
-
+};
 
 export const Availability = () => {
-  const Avail = [{name:"IN_STOCK", vis: "IN STOCK" }, {name: "OUT_OF_STOCK", vis: "OUT OF STOCK" }, {name:"COMING_SOON", vis: 'COMING SOON'}, {name:"LIMITED_STOCK", vis:"LIMITED STOCK"}];
+  const Avail = [
+    { name: "IN_STOCK", vis: "IN STOCK" },
+    { name: "OUT_OF_STOCK", vis: "OUT OF STOCK" },
+    { name: "COMING_SOON", vis: "COMING SOON" },
+    { name: "LIMITED_STOCK", vis: "LIMITED STOCK" },
+  ];
 
-  const options = Avail.map(({name , vis}, id)=>{
-    return  <option value={name} key={id} >{vis}</option>
-   })
- return (
-   <div className='flex no_border_select '>
-       <select 
-       name="availability"
-       enterKeyHint="done"
-       required
-       id='avail'
-       className=" p-4 px-0 flex  text-gray-900 w-full bg-white">
-       <option defaultValue={null} className='text-slate-400'> Availability</option>
-       {options}</select>
-       
-   </div>
- )
-}
-
-
+  const options = Avail.map(({ name, vis }, id) => {
+    return (
+      <option value={name} key={id}>
+        {vis}
+      </option>
+    );
+  });
+  return (
+    <div className="flex no_border_select ">
+      <select
+        name="availability"
+        enterKeyHint="done"
+        required
+        id="avail"
+        className=" p-4 px-0 flex  text-gray-900 w-full bg-white"
+      >
+        <option defaultValue={null} className="text-slate-400">
+          {" "}
+          Availability
+        </option>
+        {options}
+      </select>
+    </div>
+  );
+};
 
 export const ProductStatus = () => {
- const values = [{name: 'NEW', vis: 'NEW'}, {name: 'FAIRLY_USED', vis: 'FAIRLY USED'}, {name: 'REFURBISHED', vis: 'REFURBISHED' }]
-  
- const options = values.map(({name , vis}, id)=>{
-  return  <option value={name} key={id} >{vis}</option>
- })
-return (
- <div className='flex no_border_select'>
-     <select 
-     name="status"
-     enterKeyHint="done"
-     required
-     id='status'
-     className=" p-4 px-0 flex  text-gray-900  w-full bg-slate-50">
-     <option defaultValue={null} className='text-slate-400'>Product status</option>
-     {options}</select>
-     
- </div>)
-  
-}
+  const values = [
+    { name: "NEW", vis: "NEW" },
+    { name: "FAIRLY_USED", vis: "FAIRLY USED" },
+    { name: "REFURBISHED", vis: "REFURBISHED" },
+  ];
 
+  const options = values.map(({ name, vis }, id) => {
+    return (
+      <option value={name} key={id}>
+        {vis}
+      </option>
+    );
+  });
+  return (
+    <div className="flex no_border_select">
+      <select
+        name="status"
+        enterKeyHint="done"
+        required
+        id="status"
+        className=" p-4 px-0 flex  text-gray-900  w-full bg-slate-50"
+      >
+        <option defaultValue={null} className="text-slate-400">
+          Product status
+        </option>
+        {options}
+      </select>
+    </div>
+  );
+};
