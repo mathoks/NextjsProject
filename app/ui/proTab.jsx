@@ -1,61 +1,81 @@
-"use client"
-import Link from 'next/link'
-import Divider from '@mui/material/Divider'
-import { useScrollTrigger } from "@mui/material";
+"use client";
+
+
+import { useState } from 'react';
+import { useSubnavhook } from '../lib/hooks/useSubnavhook';
+
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+
 export const ProTab = () => {
 
-    // const trigger = useScrollTrigger({
-    //     disableHysteresis: true,
-    //     threshold: 1,
-    //   });
-    const index = "#Overview"
-    const trigger = false
+    const [index, setIndexx] = useState(0);      
+    useSubnavhook( 0.1, 0.25, setIndexx)
+      const router = useRouter()
+  
+      const handleclick = (e) => {
+        console.log(e?.target.dataset.id)
+        if(e?.target.value === 0){
+           return window.scrollTo({top:15, behavior: 'smooth'})
+        }
+        else{
+        router.replace(`#${e.target.dataset.id}`)
+        document.getElementById(e.target.dataset.id).scrollIntoView({behavior: 'smooth'})
+        } 
+       
+}
+   
+    
   return (
         <nav
                 aria-label="main"
                 id='prod_tab'
-                className={`fixed shadow z-50 flex invisible left-0 flex-col space-y-0 bg-white text-sm pt-2 w-full text-gray-600 pl-4 pr-4 pb-10 `}
+                className={`fixed shadow z-50 flex invisible left-0 flex-col space-y-0 bg-white text-sm pt-5 w-full text-gray-600 px-2 pb-10`}
+
               >
             
                 <div
-                  className={`
-                    
-                       "visible transition-opacity opacity-100 "
-                  `}
+                //   className={`
+                    //  ${!trigger ? 'invisible'  : "visible transition-opacity opacity-100 "}`}
                 >
                   <ul
                     role="subTab"
-                    className="flex justify-between items-center pl-4 pr-4 font-semibold"
+                    className="flex justify-between items-center pl-4 pr-4 font-semibold pb-5"
                   >
                     <li
+                        onClick={handleclick}
                       value={0}
-                      className={` pb-5 ${
-                        index === "#Overview"
-                          ? "text-indigo-600 border-b-2 transition duration-500 border-violet-600"
-                          : "border-none transition duration-500 text-gray-500 "
-                      }`}
+                     className={`pb-5 tab ${index === 0 ? 'border-b-2  border-indigo-600 text-indigo-600' : 'border-none text-gray-500'}`}
+                     data-id='Overview'
                     >
-                      <Link href={`#Overview`}>Overview</Link>
+                      Overview
                     </li>
                     <li
                       value={1}
-                      className={`pb-5 ${
-                        index === "#ProductDetails"
-                          ? "text-indigo-600 border-b-2 transition duration-500  border-violet-600"
-                          : "border-none transition duration-500 text-gray-500"
-                      }`}
+                       data-id='ProductDetails'
+                        onClick={handleclick}
+                        className={`tab pb-5 ${index === 1 ? 'border-b-2  border-indigo-600 text-indigo-600' : 'border-none text-gray-500'}`}
                     >
-                      <Link href={`#ProductDetails`}>Product Details</Link>
+                      Product Details
                     </li>
                     <li
                       value={2}
-                      className={`pb-5 ${
-                        index === "#Recommended"
-                          ? "text-indigo-600 border-b-2  border-violet-600"
-                          : "border-none text-gray-500"
-                      }`}
+                    data-id='ProductReviews'
+                      className={`tab pb-5 ${index === 2 ? 'border-b-2  border-indigo-600  text-indigo-600' : 'border-none text-gray-500'}`}
+            
+                      
                     >
-                      <Link href={`#Recommended`} scroll>Recommended</Link>
+                      <Link href={`#ProductReviews`}>Reviews</Link>
+                    </li>
+                    <li
+                      value={3}
+                      data-id='ProductRecommended'
+                       
+                      className={`tab pb-5 ${index === 3 ? 'border-b-2  border-indigo-600  text-indigo-600' : 'border-none text-gray-500'}`}
+            
+                      
+                    >
+                      <Link href={`#ProductRecommended`}   scroll>Recommended</Link>
                     </li>
                   </ul>
                 </div>

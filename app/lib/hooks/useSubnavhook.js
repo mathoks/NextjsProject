@@ -1,64 +1,68 @@
-import Page1 from "@/app/ui/Page1";
-import { InView } from "react-intersection-observer";
-import Page2 from "@/app/ui/Page2";
-import Page3 from "@/app/ui/Page3";
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+"use client";
+import { useCallback, useEffect } from "react";
+import { useScrollTrigger } from "@mui/material";
 
 
-export const useGethook = (func) => {
-  const [val, setval] = useState(null);
-  useEffect(() => {
-    setval(document.getElementById(func));
-  }, [func]);
 
-  return val;
-};
+export const useSubnavhook = (h , m , setIndex) => {
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 1,
+  });
 
-export const useSubnavhook = (visi) => {
-  const [index, setIndex] = useState("");
-  const route = useRouter()
-  const Tabs = [
-    { id: 0, tag: "about", child: <Page1 visi={visi} index={index} /> },
-    { id: 1, tag: "Products", child: <Page2 /> },
-    { id: 2, tag: "Recommended", child: <Page3 /> },
-  ];
+  const handlescroll = useCallback(() => {
+    window.addEventListener("scroll", (e) => {
+      const ref = window.innerHeight;
 
-  useEffect(() => {
-    window.addEventListener("beforeunload", () => {
-      localStorage.setItem("tab", window.location.hash);
-    });
+      const tabs = document.querySelectorAll(".view");
+      tabs.forEach((tab, id) => {
+
+        if(id !== 0){
+         
+        if (
+          m * ref - tab.getBoundingClientRect().top >
+            h * tab.getBoundingClientRect().height 
+        ) {
+          
+          setIndex(id);
+        } else {
+        }
+        return
+      }
+      else if(id === 0){
+        if(tab.getBoundingClientRect().top < 0 && tab.getBoundingClientRect().bottom >  m * ref){
+        setIndex(id);
+        
+      }
+      else {
+        
+      }
+      return
+    }
+  
+    else {}
+      });
     
-    setIndex(localStorage.getItem("tab"));
+    });
   }, []);
 
-  const Wrapper = () =>
-    Tabs.map((Tab, id) => (
-      <InView
-        root={null}
-        rootMargin={id === 0 ? "10px" : "100px"}
-        key={id}
-        threshold={id === 0 ? 0.01 : 0.75}
-      >
-        {({ inView, ref, entry }) => {
-          if (inView) {
-            setIndex(`#${Tab.tag}`);
-          }
-          return (
-            <div
-              ref={ref}
-              data-curr={Tab.tag}
-              id={Tab.tag}
-              className="min-h-screen p-2 pt-10 "
-            >
-              {Tab.child}
-              {id === 0 ? <p className="mt-40">{inView}</p> : ""}
-              <h2 className="text-black ">{`Header inside viewport ${inView}.`}</h2>
-            </div>
-          );
-        }}
-      </InView>
-    ));
+  useEffect(() => {
+    const header = document.getElementById("prod_header");
+      const tab = document.getElementById("prod_tab");
+    if (trigger) {
+        header.style.visibility = "hidden";
+        header.style.height = "0px";
+        tab.style.top = "0px";
+        tab.style.visibility = "visible";
+      
+      handlescroll();
+    } else {
+      header.style.visibility = "visible";
+      header.style.height = "3rem";
+      tab.style.height = "0px";
+      tab.style.visibility = "hidden";
+    }
+  }, [handlescroll, trigger]);
 
-  return <Wrapper />;
+  return;
 };

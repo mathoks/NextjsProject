@@ -3,7 +3,7 @@ import ProductBack from "@/app/ui/Buttons/ProductBack";
 import { MoreVertOutlined } from "@mui/icons-material";
 import { Divider} from "@mui/material";
 import { headers } from "next/headers";
-import { ProTab } from "@/app/ui/proTab";
+import Footer from "@/app/ui/utilComp/Footer";
 
 
 
@@ -26,9 +26,9 @@ export async function getProductByIds(context) {
 export default async function Layout({ children, ...rest }) {
   
   return (
-    <div className="flex flex-col space-y-6 text-[15px] pb-12 bg-white shadow-md">
-      <header className="z-50 fixed  space-y-1 flex flex-col  w-full bg-white" >
-        <div id='prod_header' className="h-[3rem] flex justify-between items-center bg-white  text-gray-950 p-4">
+    <div className="flex flex-col space-y-6 text-[15px]  bg-white shadow-md">
+      <header id='prod_header' className="z-50 fixed  space-y-1 flex flex-col  w-full bg-white" >
+        <div  className="h-[3rem] flex justify-between items-center bg-white  text-gray-950 p-4">
           <ProductBack/>
           <div>
             <p className="font-semibold text-lg">Product Information</p>
@@ -38,11 +38,13 @@ export default async function Layout({ children, ...rest }) {
           </div>
         </div>
         <Divider variant= "fullWidth"/>
-        <ProTab/>
+        
       </header>
       
-      <main>{children}</main>
-      
+      <main className="">{children}</main>
+      <footer className="bg-white h-16 ">
+        <Footer/>
+      </footer>
       
     </div>
   );

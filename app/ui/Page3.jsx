@@ -2,7 +2,7 @@ import React from 'react'
 
 const Page3 = () => {
   return (
-    <div className='h-20 pb-12'>
+    <div className='min-h-[18rem]'>
       Page3
     </div>
   )

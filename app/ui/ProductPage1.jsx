@@ -5,16 +5,16 @@ import React from 'react'
 import Carousel from './Carousal'
 import { auth } from '@/auth'
 import { BusinessCenterOutlined, Call, CallOutlined, LocationOnOutlined, MessageOutlined, StorefrontOutlined, StreetviewOutlined } from '@mui/icons-material'
-import Scroll from './scroll'
 import BranchAccor from './branchAccor'
+
 
 
 const ProductPage1 = async(props) => {
   const session = await auth()
  return (
  <div >
- <Scroll/>
-    <section id='prod_about' className="text-gray-900  flex flex-col w-full space-y-4 text-[15px] md:flex lg:flex">
+ {/* <Scroll/> */}
+    <section  className="text-gray-900  flex flex-col w-full space-y-4 text-[15px] md:flex lg:flex">
               <div className='mx-auto space-y-2 rounded-md md:shadow-md pb-2 md:ring-1 ring-slate-300'>
               <span className='flex justify-between items-center px-4'>
               <h1 className='text-lg font-semibold '>{props?.data?.name}</h1>
@@ -24,7 +24,7 @@ const ProductPage1 = async(props) => {
                               
                 <Carousel slides={props?.data.prodImage} autoSlide={false}/> 
                 
-                <span className='text-[12px] px-2 text-white absolute bottom-[6.2rem] left-0 bg-[#FF4500]'>{props.data.availability}</span>
+                <span className='text-[12px] px-2 text-white absolute top-0 left-0 bg-[#FF4500]'>{props.data.availability}</span>
                 <Divider variant='fullWidth' className='pt-2'/>
                  <div className=' font-semibold space-y-1 px-3'>
                  <span className='flex space-x-1 items-center text-[12px] text-slate-500 pt-2'>
@@ -90,8 +90,8 @@ const ProductPage1 = async(props) => {
                       </div>    
                   </div>
                   <Divider/>
-                  <div className='px-4  min-h-20 flex justify-left items-start'>
-                  
+                  <div className='px-4  min-h-20 flex flex-col justify-left items-start'>
+                  <h2 className='font-semibold text-[15px]'>About This Product</h2>
                   <p className=''>{props?.data.description}</p>
                   
                     
