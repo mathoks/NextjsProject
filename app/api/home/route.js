@@ -131,10 +131,11 @@ export async function GET(req) {
         }
       },
       ["store"],
-      { maxAge: 60 * 60 * 1 } // Cache for 1 hour (adjust as needed)
+      { tags:['store'], revalidate: 60 * 60 * 1} // Cache for 1 hour (adjust as needed)
     );
 
     const cachedStores = await getUsers();
+    
     return NextResponse.json(cachedStores);
   } catch (error) {
     console.error(error); // Log the error for debugging

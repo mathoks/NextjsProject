@@ -57,24 +57,6 @@ export const updateProduct = async function ({}, formData) {
 
     const formBody = await createFormbody(fields);
     
-
-    //  const createObjectURL = async()=>{
-    //     const processed = []
-    //    const files = [{img: file, ids:prodid1}, {img:file2, ids:prodid2}];
-    //    files.forEach((image)=>{
-    //     if(image.img.size !== 0){
-    //       return processed.push(image)
-    //     }
-    //     else return
-    //    })
-    //    if(processed.length > 0)
-    //   return  await ImageResize2(processed);
-    //    else return []
-    //  }
-   
-    
-    //;
-
     
 
     const response = await fetch(
@@ -100,7 +82,7 @@ export const updateProduct = async function ({}, formData) {
     if (!store) {
       throw new Error("could not update product");
     }
-    // revalidateTag('store')
+     revalidateTag('store')
     // revalidatePath('/api/home')
     // redirect(`http://${domain}/store/${encodeURIComponent(businessName)}/${encodeURIComponent(id)}`);
 

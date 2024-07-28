@@ -8,6 +8,6 @@ export const createFormbody = async(fields) => {
           }
          else return;
         });
-      
+      console.log(formBody);
         return formBody;
       };

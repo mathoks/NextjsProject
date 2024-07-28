@@ -16,7 +16,7 @@ export const ProTab = () => {
                 id='prod_tab'
                 className={`fixed shadow z-50 flex invisible left-0 flex-col space-y-0 bg-white text-sm pt-2 w-full text-gray-600 pl-4 pr-4 pb-10 `}
               >
-            <Divider className={`right-0 left-0 fixed top-16`}/>
+            
                 <div
                   className={`
                     
@@ -29,7 +29,7 @@ export const ProTab = () => {
                   >
                     <li
                       value={0}
-                      className={` pb-4 ${
+                      className={` pb-5 ${
                         index === "#Overview"
                           ? "text-indigo-600 border-b-2 transition duration-500 border-violet-600"
                           : "border-none transition duration-500 text-gray-500 "
@@ -39,7 +39,7 @@ export const ProTab = () => {
                     </li>
                     <li
                       value={1}
-                      className={` ${
+                      className={`pb-5 ${
                         index === "#ProductDetails"
                           ? "text-indigo-600 border-b-2 transition duration-500  border-violet-600"
                           : "border-none transition duration-500 text-gray-500"
@@ -49,7 +49,7 @@ export const ProTab = () => {
                     </li>
                     <li
                       value={2}
-                      className={` ${
+                      className={`pb-5 ${
                         index === "#Recommended"
                           ? "text-indigo-600 border-b-2  border-violet-600"
                           : "border-none text-gray-500"

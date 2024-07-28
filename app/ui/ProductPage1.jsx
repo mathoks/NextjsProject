@@ -15,16 +15,18 @@ const ProductPage1 = async(props) => {
  <div >
  <Scroll/>
     <section id='prod_about' className="text-gray-900  flex flex-col w-full space-y-4 text-[15px] md:flex lg:flex">
-              <div className='mx-auto space-y-1 rounded-md shadow-md pb-2 ring-1 ring-slate-300'>
-              <span className='flex justify-between items-center pr-1'>
-              <h1 className='text-lg font-semibold p-2'>{props?.data?.name}</h1>
+              <div className='mx-auto space-y-2 rounded-md md:shadow-md pb-2 md:ring-1 ring-slate-300'>
+              <span className='flex justify-between items-center px-4'>
+              <h1 className='text-lg font-semibold '>{props?.data?.name}</h1>
               {props.data.storeId === session?.user?.id ? <Link href={`/store/${props.data.storeId}/product/${props.data.id}/edit`}><button className='ring-1 shadow-md ring-slate-300 rounded-full px-4 py-[2px] text-white bg-[#FF4500] font-semibold'>Edit</button></Link> : ''}
               </span>
                               <div className='relative '>
+                              
                 <Carousel slides={props?.data.prodImage} autoSlide={false}/> 
-                <span className='text-[12px] px-2 text-white absolute top-2 bg-[#FF4500]'>{props.data.availability}</span>
-                <Divider variant='fullWidth'/>
-                 <div className=' font-semibold space-y-1 px-2'>
+                
+                <span className='text-[12px] px-2 text-white absolute bottom-[6.2rem] left-0 bg-[#FF4500]'>{props.data.availability}</span>
+                <Divider variant='fullWidth' className='pt-2'/>
+                 <div className=' font-semibold space-y-1 px-3'>
                  <span className='flex space-x-1 items-center text-[12px] text-slate-500 pt-2'>
                   <LocationOnOutlined fontSize='inherit'/>
                   <span>{props.data.store.market + " " + props.data.store.state + " " +  props.data.store.country}</span>
@@ -75,20 +77,20 @@ const ProductPage1 = async(props) => {
                     <span className=' text-blue-400'><Link href={`/store/${props.data.store.businessName}/${props.data.storeId}`}><p>Visit the Store</p></Link></span>
                     
                   <div>
-                    <div className='flex space-x-1 items-center  font-semibold'>
+                    {/* <div className='flex space-x-1 items-center  font-semibold'>
                     <StorefrontOutlined fontSize='meduim' className='text-slate-800 '/>
                     <span className='text-semibold text-base'>Store Branches</span>
-                    </div>
-                    <div>
-                      <BranchAccor branches={props?.data?.branch}/>
-                      </div>
+                    </div> */}
+                    
                   </div>
                     </div>
                     </div>
-                          
+                    <div className='p-2'>
+                      <BranchAccor branches={props?.data?.branch}/>
+                      </div>    
                   </div>
                   <Divider/>
-                  <div className='px-8 pl-14 min-h-20 flex justify-left items-start'>
+                  <div className='px-4  min-h-20 flex justify-left items-start'>
                   
                   <p className=''>{props?.data.description}</p>
                   

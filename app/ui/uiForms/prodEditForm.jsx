@@ -7,6 +7,7 @@ import ImageEdit from '../utilComp/imageEdit'
 import { Availability, LinkToBranch, PricePolicy, ProductCart } from './productCart'
 import { getBranch } from '@/app/lib/actions/getbranch'
 import { useSession } from 'next-auth/react'
+import toast from 'react-hot-toast'
 
 
 
@@ -24,16 +25,26 @@ const ProdEditForm = ({data}) => {
     
         }
 
+        
+          
+
        useEffect(()=>{
-    
+       
+        const notify = () => toast(state.message);  
         const branch = async ()=>{
             const res = await getBranch(session?.data?.user?.id)
             setDatas(res)
         }
+        
+            if (state.success === true){
+            notify();
+            toggleActive();
+            document?.getElementById('prod_edit_form').reset()
+            }
         if(datas.length === 0)
         branch();
         else return;
-       },[datas])
+       },[datas,state.success, state.message, ])
 
       const handleFocus = (e) => {
         e.target.nextElementSibling.style.visibility = 'visible'
@@ -55,7 +66,7 @@ const ProdEditForm = ({data}) => {
       
     return (
     <div className='flex flex-col   text-base '>
-      <form className='mx-auto space-y-4 w-full md:flex md:space-x-4' action={dispatch}>
+      <form className='mx-auto space-y-4 w-full md:flex md:space-x-4' id='prod_edit_form' action={dispatch}>
      <ImageEdit data={prodImage} trigger = {toggleActive} hide={loading}/>
       
       <section className='mx-auto space-y-4 p-2'>
@@ -91,7 +102,7 @@ const ProdEditForm = ({data}) => {
             <LinkToBranch option={datas} branches={branch}/>
         </section>
         <input name='id' type='text' defaultValue={id} className='sr-only'/>
-        <button disabled = {loading} className='w-full bg-violet-800 p-2 rounded-md font-semibold text-white disabled:opacity-5'>Update</button>
+        <button disabled = {loading} id='form_botton' onClick={()=>setTimeout(toggleActive, 500)} className='w-full bg-violet-800 p-2 rounded-md font-semibold text-white disabled:opacity-5'>Update</button>
         </section>
         
       </form>
