@@ -11,7 +11,7 @@ export async function getUsers() {
   const domain = headerList.get("host");
   
   try {
-    const response = await fetch(`http://${domain}/api/home`);
+    const response = await fetch(`http://${domain}/api/home`, { next: {tags:['store']}});
     if (!response.ok) {
       throw new Error(`API request failed with status ${response.status}`);
     }

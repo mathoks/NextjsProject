@@ -31,7 +31,7 @@ const Summary = branches.map(({branch:{market, branchAddress, branchName, state,
             id="panel-content"
             sx={{ "& .MuiAccordionSummary-root": { padding: 0 } }}
           >
-            <div key={index} className="flex flex-col ">
+            <div key={index} className="flex flex-col w-screen px-4">
             <div className='flex justify-between items-center'>
             <div className="flex space-x-1 items-center  font-semibold">
                 <StorefrontOutlined
@@ -101,7 +101,7 @@ const Summary = branches.map(({branch:{market, branchAddress, branchName, state,
     );
 })
   return (
-      <Accordion elevation={0} disableGutters sx={{border: "none", ml:-2, mt:-1, pt:-1,  boxShadow: 'none',  "& .MuiAccordion-root": {
+      <Accordion elevation={0} disableGutters sx={{border: "none", width: '100vw', ml:-2, mt:-1, pt:-1,  boxShadow: 'none',  "& .MuiAccordion-root": {
         padding: 0,
         bgcolor:"black",
         "::before": { display: "none" },

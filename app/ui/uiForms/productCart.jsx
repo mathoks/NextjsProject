@@ -242,7 +242,7 @@ export const ProductStatus = () => {
 
   const options = values.map(({ name, vis }, id) => {
     return (
-      <option value={name} key={id}>
+      <option value={name} name='status' id='status' key={id}>
         {vis}
       </option>
     );
@@ -254,7 +254,7 @@ export const ProductStatus = () => {
         enterKeyHint="done"
         required
         id="status"
-        className=" p-4 px-0 flex  text-gray-900  w-full bg-slate-50"
+        className=" p-4 px-0 flex  text-gray-900  w-full bg-white"
       >
         <option defaultValue={null} className="text-slate-400">
           Product status

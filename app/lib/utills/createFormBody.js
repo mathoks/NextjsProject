@@ -8,6 +8,6 @@ export const createFormbody = async(fields) => {
           }
          else return;
         });
-      console.log(formBody);
+      if(Object.keys(formBody).length === 0 || Object.keys(formBody).length === 1) return null;
         return formBody;
       };

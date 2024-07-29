@@ -4,8 +4,10 @@ import ProdEditForm from '@/app/ui/uiForms/prodEditForm'
 import {Accordion, AccordionSummary, AccordionDetails} from '@mui/material'
 import { ExpandMore } from '@mui/icons-material'
 import ProductAttri from '@/app/ui/uiForms/ProductAttri'
+import { auth } from '@/auth'
+
 const page = async({params}) => {
-    
+    const session = await auth()
     const product = await getProductByIds(params)
     if(!product.data) return (<p>cant fetch data</p>);
     
@@ -14,7 +16,7 @@ const page = async({params}) => {
     <div className='mt-12 flex flex-col  p-4  text-base w-full space-y-2 md:flex'>
     <div>
     {/* <h1 className='md:text-center font-semibold text-xl px-4 text-center'>Product Details</h1> */}
-    <ProdEditForm data = {product.data}/>
+    <ProdEditForm data = {product.data} ids = {session?.user?.id || null}/>
     </div>
     
     <div>
@@ -29,7 +31,7 @@ const page = async({params}) => {
         Product Attributes
         </AccordionSummary>
         <AccordionDetails>
-            <ProductAttri data={product.data}/>
+            <ProductAttri data={product.data} ids = {session?.user?.id || null}/>
         </AccordionDetails>
     </Accordion>
     </div>

@@ -82,5 +82,5 @@ export async function PATCH(req) {
       console.log(error);
       return Response.json({ message: "Internal server error" });
     }
-  }
+  } 
 }

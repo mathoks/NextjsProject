@@ -1,5 +1,5 @@
 "use client"
-import React, { useState , useEffect} from 'react'
+import React, { useState , useEffect, useCallback} from 'react'
 import { validate } from '@/app/lib/utills/validator'
 import { updateProduct } from '@/app/actions/users/updateProd'
 import { useFormState } from 'react-dom'
@@ -11,40 +11,58 @@ import toast from 'react-hot-toast'
 
 
 
-const ProdEditForm = ({data}) => {
+const ProdEditForm = ({data, ids}) => {
     const {id, name, description, category, price, negotiable, availability, prodImage, branch } = data
-    const initialState = { message: null, errors: {}, success: null, store: null };
-    const [state, dispatch] = useFormState(updateProduct, initialState);
-    const [states, dispatch2] = useFormState(validate, initialState);
+    // const initialState = { message: null, errors: {}, success: null, store: null };
+    const [state, dispatch] = useFormState(updateProduct, {});
+    const [states, dispatch2] = useFormState(validate, {});
     const [loading, setLoading] = useState(false)
     const [datas, setDatas] = useState([])
-    const session = useSession()
+    
 
         const toggleActive = ()=>{
             setLoading((prev)=>!prev)
     
         }
 
-        
-          
+       const handleclick = useCallback(()=>{
+        let idOut;
+        if(idOut){
+            clearTimeout(idOut)
+        }
+         idOut = setTimeout(toggleActive, 100)
+       },[])
+         
+       
 
        useEffect(()=>{
        
-        const notify = () => toast(state.message);  
-        const branch = async ()=>{
-            const res = await getBranch(session?.data?.user?.id)
+        const notify = (m) => toast(m);  
+        const branch = async (idd)=>{
+            const res = await getBranch(idd)
             setDatas(res)
         }
         
+        if(datas.length === 0 && ids !== null)
+            branch(ids);
+        if (state.success === false){
+            console.log(state.message)
+            if(state.message === 'Validation failed. No data to update.')
+                notify("No data to update");
+            else notify("An error occured. Please try again");
+            toggleActive();
+        }
             if (state.success === true){
-            notify();
+            notify(state.message);
             toggleActive();
             document?.getElementById('prod_edit_form').reset()
             }
-        if(datas.length === 0)
-        branch();
-        else return;
-       },[datas,state.success, state.message, ])
+       else {
+
+       }
+       console.log(state.idOp)
+        return ()=> loading
+       },[datas,state.success, state.message, state.idOp, ])
 
       const handleFocus = (e) => {
         e.target.nextElementSibling.style.visibility = 'visible'
@@ -102,7 +120,7 @@ const ProdEditForm = ({data}) => {
             <LinkToBranch option={datas} branches={branch}/>
         </section>
         <input name='id' type='text' defaultValue={id} className='sr-only'/>
-        <button disabled = {loading} id='form_botton' onClick={()=>setTimeout(toggleActive, 500)} className='w-full bg-violet-800 p-2 rounded-md font-semibold text-white disabled:opacity-5'>Update</button>
+        <button disabled = {loading} id='form_botton' onClick={handleclick} className='w-full bg-violet-800 p-2 rounded-md font-semibold text-white disabled:opacity-5'>Update</button>
         </section>
         
       </form>

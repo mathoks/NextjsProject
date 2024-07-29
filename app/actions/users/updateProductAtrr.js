@@ -1,13 +1,11 @@
 "use server";
 import { auth } from "@/auth";
 import { headers } from "next/headers";
-import { revalidatePath, revalidateTag } from "next/cache";
-import { createObjectURL, } from "@/app/lib/utills/ImageResize";
+import { revalidateTag } from "next/cache";
 import {
-  validateProdEdit,
+    validateProdAttri,
 } from "@/app/lib/utills/actionValidator";
 import { createFormbody } from "@/app/lib/utills/createFormBody";
-import { createLink } from "@/app/lib/utills/generateLink";
 import { nanoid } from "@reduxjs/toolkit";
 
 /**
@@ -19,51 +17,42 @@ import { nanoid } from "@reduxjs/toolkit";
  * @param {FormData} formData - The form data containing invoice information.
  * @returns {Promise<object>} An object containing success/failure information and optional updated state.
  */
-export const updateProduct = async function ({}, formData) {
+export const updateProductAtrr = async function ({}, formData) {
   const headerList = headers();
   const domain = headerList.get("host");
   const session = await auth();
-  const file = formData.get("edit-0");
-  const file2 = formData.get("edit-1");
   const id = formData.get("id");
-  const prodid1 = formData.get("prodId-0");
-  const prodid2 = formData.get("prodId-1");
-  const url1 = formData.get("imgUrl-0");
-  const url22 = formData.get("imgUrl-1");
+  
+  
 
   try {
     if (!session.user.id) {
       throw new Error("you are unauthorized please sign in");
     }
-    const { name, description, negotiable, category, availability, price } =
-      await validateProdEdit(formData);
+    const { brand, status, color, weight, size, material, warranty } =
+      await validateProdAttri(formData);
 
-    const files = [
-        { img: file, ids: prodid1, url: url1 },
-        { img: file2, ids: prodid2, url: url22 },
-      ];
-    const processedUrls = await createObjectURL(files);
-    
     const fields = [
-      { name },
-      { description },
-      { negotiable },
-      { category },
-      { price },
-      { availability },
-      { url: processedUrls.length === 0 ? null : processedUrls },
+      { brand },
+      { status },
+      { color },
+      { weight },
+      { warranty },
+      { material },
+      { size },
       { id: id },
-      { link: createLink(formData) },
+      
     ];
 
     const formBody = await createFormbody(fields);
+    console.log(formBody);
     
     if(formBody === null){
         throw new Error("No data to update");
     }
 
     const response = await fetch(
-      `http://${domain}/api/store/${session?.user.id}/product/${id}/update`,
+      `http://${domain}/api/store/${session?.user.id}/product/${id}/updateAttribute`,
       {
         method: "PATCH",
         headers: {
@@ -84,13 +73,11 @@ export const updateProduct = async function ({}, formData) {
     if (!productId) {
       throw new Error("could not update product");
     }
-     revalidateTag('store')
-     revalidateTag(productId.data);
-    
-
+    revalidateTag(productId.data);
+   
     return {
       success: true,
-      message: ` product Successfully updated`,
+      message: ` product Attribute Successfully updated`,
       errors: {},
       idOp: nanoid(5),
     };
@@ -109,7 +96,6 @@ export const updateProduct = async function ({}, formData) {
         idOp: nanoid(5),
       };
     } else {
-        console.log(error)  
       return {
         errors: {
           error: error.message,

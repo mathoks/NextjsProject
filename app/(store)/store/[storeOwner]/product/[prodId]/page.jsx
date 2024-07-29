@@ -45,12 +45,12 @@ const Page = async({params}) => {
       <div id="Overview" className="view"> 
         <ProductPage1 data = { product.data ||  {}} />
       </div>
-      <div id= 'ProductDetails' data-id='ProductDetails' className=" bg-pink-400 view pt-4">
-        <Page2/>
+      <div id= 'ProductDetails' data-id='ProductDetails' className="  view pt-4">
+        <Page2 data = { product?.data?.attribute ||  {}} />
         <hr/>
       </div>
      
-      <div id='ProductReviews' className="view bg-pink-400">
+      <div id='ProductReviews' className="view">
         <Page3/>
         <hr/>
       </div>

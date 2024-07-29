@@ -1,10 +1,8 @@
 import { Pool } from "@neondatabase/serverless";
 import { PrismaNeon } from "@prisma/adapter-neon";
 import { PrismaClient } from "@prisma/client";
+import { unstable_cache } from "next/cache";
 import { NextResponse } from "next/server";
-
-
-
 
 // Create a single instance of the Prisma client for efficiency
 let prisma;
@@ -20,71 +18,86 @@ const adapter = new PrismaNeon(neon);
  * @returns {Promise<void>}
  */
 
-if(!prisma){
-    prisma = new PrismaClient({adapter})
-  }
-  
+if (!prisma) {
+  prisma = new PrismaClient({ adapter });
+}
+
 export async function GET(req) {
-    const prodId = (req.nextUrl.pathname).split('/')[5]
-    
- 
+  const prodId = req.nextUrl.pathname.split("/")[5];
 
   try {
-    const product = await prisma.product.findUnique({
-      where: {
-        id : prodId
-      },
-      include: {
-        prodImage: {
-          select: {
-            id:true,
-            image: true
+    const getProductById = unstable_cache(
+      async (id) => {
+        const product = await prisma.product.findUnique({
+          where: {
+            id: id,
           },
-        },
-        store : {
-          select: {
-            businessName: true,
-            bizLogo: true,
-            phone: true,
-            state: true,
-            country: true,
-            market: true,
-          }
-        },
-        branch: {
-          select:{
-            id: true,
-            branch: {
-                select:{
-                branchName: true,
-                branchAddress: true,
+          include: {
+            prodImage: {
+              select: {
+                id: true,
+                image: true,
+              },
+            },
+            store: {
+              select: {
+                businessName: true,
+                bizLogo: true,
+                phone: true,
                 state: true,
                 country: true,
-                market: true
-          }}
-      }},
-        comment: {
-          select: {
-            id: true,
-            comment: true,
-            review: true,
-            commenter: {
-                select: {
-                    name: true
-                }
-            }
-          }
-        }
+                market: true,
+              },
+            },
+            attribute: {
+              select: {
+              color: true,
+              size: true,
+              warranty: true,
+              material: true,
+              weight: true,
+              brand: true,
+              }
+            },
+            branch: {
+              select: {
+                id: true,
+                branch: {
+                  select: {
+                    branchName: true,
+                    branchAddress: true,
+                    state: true,
+                    country: true,
+                    market: true,
+                  },
+                },
+              },
+            },
+            comment: {
+              select: {
+                id: true,
+                comment: true,
+                review: true,
+                commenter: {
+                  select: {
+                    name: true,
+                  },
+                },
+              },
+            },
+          },
+        });
+
+        return product;
       },
-    })
+      ["product", prodId],
+      { revalidate: 60 * 60 * 1, tags: [prodId] }
+    );
+    const cachedProduct = await getProductById(prodId);
     
-    if(product === null){
-        return NextResponse.json({data: null})
-    }
-    
-    return NextResponse.json({ data: product });
+    return NextResponse.json({ data: cachedProduct });
   } catch (error) {
-    console.log(error)
-   return Response.json({ message: "Internal server error"});
+    console.log(error);
+    return Response.json({ message: "Internal server error" });
   }
 }

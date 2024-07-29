@@ -20,7 +20,7 @@ export default async function Layout({ children }) {
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
       <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet"/>
       </head>
-          <body className={`${inter.className}  w-screen h-fit bg-[#fcfaff]`}>
+          <body className={`${inter.className}  w-screen h-fit bg-[#fcfaff] text-slate-950`}>
           <SessionProvider baseUrl={"/api/auth"}>
         <StoreProvider>
             <AppRouterCacheProvider>

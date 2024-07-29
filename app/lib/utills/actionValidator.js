@@ -34,23 +34,48 @@ name: joi
 
 const FormSchema3 = joi.object({
   name: joi
-      .string()
+      .string().trim()
       .pattern(new RegExp("[a-zA-Z0-9s]+$"))
       .min(4)
       .max(20)
       .allow(''),
     description: joi
-      .string()
+      .string().trim()
       .pattern(new RegExp("[a-zA-Z0-9s\u00A0.,:?]+$"))
       .min(6)
       .max(100)
       .allow(''),
-    category: joi.string().allow(null),
-    link: joi.string().allow(null),
+    category: joi.string().trim().allow(null),
+    link: joi.string().trim().allow(null),
     price: joi.number().allow(''),
-    negotiable: joi.string().allow(null),
-    availability: joi.string().allow(null),
+    negotiable: joi.string().trim().allow(null),
+    availability: joi.string().trim().allow(null),
   })
+
+  const FormSchema4 = joi.object({
+    brand: joi
+        .string().trim()
+        .pattern(new RegExp("[a-zA-Z0-9s]+$"))
+        .min(3)
+        .max(20)
+        .allow(''),
+      size: joi
+        .string().trim()
+        .pattern(new RegExp("[a-zA-Z0-9s\u00A0.,:?]+$"))
+        .min(1)
+        .max(20)
+        .allow(''),
+        color: joi
+        .string().trim()
+        .pattern(new RegExp("[a-zA-Z0-9s\u00A0.,:?]+$"))
+        .min(1)
+        .max(20)
+        .allow(''),
+      status: joi.string().trim().allow(null).pattern(new RegExp("[a-zA-Z0-9s]+$")),
+      material: joi.string().trim().allow('').pattern(new RegExp("[a-zA-Z0-9s]+$")).max(50),
+      weight: joi.number().allow(''),
+      warranty: joi.string().trim().allow('').pattern(new RegExp("[a-zA-Z0-9s]+$")).max(50),
+    })
   
 export const validateProduct = async (formData) => {
 
@@ -64,7 +89,10 @@ export const validateProduct = async (formData) => {
       availability: formData.get("availability"),
       link: formData.get("link"),
       price: formData.get("price"),
-    });
+    },{
+      convert: true
+    }
+  );
 
     
     return  validatedFields;
@@ -86,6 +114,30 @@ export const validateProdEdit = async (formData) => {
       availability: formData.get("availability"),
       link: formData.get("link"),
       price: formData.get("price"),
+    }, {
+      convert: true
+    });
+
+    
+    return  validatedFields;
+  } catch (error) {
+  console.log(error)
+    throw error;
+  }
+};
+
+export const validateProdAttri = async (formData) => {
+
+  let validatedFields = {};
+  try {
+    validatedFields = await FormSchema4.validateAsync({
+      brand: formData.get("brand"),
+      status: formData.get("status"),
+      color: formData.get("color"),
+      weight: formData.get("weight"),
+      warranty: formData.get("warranty"),
+      size: formData.get("size"),
+      material: formData.get('material')
     });
 
     

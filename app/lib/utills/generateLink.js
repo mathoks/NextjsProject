@@ -5,5 +5,6 @@ export const createLink = (formData) => {
         links.push(value);
       }
     });
+    if(links.length === 0) return null;
     return links;
   };

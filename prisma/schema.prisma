@@ -192,7 +192,7 @@ model ProductAttribute {
   id        String   @id @default(cuid()) @unique
   color     String?
   size      String?
-  warranty   Int?
+  warranty   String?
   material    String?
   weight    Int?
   brand     String?

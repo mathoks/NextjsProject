@@ -30,7 +30,7 @@ export const ProTab = () => {
         <nav
                 aria-label="main"
                 id='prod_tab'
-                className={`fixed shadow z-50 flex invisible left-0 flex-col space-y-0 bg-white text-sm pt-5 w-full text-gray-600 px-2 pb-10`}
+                className={`fixed shadow z-50 flex invisible left-0 flex-col space-y-0 bg-white text-sm pt-5 w-full text-gray-600 px-0 pb-10`}
 
               >
             
@@ -40,7 +40,7 @@ export const ProTab = () => {
                 >
                   <ul
                     role="subTab"
-                    className="flex justify-between items-center pl-4 pr-4 font-semibold pb-5"
+                    className="flex justify-between items-center px-1 font-semibold pb-5"
                   >
                     <li
                         onClick={handleclick}

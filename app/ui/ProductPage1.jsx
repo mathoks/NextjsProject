@@ -24,7 +24,7 @@ const ProductPage1 = async(props) => {
                               
                 <Carousel slides={props?.data.prodImage} autoSlide={false}/> 
                 
-                <span className='text-[12px] px-2 text-white absolute top-0 left-0 bg-[#FF4500]'>{props.data.availability}</span>
+                <span className='text-[14px] font-semibold px-2 text-green-600'>{props.data.availability}</span>
                 <Divider variant='fullWidth' className='pt-2'/>
                  <div className=' font-semibold space-y-1 px-3'>
                  <span className='flex space-x-1 items-center text-[12px] text-slate-500 pt-2'>
@@ -36,7 +36,7 @@ const ProductPage1 = async(props) => {
                             <span className="text-[12px]">&#x20A6;</span>
                             <p className="text-[#6A0DAD] font-bold">{props.data.price}</p>
                           </span>
-                          <span className='text-sm'>{props?.data?.negotiable}</span>
+                          <span className='text-sm'>{props?.data?.negotiable.toLowerCase()}</span>
                             </span>
                           <span className=''>{props?.data?.category}</span>
                           <div className='text-[12px] -pt-3 flex items-center space-x-1'>
@@ -49,18 +49,28 @@ const ProductPage1 = async(props) => {
                  </div>
                 
                  </div>
-                 <div className=' space-y-3 mx-auto'>
+                 <div className=' space-y-3 mx-auto py-1'>
                  <div className='flex '>
-                 <button className=' w-[19rem]  py-1.5 text-white  bg-[#FF4500] rounded-full shadow-md font-semibold'>Add to wishlist</button>
+                 <button className=' w-[20rem]  py-1.5 text-white  bg-[#FF4500] rounded-full shadow-md font-semibold'>Add to wishlist</button>
                  </div>
-                 <span className='flex items-center space-x-4 justify-end'>
-                     <a href={`tel:${props.data.store.phone}`}><CallOutlined fontSize='meduim' className='text-slate-500'/></a>
-                     <MessageOutlined fontSize='meduim' className='text-slate-500'/>
-                     </span>
+                 <div className='flex space-x-1'>
+                 <a href={`tel:${props.data.store.phone}`}><button className=' w-[10rem] py-1.5 text-white  bg-[#6A0DAD] rounded-full shadow-md font-semibold'>Contact the Seller</button></a>
+                  
+                  <button className=' w-[10rem] py-1.5 text-white  bg-[#166e32] rounded-full shadow-md font-semibold'>Message</button>
+                 </div>
                  </div> 
                  <Divider/>
-                 <div className='p-2'>
-                  <div className='flex justify-start items-start space-x-1'>
+                 
+                 <div className='px-4  min-h-20 flex flex-col justify-left items-start'>
+                  <h2 className='font-semibold text-[15px]'>About This Product</h2>
+                  <p className=''>{props?.data.description}</p>
+                  
+                    
+                  </div>
+                 
+                  <Divider/>
+                  <div className='p-2'>
+                  <div className='flex justify-start items-start space-x-2'>
                   <Avatar className='ring-1' src = {props?.data?.store?.bizLogo}/>
                   <div className='flex flex-col space-y-1'>
                   
@@ -85,18 +95,14 @@ const ProductPage1 = async(props) => {
                   </div>
                     </div>
                     </div>
-                    <div className='p-2'>
+                       
+                  </div>
+                   
+                  <Divider/>
+                  <div className='p-2 ml-1'>
                       <BranchAccor branches={props?.data?.branch}/>
-                      </div>    
-                  </div>
-                  <Divider/>
-                  <div className='px-4  min-h-20 flex flex-col justify-left items-start'>
-                  <h2 className='font-semibold text-[15px]'>About This Product</h2>
-                  <p className=''>{props?.data.description}</p>
-                  
-                    
-                  </div>
-                  <Divider/>
+                      </div>
+              
               </section>
               
               </div>
