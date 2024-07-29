@@ -39,28 +39,35 @@ const Page = async({params}) => {
   return (
     <div className=" bg-white flex flex-col ">
       <div className="">
-        <ProTab/>
+        <ProTab data={product.data || {}}/>
       </div>
       <div className=" bg-white flex flex-col space-y-4 mt-[4rem]">
       <div id="Overview" className="view"> 
         <ProductPage1 data = { product.data ||  {}} />
       </div>
-      <div id= 'ProductDetails' data-id='ProductDetails' className="  view pt-4">
+      <div id= 'ProductDetails' data-id='ProductDetails'  className=" space-y-4 view pt-4">
+      <div className="flex justify-between items-center"><h1 className='text-lg font-semibold px-4'>Product Details</h1>
+     
+      </div>
         <Page2 data = { product?.data?.attribute ||  {}} />
         <hr/>
       </div>
      
       <div id='ProductReviews' className="view">
+      <div className="flex justify-between items-center"><h1 className='text-lg font-semibold px-4'>Product Reviews</h1>
+      <button className="text-blue-500 px-4 py-2 ">write a review</button>
+      </div>
+        
         <Page3/>
         <hr/>
       </div>
       
-      <div id='ProductRecommended' className="view py-8 bg-pink-600">
+      <div id='ProductRecommended' className="view py-8">
         <Page4/>
       </div>
 
       </div>
-      <div className="min-h-[5rem] bg-[#6A0DAD]">
+      <div className="min-h-[5rem]">
 
       </div>
     </div>

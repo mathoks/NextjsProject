@@ -8,14 +8,14 @@ import ProductPage1 from "@/app/ui/ProductPage1";
 
 
 
-// export const useGethook = (func) => {
-//   const [val, setval] = useState(null);
-//   useEffect(() => {
-//     setval(document.getElementById(func));
-//   }, [func]);
+export const useGethook = (func) => {
+  const [val, setval] = useState(null);
+  useEffect(() => {
+    setval(document.getElementById(func));
+  }, [func]);
 
-//   return val;
-// };
+  return val;
+};
 
 export const useSubhook2 = (data) => {
   const pathname = usePathname();
