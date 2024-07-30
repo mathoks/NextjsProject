@@ -6,6 +6,7 @@ import { getProductByIds } from "./layout";
 import Page2 from "@/app/ui/Page2";
 import Page3 from "@/app/ui/Page3";
 import { Page4 } from "@/app/ui/page4";
+import Hints from "@/app/ui/utilComp/Hints";
 
 
 // function debounce(func, delay) {
@@ -42,14 +43,18 @@ const Page = async({params}) => {
         <ProTab data={product.data || {}}/>
       </div>
       <div className=" bg-white flex flex-col space-y-4 mt-[4rem]">
-      <div id="Overview" className="view"> 
+      <div id="Overview" className="view space-y-2"> 
         <ProductPage1 data = { product.data ||  {}} />
+        <hr/>
       </div>
       <div id= 'ProductDetails' data-id='ProductDetails'  className=" space-y-4 view pt-4">
       <div className="flex justify-between items-center"><h1 className='text-lg font-semibold px-4'>Product Details</h1>
      
       </div>
         <Page2 data = { product?.data?.attribute ||  {}} />
+        <div>
+          <Hints cat={product?.data?.category || null}/>
+        </div>
         <hr/>
       </div>
      
@@ -63,6 +68,8 @@ const Page = async({params}) => {
       </div>
       
       <div id='ProductRecommended' className="view py-8">
+      <div className="flex justify-between items-center"><h1 className='text-lg font-semibold px-4'>Similar Products</h1></div>
+     
         <Page4/>
       </div>
 

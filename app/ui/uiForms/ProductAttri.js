@@ -36,7 +36,8 @@ const ProductAttri = ({data}) => {
       setLoading((prev)=>!prev)
   }
 
-  const handleclick = useCallback(()=>{
+  const handleclick = useCallback((e)=>{
+
     let idOut;
     if(idOut){
         clearTimeout(idOut)
@@ -157,7 +158,7 @@ const ProductAttri = ({data}) => {
         </span>
         </section>
         <input name='id' type='text' defaultValue={id} className='sr-only'/>
-        <button disabled = {loadings} onClick={handleclick} className='w-full disabled:opacity-5 bg-violet-800 p-2 rounded-md font-semibold text-white '>Update</button>
+        <button  disabled = {loadings} onClick={handleclick} className='w-full disabled:opacity-5 bg-violet-800 p-2 rounded-md font-semibold text-white '>Update</button>
       </form>
     </div>
   )

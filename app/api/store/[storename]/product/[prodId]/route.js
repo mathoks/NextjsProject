@@ -57,6 +57,7 @@ export async function GET(req) {
               material: true,
               weight: true,
               brand: true,
+              status: true,
               }
             },
             branch: {

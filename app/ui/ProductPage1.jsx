@@ -23,8 +23,8 @@ const ProductPage1 = async(props) => {
                               <div className='relative '>
                               
                 <Carousel slides={props?.data.prodImage} autoSlide={false}/> 
-                
-                <span className='text-[14px] font-semibold px-2 text-green-600'>{props.data.availability}</span>
+                { props.data.availability === 'LIMITED_STOCK' ? <span className='text-red-600  text-[14px] font-semibold px-4'>Limited Stock</span> : props.data.availability === 'IN_STOCK' ? <span className='text-red-600  text-[14px] font-semibold px-4'>Limited Stock</span> : props.data.availability === 'COMING_SOON' ? <span className=' text-green-600  text-[14px] font-semibold px-3'>Coming Soon</span> : ''}
+                {/* <span className='text-[14px] font-semibold px-2 text-green-600'>{props.data.availability.replace(/_/g, ' ')}</span> */}
                 <Divider variant='fullWidth' className='pt-2'/>
                  <div className=' font-semibold space-y-1 px-3'>
                  <span className='flex space-x-1 items-center text-[12px] text-slate-500 pt-2'>
@@ -36,13 +36,13 @@ const ProductPage1 = async(props) => {
                             <span className="text-[12px]">&#x20A6;</span>
                             <p className="text-[#6A0DAD] font-bold">{props.data.price}</p>
                           </span>
-                          <span className='text-sm'>{props?.data?.negotiable.toLowerCase()}</span>
+                          <span className='text-sm first-letter:capitalize'>{props?.data?.negotiable.toLowerCase()}</span>
                             </span>
                           <span className=''>{props?.data?.category}</span>
                           <div className='text-[12px] -pt-3 flex items-center space-x-1'>
                           <span>4.0</span>
                           <Rating size="small"/>
-                          <span className='text-blue-400'>10,052</span>
+                          <span className='text-blue-400'>(10,052)</span>
                           </div>
                           </div>      
                  

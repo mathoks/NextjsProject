@@ -25,7 +25,8 @@ const ProdEditForm = ({data, ids}) => {
     
         }
 
-       const handleclick = useCallback(()=>{
+       const handleclick = useCallback((e)=>{
+        // e.preventDefault();
         let idOut;
         if(idOut){
             clearTimeout(idOut)
@@ -60,9 +61,9 @@ const ProdEditForm = ({data, ids}) => {
        else {
 
        }
-       console.log(state.idOp)
-        return ()=> loading
-       },[datas,state.success, state.message, state.idOp, ])
+       
+        return ()=> setLoading(false)
+       },[datas,state.success, state.message, state.idOp,])
 
       const handleFocus = (e) => {
         e.target.nextElementSibling.style.visibility = 'visible'
@@ -120,7 +121,7 @@ const ProdEditForm = ({data, ids}) => {
             <LinkToBranch option={datas} branches={branch}/>
         </section>
         <input name='id' type='text' defaultValue={id} className='sr-only'/>
-        <button disabled = {loading} id='form_botton' onClick={handleclick} className='w-full bg-violet-800 p-2 rounded-md font-semibold text-white disabled:opacity-5'>Update</button>
+        <button   disabled = {loading} id='form_botton' onClick={handleclick} className='w-full bg-violet-800 p-2 rounded-md font-semibold text-white disabled:opacity-5'>Update</button>
         </section>
         
       </form>
