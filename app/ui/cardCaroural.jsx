@@ -19,10 +19,11 @@ const Showcase = ({ info, userInfo }) => {
   const swiperDiv = useRef(null);
   const dispatch = useAppDispatch();
   const router = useRouter();
-
+  
+if(Array.isArray(info) && info.length === 0) return <div>loading...</div>;
   return (
     
-    <div className="rootswiper rounded-md w-[17rem] md:w-[18rem] px-6 py-2 shadow-md bg-white ring-1 ring-gray-200" >
+    <div className="rootswiper min-w-[14rem] max-w-[16.4rem] rounded-md  md:w-[18rem]  py-2 shadow-md bg-white ring-1 ring-gray-200" >
       <swiper-container
         ref={swiperDiv}
         slides-per-view="1"
@@ -37,8 +38,8 @@ const Showcase = ({ info, userInfo }) => {
         loop="true"
       >
         {info &&
-          info.length > 1 &&
-          info.map(
+          info?.length > 1 &&
+          info?.map(
             (
               {
                id,
@@ -64,7 +65,7 @@ const Showcase = ({ info, userInfo }) => {
               >
                 {ids !== info.length - 1 ? (
                   <>
-                  <div className="space-y-1">
+                  <div className="space-y-1 px-3">
                     <span className="flex  justify-between items-center ">
                       <span className="font-semibold text-sm">{category}</span>
                       <span className="flex justify-end">
@@ -87,7 +88,7 @@ const Showcase = ({ info, userInfo }) => {
                    
                     <div className="flex mx-auto  rounded-md">
                       <img
-                        src={prodImage[1].image}
+                        src= {prodImage?.length > 0 ? prodImage[1].image : "" }
                         // sizes="50vw"
                         alt="DealerPic"
                         width={200}
@@ -96,7 +97,7 @@ const Showcase = ({ info, userInfo }) => {
                         className="rounded-b-lg  h-[10rem] w-[14.5rem]"
                       />
                     </div>
-                    <div className=" flex flex-col space-y-3">
+                    <div className=" flex flex-col space-y-3 px-2">
                       <span className="flex justify-between ">
                         <span className=" w-[95%] overflow-ellipsis font-semibold text-sm line-clamp-2 ">
                           {name}

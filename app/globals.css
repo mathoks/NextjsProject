@@ -157,7 +157,7 @@ swiper-container::part(pagination) {
   /* padding-right: 1px;
   padding-left: 2px; */
   /* width: 21rem; */
-  width: auto;
+  /* width: 100vw; */
   display: flex;
   align-items: center;
   justify-content: start;

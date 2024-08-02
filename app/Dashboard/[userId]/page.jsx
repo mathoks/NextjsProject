@@ -22,7 +22,6 @@ import Link from "next/link";
 // const ProgressBar = dynamic(()=>import('../../ui/utilComp/ProgressBar'), {ssr: false})
 const page = async () => {
   const session = await auth();
-  console.log(session);
   const userInfo = session?.user?.name;
   const actionTab = [
     {
@@ -68,7 +67,7 @@ const page = async () => {
       icon: <MessageOutlined className={"text-gray-400"} fontSize="medium" />,
     },
   ];
-  
+
   return (
     <div className="bg-gray-100 flex flex-col space-y-4">
       <header className="bg-[#6A0DAD] h-44 p-4 text-white flex-col space-y-2">
@@ -114,12 +113,14 @@ const page = async () => {
           <span>My Favorites</span>
         </div>
         <hr style={{ borderLeft: "1px solid #ddd", height: "3rem" }} />
-        <div className="flex flex-col justify-center items-center">
-          <span>
-            <InsertEmoticonOutlinedIcon fontSize="medium" />
-          </span>
-          <span>Preference</span>
-        </div>
+        <Link href={`${userInfo}/settings/preference`}>
+          <div className="flex flex-col justify-center items-center">
+            <span>
+              <InsertEmoticonOutlinedIcon fontSize="medium" />
+            </span>
+            <span>Preference</span>
+          </div>
+        </Link>
 
         <hr style={{ borderLeft: "1px solid #ddd", height: "3rem" }} />
         <div className="flex flex-col justify-center items-center">

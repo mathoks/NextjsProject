@@ -5,6 +5,7 @@ import Nav from "../ui/Nav";
 import { HeroPage } from "../ui/HeroPage";
 import Footer from "../ui/utilComp/Footer";
 import { SessionProvider } from "next-auth/react";
+import Tab3 from "../ui/Tab3";
 
 
 
@@ -56,13 +57,20 @@ export default async function homeLayout({children, tab, arrivals, ...rest}) {
       <section className="">
       {arrivals}
       </section>
+      
       </section>
-      <section className=" p-2 col-span-2 w-screen">
+      <section className="">
+      <Tab3 data={null}/>
+      </section>
+      <section className=" py-2 w-screen">
       {children}
       </section>
      
       </main>
+      <section className="w-screen">
       <Footer/>
+      </section>
+      
       </SessionProvider>
       </>
     

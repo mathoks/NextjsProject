@@ -31,30 +31,30 @@ const Usercard = ({id, businessName, about, email, bizLogo, shopAddress, product
     // /pages/${encodeURIComponent(props?.id || 4)
   return (
     
-    <div className="flex flex-col border-b-[0.2px]  border-gray-300 space-y-1 text-gray-900 mx-auto px-2 py-3 items-center grow-0 text-left    leading-[0.5rem] text-sm">
+    <div className="flex flex-col border-b-[0.2px]  border-gray-300 space-y-1 text-gray-900 mx-auto  py-3 items-center grow-0 text-left   leading-[0.5rem] text-sm">
    
     
-      <section className="flex flex-row  justify-between items-start" >
-        <div className="ring-1 rounded-full ring-gray-400 p-[0.5px]">
+      <section className="flex space-x-4 items-start " >
+        <div className="ring-1 rounded-full ring-gray-400 ">
           <Avatar {...stringAvatar(businessName, bizLogo)} alt="userImg"/>
         </div>
-        <div className="flex flex-col space-y-2  ml-1 mx-auto p-2">
+        <div className="flex flex-col space-y-2  w-[16.4rem] flex-grow">
         <span className="font-semibold">
             {businessName }
         </span>
-          <span className="flex gap-2 w-[100%] items-start">
-            <span>
+          <span className="flex gap-2  items-start">
+            <span className="pt-[2.5px]">
               <LocationOnOutlined sx={{fontSize: "18px"}}/>
             </span>
-            <span className=" text-sm lg:text-base w-full leading-5 pt-[2px] first-letter:capitalize">
+            <span className=" text-sm lg:text-base leading-5  first-letter:capitalize">
               <span >{shopAddress }</span>
             </span>
           </span>
-          <span className="flex gap-2 w-[100%] justify-start items-start">
-            <span>
+          <span className="flex gap-2 justify-start items-start">
+            <span className="pt-[2.5px]">
               <StorefrontOutlined sx={{fontSize: "18px"}} />
             </span>
-            <span className="pt-[2px] first-letter:capitalize">
+            <span className=" first-letter:capitalize">
               <MakeEllipsis
                 text={about}
                 size={60}

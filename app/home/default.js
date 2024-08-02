@@ -7,12 +7,13 @@ import StoreProvider from "@/app/StoreProvider";
 import Products from "@/app/ui/Products";
 import { getRoutes } from "@/app/actions/users/getRoute";
 import Ads from "@/app/ui/adds";
+import { getStores } from '../lib/actions/getStores';
 
 
 export default async function page() {
   
 
-  const usersList = await getRoutes()
+  const usersList = await getStores()
   
   
   return (
@@ -26,7 +27,7 @@ export default async function page() {
            <section>
            
           
-           <Products data = {typeof usersList !== "undefined" ? JSON.parse(usersList): []}/>
+           <Products data = {typeof usersList !== "undefined" ? usersList : []}/>
            
            </section>
           
