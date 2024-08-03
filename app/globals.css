@@ -355,6 +355,11 @@ input:checked + .slider:before {
   box-shadow: 0 2px 0 0 #630ba2;
 }
 
+.no_border2 textarea:focus {
+  border: none;
+  outline: none;
+  box-shadow: 0 2px 0 0 #526cf0;
+}
 .no_border_select select {
   border-bottom: 1px solid rgb(181, 180, 180);
 }

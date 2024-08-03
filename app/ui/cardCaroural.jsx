@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { memo, useRef } from "react";
 import {
   BookmarkAddOutlined,
   StarRate,
@@ -15,7 +15,7 @@ import getProductById from "../actions/users/getProductById";
 import { useRouter } from "next/navigation";
 
 register();
-const Showcase = ({ info, userInfo }) => {
+const Showcase = memo(function MappedProde({ info, userInfo }){
   const swiperDiv = useRef(null);
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -23,7 +23,7 @@ const Showcase = ({ info, userInfo }) => {
 if(Array.isArray(info) && info.length === 0) return <div>loading...</div>;
   return (
     
-    <div className="rootswiper min-w-[14rem] max-w-[16.4rem] rounded-md  md:w-[18rem]  py-2 shadow-md bg-white ring-1 ring-gray-200" >
+    <div className="rootswiper  rounded-md  md:w-[18rem]  py-2 shadow-md bg-white ring-1 ring-gray-200" >
       <swiper-container
         ref={swiperDiv}
         slides-per-view="1"
@@ -162,6 +162,6 @@ if(Array.isArray(info) && info.length === 0) return <div>loading...</div>;
       </swiper-container>
     </div>
   );
-};
+});
 
 export default Showcase;

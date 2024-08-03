@@ -274,14 +274,29 @@ model Post {
   text        String
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
-  author      User         @relation(fields: [userId], references: [id], map: "post_key_ff")
-  postImage   String?      @map("post_image")     
+  author      User         @relation(fields: [userId], references: [id], map: "post_key_ff")  
   productRef  Product?     @relation(fields: [id], references: [id])
   postComment PostReview[]
-
+  category    PostCategory
   @@map("post")
 }
 
+model Category {
+  id String @id @default(cuid())
+  name String
+  post PostCategory
+}
+
+model PostCategory {
+  id        String  @id @default(cuid())
+  postId String
+  categoryId  String
+  post    Post  @relation(fields: [postId], references: [id])
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  // @@unique([postId, categoryId])
+  @@map("postbranch")
+}
 
 model PostReview {
   id        String         @id @default(cuid()) 

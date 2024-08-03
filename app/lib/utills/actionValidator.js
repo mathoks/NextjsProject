@@ -1,4 +1,5 @@
 import joi from "joi";
+import { createArray} from "./generateLink";
 
 const FormSchema = joi.object({
   storename: joi
@@ -77,6 +78,35 @@ const FormSchema3 = joi.object({
       warranty: joi.string().trim().allow('').pattern(new RegExp("[a-zA-Z0-9s]+$")).max(50),
     })
   
+    const FormSchema5 = joi.object({
+      text: joi
+        .string()
+        .trim()
+        .pattern(new RegExp("[a-zA-Z0-9s]+$"))
+        .min(10)
+        .max(400),
+      category: joi
+        .array()
+        .items(
+          joi
+            .string()
+            .trim()
+            .min(3)
+            .max(30)
+            .pattern(new RegExp("[a-zA-Z0-9s\u00A0.,:?]+$"))
+        ),
+      productId: joi
+        .array()
+        .items(
+          joi
+            .string()
+            .trim()
+            .min(3)
+            .max(30)
+            .pattern(new RegExp("[a-zA-Z0-9s\u00A0.,:?]+$"))
+        ),
+    });
+    
 export const validateProduct = async (formData) => {
 
   let validatedFields = {};
@@ -143,7 +173,6 @@ export const validateProdAttri = async (formData) => {
     
     return  validatedFields;
   } catch (error) {
-  console.log(error)
     throw error;
   }
 };
@@ -167,4 +196,21 @@ export const validateBranch = async (formData) => {
     }
   };
 
+  export const validatePost = async (formData) => {
+   
+    let validatedFields = {};
+    try {
+      
+        validatedFields = await FormSchema5.validateAsync({
+            text: formData.get("text"),
+            category: createArray(formData, 'category'),
+            productId: createArray(formData, 'productId')
+          });
+
+      return validatedFields;
+    } catch (error) {
+        validatedFields= {};
+      throw error;
+    }
+  };
 

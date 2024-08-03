@@ -3,6 +3,7 @@ import navSliceReducer from "../features/Nav/navSlice";
 import modalSliceReducer from "../features/Modals/modalSlice"
 import drawerSliceReducer from "../features/Drawer/drawerSlice";
 import preferenceSliceReducer from "../features/preference/prefSlice";
+import userProdslice from "../features/userProducts/userProdslice";
 
 export const makeStore = () => {
   return configureStore({
@@ -10,7 +11,8 @@ export const makeStore = () => {
       nav: navSliceReducer,
       modal: modalSliceReducer,
       drawer: drawerSliceReducer,
-      pref: preferenceSliceReducer
+      pref: preferenceSliceReducer,
+      userProd: userProdslice
     },
   });
 };

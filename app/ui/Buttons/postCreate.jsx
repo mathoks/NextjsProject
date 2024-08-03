@@ -4,7 +4,7 @@ import {Fab} from "@mui/material";
 import { CreateOutlined } from '@mui/icons-material';
 import PostForm from '../uiForms/postForm';
 
-export const PostCreate = ({avatar}) => {
+export const PostCreate = ({avatar, userId}) => {
     const [open, setIsOpen] = useState(false)
     const toggleOpen = ()=>{
         setIsOpen(prev=>!prev)
@@ -16,7 +16,7 @@ export const PostCreate = ({avatar}) => {
         <CreateOutlined sx={{color: 'white'}}/>
     </Fab>
     <section>
-        <PostForm isOpen={open} toggle={toggleOpen} height={height} avatar={avatar}/>
+        <PostForm isOpen={open} toggle={toggleOpen} height={height} avatar={avatar} userId={userId}/>
     </section>
   </section>
   )

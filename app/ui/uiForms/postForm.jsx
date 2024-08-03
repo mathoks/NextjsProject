@@ -1,19 +1,70 @@
-import React from 'react'
+'use client'
+import React, { useCallback, useEffect, useRef, useState, memo, useMemo } from 'react'
 import { Box , Drawer, styled, Avatar} from '@mui/material'
-import { Cancel, CancelOutlined, CloseOutlined } from '@mui/icons-material'
+import {  CloseOutlined } from '@mui/icons-material'
+import  { CategoryList, ProductList } from '@/app/lib/utills/categoryList'
+import { useFormState } from 'react-dom'
+import { addPost } from '@/app/actions/users/addPost'
 // import { auth } from '@/auth'
 
 
 
-const PostForm = (props) => {
-    // const session = await auth()
-    const {isOpen, toggle, height, avatar}= props
+const PostForm = function Form(props){
+    const ref = useRef(null)
+    const [data, setdata] = useState([])
+    const [state, dispatch] = useFormState(addPost, {});
+    const {isOpen, toggle, height, avatar, userId}= props
    const MyDrawer = styled(Drawer)(({ theme }) =>{
-   
+   console.log(state)
     return ({
     height: height,
     boxShadow: theme.shadows[0]
    })})
+
+   const handleChange = useCallback((e)=>{
+       const coutt = document.getElementById('pre')
+        console.log(e.type)
+        if(e.type === 'change'){
+        ref.current = e.target.value
+        coutt.innerText = `${ref.current.length}/400`
+        if(ref.current.length >= 400  ){
+            coutt.style.color = 'red'
+            document.getElementById('post').setAttribute('disabled', true)
+        }
+        else if(ref.current.length > 380){
+            coutt.style.color = 'orange'
+        }
+        else if(ref.current.length === 0){
+          coutt.innerHTML = ''
+          document.getElementById('post').toggleAttribute('disabled', true)
+          console.log(document.getElementById('text').focus())
+        }
+        else {
+            coutt.style.color = 'black'
+            document.getElementById('post').toggleAttribute('disabled', false)
+        }
+   } 
+  
+   },[])
+
+  
+ useEffect(()=>{
+  const fetchdata = async()=>{
+    if(userId !== null ){
+    const products = await (await fetch(`http://localhost:3000/api/getProducts/${userId}`)).json()
+    
+    if(Array.isArray(products.product))
+      setdata([...products.product]);
+    }
+    else return
+  }
+
+  fetchdata()
+  
+ },[])
+
+
+const handlePost = ()=> console.log('hh')
 
 //    console.log(session)
   return (
@@ -25,40 +76,40 @@ const PostForm = (props) => {
         elevation={0}
         variant= 'temporary'
       >
-      <Box sx={{height: height-80, bottom: 80, bgcolor: 'transparent'}} className='p-4 space-y-8'>
+      <Box sx={{height: height-50, bottom: 80, bgcolor: 'transparent'}} className='p-4 space-y-8'>
+      <form action={dispatch} className='space-y-4'>
 <div className='flex justify-between items-center'>
+
     <CloseOutlined className='text-slate-900' onClick={toggle}/>
-    <button className='px-4 py-1.5 rounded-full bg-indigo-600 text-white font-semibold'>Post</button>
+    <button id='post' type='submit' disabled  className='px-4 py-1.5 rounded-full bg-indigo-600 text-white font-semibold disabled:bg-indigo-300'>Post</button>
 </div>
-<div className='flex space-x-2 items-start'>
+<div className='flex space-x-1 items-start'>
 <Avatar src={avatar || ''} className=' flex-shrink-0'/>
 
-<div className='flex-grow  px-2'>
-    <form>
-        <textarea type='text' autoFocus = {isOpen} placeholder='Share a nugget on shopping' rows={10} className='w-full' />
-    </form>
-    <div className='space-y-2'>
+<div className='flex-grow  px-1 overflow-x-scroll no_border2'>
+   
+        <textarea name='text'  maxLength={400} minLength={10}  id='text' autoFocus aria-label='text area'  placeholder='Share a nugget on shopping' rows={6} className='w-full outline-none text-base p-2 placeholder:pl-2' onChange={handleChange} />
+    
+    <div className={`space-y-2`}>
         <span className='flex-col'>
-        <p className='font-semibold'>category</p>
-        <span className='flex'>
+        <span className='flex justify-between items-center'>
+        <p className='font-semibold'>Tag category</p>
+        <pre id='pre'  className='text-[12px]'></pre>
+        </span>
+        
+        <CategoryList/>
+        </span>
+        <span className='flex justify-between items-center'>
+          <p className='font-semibold'>Tag  product</p> 
+        </span>
+        <ProductList data ={data}/>
+    </div>
+   
+</div>
 
-        </span>
-        </span>
-        <span>
-          <p className='font-semibold'>products</p> 
-          <span className='flex'>
-            
-        </span> 
-        </span>
-    </div>
-    <div className='flex justify-between items-center text-slate-900 py-2'>
-    <button className='px-4 py-1.5 rounded-full ring-1 font-semibold' >Tag category</button>
-    <button className='px-4 py-1.5 rounded-full ring-1 font-semibold'>Tag product</button>
-    </div>
 </div>
-</div>
+ </form>
       </Box>
-        <button onClick={toggle}>close</button>
       </MyDrawer>
     </div>
   )

@@ -3,9 +3,9 @@ import { PostCreate } from '../ui/Buttons/postCreate'
 import { auth } from '@/auth'
 
 
-const page =async () => {
+const page =async (props) => {
     const session = await auth()
-
+   
   return (
     <div>
       <section>
@@ -14,7 +14,7 @@ const page =async () => {
       <section>
         <p>Post here</p>
       </section>
-      <PostCreate avatar = {session?.user?.image || null}/>
+      <PostCreate avatar = {session?.user?.image || null} userId={session?.user?.id || null}/>
     </div>
   )
 }
