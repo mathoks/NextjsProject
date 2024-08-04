@@ -1,18 +1,18 @@
 import React from 'react'
 import { PostCreate } from '../ui/Buttons/postCreate'
 import { auth } from '@/auth'
+import Post from '../ui/Post'
 
 
 const page =async (props) => {
     const session = await auth()
-   
-  return (
+   return (
     <div>
       <section>
 
       </section>
       <section>
-        <p>Post here</p>
+      <Post/>
       </section>
       <PostCreate avatar = {session?.user?.image || null} userId={session?.user?.id || null}/>
     </div>

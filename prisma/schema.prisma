@@ -21,7 +21,7 @@ model Account {
   scope             String?
   id_token          String? @db.Text
   session_state     String?
-  user User @relation(fields: [id], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [id], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@map("account")
@@ -38,9 +38,9 @@ model Session {
 }
 
 model User {
-  id                 String               @id @default(cuid()) 
-  name               String             @unique
-  email              String              @unique
+  id                 String               @id @default(cuid())
+  name               String               @unique
+  email              String               @unique
   emailVerified      DateTime?            @map("email_verified")
   image              String?
   password           String?
@@ -66,7 +66,7 @@ model User {
 }
 
 model Store {
-  id                 String               @id @default(cuid()) @db.VarChar(30) @unique
+  id                 String               @id @unique @default(cuid()) @db.VarChar(30)
   businessName       String               @map("business_name")
   phone              String?
   shopAddress        String?              @unique @map("shop_address")
@@ -113,16 +113,28 @@ model Product {
   attribute    ProductAttribute?
   wishlist     WishList[]
   comment      ProdReview[]
-  post         Post[]
+  post         PostProduct[]
   branch       ProductBranch[]
 
   @@map("product")
+}
+
+model PostProduct {
+  id        String  @id @default(cuid())
+  postId    String
+  productId String
+  post      Post    @relation(fields: [postId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  // @@unique([postId, categoryId])
+  @@map("postproduct")
 }
 
 enum OPTIONS {
   NEGOTIABLE
   BESTPRICE
 }
+
 model Branch {
   id            String          @id @default(cuid())
   storeId       String          @map("store_id")
@@ -145,7 +157,7 @@ model ProductBranch {
   productId String
   branchId  String
   branch    Branch  @relation(fields: [branchId], references: [id], onDelete: Cascade)
-  product   Product @relation(fields: [productId], references: [id] ,onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   @@unique([productId, branchId])
   @@map("productbranch")
@@ -189,11 +201,11 @@ enum Role {
 }
 
 model ProductAttribute {
-  id        String   @id @default(cuid()) @unique
+  id        String   @id @unique @default(cuid())
   color     String?
   size      String?
-  warranty   String?
-  material    String?
+  warranty  String?
+  material  String?
   weight    Int?
   brand     String?
   createdAt DateTime @default(now())
@@ -236,10 +248,10 @@ enum MessageTypeEnum {
 }
 
 model Ticket {
-  id      String    @id @default(cuid())
-  userId  String    @map("user_Id")
+  id       String    @id @default(cuid())
+  userId   String    @map("user_Id")
   messages Message[]
-  user    User      @relation(fields: [userId], references: [id], map: "ticket_ffk")
+  user     User      @relation(fields: [userId], references: [id], map: "ticket_ffk")
 
   @@map("ticket")
 }
@@ -269,40 +281,41 @@ model Reply {
 }
 
 model Post {
-  id          String       @id @default(cuid())
-  userId      String       @map("user_id")
+  id          String         @id @default(cuid())
+  userId      String         @map("user_id")
   text        String
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
-  author      User         @relation(fields: [userId], references: [id], map: "post_key_ff")  
-  productRef  Product?     @relation(fields: [id], references: [id])
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  author      User           @relation(fields: [userId], references: [id], map: "post_key_ff")
+  products    PostProduct[]
   postComment PostReview[]
-  category    PostCategory
+  categorys   PostCategory[]
+
   @@map("post")
 }
 
 model Category {
-  id String @id @default(cuid())
-  name String
-  post PostCategory
+  id    String         @id @default(cuid())
+  name  String
+  posts PostCategory[]
 }
 
 model PostCategory {
-  id        String  @id @default(cuid())
-  postId String
-  categoryId  String
-  post    Post  @relation(fields: [postId], references: [id])
-  category   Category @relation(fields: [categoryId], references: [id])
+  id         String   @id @default(cuid())
+  postId     String   
+  categoryId String
+  post       Post?     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 
   // @@unique([postId, categoryId])
   @@map("postbranch")
 }
 
 model PostReview {
-  id        String         @id @default(cuid()) 
+  id        String         @id @default(cuid())
   content   String         @map("post_comment")
   createdAt DateTime       @default(now())
-  userId    String?        @map("user_id") @unique
+  userId    String?        @unique @map("user_id")
   updatedAt DateTime       @updatedAt
   user      User?          @relation(fields: [userId], references: [id])
   post      Post           @relation(fields: [id], references: [id], map: "post_ffk_comm")
@@ -312,9 +325,9 @@ model PostReview {
 }
 
 model CommentReply {
-  id        String     @id @default(cuid()) 
+  id        String     @id @default(cuid())
   text      String
-  authorId  String     @map("author_id") @unique
+  authorId  String     @unique @map("author_id")
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
   Comment   PostReview @relation(fields: [id], references: [id])
@@ -325,27 +338,27 @@ model CommentReply {
 }
 
 model storeReview {
-  id            String       @id @default(cuid()) @unique
-  comment       String
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime     @updatedAt
-  review        Int          @default(0)
-  storeOwnerId  String       @map("store_owner_id")
-  userId        String       @map("user_id")
-  commenter     User         @relation(name: "reviewer", fields: [userId], references: [id])
-  store         Store        @relation(fields: [storeOwnerId], references: [id], map: "store_review_ffk")
-  reply         StoreReply[]
+  id           String       @id @unique @default(cuid())
+  comment      String
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  review       Int          @default(0)
+  storeOwnerId String       @map("store_owner_id")
+  userId       String       @map("user_id")
+  commenter    User         @relation(name: "reviewer", fields: [userId], references: [id])
+  store        Store        @relation(fields: [storeOwnerId], references: [id], map: "store_review_ffk")
+  reply        StoreReply[]
 
   @@map("store_review")
 }
 
 model StoreReply {
-  id           String      @id @default(cuid())
-  text         String
-  userId       String      @map("user_id")
-  createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @updatedAt
-  Comment      storeReview @relation(fields: [id], references: [id])
+  id        String      @id @default(cuid())
+  text      String
+  userId    String      @map("user_id")
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  Comment   storeReview @relation(fields: [id], references: [id])
 
   @@map("store_reply")
 }

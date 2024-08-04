@@ -82,7 +82,7 @@ const FormSchema3 = joi.object({
       text: joi
         .string()
         .trim()
-        .pattern(new RegExp("[a-zA-Z0-9s]+$"))
+        .pattern(new RegExp("[a-zA-Z0-9s\u00A0.,:?]+$"))
         .min(10)
         .max(400),
       category: joi
@@ -209,6 +209,7 @@ export const validateBranch = async (formData) => {
 
       return validatedFields;
     } catch (error) {
+      console.log(error)
         validatedFields= {};
       throw error;
     }

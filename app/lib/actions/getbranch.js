@@ -17,3 +17,6 @@ export async function getBranch(id) {
       return( {error:`${error.message}`});
     }
   }
+
+
+  // have you tried purchasing a Blender before, yes there are many things to consider and these include, power rating,  reviews, grinding range , dry blending support and ability to handle veggies. making the right descision during purchase would be beneficial in the long run Our top quality Goody blender checks all the right boxes . find tagged product for more info. happy shopping!

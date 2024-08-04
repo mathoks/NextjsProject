@@ -27,17 +27,17 @@ export const addPost = async function ({}, formData) {
     if (!session.user.id) {
       throw new Error("you are unauthorized please sign in");
     }
-    console.log(formData)
+    
     const {
       text,
       category,
       productId
     } = await validatePost(formData);
 
-    console.log(formData)
+    console.log(text, category, productId)
    
     const response = await fetch(
-      `http://${domain}/api/Dashboard/${session?.user.id}/addproduct`,
+      `http://${domain}/api/Discover/post`,
       {
         method: "POST",
         headers: {
@@ -62,7 +62,7 @@ export const addPost = async function ({}, formData) {
     if (!store) {
       throw new Error("could not create store");
     }
-    revalidateTag('PostList')
+    revalidateTag('post')
     // redirect(`http://${domain}/store/${encodeURIComponent(businessName)}/${encodeURIComponent(id)}`);
 
     return {

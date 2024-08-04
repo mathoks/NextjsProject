@@ -16,7 +16,7 @@ export const createLink = (formData, tag) => {
         links.push(value);
       }
     });
-    if(links.length === 0) return null;
+    if(links.length === 0) return [];
     return links;
   };
 

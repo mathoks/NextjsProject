@@ -13,9 +13,9 @@ const PostForm = function Form(props){
     const ref = useRef(null)
     const [data, setdata] = useState([])
     const [state, dispatch] = useFormState(addPost, {});
-    const {isOpen, toggle, height, avatar, userId}= props
+    const {isOpen, toggle, height, avatar, userId, cat}= props
    const MyDrawer = styled(Drawer)(({ theme }) =>{
-   console.log(state)
+  
     return ({
     height: height,
     boxShadow: theme.shadows[0]
@@ -23,7 +23,7 @@ const PostForm = function Form(props){
 
    const handleChange = useCallback((e)=>{
        const coutt = document.getElementById('pre')
-        console.log(e.type)
+       
         if(e.type === 'change'){
         ref.current = e.target.value
         coutt.innerText = `${ref.current.length}/400`
@@ -37,7 +37,6 @@ const PostForm = function Form(props){
         else if(ref.current.length === 0){
           coutt.innerHTML = ''
           document.getElementById('post').toggleAttribute('disabled', true)
-          console.log(document.getElementById('text').focus())
         }
         else {
             coutt.style.color = 'black'
@@ -48,8 +47,9 @@ const PostForm = function Form(props){
    },[])
 
   
- useEffect(()=>{
+ useEffect(()=>{   
   const fetchdata = async()=>{
+    
     if(userId !== null ){
     const products = await (await fetch(`http://localhost:3000/api/getProducts/${userId}`)).json()
     
@@ -64,7 +64,7 @@ const PostForm = function Form(props){
  },[])
 
 
-const handlePost = ()=> console.log('hh')
+
 
 //    console.log(session)
   return (
@@ -97,7 +97,7 @@ const handlePost = ()=> console.log('hh')
         <pre id='pre'  className='text-[12px]'></pre>
         </span>
         
-        <CategoryList/>
+        <CategoryList cat={cat}/>
         </span>
         <span className='flex justify-between items-center'>
           <p className='font-semibold'>Tag  product</p> 

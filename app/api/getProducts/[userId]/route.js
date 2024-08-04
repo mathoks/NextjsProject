@@ -25,10 +25,10 @@ if (!prisma) {
 export async function GET(req) {
     const storeId = (req.nextUrl.pathname).split('/')[3]
   try {
-    console.log('ggdgd')
+    
     const getProduct = unstable_cache(
       async (storeId) => {
-        console.log('lll')
+      
         const products = await prisma.store.findUnique({
           where: {
             id: storeId,
@@ -65,7 +65,7 @@ export async function GET(req) {
     );
 
     const cachedProducts = await getProduct(storeId);
-    console.log(cachedProducts)
+    
     return NextResponse.json(cachedProducts);
   } catch (error) {
     console.log(error)
