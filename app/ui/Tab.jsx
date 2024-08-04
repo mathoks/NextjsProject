@@ -102,7 +102,7 @@ const Tab = () => {
               /> */}
               <div className={`flex text-sm space-x-1 ring-1 ring-white items-center text-nowrap rounded-full px-1.5 py-0.5  ${index === val? 'text-white  bg-[#6A0DAD] tab_text' : 'text-slate-600 bg-white'}`}>
                 <span>{icon}</span>
-                <span>{val}</span>
+                <span className="text-nowrap">{val}</span>
               </div>
               </Link>
             </ListItem>
