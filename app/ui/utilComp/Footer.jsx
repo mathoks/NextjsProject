@@ -8,7 +8,7 @@ const Footer = () => {
     const session = useSession()
     
   return (
-    <footer className='bg-[#6A0DAD] text-white'>
+    <footer className='bg-[#6A0DAD] text-white '>
         <span className='flex justify-center text-sm  p-2'>
           <span className='flex flex-col items-center'>
           <ArrowUpward/>
@@ -53,6 +53,7 @@ const Footer = () => {
           <p>@ 2022-2024, Mymart.com, Inc</p>
         </div>
       </div>
+      <p>hhh</p>
     </footer>
   )
 }

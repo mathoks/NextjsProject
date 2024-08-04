@@ -25,7 +25,7 @@ const Tab3 = ({ data }) => {
  
   const TabItems = Tank[1].map(( market , i) => {
     
-   return (<li className="text-nowrap ring-1 px-2 py-1 rounded-full" value={market} key={i}>
+   return (<li className="text-nowrap ring-1 px-2 py-1 rounded-full text-sm" value={market} key={i}>
       {market}
     </li>)
 });

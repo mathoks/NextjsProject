@@ -58,11 +58,6 @@ const Router = useRouter()
                             <p className="text-[12px] font-semibold">{price}</p>
                           </span>
         </div>
-
-        {/* <div className='flex font-semibold'>
-            <span></span>
-        </div> */}
-        {/* <div className='w-auto'> */}
             <p className='text-sm line-clamp-3 overflow-ellipsis '>{description}</p>
         {/* </div> */}
         <div className='flex items-center justify-between'>

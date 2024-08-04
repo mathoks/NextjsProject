@@ -14,14 +14,14 @@ export const HeroPage = () => {
 
   return (
     
-      <section className="pt-8">
+      <section className="bg-[#630ba2] pt-32 pb-0 ">
         <div className="flex justify-around items-center">
-        <div className="flex text-white flex-col space-y-4  h-auto pl-6 items-start">
-        <div className="min-w-min">
-            <h2 className="text-2xl  w-2/3 text-left md:text-left font-semibold text_shadow">
+        <div className="flex text-white flex-col space-y-4  h-auto pl-6 items-start flex-grow ">
+        
+            <h2 className="text-2xl   text-left md:text-left font-semibold text_shadow">
               Welcome To Mymart
             </h2>
-          </div>
+        
           <div className="flex flex-col font-bold text_shadow  space-y-4 md:text-left ">
             <h2>Get a Store Today</h2>
             <MainButton />

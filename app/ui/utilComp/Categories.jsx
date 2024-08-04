@@ -7,6 +7,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import { is } from "immutable";
 import React, { useCallback, useState } from "react";
 
 const Categories = () => {
@@ -56,7 +57,7 @@ const Categories = () => {
 
   ];
   
-  const Category = React.memo(function Category(){
+  const Category = React.memo(function Category({cats}){
     return cats.map((cat, index) => (
       <Chip
         label={cat.name}
@@ -71,7 +72,7 @@ const Categories = () => {
         }}
       />
     ));
-  }, [cats]);
+  },(prev, nex)=>is(prev.cats, nex.cats));
   return (
     <Accordion
       elevation={0}
@@ -90,7 +91,7 @@ const Categories = () => {
       </AccordionSummary>
       <AccordionDetails sx={{ "& .MuiAccordionDetails-root": { padding: 0 } }}>
         <Stack direction={"row"} flexWrap={"wrap"} gap={1}>
-          <Category />
+          <Category cats={cats} />
         </Stack>
       </AccordionDetails>
     </Accordion>

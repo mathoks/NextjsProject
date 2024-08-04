@@ -18,7 +18,7 @@ import { usePathname } from "next/navigation";
  const Nav = () => {
   
   const { DrawerHandler, DrawerWrapper } = useHomeDrawer();
-  const path = usePathname()
+  
   const [col, setcol] = useState(false)
   const navState = useAppSelector((state)=>state.nav.navToggle)
   const trigger = useScrollTrigger({
@@ -58,19 +58,7 @@ useEffect(()=>{
     
     <nav aria-label="main" className={`flex bg-[#630ba2] flex-col space-y-0 fixed w-full z-50  ${col ? "shadow-lg" : ""}`} >
     <div className={`sm: flex flex-col space-y-4 opacity-100 md:flex items-center justify-center  ${!navState ? "invisible h-0 opacity-0 transition-opacity" : "p-4"}` }>
-    {/* <section className="flex float-left">
-      <Link href={"#"} className="flex text-left gap-4 items-center text_shadow">
-      <p>Mymart</p> */}
-      {/* <Image
-        src={Logo}
-        alt="logo"
-        width={20}
-        height={20}
-        className="rounded-full"
-      /> */}
-      {/* </Link>
-      </section> */}
-      <section>
+     
       <div className="flex justify-center">
         <div className=" flex items-center justify-between bg-white p-2 shadow_cus rounded-md">
         <SearchOutlined className=" text-[#6A0DAD]" fontSize="medium" sx={{ zIndex: 80}}/>
@@ -78,7 +66,7 @@ useEffect(()=>{
         <LocationOn onClick={DrawerHandler} className="text-[#6A0DAD] sm:pr-2" fontSize="medium" />
       </div>
       </div>
-      </section>
+      
       </div>
       <div className={`flex items-center justify-between pr-4 ${navState ? 'bg-[inherit]' : 'bg-white'} `}>
       <Tab/>

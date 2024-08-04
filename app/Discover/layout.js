@@ -36,10 +36,10 @@ export default async function homeLayout({children}) {
     
       <SessionProvider baseUrl={"/api/auth"}>
       <div className="w-screen space-y-20 pb-20">
-      <header className=" fixed  top-0 z-50 w-screen py-4 bg-indigo-600 ">
-     <span className="">
+      <header className=" fixed  top-0 z-50 w-full py-4 bg-indigo-600 ">
+     
      <h1 className="text-center text-white font-semibold text-lg">Discover </h1>
-     </span>
+    
     
       
       
@@ -48,7 +48,7 @@ export default async function homeLayout({children}) {
      
       
     
-      <main className="grid grid-cols-1 gap-0 md:grid-cols-2 md:gap-2 lg:grid-cols-1  lg:gap-2 lg:px-14  mx-auto p-4">
+      <main className="grid grid-cols-1 gap-0 md:grid-cols-2 md:gap-2 lg:grid-cols-1  lg:gap-2 lg:px-14  mx-auto px-2">
       {children}
      
      
