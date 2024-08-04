@@ -86,7 +86,7 @@ const PostForm = function Form(props){
 <div className='flex space-x-1 items-start'>
 <Avatar src={avatar || ''} className=' flex-shrink-0'/>
 
-<div className='flex-grow  px-1 overflow-x-scroll no_border2'>
+<div className='flex-grow  px-1 overflow-x-scroll no_border2 space-y-4'>
    
         <textarea name='text'  maxLength={400} minLength={10}  id='text' autoFocus aria-label='text area'  placeholder='Share a nugget on shopping' rows={6} className='w-full outline-none text-base p-2 placeholder:pl-2' onChange={handleChange} />
     

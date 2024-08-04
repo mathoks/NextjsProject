@@ -73,5 +73,5 @@ return (
   </Suspense>
 )
 }
-else return <p>loading....</p>
+else return <p></p>
 })
