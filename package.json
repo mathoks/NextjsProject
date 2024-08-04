@@ -26,6 +26,7 @@
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "cookies": "^0.9.1",
+    "immutable": "^4.3.7",
     "joi": "^17.13.1",
     "libphonenumber-js": "^1.11.4",
     "modern-rembg": "^0.1.2",

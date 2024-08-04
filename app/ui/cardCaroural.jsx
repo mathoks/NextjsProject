@@ -13,6 +13,7 @@ import { setNav } from "../lib/features/Nav/navSlice";
 import { MakeEllipsis } from "../lib/utills/Makelipsis";
 import getProductById from "../actions/users/getProductById";
 import { useRouter } from "next/navigation";
+import { is } from "immutable";
 
 register();
 const Showcase = memo(function MappedProde({ info, userInfo }){
@@ -20,7 +21,7 @@ const Showcase = memo(function MappedProde({ info, userInfo }){
   const dispatch = useAppDispatch();
   const router = useRouter();
   
-if(Array.isArray(info) && info.length === 0) return <div>loading...</div>;
+if(Array.isArray(info) && info.length === 0) return <p>loading...</p>;
   return (
     
     <div className="rootswiper  rounded-md  md:w-[18rem]  py-2 shadow-md bg-white ring-1 ring-gray-200" >
@@ -65,16 +66,16 @@ if(Array.isArray(info) && info.length === 0) return <div>loading...</div>;
               >
                 {ids !== info.length - 1 ? (
                   <>
-                  <div className="space-y-1 px-3">
-                    <span className="flex  justify-between items-center ">
+                  
+                    <div className="flex  justify-between items-center px-3">
                       <span className="font-semibold text-sm">{category}</span>
                       <span className="flex justify-end">
                         <BookmarkAddOutlined />
                       </span>
                       
-                    </span>
-                    <hr className=" w-full"/>
                     </div>
+                    <hr className=" w-full mt-1"/>
+                  
                   <div
                     className="flex flex-col  space-y-3 pb-6"
                     onClick={() =>
@@ -110,15 +111,15 @@ if(Array.isArray(info) && info.length === 0) return <div>loading...</div>;
                           </span>
                         </span>
                       </span>
-                      <div className="w-[98%] ">
+                     
                         <MakeEllipsis text={description} size={60} flag={"A"} />
-                      </div>
+                     
                       <div className="flex flex-col space-y-2">
                         <span className="text-sm">{Availability}</span>
                         <span className="flex items-center justify-between ">
                           <span className="flex space-x-1 items-center text-[12px]">
                             <span>{rating}</span>
-                            <span>
+                           
                               {Array.from(Array(5)).map((_, index) => (
                                 <StarRate
                                   key={index}
@@ -126,7 +127,7 @@ if(Array.isArray(info) && info.length === 0) return <div>loading...</div>;
                                   sx={{ color: "#f2c464" }}
                                 />
                               ))}
-                            </span>
+                           
                             <span className="text-[#005B9A]">1123</span>
                           </span>
                         </span>
@@ -147,9 +148,9 @@ if(Array.isArray(info) && info.length === 0) return <div>loading...</div>;
                       className="flex space-x-1 text-[#005B9A] text-sm justify-center items-center mx-auto"
                     >
                       <span className="text-base">See all products</span>
-                      <span className="text-sm">
+                    
                         <ArrowForward fontSize="inherit" />
-                      </span>
+                      
                       
                     </div>
                     
@@ -162,6 +163,6 @@ if(Array.isArray(info) && info.length === 0) return <div>loading...</div>;
       </swiper-container>
     </div>
   );
-});
+}, (prev, next)=>is(prev.info, next.info));
 
 export default Showcase;

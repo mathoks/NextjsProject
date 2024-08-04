@@ -35,22 +35,22 @@ const Usercard = ({id, businessName, about, email, bizLogo, shopAddress, product
    
     
       <section className="flex space-x-4 items-start " >
-        <div className="ring-1 rounded-full ring-gray-400 ">
-          <Avatar {...stringAvatar(businessName, bizLogo)} alt="userImg"/>
-        </div>
+        {/* <div className=" "> */}
+          <Avatar className="ring-1 rounded-full ring-gray-400" {...stringAvatar(businessName, bizLogo)} alt="userImg"/>
+        {/* </div> */}
         <div className="flex flex-col space-y-2  w-[16.4rem] flex-grow">
-        <span className="font-semibold">
+        <p className="font-semibold first-letter:capitalize">
             {businessName }
-        </span>
-          <span className="flex gap-2  items-start">
+        </p>
+          <div className="flex gap-2  items-start">
             <span className="pt-[2.5px]">
               <LocationOnOutlined sx={{fontSize: "18px"}}/>
             </span>
             <span className=" text-sm lg:text-base leading-5  first-letter:capitalize">
               <span >{shopAddress }</span>
             </span>
-          </span>
-          <span className="flex gap-2 justify-start items-start">
+          </div>
+          <div className="flex gap-2 justify-start items-start">
             <span className="pt-[2.5px]">
               <StorefrontOutlined sx={{fontSize: "18px"}} />
             </span>
@@ -62,7 +62,7 @@ const Usercard = ({id, businessName, about, email, bizLogo, shopAddress, product
                 userId={id}
               />
             </span>
-          </span>
+          </div>
           { product.length > 0 ?
       (<section className="flex flex-col rounded-md ">
         
@@ -80,7 +80,7 @@ const Usercard = ({id, businessName, about, email, bizLogo, shopAddress, product
       </section>
    
       <section className="flex flex-row justify-between items-center w-[90%] ">
-      <span className=" first-letter:capitalize flex gap-1  justify-start items-center text-[12px] pt-2">
+      <div className=" first-letter:capitalize flex gap-1  justify-start items-center text-[12px] pt-2">
             <span>{ratings || 4.5}
             </span>
             <div suppressHydrationWarning={true}>
@@ -94,7 +94,7 @@ const Usercard = ({id, businessName, about, email, bizLogo, shopAddress, product
                     ))}
             </div>
             <span>{"200"}</span>
-          </span>
+          </div>
       <Link href={`/store/${encodeURIComponent(businessName)}/${encodeURIComponent(id)}`} className="text-sm  rounded-full  px-2.5 py-1 mt-2 text-[#005B9A] ">Visit the Store</Link>
       
       </section>  

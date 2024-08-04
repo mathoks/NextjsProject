@@ -1,12 +1,13 @@
 'use client'
 import { BookmarkAddOutlined, StarRateOutlined } from '@mui/icons-material'
+import { is } from 'immutable'
 import  { useRouter } from 'next/navigation'
-import React, { useRef } from 'react'
+import React, { memo, useRef } from 'react'
 import {register} from 'swiper/element-bundle'
 
 register()
 
-const ProductCard = ({storeId, info = []}) => {
+const ProductCard = memo(function MappUI({storeId, info = []}){
     const swiperRef = useRef()
 const Router = useRouter()
   return (
@@ -51,19 +52,19 @@ const Router = useRouter()
         <div className='block space-y-2 p-2 '>
        
         <div className='flex justify-between items-center font-semibold'>
-            <span className='line-clamp-2 overflow-ellipsis font-semibold'>{name}</span>
+            <p className='line-clamp-2 overflow-ellipsis font-semibold'>{name}</p>
             <span className="flex justify-start items-center space-x-1">
                             <span className="text-[12px]">&#x20A6;</span>
                             <p className="text-[12px] font-semibold">{price}</p>
                           </span>
         </div>
 
-        <div className='flex font-semibold'>
+        {/* <div className='flex font-semibold'>
             <span></span>
-        </div>
-        <div className='w-auto'>
-            <span className='text-sm line-clamp-3 overflow-ellipsis w'>{description}</span>
-        </div>
+        </div> */}
+        {/* <div className='w-auto'> */}
+            <p className='text-sm line-clamp-3 overflow-ellipsis '>{description}</p>
+        {/* </div> */}
         <div className='flex items-center justify-between'>
         <span className='flex space-x-1 items-center'>
         <span><StarRateOutlined fontSize='inherit'/></span>
@@ -78,6 +79,6 @@ const Router = useRouter()
       })
     // </div>
   )
-}
+},(prev, next)=>is(prev.info, next.info))
 
 export default ProductCard

@@ -35,11 +35,10 @@ const cats = [
 import React, { memo, Suspense, useEffect, useState } from 'react'
 import {CircularProgress} from '@mui/material'
 import { getCategory } from '../actions/getCategory';
+import { is } from 'immutable';
 
 
 export const CategoryList = memo( function MappedProd({cat}){
-   
-   
     if(cat.length > 0){
     const List = cat.map(({name, id}, idx)=> 
   <li className='ring-1 rounded-full px-2.5 py-1 text-nowrap shadow text-slate-900  text-sm bg-slate-200' key={idx}>
@@ -54,7 +53,7 @@ export const CategoryList = memo( function MappedProd({cat}){
   )
 }
 else return <p>cant load data</p>
-}, [])
+}, (prevProps, nextProps)=> is(prevProps.cat, nextProps.cat) )
 
 export const ProductList = memo(function MappedProd({data}){
 if(data.length > 0){
@@ -74,4 +73,4 @@ return (
 )
 }
 else return <p></p>
-})
+}, (prevProps, nextProps)=> is(prevProps.data, nextProps.data) )

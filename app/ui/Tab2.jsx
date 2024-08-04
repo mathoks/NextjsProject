@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { useScrollTrigger } from "@mui/material";
 
 const Tab2 = ({ params }) => {
-  const path = usePathname();
+  
 
   const [visi, setvisi] = useState(true);
   const [active, setactive] = useState([false, false, false]);

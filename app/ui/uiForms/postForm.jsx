@@ -5,11 +5,12 @@ import {  CloseOutlined } from '@mui/icons-material'
 import  { CategoryList, ProductList } from '@/app/lib/utills/categoryList'
 import { useFormState } from 'react-dom'
 import { addPost } from '@/app/actions/users/addPost'
+import { is } from 'immutable'
 // import { auth } from '@/auth'
 
 
 
-const PostForm = function Form(props){
+const PostForm = memo(function Form(props){
     const ref = useRef(null)
     const [data, setdata] = useState([])
     const [state, dispatch] = useFormState(addPost, {});
@@ -113,6 +114,6 @@ const PostForm = function Form(props){
       </MyDrawer>
     </div>
   )
-}
+}, (prev, next)=> is(prev, next))
 
 export default PostForm

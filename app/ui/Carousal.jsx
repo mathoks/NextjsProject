@@ -1,9 +1,10 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import ChevronLeft from '@mui/icons-material/ChevronLeft';
 import ChevronRight from '@mui/icons-material/ChevronRight';
 import Image from 'next/image';
 import Link from 'next/link';
+import { is } from 'immutable';
 
 
 /**
@@ -15,7 +16,7 @@ import Link from 'next/link';
  * @param {number} props.autoInterval - Auto slide interval.
  * @returns {jsx}
 */
-const Carousel = ({ slides = [], autoSlide = false, autoInterval = 3000 }) => {
+const Carousel = memo(function Mapped({ slides = [], autoSlide = false, autoInterval = 3000 }){
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideCount = slides.length; // Pre-calculate slide count for efficiency
 
@@ -95,6 +96,6 @@ const Carousel = ({ slides = [], autoSlide = false, autoInterval = 3000 }) => {
       </div> */}
     </div>
   );
-};
+}, (prev, next)=>is(prev.slides, next.slides));
 
-export default Carousel;
+export default Carousel ;
