@@ -45,11 +45,11 @@ export const CategoryList = memo( function MappedProd({cat}){
        <input value={id} name='category' type='checkbox' className=''/> {name}
     </li>)
   return (
-    <div className='overflow-x-scroll'>
-      <ul className='flex space-x-2 p-2'>
+    
+      <ul className='flex space-x-2 p-2 overflow-x-scroll'>
         {List}
       </ul>
-    </div>
+   
   )
 }
 else return <p>cant load data</p>
@@ -64,11 +64,11 @@ if(data.length > 0){
 
 return (
   <Suspense fallback= {<CircularProgress size={20}/>}>
-  <div className='overflow-x-scroll'>
-    <ul className='flex space-x-2 p-2'>
+  
+    <ul className='flex space-x-2 p-2 overflow-x-scroll'>
       {List}
     </ul>
-  </div>
+  
   </Suspense>
 )
 }

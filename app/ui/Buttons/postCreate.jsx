@@ -35,8 +35,9 @@ export const PostCreate = memo(function Memm({ avatar, userId }){
   return (
     <>
       <Fab
-        sx={{ bgcolor: "indigo", position: "fixed", bottom: 100, right: "4px" }}
+        sx={{ bgcolor:'indigo', position: "fixed", bottom: 100, right: "4px" }}
         onClick={toggleOpen}
+        
       >
         <CreateOutlined sx={{ color: "white" }} />
       </Fab>

@@ -2,12 +2,13 @@ import React from "react";
 import { Avatar } from "@mui/material";
 import { getPost } from "../lib/actions/getPosts";
 import { TimeDifference } from "../lib/utills/Timestamp";
-import { LinkOutlined, TagOutlined } from "@mui/icons-material";
+import { EditNoteOutlined, LinkOutlined, TagOutlined } from "@mui/icons-material";
 import Link from "next/link";
+import { auth } from "@/auth";
 
 const Post = async () => {
   const data = await getPost();
-
+  const session = await auth()
   if (!Array.isArray(data) || data.length === 0) return <p>no post yet</p>;
   const PostList = () =>
     data?.map(
@@ -37,13 +38,13 @@ const Post = async () => {
                 <>
                   <span className="flex">
                     {" "}
-                    <TagOutlined /> <p>tagged categories </p>
+                    <TagOutlined fontSize="small" /> <p>tagged categories </p>
                   </span>
                   <ul className="overflow-x-scroll flex space-x-2 py-2 w-[70vw] pl-2">
                     {categorys.map(({ category: { name } }, ids) => (
                       <li
                         key={ids}
-                        className="ring-1 rounded-full px-2.5 py-0.5 shadow bg-white text-nowrap  text-blue-500 text-center text-sm"
+                        className="ring-1 rounded-full px-2.5 py-0.5 shadow bg-white text-nowrap w-fit text-blue-500 text-center text-sm"
                       >
                         {name}
                       </li>
@@ -61,17 +62,19 @@ const Post = async () => {
               <>
                 {Array.isArray(products) && products.length > 0 ? (
                   <>
-                    <span className="flex pl-2">
+                    <span className="flex pl-2 justify-between">
                       {" "}
-                      <LinkOutlined className="text-blue-400" />{" "}
-                      <p>tagged products </p>
+                     <div className="flex space-x-1">
+                     <LinkOutlined className="text-blue-400" />{" "}
+                     <p>tagged products </p>
+                     </div>      
                     </span>
-                    <ul className="overflow-x-scroll flex space-x-2 py-2 w-[70vw] pl-2">
+                    <ul className="overflow-x-scroll flex space-x-2 py-2 w-[70vw] pl-2 text-nowrap ">
                       {products?.map(
                         ({ product: { name, storeId }, productId }, ids) => (
                           <Link
                             key={ids}
-                            className="ring-1 rounded-full px-2.5 py-0.5 shadow bg-white  text-blue-500 text-center text-sm"
+                            className="ring-1 rounded-full px-2.5 py-0.5 shadow bg-white w-fit text-blue-500 text-center text-sm"
                             href={`/store/${storeId}/product/${productId}`}
                           >
                             {name}
@@ -84,13 +87,21 @@ const Post = async () => {
                   ""
                 )}
               </>
-              <TimeDifference timestamp={createdAt} />
+              <div className="flex justify-between pl-2">
+             {session?.user?.id === ids ? (<button className="flex space-x-1">
+                     <EditNoteOutlined className="text-blue-400" />{" "}
+                     <p>Edit </p>
+                     </button>) : null }
+                     <TimeDifference timestamp={createdAt} />
+              </div>
+             
             </div>
           </section>
         );
       }
     );
   return <PostList />;
+  
 };
 
 export default Post;

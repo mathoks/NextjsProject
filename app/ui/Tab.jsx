@@ -9,7 +9,7 @@ import {
   TvOutlined,
 } from "@mui/icons-material";
 import React from "react";
-import { ListItem, Chip, Paper } from "@mui/material";
+import { ListItem, Chip, Paper, } from "@mui/material";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 
@@ -60,26 +60,27 @@ const Tab = () => {
   ];
 
   return (
-    <section
-      className={`flex items-start justify-between  overflow-x-scroll gap-8 z-50   pb-0 w-[90%] lg:w-[98%]`}
-    >
-      <Paper
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          flexWrap: "nowrap",
-          listStyle: "none", 
-          bgcolor: 'inherit'
-        }}
-        id="tab"
-        component="ul"
-        //onClick={handleChange}
-        elevation={4}
-      >
+    // <section
+    //   className={`flex items-start justify-between  overflow-x-scroll gap-8 z-50   pb-0 w-[90%] lg:w-[98%]`}
+    // >
+      // {/* <Paper
+      //   sx={{
+      //     display: "flex",
+      //     justifyContent: "center",
+      //     flexWrap: "nowrap",
+      //     listStyle: "none", 
+      //     bgcolor: 'inherit'
+      //   }}
+      //   id="tab"
+      //   component="ul"
+      //   //onClick={handleChange}
+      //   elevation={4}
+      // > */}
+      <ul className="flex space-x-4 overflow-x-scroll  z-50   p-2  w-[90%] lg:w-[98%]">
         {Tabs.map(({val, path, id, icon}) => {
           return (
-            <ListItem key={id} >
-              <Link href={path} className={`flex  min-w-fit text-sm space-x-2 ring-1 ring-white items-center text-nowrap rounded-full px-1.5 py-0.5  ${index === val? 'text-white  bg-[#6A0DAD] tab_text' : 'text-slate-600 bg-white'}`}> 
+            <li key={id} className={` min-w-fit text-sm  ring-1 ring-white items-center text-nowrap rounded-full px-1.5 py-0.5  ${index === val? 'text-white  bg-[#6A0DAD] tab_text' : 'text-slate-600 bg-white'}`}>
+              <Link href={path} className={`flex  min-w-fit space-x-2  items-center`}> 
               {/* <Chip
                 icon={icon}
                 label={val }
@@ -105,11 +106,12 @@ const Tab = () => {
                 <span className="text-nowrap shrink-0">{val}</span>
               {/* </div> */}
               </Link>
-            </ListItem>
+            </li>
           );
         })}
-      </Paper>
-    </section>
+        </ul>
+      // {/* </Paper> */}
+    // </section>
   );
 };
 

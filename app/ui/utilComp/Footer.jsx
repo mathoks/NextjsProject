@@ -53,7 +53,6 @@ const Footer = () => {
           <p>@ 2022-2024, Mymart.com, Inc</p>
         </div>
       </div>
-      <p>hhh</p>
     </footer>
   )
 }
