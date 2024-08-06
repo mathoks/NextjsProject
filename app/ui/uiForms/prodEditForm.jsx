@@ -6,7 +6,6 @@ import { useFormState } from 'react-dom'
 import ImageEdit from '../utilComp/imageEdit'
 import { Availability, LinkToBranch, PricePolicy, ProductCart } from './productCart'
 import { getBranch } from '@/app/lib/actions/getbranch'
-import { useSession } from 'next-auth/react'
 import toast from 'react-hot-toast'
 
 
@@ -84,8 +83,8 @@ const ProdEditForm = ({data, ids}) => {
       }
       
     return (
-    <div className='flex flex-col   text-base '>
-      <form className='mx-auto space-y-4 w-full md:flex md:space-x-4' id='prod_edit_form' action={dispatch}>
+   
+      <form className='mx-auto space-y-4 w-full md:flex md:space-x-4 text-base ' id='prod_edit_form' action={dispatch}>
      <ImageEdit data={prodImage} trigger = {toggleActive} hide={loading}/>
       
       <section className='mx-auto space-y-4 p-2'>
@@ -125,7 +124,7 @@ const ProdEditForm = ({data, ids}) => {
         </section>
         
       </form>
-    </div>
+  
   )
 }
 

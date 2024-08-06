@@ -14,12 +14,7 @@ const page = async({params}) => {
  
     return (
     <div className='mt-12 flex flex-col  p-4  text-base w-full space-y-2 md:flex'>
-    <div>
-    {/* <h1 className='md:text-center font-semibold text-xl px-4 text-center'>Product Details</h1> */}
     <ProdEditForm data = {product.data} ids = {session?.user?.id || null}/>
-    </div>
-    
-    <div>
     <div className='mx-auto md:max-w-80'>
     <Accordion sx={{border: "none", boxShadow: 'none', }} >
         <AccordionSummary
@@ -36,7 +31,6 @@ const page = async({params}) => {
     </Accordion>
     </div>
     </div>
-      </div>
   )
 }
 

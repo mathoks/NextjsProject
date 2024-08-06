@@ -35,8 +35,8 @@ export default async function homeLayout({children}) {
    
     
       <SessionProvider baseUrl={"/api/auth"}>
-      <div className="w-screen space-y-16 pb-20 bg-blue-50">
-      <header className=" fixed  top-0 z-50 w-full py-4 bg-indigo-600 ">
+      <div className="w-screen space-y-16 pb-20 bg-[#f9f7f9]">
+      <header className=" fixed  top-0 z-50 w-full py-4 bg-[#630ba2]">
      
      <h1 className="text-center text-white font-semibold text-lg">Discover </h1>
     

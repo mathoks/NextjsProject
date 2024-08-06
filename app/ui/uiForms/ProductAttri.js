@@ -64,7 +64,7 @@ const ProductAttri = ({data}) => {
 
   return (
     <div className='flex flex-col space-y-2 bg-white '>
-     <section>
+     
       <span id="customer-error"  aria-live="polite" className=" mx-auto text-center" aria-atomic="true" >
         {state?.message  &&
             <p className={`text-sm ${state.success ? 'text-green-400' :  'text-red-500'}`}>
@@ -72,7 +72,7 @@ const ProductAttri = ({data}) => {
             </p>
           }
     </span>
-    </section>
+    
       <form action={dispatch} id="prod_A_form" className='flex flex-col space-y-4 md:mx-auto'>
       <section className='flex flex-col space-y-1 no_border'>
       <label htmlFor='brand' className='font-semibold'>Brand</label>
