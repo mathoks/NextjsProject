@@ -28,17 +28,19 @@ export default async function homeLayout({ children, tab, arrivals, ...rest }) {
 
       <HeroPage />
 
-      <main className="grid grid-cols-1 gap-0 md:grid-cols-2 md:gap-2 lg:grid-cols-1  lg:gap-2 lg:px-14  mx-auto">
-        <section className="pb-1  space-y-1">
+      {/* <main className="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-2 lg:grid-cols-1  lg:gap-2 lg:px-14  mx-auto px-4"> */}
+        <section className="pb-1 pt-4 space-y-1 px-4">
           {tab}
 
           {arrivals}
         </section>
 
+       
+        {/* </main> */}
+        <section className="px-4">
         <Tab3 data={null} />
-
-        <section className=" py-2">{children}</section>
-      </main>
+        {children}
+        </section>
 
       <Footer />
     </SessionProvider>

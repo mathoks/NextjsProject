@@ -57,7 +57,7 @@ const MainButton = () => {
   
   return (
     <button
-      className="p-2 rounded bg-[#FF4500] text-sm text_shadow"
+      className="px-6 py-[10px] rounded-full bg-[#FF4500] text-sm text_shadow"
       onClick={handleCreateStore}
       title="hero"
       disabled= {session?.status === 'loading'}

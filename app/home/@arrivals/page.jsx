@@ -4,10 +4,10 @@ import React from 'react'
 
 const defaultP = () => {
   return (
-    <div>
-    <div className="p-4 pb-0 font-semibold text-base"><Link href={'/home/Arrivals'}>New Arrivals</Link></div>
+    <>
+    <Link className='py-4 pb-0 font-semibold text-base' href={'/home/Arrivals'}>New Arrivals</Link>
       <Ads/>
-    </div>
+    </>
   )
 }
 

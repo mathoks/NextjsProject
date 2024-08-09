@@ -14,8 +14,8 @@ export const HeroPage = () => {
 
   return (
     
-      <section className="bg-[#630ba2] pt-32 pb-0 ">
-        <div className="flex justify-around items-center">
+      <section className="bg-[#630ba2] pt-32">
+        <div className="flex space-x-6 items-center">
         <div className="flex text-white flex-col space-y-4  h-auto pl-6 items-start flex-grow ">
         
             <h2 className="text-2xl   text-left md:text-left font-semibold text_shadow">

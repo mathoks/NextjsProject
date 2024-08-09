@@ -7,7 +7,7 @@ import Logo2 from '@/app/assets/photo6.jpeg'
 const Ads = () => {
     
   return (
-    <div className="flex overflow-x-scroll  p-4 space-x-4 pb-5 h-[16.5rem] mx-auto w-screen">
+    <div className="flex overflow-x-scroll  py-4 space-x-4 pb-5 h-[16.5rem] mx-auto">
     <div className='w-[180px] relative flex flex-col rounded shadow-md'>
     <Image
               src={Logo2}

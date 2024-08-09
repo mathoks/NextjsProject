@@ -38,10 +38,8 @@ const Page = async({params}) => {
   
   if(!product.data) return <div>Product not found</div>
   return (
-    <div className=" bg-white flex flex-col ">
-      <div className="">
+    <>  
         <ProTab data={product.data || {}}/>
-      </div>
       <div className=" bg-white flex flex-col space-y-4 mt-[4rem]">
       <div id="Overview" className="view space-y-2"> 
         <ProductPage1 data = { product.data ||  {}} />
@@ -59,7 +57,8 @@ const Page = async({params}) => {
       </div>
      
       <div id='ProductReviews' className="view">
-      <div className="flex justify-between items-center"><h1 className='text-lg font-semibold px-4'>Product Reviews</h1>
+      <div className="flex justify-between items-center">
+      <h1 className='text-lg font-semibold px-4'>Product Reviews</h1>
       <button className="text-blue-500 px-4 py-2 ">write a review</button>
       </div>
         
@@ -68,7 +67,7 @@ const Page = async({params}) => {
       </div>
       
       <div id='ProductRecommended' className="view py-8">
-      <div className="flex justify-between items-center"><h1 className='text-lg font-semibold px-4'>Similar Products</h1></div>
+      <h1 className='text-lg font-semibold px-4'>Similar Products</h1>
      
         <Page4/>
       </div>
@@ -77,7 +76,7 @@ const Page = async({params}) => {
       <div className="min-h-[5rem]">
 
       </div>
-    </div>
+    </>
   );
 };
 

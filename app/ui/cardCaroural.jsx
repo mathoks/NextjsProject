@@ -24,14 +24,16 @@ const Showcase = memo(function MappedProde({ info, userInfo }){
 if(Array.isArray(info) && info.length === 0) return <p>loading...</p>;
   return (
     
-    <div className="rootswiper  rounded-md  md:w-[18rem]  py-2 shadow-md bg-white ring-1 ring-gray-200" >
+    <div className="rootswiper xs:w-[20rem]   min-w-[22rem] max-w-[24rem] pb-8  mx-auto " >
       <swiper-container
         ref={swiperDiv}
-        slides-per-view="1"
+        slides-per-view="2"
       //  navigation="true"
         pagination="true"
-        // pagination-type="fraction"
-        space-between="15"
+        pagination-type="fraction"
+        speed="500" 
+        css-mode="true"
+        space-between="10"
         auto-play={{
           delay: 5000,
           disableOnInteraction: true,
@@ -65,7 +67,7 @@ if(Array.isArray(info) && info.length === 0) return <p>loading...</p>;
                 }}
               >
                 {ids !== info.length - 1 ? (
-                  <>
+                  <div className="ring-1 rounded-md p-1 ">
                   
                     <div className="flex  justify-between items-center px-3">
                       <span className="font-semibold text-sm">{category}</span>
@@ -77,7 +79,7 @@ if(Array.isArray(info) && info.length === 0) return <p>loading...</p>;
                     <hr className=" w-full mt-1"/>
                   
                   <div
-                    className="flex flex-col  space-y-3 pb-6"
+                    className="flex flex-col  space-y-3 pb-6 "
                     onClick={() =>
                       router.push(
                         `/store/${encodeURIComponent(
@@ -95,7 +97,7 @@ if(Array.isArray(info) && info.length === 0) return <p>loading...</p>;
                         width={200}
                         height={120}
                         loading="lazy"
-                        className="rounded-b-lg  h-[10rem] w-[14.5rem]"
+                        className="rounded-b-lg "
                       />
                     </div>
                     <div className=" flex flex-col space-y-3 px-2">
@@ -135,7 +137,7 @@ if(Array.isArray(info) && info.length === 0) return <p>loading...</p>;
                     </div>
                     
                   </div>
-                  </>
+                  </div>
                 ) : (
                   <div className="flex justify-center  mt-[9rem]">
                     <div

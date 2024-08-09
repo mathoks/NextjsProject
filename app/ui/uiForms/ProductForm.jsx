@@ -11,6 +11,7 @@ import toast from 'react-hot-toast'
 
 
 
+
 const ProductForm = ({data}) => {
     const initialState = { message: null, errors: {}, success: null, store: null };
     const [state, dispatch] = useFormState(addProduct, initialState);
@@ -121,6 +122,8 @@ const ProductForm = ({data}) => {
         </section>
         <button type='submit'  className='rounded-md bg-[#6A0DAD] py-2.5  text-white'>Submit</button>
       </form>
+      
+
     </div>
   )
 }

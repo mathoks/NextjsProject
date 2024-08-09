@@ -64,7 +64,7 @@ const Tab = () => {
   ];
 
   return (
-    <ul className="flex space-x-4 overflow-x-scroll  z-50   p-2  w-[90%] lg:w-[98%]">
+    <ul className="flex space-x-4 overflow-x-scroll  z-50   p-2 px-6 w-[90%] lg:w-[98%]">
       {Tabs.map(({ val, path, id, icon }) => {
         return (
           <li

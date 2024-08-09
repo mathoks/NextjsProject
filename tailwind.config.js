@@ -12,7 +12,8 @@ export const theme = {
       "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
     },
     screens : {
-      'mmd' : '450px'
+      'mmd' : '450px',
+      'xs': '360px'
     }, 
     leading : {
       'extra-tight' : '0.6rem'

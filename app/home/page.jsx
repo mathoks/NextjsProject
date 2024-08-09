@@ -22,7 +22,7 @@ export default async function page({searchParams}) {
 
       <section className="flex min-h-screen  flex-col mx-auto space-y-1">
      
-        <p className="text-gray-800 font-semibold text-base p-4">Dealers Reel</p>
+        <p className="text-gray-800 font-semibold text-base py-4">Dealers Reel</p>
      
        
            <Products data = {stores}/>

@@ -3,15 +3,13 @@ import React from "react";
 import { locations } from "../lib/utills/allstates";
 import { sortPrefernces } from "../lib/utills/productSort";
 
-const Tab3 = ({ data }) => {
+const Tab3 = () => {
   const preferedMarkets = cookies().get("preMarkets");
   const preferedCountry = cookies().get("country");
    const ArrayMart = preferedMarkets !==  undefined ? JSON.parse(preferedMarkets.value) : [];
    console.log(ArrayMart, preferedCountry)
   if (ArrayMart.length === 0) 
-    return <div className="p-4">
-        <p>Market details not provided</p>
-    </div>;
+    return <p className="py-4 text-slate-950">Market details not provided</p>;
   const MatchedCountry = locations.find(
     ({country}) => country.toLowerCase() === preferedCountry.value.toLowerCase()
   );
@@ -31,10 +29,10 @@ const Tab3 = ({ data }) => {
 });
   return (
     
-    <div className="w-[99vw] overflow-scroll">
+   
     
-      <ul className="w-[98vw] overflow-x-scroll flex space-x-4 items-center p-2 ">{TabItems}</ul>
-    </div>
+      <ul className="w-[98vw] overflow-x-scroll flex space-x-4 items-center py-2 ">{TabItems}</ul>
+
   );
 };
 
