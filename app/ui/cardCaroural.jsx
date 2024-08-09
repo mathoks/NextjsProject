@@ -24,7 +24,7 @@ const Showcase = memo(function MappedProde({ info, userInfo }){
 if(Array.isArray(info) && info.length === 0) return <p>loading...</p>;
   return (
     
-    <div className="rootswiper xs:w-[20rem]   min-w-[22rem] max-w-[24rem] pb-8  mx-auto " >
+    <div className="rootswiper xs:w-[20rem]   min-w-[22rem] max-w-[24rem] pb-4  mx-auto " >
       <swiper-container
         ref={swiperDiv}
         slides-per-view="2"
@@ -33,7 +33,7 @@ if(Array.isArray(info) && info.length === 0) return <p>loading...</p>;
         pagination-type="fraction"
         speed="500" 
         css-mode="true"
-        space-between="10"
+        space-between="2"
         auto-play={{
           delay: 5000,
           disableOnInteraction: true,
@@ -52,7 +52,7 @@ if(Array.isArray(info) && info.length === 0) return <p>loading...</p>;
                 category,
                 rating,
                 name,
-                Availability,
+                availability,
               },
               ids
             ) => (
@@ -67,19 +67,19 @@ if(Array.isArray(info) && info.length === 0) return <p>loading...</p>;
                 }}
               >
                 {ids !== info.length - 1 ? (
-                  <div className="ring-1 rounded-md p-1 ">
+                  <div className=" shadow-md p-1 rounded-md bg-white">
                   
-                    <div className="flex  justify-between items-center px-3">
+                    <div className="flex  justify-between items-center px-2">
                       <span className="font-semibold text-sm">{category}</span>
-                      <span className="flex justify-end">
-                        <BookmarkAddOutlined />
-                      </span>
+                      
+                        <BookmarkAddOutlined fontSize="small" />
+                      
                       
                     </div>
                     <hr className=" w-full mt-1"/>
                   
                   <div
-                    className="flex flex-col  space-y-3 pb-6 "
+                    className="space-y-3 pb-6 "
                     onClick={() =>
                       router.push(
                         `/store/${encodeURIComponent(
@@ -89,7 +89,7 @@ if(Array.isArray(info) && info.length === 0) return <p>loading...</p>;
                     }
                   >
                    
-                    <div className="flex mx-auto  rounded-md">
+                    <div className="flex mx-auto ">
                       <img
                         src= {prodImage?.length > 0 ? prodImage[1].image : "" }
                         // sizes="50vw"
@@ -100,7 +100,7 @@ if(Array.isArray(info) && info.length === 0) return <p>loading...</p>;
                         className="rounded-b-lg "
                       />
                     </div>
-                    <div className=" flex flex-col space-y-3 px-2">
+                    <div className=" flex flex-col space-y-1 px-2">
                       <span className="flex justify-between ">
                         <span className=" w-[95%] overflow-ellipsis font-semibold text-sm line-clamp-2 ">
                           {name}
@@ -113,11 +113,10 @@ if(Array.isArray(info) && info.length === 0) return <p>loading...</p>;
                           </span>
                         </span>
                       </span>
-                     
+                      <span className="text-[12px]">{availability.replace(/_/g, ' ')}</span>
                         <MakeEllipsis text={description} size={60} flag={"A"} />
                      
-                      <div className="flex flex-col space-y-2">
-                        <span className="text-sm">{Availability}</span>
+                      <div className="flex flex-col space-y-2 pt-2">
                         <span className="flex items-center justify-between ">
                           <span className="flex space-x-1 items-center text-[12px]">
                             <span>{rating}</span>

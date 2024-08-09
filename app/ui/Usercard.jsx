@@ -39,8 +39,8 @@ const Usercard = ({
 
   // /pages/${encodeURIComponent(props?.id || 4)
   return (
-    <div className="flex bg-white  flex-col border-b-[0.2px]  border-gray-300 space-y-1 text-gray-900  py-3  text-left   leading-[0.5rem] text-sm ">
-      <section className="flex space-x-1">
+    <div className="flex  flex-col border-b-[0.2px]  border-gray-300 space-y-1 text-gray-900  py-3  text-left   leading-[0.5rem] text-sm ">
+      <section className="flex space-x-2">
         {/* <div className=" "> */}
         <Avatar
           className="ring-1 rounded-full ring-gray-400"
@@ -87,7 +87,7 @@ const Usercard = ({
             />
           ) : null}
           
-      <section className="flex flex-row space-x-24 items-center ">
+      <section className="flex flex-row justify-between items-center ">
         <div className=" first-letter:capitalize flex gap-1  justify-start items-center text-[12px] pt-2">
           <span>{ratings || 4.5}</span>
           <div suppressHydrationWarning={true}>
