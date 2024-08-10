@@ -153,6 +153,18 @@ swiper-container::part(pagination) {
   text-align: center;
   opacity: 0.7;
 }
+
+@media (max-width: 768px) {
+  .rootswiper{
+    width: calc(100vw - 20px);
+  }
+}
+@media (min-width: 768px) {
+  .rootswiper{
+    width: calc(30vw - 20px);
+  }
+}
+
 .rootswiper swiper-container {
   /* width: 21rem; */
   /* width: 70vw; */

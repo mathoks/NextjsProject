@@ -18,7 +18,7 @@ const Products = memo(function MappedP({ data }){
    
     
       <Suspense  fallback={<ProdSkeleton/>}>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  md:gap-8  last:pb-0 lg:gap-8 md:px-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto md:gap-8  last:pb-0 lg:gap-8 md:px-8">
       
         {productSort(data).map((user, index) => (
       

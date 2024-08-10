@@ -24,7 +24,7 @@ const Showcase = memo(function MappedProde({ info, userInfo }){
 if(Array.isArray(info) && info.length === 0) return <p>loading...</p>;
   return (
     
-    <div className="rootswiper xs:w-[20rem]   min-w-[22rem] max-w-[24rem] pb-4  mx-auto " >
+    <div className="rootswiper pb-4  mx-auto " >
       <swiper-container
         ref={swiperDiv}
         slides-per-view="2"
@@ -67,7 +67,7 @@ if(Array.isArray(info) && info.length === 0) return <p>loading...</p>;
                 }}
               >
                 {ids !== info.length - 1 ? (
-                  <div className=" shadow-md p-1 rounded-md bg-white">
+                  <div className=" shadow-md p-1 rounded-md bg-white mx-auto">
                   
                     <div className="flex  justify-between items-center px-2">
                       <span className="font-semibold text-sm">{category}</span>
@@ -97,7 +97,7 @@ if(Array.isArray(info) && info.length === 0) return <p>loading...</p>;
                         width={200}
                         height={120}
                         loading="lazy"
-                        className="rounded-b-lg "
+                        className="rounded-b-lg mx-auto"
                       />
                     </div>
                     <div className=" flex flex-col space-y-1 px-2">

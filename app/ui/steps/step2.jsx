@@ -110,7 +110,13 @@ export const Step2 = () => {
                     name="searchC"
                     id="filter"
                     className="ring-1 p-1 rounded-md"
+                    list="countries"
                   />
+                  <datalist id='countries'>
+                    <option  value={'nigeria'}/>
+                    <option  value={'ghana'}/>
+                    <option  value={'togo'}/>
+                  </datalist>
                 </span>
               </AccordionSummary>
               <AccordionDetails className="space-y-4">
