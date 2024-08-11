@@ -80,7 +80,7 @@ const Tab = () => {
               className={`flex  min-w-fit space-x-2  items-center`}
             >
               <span>{icon}</span>
-              <span className="text-nowrap shrink-0">{val}</span>
+              <span className="text-nowrap shrink-0 font-semibold">{val}</span>
             </Link>
           </li>
         );
