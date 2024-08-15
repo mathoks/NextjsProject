@@ -62,7 +62,7 @@ const Tab = () => {
       icon: <TvOutlined fontSize="inherit" />,
     },
   ];
-
+  // #6A0DAD
   return (
     <ul className="flex space-x-4 overflow-x-scroll  z-50   p-2 px-6 w-[90%] lg:w-[98%]">
       {Tabs.map(({ val, path, id, icon }) => {
@@ -71,16 +71,16 @@ const Tab = () => {
             key={id}
             className={` min-w-fit text-sm  ring-1 ring-white items-center text-nowrap rounded-full px-1.5 py-0.5  ${
               index === val
-                ? "text-white  bg-[#6A0DAD] tab_text"
+                ? "text-[#6A0DAD]  bg-[#eddff7] tab_text ring-inset ring-[#6A0DAD] ring-1"
                 : "text-slate-600 bg-white"
             }`}
           >
             <Link
               href={path}
-              className={`flex  min-w-fit space-x-2  items-center`}
+              className='flex  min-w-fit space-x-1  items-center pb-0.5 '
             >
               <span>{icon}</span>
-              <span className="text-nowrap shrink-0 font-semibold">{val}</span>
+              <span className="text-nowrap shrink-0 font-semibold first-letter:capitalize">{val}</span>
             </Link>
           </li>
         );
