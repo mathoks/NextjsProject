@@ -2,6 +2,7 @@
 import React from 'react'
 import {Accordion, AccordionSummary, AccordionDetails} from '@mui/material'
 import { ExpandMore , BusinessCenterOutlined, LocationOnOutlined, StreetviewOutlined, StorefrontOutlined, SettingsPowerRounded } from '@mui/icons-material'
+import RelPost from './RelPost';
 
 const Categories = [
   {
@@ -53,7 +54,7 @@ By clearly outlining your requirements, you'll narrow down your options and make
 ];
 
 const Hints = ({cat}) => {
-    console.log(cat)
+   
     const [open, setOpen] = React.useState(false)
   const TextField =  Categories.find(({category})=> category  === cat)
   return (
@@ -94,6 +95,7 @@ const Hints = ({cat}) => {
           }}
         >
           {TextField?.hint || "No hint available"}
+          <RelPost trigger = {open}/>
         </AccordionDetails>
       </Accordion>
     </div>

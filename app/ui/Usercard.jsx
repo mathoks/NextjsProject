@@ -72,10 +72,11 @@ const Usercard = ({
         <div className=" relative">
           <HomeMore id={id} />
           <Modal
-            call={{ tag: "call", icon: <CallReceivedOutlined /> }}
+            call={{ tag: "call", icon: <CallReceivedOutlined />}}
             chat={{ tag: "chat", icon: <ChatOutlined /> }}
             share={{ tag: "share", icon: <ShareOutlined /> }}
             value={id}
+            phone = {phone}
           />
         </div>
       </section>

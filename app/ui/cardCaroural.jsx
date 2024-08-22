@@ -15,6 +15,23 @@ import getProductById from "../actions/users/getProductById";
 import { useRouter } from "next/navigation";
 import { is } from "immutable";
 
+const Ava = (ava) => {
+  switch (ava) {
+    case "LIMITED_STOCK":
+      return { className: "text-red-400" };
+
+      break;
+    case "IN_STOCK":
+      return { className: "text-green-400" };
+
+      break;
+    default:
+      return { className: "text-yellow-400" };
+
+      break;
+  }
+};
+
 register();
 const Showcase = memo(function MappedProde({ info, userInfo }){
   const swiperDiv = useRef(null);
@@ -24,7 +41,7 @@ const Showcase = memo(function MappedProde({ info, userInfo }){
 if(Array.isArray(info) && info.length === 0) return <p>loading...</p>;
   return (
     
-    <div className="rootswiper pb-4  mx-auto " >
+    <div className="rootswiper   mx-auto " >
       <swiper-container
         ref={swiperDiv}
         slides-per-view="2"
@@ -50,7 +67,7 @@ if(Array.isArray(info) && info.length === 0) return <p>loading...</p>;
                 price,
                 description,
                 category,
-                rating,
+                rating = 4.5,
                 name,
                 availability,
               },
@@ -67,10 +84,10 @@ if(Array.isArray(info) && info.length === 0) return <p>loading...</p>;
                 }}
               >
                 {ids !== info.length - 1 ? (
-                  <div className=" shadow-md p-1 rounded-md bg-white mx-auto">
+                  <div className=" shadow-md p-1 pb-0 rounded-md bg-white mx-auto">
                   
-                    <div className="flex  justify-between items-center px-2">
-                      <span className="font-semibold text-sm">{category}</span>
+                    <div className="flex justify-between items-center px-2">
+                      <span className="font-semibold text-sm max-w-[70%]" >{category}</span>
                       
                         <BookmarkAddOutlined fontSize="small" />
                       
@@ -79,7 +96,7 @@ if(Array.isArray(info) && info.length === 0) return <p>loading...</p>;
                     <hr className=" w-full mt-1"/>
                   
                   <div
-                    className="space-y-3 pb-6 "
+                    className="space-y-3 pb-3"
                     onClick={() =>
                       router.push(
                         `/store/${encodeURIComponent(
@@ -113,12 +130,12 @@ if(Array.isArray(info) && info.length === 0) return <p>loading...</p>;
                           </span>
                         </span>
                       </span>
-                      <span className="text-[12px]">{availability.replace(/_/g, ' ')}</span>
+                      <span className="text-[12px] first-letter:capitalize" {...Ava(availability)}>{availability.toLowerCase().replace(/_/g, ' ')}</span>
                         <MakeEllipsis text={description} size={60} flag={"A"} />
                      
                       <div className="flex flex-col space-y-2 pt-2">
                         <span className="flex items-center justify-between ">
-                          <span className="flex space-x-1 items-center text-[12px]">
+                          <span className="flex space-x-1 items-center text-[10px]">
                             <span>{rating}</span>
                            
                               {Array.from(Array(5)).map((_, index) => (
@@ -129,7 +146,7 @@ if(Array.isArray(info) && info.length === 0) return <p>loading...</p>;
                                 />
                               ))}
                            
-                            <span className="text-[#005B9A]">1123</span>
+                            <span className="text-[#005B9A]">(1123)</span>
                           </span>
                         </span>
                       </div>
