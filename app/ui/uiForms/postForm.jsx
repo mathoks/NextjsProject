@@ -1,11 +1,13 @@
 'use client'
-import React, { useCallback, useEffect, useRef, useState, memo, useMemo } from 'react'
+import React, { useCallback, useEffect, useRef, useState, memo, useMemo, Suspense } from 'react'
 import { Box , Drawer, styled, Avatar} from '@mui/material'
 import {  CloseOutlined } from '@mui/icons-material'
 import  { CategoryList, ProductList } from '@/app/lib/utills/categoryList'
 import { useFormState } from 'react-dom'
 import { addPost } from '@/app/actions/users/addPost'
 import { is } from 'immutable'
+import { getProductsPost } from '@/app/lib/actions/getProductsPost'
+
 // import { auth } from '@/auth'
 
 
@@ -13,6 +15,7 @@ import { is } from 'immutable'
 const PostForm = memo(function Form(props){
     const ref = useRef(null)
     const [data, setdata] = useState([])
+    const [loading , setIsLoading] = useState(false)
     const [state, dispatch] = useFormState(addPost, {});
     const {isOpen, toggle, height, avatar, userId, cat}= props
    const MyDrawer = styled(Drawer)(({ theme }) =>{
@@ -48,19 +51,32 @@ const PostForm = memo(function Form(props){
    },[])
 
   
- useEffect(()=>{   
-  const fetchdata = async()=>{
-    
-    if(userId !== null ){
-    const products = await (await fetch(`http://localhost:3000/api/getProducts/${userId}`)).json()
-    
-    if(Array.isArray(products.product))
-      setdata([...products.product]);
+ useEffect(()=>{  
+  const getProd = async () => {
+    try {
+      setIsLoading(true);
+      const products = await getProductsPost(userId);
+      
+      if(Array.isArray(products.product))
+             setdata([...products.product]);
+           else return;
+    } catch (error) {
+      setError(true);
+    } finally {
+      setIsLoading(false);
     }
-    else return
-  }
+  }; 
+  // const fetchdata = async()=>{
+  //   if(userId !== null ){
+  //   const products = await (await fetch(`http://localhost:3000/api/getProducts/${userId}`)).json()
+    
+  //   if(Array.isArray(products.product))
+  //     setdata([...products.product]);
+  //   }
+  //   else return
+  // }
 
-  fetchdata()
+  getProd()
   
  },[])
 
@@ -103,7 +119,10 @@ const PostForm = memo(function Form(props){
         <span className='flex justify-between items-center'>
           <p className='font-semibold'>Tag  product</p> 
         </span>
+        <Suspense fallback= {loading ? <p>loading....</p>: ''}>
         <ProductList data ={data}/>
+        </Suspense>
+        
     </div>
    
 </div>

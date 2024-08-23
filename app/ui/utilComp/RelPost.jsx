@@ -29,10 +29,10 @@ const RelPost = ({ prodId, category }) => {
       });
 
   const { data, size, setSize, isLoading } = useSWRInfinite(getKey, fetcher);
-  console.log(data?.map((ob) => console.log(ob)));
+   console.log(data);
 
   return (
-    <div className="h-44 overflow-y-scroll space-x-1 mt-8 mx-auto pb-4 bg-indigo-50 px-2">
+    <div className={`overflow-y-scroll space-x-1 mt-8 mx-auto pb-4 bg-indigo-50 px-2 ${data?.length > 0 && data[0]?.list?.length > 0  ? 'h-44 visible' : 'h-0 invisible'}`}>
       <ul className="pt-2 min-h-36 space-y-4">
         {data?.map((page, id) => {
           return page?.list?.map((fi, idx) => (

@@ -48,7 +48,7 @@ const Page = async ({ params }) => {
           className=" space-y-4 view pt-4"
         >
           <h1 className="text-lg font-semibold px-4">Product Details</h1>
-          <div className=" bg-orange-100 h-fit overflow-y-scroll">
+          <div className=" h-fit overflow-y-scroll">
             <Page2 data={product?.data?.attribute || {}} />
             <Hints cat={product?.data?.category || null} prodId = {params}/>
           </div>

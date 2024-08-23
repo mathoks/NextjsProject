@@ -60,6 +60,16 @@ export async function GET(req) {
                       updatedAt: false,
                     },
                   },
+                  products:{
+                    select: {
+                        productId: true,
+                        product: {
+                            select: {
+                                name: true
+                            }
+                        }
+                    }
+                  }
                 },
               },
             },
