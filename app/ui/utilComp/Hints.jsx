@@ -53,7 +53,7 @@ By clearly outlining your requirements, you'll narrow down your options and make
   },
 ];
 
-const Hints = ({cat}) => {
+const Hints = ({cat, prodId}) => {
    
     const [open, setOpen] = React.useState(false)
   const TextField =  Categories.find(({category})=> category  === cat)
@@ -95,7 +95,7 @@ const Hints = ({cat}) => {
           }}
         >
           {TextField?.hint || "No hint available"}
-          <RelPost trigger = {open}/>
+          <RelPost prodId = {prodId} category={cat}/>
         </AccordionDetails>
       </Accordion>
     </div>
