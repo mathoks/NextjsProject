@@ -5,7 +5,7 @@ import ButtomNav from "./ui/buttomNav";
 import { SessionProvider } from "next-auth/react";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { Toaster } from "react-hot-toast";
-import ProgressBar from "./ui/utilComp/progressBar";
+import ProgressBarMain from "./ui/utilComp/progressBarMain";
 
 
 const inter = Inter({ subsets: ["latin"], display: 'swap'});
@@ -28,7 +28,7 @@ export default async function Layout({ children }) {
         <StoreProvider>
             <AppRouterCacheProvider>
             <Toaster/>
-            <ProgressBar/>
+            <ProgressBarMain/>
               <main className="w-screen">{children}</main>
               <footer className="bottom-0 static">
                 <ButtomNav />

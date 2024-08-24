@@ -8,7 +8,7 @@ gsap.registerPlugin(useGSAP)
 gsap.registerPlugin(ScrollTrigger);
 
 
-const ProgressBar = () => {
+const ProgressBarMain = () => {
     const ref = useRef()
     useGSAP(()=>{
         gsap.to(ref.current, {
@@ -18,8 +18,8 @@ const ProgressBar = () => {
         })}, [ref])
 
   return (
-    <progress suppressHydrationWarning ref={ref} max={100} min={0}></progress>
+    <progress  ref={ref} max={100} min={0}></progress>
   )
 }
 
-export default ProgressBar
+export default ProgressBarMain
