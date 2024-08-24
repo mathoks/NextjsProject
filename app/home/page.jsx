@@ -8,6 +8,8 @@ import { getStores } from '../lib/actions/getStores';
 
 
 
+
+
 export default async function page({searchParams}) {
 
 
@@ -19,7 +21,6 @@ export default async function page({searchParams}) {
     // typeof usersList !== "undefined" ? JSON.parse(usersList): []
     
     <StoreProvider>
-
       <section className="flex min-h-screen  flex-col mx-auto space-y-1">
      
         <p className="text-gray-800 font-semibold text-base py-4">Dealers Reel</p>

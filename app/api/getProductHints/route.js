@@ -76,12 +76,12 @@ export async function GET(req) {
           },
         },
       });
-      if (product === null) {
-        return NextResponse.json({ data: [] });
+      if (product?.length === 0) {
+        return NextResponse.json({data: null, nextCursor: myCursor});
       }
       
       return NextResponse.json({
-        list: product[0].posts.flatMap((m) => m.post),
+        data: product[0].posts.flatMap((m) => m.post),
         nextCursor:
           product[product.length - 1].posts[
             product[product.length - 1].posts.length - 1
@@ -130,12 +130,12 @@ export async function GET(req) {
         },
       });
 
-      if (product === null) {
-        return NextResponse.json({ data: [] });
+      if (product?.length === 0) {
+        return NextResponse.json({data: null, nextCursor: myCursor});
       }
      
       return NextResponse.json({
-        list: product[0].posts.flatMap((m) => m),
+       data: product[0].posts.flatMap((m) => m),
         nextCursor:
           product[product.length - 1].posts[
             product[product.length - 1].posts.length - 1
@@ -143,6 +143,7 @@ export async function GET(req) {
       });
     }
   } catch (error) {
+    console.log(error)
     return Response.json({ message: "Internal server error" });
   }
 }

@@ -24,6 +24,7 @@ export default async function homeLayout({ children, tab, arrivals, ...rest }) {
 
   return (
     <SessionProvider baseUrl={"/api/auth"}>
+     <progress max={100} min={0}></progress>
       <Nav />
 
       <HeroPage />

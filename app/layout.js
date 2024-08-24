@@ -5,6 +5,9 @@ import ButtomNav from "./ui/buttomNav";
 import { SessionProvider } from "next-auth/react";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { Toaster } from "react-hot-toast";
+import ProgressBar from "./ui/utilComp/progressBar";
+
+
 const inter = Inter({ subsets: ["latin"], display: 'swap'});
 
 export const metadata = {
@@ -20,11 +23,12 @@ export default async function Layout({ children }) {
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
       <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet"/>
       </head>
-          <body className={`${inter.className}  w-screen h-fit bg-[#fcfaff] text-slate-950`}>
+          <body className={`${inter.className} h-fit bg-[#fcfaff] text-slate-950`} suppressHydrationWarning>
           <SessionProvider baseUrl={"/api/auth"}>
         <StoreProvider>
             <AppRouterCacheProvider>
             <Toaster/>
+            <ProgressBar/>
               <main className="w-screen">{children}</main>
               <footer className="bottom-0 static">
                 <ButtomNav />

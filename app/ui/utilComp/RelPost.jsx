@@ -1,14 +1,32 @@
 "use client";
+import { is } from "immutable";
 import Link from "next/link";
-import React from "react";
-import { InView } from "react-intersection-observer";
+import React, { memo, useCallback, useMemo } from "react";
+import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 
 import useSWRInfinite from "swr/infinite";
 
+function debounce(func, delay) {
+  let timeout;
+  return function debounced() {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func, delay);
+  };
+}
+
+const fetcher = (url) =>
+  fetch(url)
+    .then((r) => r.json())
+    .catch(() => {
+      throw new Error("not found");
+    });
+
 const RelPost = ({ prodId, category }) => {
   const getKey = (pageIndex, previousPageData) => {
-    console.log(pageIndex, previousPageData);
-    if (previousPageData && !previousPageData.length) return null;
+    
+    if (previousPageData && !previousPageData.data) return null;
+
     if (pageIndex === 0)
       return `http://localhost:3000/api/getProductHints?limit=5&prodId=${
         prodId.prodId
@@ -21,62 +39,55 @@ const RelPost = ({ prodId, category }) => {
       )}`;
   };
 
-  const fetcher = (url) =>
-    fetch(url)
-      .then((r) => r.json())
-      .catch(() => {
-        throw new Error("not found");
-      });
+  const { ref, entry } = useInView({
+    rootMargin: "50px",
+    threshold: 1,
+  });
 
   const { data, size, setSize, isLoading } = useSWRInfinite(getKey, fetcher);
-   console.log(data);
+ 
+  useEffect(() => {
+    if (entry?.isIntersecting && !isLoading) {
+        debounce(setSize(size + 1), 500)
+    }
+  }, [entry?.isIntersecting]);
 
   return (
-    <div className={`overflow-y-scroll space-x-1 mt-8 mx-auto pb-4 bg-indigo-50 px-2 ${data?.length > 0 && data[0]?.list?.length > 0  ? 'h-44 visible' : 'h-0 invisible'}`}>
+    <div
+      className={`overflow-y-scroll space-x-1 mt-8 mx-auto pb-4 bg-indigo-50 px-2 ${
+        data?.length > 0 && data[0]?.data?.length > 0
+          ? "h-44 visible"
+          : "h-0 invisible"
+      }`}
+    >
       <ul className="pt-2 min-h-36 space-y-4">
         {data?.map((page, id) => {
-          return page?.list?.map((fi, idx) => (
-            <li key={idx} className="">
-              <p className=" first-letter: capitalize first-line:font-semibold">
-                {fi.text}
-              </p>
-              <div className="flex space-x-2">
-                <p>Author :</p>
-                <Link
-                  href={`/store/${encodeURIComponent(
-                    fi.author.name
-                  )}/${encodeURIComponent(fi.author.id)}`}
-                  className="text-gray-400 hover:underline cursor-pointer active:text-indigo-600"
-                >
-                  {fi.author.name}
-                </Link>
-              </div>
-            </li>
-          ));
+          return page?.data?.map((fi, idx) => {
+            return (
+              <li
+                key={idx}
+                ref={idx === page.data.length - 1 ? ref : null}
+                className=""
+              >
+                <p className=" first-letter: capitalize first-line:font-semibold">
+                  {fi.text}
+                </p>
+                <div className="flex space-x-2">
+                  <p>Author :</p>
+                  <Link
+                    href={`/store/${encodeURIComponent(
+                      fi.author.name
+                    )}/${encodeURIComponent(fi.author.id)}`}
+                    className="text-gray-400 hover:underline cursor-pointer active:text-indigo-600"
+                  >
+                    {fi.author.name}
+                  </Link>
+                </div>
+              </li>
+            );
+          });
         })}
       </ul>
-      <div className="flex justify-end ">
-        <button
-          className="px-2.5 ring-1 rounded-full mt-2 py-1 bg-white text-indigo-600"
-          onClick={() => setSize(size + 1)}
-        >
-          load more
-        </button>
-      </div>
-
-      {/* <InView
-        root={null}
-        rootMargin={"10px"}
-        threshold={0.9}
-      >
-        {({ inView, ref, entry }) => {
-          if (entry?.isIntersecting && isLoading === false) {
-           console.log(isLoading) 
-          return setSize(size + 1);
-          }
-          return <div className={`h-5 bg-red-200 `} ref={ref}></div>;
-        }}
-      </InView> */}
     </div>
   );
 };
