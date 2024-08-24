@@ -1,7 +1,6 @@
 "use client";
-import { is } from "immutable";
 import Link from "next/link";
-import React, { memo, useCallback, useMemo } from "react";
+import React from "react";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
@@ -16,7 +15,7 @@ function debounce(func, delay) {
 }
 
 const fetcher = (url) =>
-  fetch(url)
+  fetch(url, {cache: 'force-cache', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Access-Control-Allow-Origin' : '*' }})
     .then((r) => r.json())
     .catch(() => {
       throw new Error("not found");
@@ -28,11 +27,11 @@ const RelPost = ({ prodId, category }) => {
     if (previousPageData && !previousPageData.data) return null;
 
     if (pageIndex === 0)
-      return `http://localhost:3000/api/getProductHints?limit=5&prodId=${
+      return `https://nextjs-project-if9d.vercel.app/api/getProductHints?limit=5&prodId=${
         prodId.prodId
       }&category=${encodeURIComponent(category)}`;
     else
-      return `http://localhost:3000/api/getProductHints?cursor=${
+      return `https://nextjs-project-if9d.vercel.app/api/getProductHints?cursor=${
         previousPageData.nextCursor
       }&limit=5&prodId=${prodId.prodId}&category=${encodeURIComponent(
         category
@@ -88,6 +87,7 @@ const RelPost = ({ prodId, category }) => {
           });
         })}
       </ul>
+      {isLoading ? <p>loading....</p> : ''}
     </div>
   );
 };
