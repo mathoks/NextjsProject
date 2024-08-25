@@ -6,7 +6,9 @@ import Page2 from "@/app/ui/Page2";
 import Page3 from "@/app/ui/Page3";
 import { Page4 } from "@/app/ui/page4";
 import Hints from "@/app/ui/utilComp/Hints";
-import RelPost from "@/app/ui/utilComp/RelPost";
+
+import ReviewButton from "@/app/ui/Buttons/ReviewButton";
+import WriteReview from "@/app/ui/uiForms/WriteReview";
 
 // function debounce(func, delay) {
 //   let timeout;
@@ -58,10 +60,12 @@ const Page = async ({ params }) => {
         <div id="ProductReviews" className="view">
           <div className="flex justify-between items-center">
             <h1 className="text-lg font-semibold px-4">Product Reviews</h1>
-            <button className="text-blue-500 px-4 py-2 ">write a review</button>
+            <ReviewButton/>
+            {/* <button className="text-blue-500 px-4 py-2 ">write a review</button> */}
           </div>
 
           <Page3 />
+          <WriteReview/>
           <hr />
         </div>
 
