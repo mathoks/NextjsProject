@@ -10,6 +10,7 @@ import { setComment } from "@/app/lib/features/Review/ReviewSlice";
 import { useDispatch } from "react-redux";
 import { Star } from "@mui/icons-material";
 import {Avatar} from '@mui/material'
+import RatingStar from '@/app/ui/utillComp/RatingStar'
 const WriteReview = ({params}) => {
    
   const ReviewState = useAppSelector((state) => state.review.showBox);
