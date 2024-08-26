@@ -80,7 +80,7 @@ console.log(CommentState)
             <label htmlFor="star3"><Star/></label>
             <input type="radio" name="rating" value={2}  id='star2' className="sr-only"/>
             <label htmlFor="star2"><Star/></label>
-            <input type="radio" value={1}  id='star1' className="sr-only"/>
+            <input type="radio" value={1} name='rating' id='star1' className="sr-only"/>
             <label htmlFor="star1"><Star/></label>
         </div> 
       <div className='space-y-1'>
