@@ -4,7 +4,7 @@ import Reviews from "./utilComp/Reviews";
 
 
 const Page3 = () => {
-  const data = [{review:"good item"}];
+  const data = [{review:"This is a great product it fits perfectly just as described ill definitely be buying some more i just hope you can deliver"},];
   if (!data.length)
     return <p className="p-4">No Reviews yet be the first to drop a review</p>;
   return (

@@ -58,7 +58,7 @@ const Page = async ({ params }) => {
           <hr />
         </div>
 
-        <div id="ProductReviews" className="view">
+        <div id="ProductReviews" className="view space-y-2">
           <div className="flex justify-between items-center">
             <h1 className="text-lg font-semibold px-4">Product Reviews</h1>
             <ReviewButton/>

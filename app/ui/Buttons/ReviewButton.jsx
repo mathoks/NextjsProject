@@ -32,7 +32,7 @@ const ReviewButton = () => {
         onClick={() => {
           dispatch(setOpenDialog());
         }}
-        className="text-blue-500 px-4 py-2 disabled:opacity-50"
+        className="text-blue-500 px-4 py-2 disabled:opacity-50 font-medium"
         disabled={ReviewState}
       >
         write a review
