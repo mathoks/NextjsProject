@@ -427,7 +427,11 @@ progress::-moz-progress-bar{
   background: linear-gradient(to left, #FF4500, #FF4500);
   background-attachment: fixed;
 }
-
+.rating{
+  display: flex;
+	flex-direction: row-reverse;
+	justify-content: flex-end;
+}
 .rating label{
 font-size: small;
 cursor: pointer;
