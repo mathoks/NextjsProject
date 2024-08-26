@@ -1,5 +1,5 @@
 import React from 'react';
-import {Star} from '@mui/icon-material'; // Assuming you have a Star component
+import {Star} from '@mui/icons-material'; // Assuming you have a Star component
 
 function RatingStar({ value = 0 }) {
   const stars = Array.from({ length: 5 }, (_, i) => i + 1);
