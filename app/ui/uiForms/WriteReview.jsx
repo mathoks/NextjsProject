@@ -71,7 +71,7 @@ console.log(CommentState)
         </div>
        
       </div>
-         <div className="rating flex space-x-4 justify-center">
+         <div className="rating  space-x-4">
             <input type="radio" name="rating" id='star5' value={5} className="sr-only"/>
             <label htmlFor="star5"><Star/></label>
             <input type="radio" name="rating" value={4} id='star4' className="sr-only"/>
