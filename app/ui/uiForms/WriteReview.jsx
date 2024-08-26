@@ -10,7 +10,6 @@ import { setComment } from "@/app/lib/features/Review/ReviewSlice";
 import { useDispatch } from "react-redux";
 import { Star } from "@mui/icons-material";
 import {Avatar} from '@mui/material'
-import RatingStar from '@/app/ui/utilComp/RatingStar'
 const WriteReview = ({params}) => {
    
   const ReviewState = useAppSelector((state) => state.review.showBox);
@@ -72,7 +71,7 @@ console.log(CommentState)
         </div>
        
       </div>
-         { /** <div className="rating flex space-x-4 justify-center">
+         <div className="rating flex space-x-4 justify-center">
             <input type="radio" name="rating" id='star5' value={5} className="sr-only"/>
             <label htmlFor="star5"><Star/></label>
             <input type="radio" name="rating" value={4} id='star4' className="sr-only"/>
@@ -83,8 +82,7 @@ console.log(CommentState)
             <label htmlFor="star2"><Star/></label>
             <input type="radio" value={1}  id='star1' className="sr-only"/>
             <label htmlFor="star1"><Star/></label>
-        </div> **/}
-         <RatingStar/>
+        </div> 
       <div className='space-y-1'>
         <textarea
           minLength={2}
