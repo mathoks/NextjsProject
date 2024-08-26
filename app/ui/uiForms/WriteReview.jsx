@@ -72,16 +72,16 @@ console.log(CommentState)
        
       </div>
         <div className="rating flex space-x-4 justify-center">
-            <input type="radio" name="rating" id='star5' className="sr-only"/>
-            <label htmlFor="star5"><Star/></label>
-            <input type="radio" name="rating" id='star4' className="sr-only"/>
-            <label htmlFor="star4"><Star/></label>
-            <input type="radio" name="rating" id='star3' className="sr-only"/>
-            <label htmlFor="star3"><Star/></label>
-            <input type="radio" name="rating" id='star2' className="sr-only"/>
-            <label htmlFor="star2"><Star/></label>
             <input type="radio" name="rating" id='star1' className="sr-only"/>
             <label htmlFor="star1"><Star/></label>
+            <input type="radio" name="rating" id='star2' className="sr-only"/>
+            <label htmlFor="star2"><Star/></label>
+            <input type="radio" name="rating" id='star3' className="sr-only"/>
+            <label htmlFor="star3"><Star/></label>
+            <input type="radio" name="rating" id='star4' className="sr-only"/>
+            <label htmlFor="star4"><Star/></label>
+            <input type="radio" name="rating" id='star5' className="sr-only"/>
+            <label htmlFor="star5"><Star/></label>
         </div>
         <textarea
           minLength={2}
