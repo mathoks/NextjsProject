@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import {
   setRevBox,
   setOpenDialog,
+  resetBox
 } from "@/app/lib/features/Review/ReviewSlice";
 import { useAppSelector } from "@/app/lib/hooks/hooks";
 
@@ -19,7 +20,12 @@ const ReviewButton = () => {
   const ReviewState = useAppSelector((state) => state.review.showBox);
   const DialogState = useAppSelector((state) => state.review.openDialog);
 
-  console.log(ReviewState, DialogState);
+  useEffect(() => {
+    return ()=>{
+        dispatch(resetBox())
+    }
+  },[])
+
   return (
     <div>
       <button
@@ -35,7 +41,7 @@ const ReviewButton = () => {
         <DialogTitle>Have you purchased this item?</DialogTitle>
         <DialogContent>
           <p>Please select an option:</p>
-          <div className="flex space-x-2">
+          <div className="flex space-x-4">
             <Button
               variant="contained"
               color="primary"

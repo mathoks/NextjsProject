@@ -1,12 +1,19 @@
-import React from 'react'
+import React from "react";
+import WriteReview from "./uiForms/WriteReview";
+import Reviews from "./utilComp/Reviews";
 
-const Page3 = ({data}) => {
-if(!data) return <div className='p-4'>No Reviews yet be the first to drop a review</div>;
+
+const Page3 = () => {
+  const data = [{review:"good item"}];
+  if (!data.length)
+    return <p className="p-4">No Reviews yet be the first to drop a review</p>;
   return (
-    <div className='min-h-[18rem]'>
-      <span>What People are saying about this Product</span>
-    </div>
-  )
-}
+    <div className="relative min-h-[18rem]">
+      <Reviews reviews={data} />
 
-export default Page3
+      <div className="absolute bottom-0 w-full"></div>
+    </div>
+  );
+};
+
+export default Page3;

@@ -9,6 +9,7 @@ import Hints from "@/app/ui/utilComp/Hints";
 
 import ReviewButton from "@/app/ui/Buttons/ReviewButton";
 import WriteReview from "@/app/ui/uiForms/WriteReview";
+import { auth } from "@/auth";
 
 // function debounce(func, delay) {
 //   let timeout;
@@ -34,7 +35,7 @@ import WriteReview from "@/app/ui/uiForms/WriteReview";
 
 const Page = async ({ params }) => {
   const product = await getProductByIds(params);
-  console.log(params)
+  const session = await auth()
   if (!product.data) return <div>Product not found</div>;
   return (
     <>
@@ -64,8 +65,8 @@ const Page = async ({ params }) => {
             {/* <button className="text-blue-500 px-4 py-2 ">write a review</button> */}
           </div>
 
-          <Page3 />
-          <WriteReview/>
+          <Page3  />
+          <WriteReview params={params || null}/>
           <hr />
         </div>
 

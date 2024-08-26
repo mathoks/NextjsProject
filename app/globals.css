@@ -427,3 +427,14 @@ progress::-moz-progress-bar{
   background: linear-gradient(to left, #FF4500, #FF4500);
   background-attachment: fixed;
 }
+
+.rating label{
+font-size: small;
+cursor: pointer;
+color: grey;
+}
+
+.rating label:hover, 
+.rating input[type='radio']:checked + label{
+  color: gold;
+}

@@ -259,9 +259,10 @@ model Ticket {
 model ProdReview {
   id        String   @id @default(cuid())
   comment   String
+  prodId    String   @map("prod_id")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  product   Product  @relation(fields: [id], references: [id], map: "comment_ffk")
+  product   Product  @relation(fields: [prodId], references: [id], map: "comment_ffk")
   review    Int      @default(0)
   userId    String   @map("user_id")
   commenter User     @relation(fields: [userId], references: [id])

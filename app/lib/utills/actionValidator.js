@@ -106,6 +106,14 @@ const FormSchema3 = joi.object({
             .pattern(new RegExp("[a-zA-Z0-9s\u00A0.,:?]+$"))
         ),
     });
+
+    const FormSchema6= joi.object({
+      text: joi
+        .string().required()
+        .trim()
+        .pattern(new RegExp("[a-zA-Z0-9s\u00A0.,:?]+$"))
+        .min(10)
+        .max(400),})
     
 export const validateProduct = async (formData) => {
 
@@ -215,3 +223,19 @@ export const validateBranch = async (formData) => {
     }
   };
 
+  export const validateReview = async (formData) => {
+   
+    let validatedFields = {};
+    try {
+      
+        validatedFields = await FormSchema6.validateAsync({
+            text: formData.get("review"),
+          });
+
+      return validatedFields;
+    } catch (error) {
+      console.log(error)
+        validatedFields= {};
+      throw error;
+    }
+  };
