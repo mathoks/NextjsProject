@@ -83,7 +83,7 @@ console.log(CommentState)
             <input type="radio" value={1}  id='star1' className="sr-only"/>
             <label htmlFor="star5"><Star/></label>
         </div>
-      <div className='space-y-1>
+      <div className='space-y-1'>
         <textarea
           minLength={2}
           maxLength={200}
