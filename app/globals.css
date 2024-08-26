@@ -434,7 +434,8 @@ cursor: pointer;
 color: grey;
 }
 
-.rating label:hover, 
-.rating input[type='radio']:checked + label{
+.rating label:hover,
+.rating input[type='radio']:checked + label
+.rating input[type='radio']:checked ~ label{
   color: gold;
 }
