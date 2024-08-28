@@ -33,7 +33,7 @@ const Reviewsummary = ({
         <li key={id} className="">
           <span className="flex items-center font-medium space-x-2">
             <p>{id}</p>
-            <p>
+            <p className="w-full">
               <ProgressBar value={num}  h={8}/>
             </p>
           </span>
