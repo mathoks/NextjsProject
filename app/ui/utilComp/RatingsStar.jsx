@@ -15,9 +15,10 @@ function RatingStar({ value = 0 }) {
             value={starValue}
             className="sr-only"
             checked={value === starValue}
+            readOnly
           />
           <label htmlFor={`star${starValue}`}>
-            <Star filled={starValue <= value} />
+            <Star sx={{color: starValue <= value ? 'gold' : 'gray' }} />
           </label>
         </div>
       ))}

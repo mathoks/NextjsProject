@@ -11,6 +11,7 @@ import React, {
 import { Avatar } from "@mui/material";
 import { Star } from "@mui/icons-material";
 import Stars from "./Stars";
+import Reviewsummary from "./Reviewsummary";
 const Reviews = memo(
   function ReviewsCol(props) {
     const comment = useAppSelector((state) => state.review.comment);
@@ -45,6 +46,7 @@ const Reviews = memo(
     return (
       <div className="space-y-4 px-4">
         <p>What People are saying about this Product</p>
+        <Reviewsummary/>
         <ul className="space-y-2 grid grid-cols-1 gap-4 md:grid-cols-2">
           {optimisticReviews?.map((rev, id) => (
             <li className=" py-2  space-y-3" key={id}>

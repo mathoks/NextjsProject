@@ -1,5 +1,4 @@
 import React from "react";
-import WriteReview from "./uiForms/WriteReview";
 import Reviews from "./utilComp/Reviews";
 
 
@@ -10,7 +9,7 @@ const Page3 = () => {
   return (
     <div className="relative min-h-[18rem]">
       <Reviews reviews={data} />
-
+      
       <div className="absolute bottom-0 w-full"></div>
     </div>
   );

@@ -3,9 +3,9 @@ import { LinearProgress, linearProgressClasses, styled } from '@mui/material';
 import React from 'react'
 
 
-const ProgressBar = ({value}) => {
+const ProgressBar = ({value, h = 4}) => {
     const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
-        height: 4,
+        height: h ,
         borderRadius: 5,
         [`&.${linearProgressClasses.colorPrimary}`]: {
           backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
@@ -17,7 +17,7 @@ const ProgressBar = ({value}) => {
       }));
   return (
     
-      <BorderLinearProgress  variant="determinate" value={value} sx={{color: '#6A0DAD' }}/>
+      <BorderLinearProgress  variant="determinate" value={value} sx={{color: '#6A0DAD'}}/>
     
   )
 }
