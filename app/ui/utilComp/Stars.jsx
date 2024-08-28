@@ -16,7 +16,7 @@ const ReviewStars = () => {
   return (
     <div className='flex space-x-2 text-[14px] items-center'>
     <p >{rating}</p>
-    <ul className='flex space-x-1 '>
+    <ul className='flex space-x-0 '>
       <ReviewStars/>
     </ul>
     </div>
