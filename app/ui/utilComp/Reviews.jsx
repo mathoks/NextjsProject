@@ -15,6 +15,7 @@ import Reviewsummary from "./Reviewsummary";
 const Reviews = memo(
   function ReviewsCol(props) {
     const comment = useAppSelector((state) => state.review.comment);
+    const rating = useAppSelector((state) => state.review.comment);
     const initialOptimisticReviews = useMemo(() => {
       // Handle initial state here
       if (props.reviews) {
@@ -33,7 +34,7 @@ const Reviews = memo(
     };
 
     useEffect(() => {
-      if (comment !== "") {
+      if (comment !== "" || rating !== '') {
         startTransition(() => {
           setOptimisticReviews((prevState) => [
             ...prevState,
