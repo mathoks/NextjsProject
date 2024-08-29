@@ -4,7 +4,8 @@ const initialState = {
    
     showBox: false,
     openDialog: false,
-    comment: ''
+    comment: '',
+    rating: ''
 }
 
 const ReviewSliceReducer = createSlice({
@@ -19,6 +20,9 @@ reducers: {
     setComment:(state, action)=>{
         state.comment = action.payload
     },
+   setRating:(state, action)=>{
+        state.rating = action.payload
+    },
     setOpenDialog: (state, action) => {
         if(!state.openDialog)
         state.openDialog = true;
@@ -27,12 +31,13 @@ reducers: {
     resetBox : (state)=>{
         if(state.showBox){
         state.showBox = false;
-        state.comment = ''
+        state.comment = '';
+         state.rating = ''
         }
     else {}
     }
 }
 });
 
-export const { setRevBox, resetBox, setOpenDialog, setComment } = ReviewSliceReducer.actions
+export const { setRevBox, resetBox,setRating, setOpenDialog, setComment } = ReviewSliceReducer.actions
 export default ReviewSliceReducer.reducer
