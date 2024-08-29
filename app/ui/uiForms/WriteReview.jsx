@@ -6,20 +6,19 @@ import {useFormState} from 'react-dom'
 import { is } from "immutable";
 import { addReview } from "@/app/actions/users/addReview";
 import toast from 'react-hot-toast'
-import { setComment } from "@/app/lib/features/Review/ReviewSlice";
+import { setComment , setReview} from "@/app/lib/features/Review/ReviewSlice";
 import { useDispatch } from "react-redux";
 import { Star } from "@mui/icons-material";
 import {Avatar} from '@mui/material'
 const WriteReview = ({params}) => {
    
   const ReviewState = useAppSelector((state) => state.review.showBox);
-  const CommentState = useAppSelector((state) => state.review.comment);
   const [active, setActive] = useState(true);
   const [state, dispatch] = useFormState(addReview, {isloading: false, errors: {}, success: null, message: ''});
   // 
   const dispatchRedux = useAppDispatch()
  
-console.log(CommentState)
+
   const handlechange = (e) => {
     const { value } = e.target;
     if (value.length > 2) {
@@ -53,7 +52,9 @@ console.log(CommentState)
   const dispatComment = (formData) => {
     state.isloading = true;
     const review = formData.get("review");
+     const rating = formData.get("rating");
     dispatchRedux(setComment(review));
+    dispatchRedux(setReview(review))
     dispatch(formData);
   };
     
