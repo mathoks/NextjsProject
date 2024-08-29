@@ -109,11 +109,12 @@ const FormSchema3 = joi.object({
 
     const FormSchema6= joi.object({
       text: joi
-        .string().required()
+        .string()
         .trim()
         .pattern(new RegExp("[a-zA-Z0-9s\u00A0.,:?]+$"))
         .min(10)
-        .max(400),})
+        .max(400).allow(''),
+      value: joi.number().required()})
     
 export const validateProduct = async (formData) => {
 
@@ -230,6 +231,7 @@ export const validateBranch = async (formData) => {
       
         validatedFields = await FormSchema6.validateAsync({
             text: formData.get("review"),
+            value: formData.get("rating")
           });
 
       return validatedFields;

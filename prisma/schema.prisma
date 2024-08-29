@@ -115,7 +115,7 @@ model Product {
   comment      ProdReview[]
   post         PostProduct[]
   branch       ProductBranch[]
-
+  rating       Float              @default(0)
   @@map("product")
 }
 
@@ -258,12 +258,12 @@ model Ticket {
 
 model ProdReview {
   id        String   @id @default(cuid())
-  comment   String
+  comment   String?
   prodId    String   @map("prod_id")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   product   Product  @relation(fields: [prodId], references: [id], map: "comment_ffk")
-  review    Int      @default(0)
+  review    Int      
   userId    String   @map("user_id")
   commenter User     @relation(fields: [userId], references: [id])
   reply     Reply[]

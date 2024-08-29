@@ -9,7 +9,7 @@ import React, {
   startTransition,
 } from "react"; // Use useState instead of useOptimistic
 import { Avatar } from "@mui/material";
-import { Star } from "@mui/icons-material";
+
 import Stars from "./Stars";
 import Reviewsummary from "./Reviewsummary";
 const Reviews = memo(
@@ -29,7 +29,7 @@ const Reviews = memo(
     const toggleClass = (e) => {
       const { classList } = e.target;
       classList.toggle("line-clamp-none");
-      console.log("ggdg");
+      
     };
 
     useEffect(() => {
@@ -66,11 +66,11 @@ const Reviews = memo(
               <p className="text-slate-800">
                 10 people found this review helpfull
               </p>
-              <span>
-                <p className="pt-8">do you find this review helpfull?</p>{" "}
+              <span className="flex items-center justify-between pt-8">
+                <p className="">Was this review helpfull?</p>{" "}
                 <span className="flex justify-end space-x-2">
-                  <button className="font-medium ">Yes</button>
-                  <button className="font-medium ">No</button>
+                  <button className="font-medium  px-2 rounded-md ring-1">Yes</button>
+                  <button className="font-medium px-2 rounded ring-1">No</button>
                 </span>
               </span>
             </li>

@@ -35,7 +35,7 @@ const ReviewButton = () => {
         className="text-blue-500 px-4 py-2 disabled:opacity-50 font-medium"
         disabled={ReviewState}
       >
-        write a review
+        Write a review
       </button>
       <Dialog open={DialogState} onClose={() => dispatch(setOpenDialog())}>
         <DialogTitle>Have you purchased this item?</DialogTitle>

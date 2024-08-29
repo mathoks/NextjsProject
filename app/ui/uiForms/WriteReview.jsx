@@ -15,19 +15,20 @@ const WriteReview = ({params}) => {
   const ReviewState = useAppSelector((state) => state.review.showBox);
   const CommentState = useAppSelector((state) => state.review.comment);
   const [active, setActive] = useState(true);
-  const [state, dispatch] = useFormState(addReview, {});
+  const [state, dispatch] = useFormState(addReview, {isloading: false, errors: {}, success: null, message: ''});
+  // 
   const dispatchRedux = useAppDispatch()
  
 console.log(CommentState)
   const handlechange = (e) => {
     const { value } = e.target;
     if (value.length > 2) {
-      setActive(false);
+      // setActive(false);
       e.target.nextSibling.style.visibility = "visible";
       e.target.nextSibling.innerText = `${value.length}/200`;
       if (value.length > 200) {
         e.target.nextSibling.style.color = "red";
-        setActive(true);
+        // setActive(true);
       } else {
         e.target.nextSibling.style.color = "black";
       }
@@ -35,7 +36,7 @@ console.log(CommentState)
       
      
     } else {
-      setActive(true);
+      // setActive(true);
       e.target.nextSibling.style.visibility = "invisible";
       e.target.nextSibling.innerText = "";
     }
@@ -44,15 +45,42 @@ console.log(CommentState)
 
   useEffect(() => {
     const notify = () => toast(state.message);  
-    if (state.success === true)
+    if (state.message){
     notify();
-  },[state.success, state.message]);
+  }
+  },[state.message]);
   
- const dispatComment = (formData)=>{
-    const review = formData.get('review')
+  const dispatComment = (formData) => {
+    state.isloading = true;
+    const review = formData.get("review");
     dispatchRedux(setComment(review));
-    // dispatch(formData)
- }
+    dispatch(formData);
+  };
+    
+//  useEffect(()=>{
+//   const dispatComment = async()=>{
+//     const form = document.getElementById('revForm')
+//     const formData = new FormData(form)
+//      const review = formData.get('review')
+//      console.log(formData, review)
+//       dispatchRedux(setComment(review));
+//     try {
+//        const da =  await addReview({}, formData)
+//        console.log(da)
+       
+//     }
+//     catch(error){
+//       console.log(error)
+     
+//     } 
+//     finally {
+//       setIsLoading(false)
+//     }
+//   }
+//   if(loading){
+//     dispatComment()
+//   }
+//  },[loading])
 
   return (
     <div
@@ -60,7 +88,7 @@ console.log(CommentState)
         ReviewState ? "visible" : "invisible h-0"
       }`}
     >
-      <form className="space-y-8 size-full " action={dispatComment}>
+      <form className="space-y-8 size-full "  id='revForm' action={dispatComment} >
       <div className="">
         <div className="flex space-x-2">
         <Avatar/>
@@ -72,24 +100,24 @@ console.log(CommentState)
        
       </div>
          <div className="rating  space-x-4">
-            <input type="radio" name="rating" id='star5' value={5} className="sr-only"/>
+            <input type="radio" name="rating" id='star5' onChange={()=>setActive(false)} value={5} className="sr-only"/>
             <label htmlFor="star5"><Star/></label>
-            <input type="radio" name="rating" value={4} id='star4' className="sr-only"/>
+            <input type="radio" name="rating" value={4} onChange={()=>setActive(false)} id='star4' className="sr-only"/>
             <label htmlFor="star4"><Star/></label>
-            <input type="radio" value={3}  name="rating" id='star3' className="sr-only"/>
+            <input type="radio" value={3} onChange={()=>setActive(false)} name="rating" id='star3' className="sr-only"/>
             <label htmlFor="star3"><Star/></label>
-            <input type="radio" name="rating" value={2}  id='star2' className="sr-only"/>
+            <input type="radio" name="rating" value={2} onChange={()=>setActive(false)} id='star2' className="sr-only"/>
             <label htmlFor="star2"><Star/></label>
-            <input type="radio" value={1} name='rating' id='star1' className="sr-only"/>
+            <input type="radio" value={1} name='rating' onChange={()=>setActive(false)} id='star1' className="sr-only"/>
             <label htmlFor="star1"><Star/></label>
         </div> 
       <div className='space-y-1'>
         <textarea
           minLength={2}
           maxLength={200}
-          required
+        
           id="text-rev"
-          placeholder="Describe your experience here...."
+          placeholder="Describe your experience here....(Optional)"
           onChange={handlechange}
           rows={4}
           name="review"
@@ -98,12 +126,13 @@ console.log(CommentState)
         />
         <pre className="text-[11px]"></pre>
          </div>   
-        <input name="product"  defaultValue= {params} className="sr-only "/>
+        <input name="product"  defaultValue= {params.prodId} className="sr-only "/>
         <span className="flex justify-end">
           <button
-            disabled={active}
-            className="ring-1 px-2.5 py-1 text-blue-400 rounded-full disabled:opacity-50 shadow-md"
+            disabled={active || state.isloading}
+            className="ring-1 px-2.5 py-1 text-blue-400 rounded-full disabled:opacity-50 shadow-md"     
           >
+
             submit
           </button>
         </span>

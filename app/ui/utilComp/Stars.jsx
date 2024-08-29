@@ -1,7 +1,7 @@
 import { Star } from '@mui/icons-material'
 import React, { memo } from 'react'
 
-const Stars = memo(function Starss({rating}){
+const Stars = memo(function Starss({rating, size}){
 const ReviewStars = () => {
     const stars = new Array(5)
     for (let i = 0; i < 5; i++) {
@@ -15,7 +15,7 @@ const ReviewStars = () => {
 }
   return (
     <div className='flex space-x-2 text-[14px] items-center'>
-    <p >{rating}</p>
+    <p className={size}>{Math.fround(rating)}</p>
     <ul className='flex space-x-0 '>
       <ReviewStars/>
     </ul>

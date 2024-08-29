@@ -22,7 +22,7 @@ const Reviewsummary = ({
           prev[v] = percent;
           return [...prev];
         });
-        console.log(list);
+       
       });
     }, [freq]);
 
@@ -45,18 +45,17 @@ const Reviewsummary = ({
  
 
   return (
-    <div className="grid grid-cols-2 place-items-start px-2   items-center w-full">
+    <div className="grid grid-cols-1 place-items-start   items-center w-[calc(100%-12px)]">
      
-     <div>
-     <Stars rating={4} />
+     <div className="flex space-x-8 text-[12px] items-center">
+     <Stars rating={4.0} size={'font-semibold text-4xl'}/>
      {Reviews.length}
-     </div> 
-      <ul className="w-full flex flex-col-reverse">
+     </div>
+      <ul className="w-full flex flex-col-reverse ">
         <Suspense fallback={"...loading"}>
           <ProgressBars freq={freq}  />
         </Suspense>
-      </ul>
-      
+      </ul>  
     </div>
   );
 };

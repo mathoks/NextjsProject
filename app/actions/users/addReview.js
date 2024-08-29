@@ -16,7 +16,8 @@ import { validateReview } from "@/app/lib/utills/actionValidator";
  * @param {FormData} formData - The form data containing invoice information.
  * @returns {Promise<object>} An object containing success/failure information and optional updated state.
  */
-export const addReview = async function ({}, formData) {
+export const addReview = async function (state, formData) {
+ 
   const headerList = headers();
   const domain = headerList.get("host");
   const session = await auth();
@@ -31,12 +32,13 @@ export const addReview = async function ({}, formData) {
     
     const {
       text,
+      value
     } = await validateReview(formData);
 
-   
+   console.log(text, value)
    
     const response = await fetch(
-      `http://${domain}/api/Product/${prodId}/review`,
+      `http://${domain}/api/Product/${prodId}/reviews`,
       {
         method: "POST",
         headers: {
@@ -45,7 +47,8 @@ export const addReview = async function ({}, formData) {
         body: JSON.stringify({
          reviewer: session?.user.id,
          text,
-         prodId
+         prodId,
+         value
         }),
       }
     );
@@ -67,6 +70,7 @@ export const addReview = async function ({}, formData) {
       success: true,
       message: ` review Successfully added`,
       errors: {},
+      isloading : false
     };
   } catch (error) {
     if (error.message === "NEXT_REDIRECT") {
@@ -81,6 +85,7 @@ export const addReview = async function ({}, formData) {
         },
         message: "Validation failed. Please check your input.",
         success: false,
+        isloading : false
       };
     } else {
       
@@ -91,6 +96,7 @@ export const addReview = async function ({}, formData) {
         },
         message: `Validation failed. ${error.message}.`,
         success: false,
+        isloading : false
       };
     }
   }

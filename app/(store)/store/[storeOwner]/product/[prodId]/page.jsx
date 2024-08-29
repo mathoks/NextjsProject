@@ -35,7 +35,7 @@ import { auth } from "@/auth";
 
 const Page = async ({ params }) => {
   const product = await getProductByIds(params);
-  const session = await auth()
+  
   if (!product.data) return <div>Product not found</div>;
   return (
     <>
