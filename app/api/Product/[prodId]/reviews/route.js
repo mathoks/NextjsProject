@@ -56,7 +56,7 @@ export async function POST(req) {
       const data = await req.json();
       const { text, prodId, reviewer, value } = data;
       const newPost = await prisma.$transaction(async (prima) => {
-         const newReviews = prima.ProdReview.create({
+         const newReviews = await prima.ProdReview.create({
         data: {
           comment: text,
           prodId,
@@ -66,7 +66,7 @@ export async function POST(req) {
         select: { id: true }, // Only select necessary fields
       });
       if(!newReviews) throw new Error("opps");
-      
+      console.log(newReviews)
         updateProductRating(prima,newReviews.id)
     })
       if (!newPost) throw new Error("operation was unsuccessfull");
