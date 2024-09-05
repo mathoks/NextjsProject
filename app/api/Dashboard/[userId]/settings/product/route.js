@@ -49,11 +49,11 @@ export async function GET(req) {
     });
 
     
-    if (Array.isArray(stores.branches)) {
-      return NextResponse.json({ data: stores.branches });
+    if (Array.isArray(stores?.branches)) {
+      return NextResponse.json({ data: stores?.branches });
     } else throw new Error("cant query database");
   } catch (error) {
     console.log(error)
-    return Response.error("Internal server error");
+    return Response.error();
   }
 }

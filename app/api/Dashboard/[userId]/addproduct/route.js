@@ -31,6 +31,7 @@ export async function POST(req) {
         prodImage,
         storeId
      } = await req.json();
+    
        const result = await prisma.$transaction(async(prima) => {
         const newProd = await prima.Product.create({
           data: {
@@ -70,7 +71,7 @@ export async function POST(req) {
         throw new Error("product not added");
       }
       
-      revalidateTag('store')
+       revalidateTag('store')
        revalidatePath('/api/home')
       return NextResponse.json(result, { status: 201 });
     } catch (error) {

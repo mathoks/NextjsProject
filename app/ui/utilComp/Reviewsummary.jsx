@@ -35,10 +35,12 @@ const [val1, setval1 ] =useState(0)
       
       setval(average_rating)
       setval1(total_reviews)
+      console.log(Object.values(rest))
       Object.values(rest).forEach((k, v, ) => {
+        
           setList((prev) => {
           prev[v+1] = Number(k);
-          return [...prev];
+          return [...prev].reverse();
         });
        
       });
@@ -65,7 +67,7 @@ const [val1, setval1 ] =useState(0)
  
 
   return (
-     <div className="grid grid-cols-3  gap-x-0  -ml-6 w-[calc(100%-8px)]">
+     <div className="grid grid-cols-3  gap-x-0  -ml-5 w-[calc(100%-8px)]">
      <div className="flex col-span-1 flex-col text-[12px] items-center ">
      <Stars rating={Number(val)+ '.0'} size={'font-semibold text-4xl '} size1={'flex-col'}/>
      <p className="">{val1}</p>
