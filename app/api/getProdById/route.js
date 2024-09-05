@@ -53,14 +53,15 @@ export async function GET(req) {
           }}
         }
       },
-        comment: {
+        prod_reviews: {
           select: {
             id: true,
             comment: true,
             review: true,
-            commenter: {
+            user: {
                 select: {
-                    name: true
+                    name: true,
+                    image:true
                 }
             }
           }

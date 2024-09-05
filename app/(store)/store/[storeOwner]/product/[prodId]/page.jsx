@@ -6,10 +6,11 @@ import Page2 from "@/app/ui/Page2";
 import Page3 from "@/app/ui/Page3";
 import { Page4 } from "@/app/ui/page4";
 import Hints from "@/app/ui/utilComp/Hints";
-
 import ReviewButton from "@/app/ui/Buttons/ReviewButton";
 import WriteReview from "@/app/ui/uiForms/WriteReview";
 import { auth } from "@/auth";
+import { signIn } from "next-auth/react";
+import SignToReview from "@/app/ui/Buttons/SignToReview";
 
 // function debounce(func, delay) {
 //   let timeout;
@@ -35,7 +36,22 @@ import { auth } from "@/auth";
 
 const Page = async ({ params }) => {
   const product = await getProductByIds(params);
-  
+  console.log(params)
+  const user = await auth()
+  // const cache = new Map()
+  // if(params.prodId && product.data.categoryId){
+  //   const val = cache.has(params.prodId)
+  //   const cat = cache.has(product.data.categoryId)
+  //   if(!val && cat){
+  //       cache.set(params.prodId, params.prodId)
+  //       cache.set(product.data.categoryId, product.data.categoryId )
+  //     }
+  //   else {
+
+  //   }
+  // }
+  // cache.forEach((i)=>console.log(i))
+
   if (!product.data) return <div>Product not found</div>;
   return (
     <>
@@ -61,12 +77,12 @@ const Page = async ({ params }) => {
         <div id="ProductReviews" className="view space-y-2">
           <div className="flex justify-between items-center">
             <h1 className="text-lg font-semibold px-4">Product Reviews</h1>
-            <ReviewButton/>
+            {user?.user?.id !== product.data.storeId && user?.user?.id ? <ReviewButton/> : !user?.user ? <SignToReview/>: ''}
             {/* <button className="text-blue-500 px-4 py-2 ">write a review</button> */}
           </div>
 
-          <Page3  />
-          <WriteReview params={params || null}/>
+          <Page3 prod={params.prodId} data={product?.data?.prod_reviews || null}/>
+          <WriteReview params={params.prodId || null} category = {product.data.categoryId || null}/>
           <hr />
         </div>
 

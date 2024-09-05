@@ -1,6 +1,7 @@
 import { Pool } from "@neondatabase/serverless";
 import { PrismaNeon } from "@prisma/adapter-neon";
 import { PrismaClient } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
@@ -23,7 +24,7 @@ const adapter = new PrismaNeon(neon);
 
 export async function GET(req) {
     const storeId = (req.url).split('/')[6]
-
+    console.log(storeId, req.url)
   if(!prisma){
     prisma = new PrismaClient({adapter})
   }
@@ -44,7 +45,7 @@ export async function GET(req) {
             description: true,
             prodImage: true,
             availability:true,
-            comment: true
+            prod_reviews: true
           },
         },
         branches: {
@@ -71,10 +72,10 @@ export async function GET(req) {
     if(store === null){
         return NextResponse.json({data: null})
     }
-    
+    console.log(store)
     return NextResponse.json({ data: store });
-  } catch (error) {
-    
-   return Response.json({ message: "Internal server error"});
+  } catch (error) {  
+    console.log(error)
+   return Response.json({error: 'bad'});
   }
 }

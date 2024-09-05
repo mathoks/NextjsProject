@@ -103,7 +103,7 @@ export async function GET(req) {
               select: {
                 id: true,
                 storeId: true,
-                category: true,
+                 category: true,
                 price: true,
                 name: true,
                 description: true,
@@ -111,7 +111,7 @@ export async function GET(req) {
                   select: { id: true, image: true },
                 },
                 availability: true,
-                comment: true,
+                prod_reviews: true,
               },
             },
             storeReviews: {
@@ -138,6 +138,7 @@ export async function GET(req) {
     
     return NextResponse.json(cachedStores);
   } catch (error) {
+    
     // Log the error for debugging
     return NextResponse.json({ error: "Internal Server Error" }, {
       status: 500,

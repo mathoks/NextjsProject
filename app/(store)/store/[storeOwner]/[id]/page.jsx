@@ -8,12 +8,14 @@ const page = async({params:{id , storeOwner}}) => {
   const header = headers()
   const domain = header.get("host");
   const response =  await fetch(
-    `http://${domain}/api/store/${storeOwner}/${id}/`
+    `http://${domain}/api/store/${storeOwner}/${id}/`, {
+      cache: 'default'
+    }
     
     )
     const users = await response.json()
     if(users.hasOwnProperty('data')){
-    const { businessName, market, state, country, about, phone, shopAddress} = users?.data;
+    const { businessName, market, state, country, about, phone, shopAddress} = users.data;
   
   return (
     

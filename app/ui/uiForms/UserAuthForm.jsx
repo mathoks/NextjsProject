@@ -1,10 +1,11 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect} from 'react'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { addUser } from '@/app/actions/users/addUsers'
 import { useFormState } from 'react-dom'
 import { validate } from '@/app/lib/utills/validator'
 import Link from 'next/link'
+import toast from 'react-hot-toast'
 
 
 // const Fields = {
@@ -47,14 +48,28 @@ import Link from 'next/link'
 
 const UserAuthForm = () => {
     const [ptype, setptype] = useState('password')
-    const initialState = { message: null, errors: {}, success: null };
+    const [loading, setIsLoading] = useState(false)
+    const initialState = { message: null, errors: {}, success: null, message: ''};
     const [state, dispatch] = useFormState(addUser, initialState);
      const [states, dispatch2] = useFormState(validate, initialState);
     console.log(state, typeof states?.errors?.error !== 'undefined')
-  return (
-    <div className='text-black  mx-auto'>
     
-    <span id="customer-error"  aria-live="polite" className=" mx-auto text-center" aria-atomic="true" >
+    useEffect(() => {
+      const notify = () => toast(state.message);  
+      if (state.success === false)
+      notify();
+      setIsLoading(false)
+    },[state.success, state.message]);
+
+    const handleSignIn = async(formData)=>{
+      setIsLoading(true)
+     await dispatch(formData)
+    }
+
+  return (
+    <div className='text-black  p-4 px-8'>
+    
+    <span id="customer-error" aria-live="polite" className=" mx-auto text-center" aria-atomic="true" >
         {state?.message &&
             <p className={`text-sm ${state.success ? 'text-green-400' :  'text-red-500'}`}>
               {state?.message  + " "} 
@@ -62,9 +77,9 @@ const UserAuthForm = () => {
             </p>
           }
     </span>
-      <form className='flex flex-col space-y-4' action={dispatch}>
+      <form className='grid w-full items-center gap-4' action={handleSignIn}>
       <section className='flex flex-col justify-start  space-y-2'>
-        <label className="" htmlFor="Username"> Username</label>
+        <label className=" font-semibold" htmlFor="username"> Username</label>
         <input id="username"
               placeholder="name@123"
               type="text"
@@ -89,7 +104,7 @@ const UserAuthForm = () => {
         </span>
         </section>
         <section className='flex flex-col justify-start  space-y-2'>
-        <label className="" htmlFor="email"> Email</label>
+        <label className=" font-semibold"  htmlFor="email"> Email</label>
         <input id="email"
               placeholder="name@example.com"
               type="email"
@@ -114,7 +129,7 @@ const UserAuthForm = () => {
         </section>
         
         <section className='relative flex flex-col justify-start space-y-2'>
-        <label className="" htmlFor="password">Password </label>
+        <label className=" font-semibold"  htmlFor="password">Password </label>
         <input id="password"
               type={ptype}
               autoComplete="new-password"
@@ -140,7 +155,7 @@ const UserAuthForm = () => {
           }
     </span>
         </section>
-        <button  className='bg-blue-500 py-4 rounded-md text-white disabled:opacity-70' id='sign-up'> Sign up</button>
+        <button  className='bg-blue-500 font-semibold py-4 rounded-md text-white disabled:opacity-70' disabled={loading} id='sign-up'> Sign up</button>
       </form>
     </div>
   )

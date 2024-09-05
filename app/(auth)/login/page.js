@@ -27,7 +27,7 @@ export default function SignInPage() {
         className="absolute left-0 top-0 z-10 flex h-[275%] w-[150%] translate-x-[-70%] translate-y-[-28%] rotate-[22deg] items-center bg-[#6A0DAD] md:translate-y-[-15%] md:rotate-[11deg]"
       ></div> */}
       <div className="h-dvh z-20 flex w-full items-center justify-center md:ml-[15%] md:w-[22rem]">
-        <div className="flex flex-col justify-center items-center w-80 text-xl">
+        <div className="flex flex-col justify-center items-center px-4  text-xl">
           <h2 className="flex items-center mb-4 space-x-2 text-3xl font-light text-zinc-600">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -43,10 +43,10 @@ export default function SignInPage() {
             </svg>
             <span className="text-4xl font-medium text-black">Mymart</span>
           </h2>
-          <div className="flex flex-col gap-2 p-6 m-8 w-full bg-white rounded shadow-lg relative">
+          <div className="flex flex-col gap-2  bg-white rounded shadow-lg relative py-8 px-4">
             {Object.values(providerMap).map(({ id, name }) => (
               <form
-                className="[&>div]:last-of-type:hidden"
+                className="[&>div]:last-of-type:hidden w-full flex justify-center flex-col"
                 key={id}
                 action={dispatch}
               >
@@ -62,8 +62,9 @@ export default function SignInPage() {
                         <p className="text-sm text-red-500">{state?.message}</p>
                       )}
                     </span>
-                    <label className="text-base font-light text-neutral-800 ">
+                    <label htmlFor="email" className="text-base font-medium text-neutral-800">
                       Email
+                      </label>
                       <input
                         className="block flex-1 p-3 w-full font-normal rounded-md border border-gray-200 transition sm:text-sm placeholder:font-light placeholder:text-zinc-400 focus:border-zinc-500 focus:ring-zinc-500"
                         required
@@ -71,6 +72,7 @@ export default function SignInPage() {
                         placeholder="Email"
                         name="email"
                         type="email"
+                        id="email"
                         onBlur={dispatch2}
                       />
                       <span
@@ -91,9 +93,10 @@ export default function SignInPage() {
                           ""
                         )}
                       </span>
-                    </label>
-                    <label className="text-base font-light text-neutral-800">
+                    
+                    <label className="text-base font-medium text-neutral-800">
                       Password
+                      </label>
                       <input
                         className="block flex-1 p-3 w-full font-normal rounded-md border border-gray-200 transition sm:text-sm placeholder:font-light placeholder:text-zinc-400 focus:border-zinc-500 focus:ring-zinc-500"
                         required
@@ -121,7 +124,7 @@ export default function SignInPage() {
                           ""
                         )}
                       </span>
-                    </label>
+                    
                   </>
                 )}
                 <button
@@ -135,7 +138,7 @@ export default function SignInPage() {
                     state?.errors?.error !== undefined
                   }
                 >
-                  <span>Sign in with {name}</span>
+                  <span className=" font-medium">Sign in with {name}</span>
                 </button>
                 <div className="flex gap-2 items-center my-4">
                   <div className="flex-1 bg-[#6A0DAD] h-[1px]" />

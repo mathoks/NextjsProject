@@ -53,7 +53,6 @@ model User {
   notifications      Notification[]
   posts              Post[]
   postComments       PostReview?
-  prod_reviews       prod_reviews[]
   sessions           Session[]
   store              Store?
   reviews            storeReview[]        @relation("reviewer")
@@ -110,7 +109,6 @@ model Product {
   rating       Float             @default(0)
   categoryId   Int
   post         PostProduct[]
-  prod_reviews prod_reviews[]
   prodImage    ProdImage[]
   category     Category          @relation(fields: [categoryId], references: [id])
   store        Store             @relation(fields: [storeId], references: [id], onDelete: Cascade)
@@ -236,11 +234,10 @@ model Post {
 }
 
 model Category {
-  id           Int            @id @default(autoincrement())
-  name         String         @unique
-  posts        PostCategory[]
-  prod_reviews prod_reviews[]
-  products     Product[]
+  id       Int            @id @default(autoincrement())
+  name     String         @unique
+  posts    PostCategory[]
+  products Product[]
 
   @@map("category")
 }
@@ -344,49 +341,18 @@ model StoreSubscriptions {
   @@map("store_subscription")
 }
 
-model prod_reviews {
-  id          String    @default(dbgenerated("gen_random_uuid()"))
-  comment     String?
-  createdat   DateTime? @default(now()) @db.Timestamp(6)
-  updatedat   DateTime? @updatedAt @db.Timestamp(6)
-  review      Int
-  category_id Int
-  user_id     String
-  prod_id     String
-  category    Category  @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "categorylist_ffk")
-  product     Product   @relation(fields: [prod_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "commentproduct_ffk")
-  user        User      @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "usercomm_ffks")
-  reply       Reply?
-
-  @@id([id, category_id], name: "reviewId", map: "prodreviews_pkey")
-  @@unique([id, category_id, user_id], name: "reviewIds", map: "prod_reviews_id_key")
-}
-
 model Reply {
-  id          String       @id @default(cuid())
+  id          String   @id @default(cuid())
   text        String
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
   category_id Int
   comenter_id String
   review_id   String
   reviewer_id String
-  Review      prod_reviews @relation(fields: [review_id, category_id, comenter_id], references: [id, category_id, user_id])
 
   @@unique([review_id, category_id, comenter_id])
   @@map("reply")
-}
-
-
-view ratings_stats {
-  prod_id        String @unique
-  total_reviews  BigInt?
-  average_rating Decimal? @db.Decimal
-  percentage_5   Decimal? @db.Decimal
-  percentage_4   Decimal? @db.Decimal
-  percentage_3   Decimal? @db.Decimal
-  percentage_2   Decimal? @db.Decimal
-  percentage_1   Decimal? @db.Decimal
 }
 
 enum OPTIONS {

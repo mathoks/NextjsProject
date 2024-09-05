@@ -53,6 +53,7 @@ model User {
   notifications      Notification[]
   posts              Post[]
   postComments       PostReview?
+  comments           ProdReview?
   prod_reviews       prod_reviews[]
   sessions           Session[]
   store              Store?
@@ -110,6 +111,7 @@ model Product {
   rating       Float             @default(0)
   categoryId   Int
   post         PostProduct[]
+  comment      ProdReview[]
   prod_reviews prod_reviews[]
   prodImage    ProdImage[]
   category     Category          @relation(fields: [categoryId], references: [id])
@@ -221,6 +223,22 @@ model Ticket {
   @@map("ticket")
 }
 
+model ProdReview {
+  id         String   @id @unique(map: "product_reviews") @default(cuid())
+  comment    String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  review     Int
+  userId     String   @unique(map: "product_reviews_user") @map("user_id")
+  prodId     String   @map("prod_id")
+  category   Int
+  product    Product  @relation(fields: [prodId], references: [id], map: "comment_ffk")
+  categories Category @relation(fields: [category], references: [id])
+  commenter  User     @relation(fields: [userId], references: [id])
+
+  @@map("prod_review")
+}
+
 model Post {
   id          String         @id @default(cuid())
   userId      String         @map("user_id")
@@ -239,6 +257,7 @@ model Category {
   id           Int            @id @default(autoincrement())
   name         String         @unique
   posts        PostCategory[]
+  reviews      ProdReview[]
   prod_reviews prod_reviews[]
   products     Product[]
 
@@ -360,6 +379,7 @@ model prod_reviews {
 
   @@id([id, category_id], name: "reviewId", map: "prodreviews_pkey")
   @@unique([id, category_id, user_id], name: "reviewIds", map: "prod_reviews_id_key")
+  
 }
 
 model Reply {
@@ -378,16 +398,6 @@ model Reply {
 }
 
 
-view ratings_stats {
-  prod_id        String @unique
-  total_reviews  BigInt?
-  average_rating Decimal? @db.Decimal
-  percentage_5   Decimal? @db.Decimal
-  percentage_4   Decimal? @db.Decimal
-  percentage_3   Decimal? @db.Decimal
-  percentage_2   Decimal? @db.Decimal
-  percentage_1   Decimal? @db.Decimal
-}
 
 enum OPTIONS {
   NEGOTIABLE

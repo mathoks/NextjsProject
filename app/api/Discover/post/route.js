@@ -1,6 +1,7 @@
 import { Pool } from "@neondatabase/serverless";
 import { PrismaNeon } from "@prisma/adapter-neon";
 import { PrismaClient } from "@prisma/client";
+import { revalidateTag } from "next/cache";
 import { NextResponse } from "next/server";
 
 // Create a single instance of the Prisma client for efficiency
@@ -68,11 +69,13 @@ export async function POST(req) {
       });
 
       if (!result) throw new Error("operation was unsuccessfull");
+      revalidateTag('post')
       return NextResponse.json({ data: result });
     
     } catch (error) {
       console.log(error);
-      return Response.json({ message: "Internal server error" });
+      return NextResponse.error()
+      // Response.json({ message: "Internal server error" });
     }
   }
 }

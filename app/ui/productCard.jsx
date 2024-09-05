@@ -11,11 +11,11 @@ const ProductCard = memo(function MappUI({storeId, info = []}){
     const swiperRef = useRef()
 const Router = useRouter()
   return (
-      info.map(({id, prodImage, name, category, price, description,availability }, ids)=>{
+      info.map(({id, prodImage, name, category:{name:tagname, }, price, description,availability }, ids)=>{
         return (
         <div onClick={()=>Router.push(`/store/${storeId}/product/${id}`)} className='shadow_cus rounded-md bg-white  space-y-1 relative h-fit' key={ids} >
         <div className=' bg-[#f9f5fb]  rounded-t-sm py-1 p-1'>
-        <span className='font-semibold text-gray-800'>{category}</span>
+        <span className='font-semibold text-gray-800'>{tagname}</span>
         </div>
        
         <div className='prodswiper mx-auto h-[9.5rem]' >

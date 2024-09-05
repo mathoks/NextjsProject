@@ -1,4 +1,7 @@
 -- CreateEnum
+CREATE TYPE "OPTIONS" AS ENUM ('NEGOTIABLE', 'BESTPRICE');
+
+-- CreateEnum
 CREATE TYPE "Availability" AS ENUM ('IN_STOCK', 'OUT_OF_STOCK', 'COMING_SOON', 'LIMITED_STOCK');
 
 -- CreateEnum
@@ -43,9 +46,8 @@ CREATE TABLE "session" (
 -- CreateTable
 CREATE TABLE "user" (
     "id" TEXT NOT NULL,
-    "rating" INTEGER NOT NULL DEFAULT 0,
-    "name" TEXT,
-    "email" TEXT,
+    "name" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
     "email_verified" TIMESTAMP(3),
     "image" TEXT,
     "password" TEXT,
@@ -86,47 +88,60 @@ CREATE TABLE "product" (
     "store_id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT NOT NULL,
-    "category" TEXT NOT NULL,
     "price" DOUBLE PRECISION NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "availability" "Availability" NOT NULL DEFAULT 'IN_STOCK',
+    "negotiable" "OPTIONS" NOT NULL,
+    "rating" DOUBLE PRECISION NOT NULL DEFAULT 0,
+    "categoryId" INTEGER NOT NULL,
 
     CONSTRAINT "product_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "postproduct" (
+    "id" TEXT NOT NULL,
+    "postId" TEXT NOT NULL,
+    "productId" TEXT NOT NULL,
+
+    CONSTRAINT "postproduct_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "branch" (
     "id" TEXT NOT NULL,
     "store_id" TEXT NOT NULL,
-    "branch_name" TEXT,
-    "branch_address" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "state" TEXT NOT NULL,
     "country" TEXT NOT NULL,
     "market" TEXT NOT NULL,
+    "phone" TEXT NOT NULL,
+    "branchaddress" TEXT,
+    "branchname" TEXT,
 
     CONSTRAINT "branch_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "ProductBranch" (
+CREATE TABLE "productbranch" (
     "id" TEXT NOT NULL,
     "productId" TEXT NOT NULL,
     "branchId" TEXT NOT NULL,
 
-    CONSTRAINT "ProductBranch_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "productbranch_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "prod_image" (
+CREATE TABLE "prodimage" (
     "id" TEXT NOT NULL,
-    "image" TEXT,
+    "image" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "prodId" TEXT NOT NULL,
 
-    CONSTRAINT "prod_image_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "prodimage_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -134,13 +149,13 @@ CREATE TABLE "product_attribute" (
     "id" TEXT NOT NULL,
     "color" TEXT,
     "size" TEXT,
-    "width" INTEGER,
-    "height" INTEGER,
     "weight" INTEGER,
     "brand" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "status" "Status" NOT NULL,
+    "status" "Status" DEFAULT 'NEW',
+    "material" TEXT,
+    "warranty" TEXT,
 
     CONSTRAINT "product_attribute_pkey" PRIMARY KEY ("id")
 );
@@ -177,38 +192,31 @@ CREATE TABLE "ticket" (
 );
 
 -- CreateTable
-CREATE TABLE "prod_review" (
-    "id" TEXT NOT NULL,
-    "comment" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-    "review" INTEGER NOT NULL DEFAULT 0,
-    "user_id" TEXT NOT NULL,
-
-    CONSTRAINT "prod_review_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "reply" (
-    "id" TEXT NOT NULL,
-    "text" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "reply_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
 CREATE TABLE "post" (
     "id" TEXT NOT NULL,
     "user_id" TEXT NOT NULL,
     "text" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "postImage" TEXT,
-    "likes" INTEGER NOT NULL DEFAULT 0,
 
     CONSTRAINT "post_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "category" (
+    "id" SERIAL NOT NULL,
+    "name" TEXT NOT NULL,
+
+    CONSTRAINT "category_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "postbranch" (
+    "id" TEXT NOT NULL,
+    "postId" TEXT NOT NULL,
+    "categoryId" INTEGER NOT NULL,
+
+    CONSTRAINT "postbranch_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -218,7 +226,6 @@ CREATE TABLE "post_review" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "user_id" TEXT,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "review" INTEGER NOT NULL DEFAULT 0,
 
     CONSTRAINT "post_review_pkey" PRIMARY KEY ("id")
 );
@@ -293,6 +300,20 @@ CREATE TABLE "store_subscription" (
     CONSTRAINT "store_subscription_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "reply" (
+    "id" TEXT NOT NULL,
+    "text" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "category_id" INTEGER NOT NULL,
+    "comenter_id" TEXT NOT NULL,
+    "review_id" TEXT NOT NULL,
+    "reviewer_id" TEXT NOT NULL,
+
+    CONSTRAINT "reply_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "account_provider_provider_account_id_key" ON "account"("provider", "provider_account_id");
 
@@ -318,13 +339,16 @@ CREATE INDEX "store_id_createdAt_idx" ON "store"("id", "createdAt" DESC);
 CREATE UNIQUE INDEX "verificationtoken_identifier_token_key" ON "verificationtoken"("identifier", "token");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "ProductBranch_productId_branchId_key" ON "ProductBranch"("productId", "branchId");
+CREATE UNIQUE INDEX "productbranch_productId_branchId_key" ON "productbranch"("productId", "branchId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "product_attribute_id_key" ON "product_attribute"("id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "wishlist_user_id_key" ON "wishlist"("user_id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "category_name_key" ON "category"("name");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "post_review_user_id_key" ON "post_review"("user_id");
@@ -347,6 +371,9 @@ CREATE UNIQUE INDEX "store_subscription_storeId_key" ON "store_subscription"("st
 -- CreateIndex
 CREATE UNIQUE INDEX "store_subscription_user_id_storeId_key" ON "store_subscription"("user_id", "storeId");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "reply_review_id_category_id_comenter_id_key" ON "reply"("review_id", "category_id", "comenter_id");
+
 -- AddForeignKey
 ALTER TABLE "account" ADD CONSTRAINT "account_id_fkey" FOREIGN KEY ("id") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -357,22 +384,31 @@ ALTER TABLE "session" ADD CONSTRAINT "session_user_id_fkey" FOREIGN KEY ("user_i
 ALTER TABLE "store" ADD CONSTRAINT "store_id_fkey" FOREIGN KEY ("id") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "product" ADD CONSTRAINT "product_store_id_fkey" FOREIGN KEY ("store_id") REFERENCES "store"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "product" ADD CONSTRAINT "product_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "category"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "product" ADD CONSTRAINT "product_store_id_fkey" FOREIGN KEY ("store_id") REFERENCES "store"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "postproduct" ADD CONSTRAINT "postproduct_postId_fkey" FOREIGN KEY ("postId") REFERENCES "post"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "postproduct" ADD CONSTRAINT "postproduct_productId_fkey" FOREIGN KEY ("productId") REFERENCES "product"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "branch" ADD CONSTRAINT "branch_store_id_fkey" FOREIGN KEY ("store_id") REFERENCES "store"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ProductBranch" ADD CONSTRAINT "ProductBranch_branchId_fkey" FOREIGN KEY ("branchId") REFERENCES "branch"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "productbranch" ADD CONSTRAINT "productbranch_branchId_fkey" FOREIGN KEY ("branchId") REFERENCES "branch"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ProductBranch" ADD CONSTRAINT "ProductBranch_productId_fkey" FOREIGN KEY ("productId") REFERENCES "product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "productbranch" ADD CONSTRAINT "productbranch_productId_fkey" FOREIGN KEY ("productId") REFERENCES "product"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "prod_image" ADD CONSTRAINT "prod_image_id_fkey" FOREIGN KEY ("id") REFERENCES "product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "prodimage" ADD CONSTRAINT "prodimage_prodId_fkey" FOREIGN KEY ("prodId") REFERENCES "product"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "product_attribute" ADD CONSTRAINT "product_attribute_id_fkey" FOREIGN KEY ("id") REFERENCES "product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "product_attribute" ADD CONSTRAINT "product_attribute_id_fkey" FOREIGN KEY ("id") REFERENCES "product"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "wishlist" ADD CONSTRAINT "wishlist_id_fkey" FOREIGN KEY ("id") REFERENCES "product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -381,49 +417,43 @@ ALTER TABLE "wishlist" ADD CONSTRAINT "wishlist_id_fkey" FOREIGN KEY ("id") REFE
 ALTER TABLE "wishlist" ADD CONSTRAINT "wishlist_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "message" ADD CONSTRAINT "message_sender_id_fkey" FOREIGN KEY ("sender_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "message" ADD CONSTRAINT "message_ffk" FOREIGN KEY ("id") REFERENCES "ticket"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "message" ADD CONSTRAINT "message_sende_ffk" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "message" ADD CONSTRAINT "message_ffk" FOREIGN KEY ("id") REFERENCES "ticket"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "message" ADD CONSTRAINT "message_sender_id_fkey" FOREIGN KEY ("sender_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "ticket" ADD CONSTRAINT "ticket_ffk" FOREIGN KEY ("user_Id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "prod_review" ADD CONSTRAINT "comment_ffk" FOREIGN KEY ("id") REFERENCES "product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "prod_review" ADD CONSTRAINT "prod_review_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "reply" ADD CONSTRAINT "reply_id_fkey" FOREIGN KEY ("id") REFERENCES "prod_review"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
 ALTER TABLE "post" ADD CONSTRAINT "post_key_ff" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "post" ADD CONSTRAINT "post_id_fkey" FOREIGN KEY ("id") REFERENCES "product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "postbranch" ADD CONSTRAINT "postbranch_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "category"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "post_review" ADD CONSTRAINT "post_review_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "postbranch" ADD CONSTRAINT "postbranch_postId_fkey" FOREIGN KEY ("postId") REFERENCES "post"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "post_review" ADD CONSTRAINT "post_ffk_comm" FOREIGN KEY ("id") REFERENCES "post"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "comment_reply" ADD CONSTRAINT "comment_reply_id_fkey" FOREIGN KEY ("id") REFERENCES "post_review"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "post_review" ADD CONSTRAINT "post_review_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "comment_reply" ADD CONSTRAINT "comment_reply_author_id_fkey" FOREIGN KEY ("author_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "store_review" ADD CONSTRAINT "store_review_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "comment_reply" ADD CONSTRAINT "comment_reply_id_fkey" FOREIGN KEY ("id") REFERENCES "post_review"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "store_review" ADD CONSTRAINT "store_review_ffk" FOREIGN KEY ("store_owner_id") REFERENCES "store"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "store_review" ADD CONSTRAINT "store_review_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "store_reply" ADD CONSTRAINT "store_reply_id_fkey" FOREIGN KEY ("id") REFERENCES "store_review"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

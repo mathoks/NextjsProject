@@ -1,3 +1,4 @@
+import { nanoid } from "@reduxjs/toolkit";
 import joi from "joi";
 
 const Fields = {
@@ -24,13 +25,14 @@ const Fields = {
   .min(4)
   .max(20)
   .required(),
-  category: joi.string().required(),
+  category: joi.number().required(),
   price: joi.number().required(),
   negotiable: joi.string().required(),
   availability: joi.string().required(),
 };
 
 export const validate = (_, e) => {
+  const id = nanoid(4)
   const { value, name } = e?.target;
   const FormSchema = joi.object({ [name]: Fields[name] });
   const valid = FormSchema.validate({
@@ -46,6 +48,7 @@ export const validate = (_, e) => {
         name: name,
       },
       message: null,
+      id:id
     };
   }
   return {

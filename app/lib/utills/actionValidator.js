@@ -26,7 +26,7 @@ name: joi
     .min(6)
     .max(100)
     .required(),
-  category: joi.string().required(),
+  categoryId: joi.number().required(),
   link: joi.string().allow(null),
   price: joi.number().required(),
   negotiable: joi.string().required(),
@@ -124,7 +124,7 @@ export const validateProduct = async (formData) => {
       name: formData.get("name"),
       description: formData.get("description"),
       negotiable: formData.get("negotiable"),
-      category: formData.get("category"),
+      categoryId: formData.get("category"),
       availability: formData.get("availability"),
       link: formData.get("link"),
       price: formData.get("price"),

@@ -1,31 +1,39 @@
 "use client"
 
 import { ProductCart, PricePolicy, LinkToBranch, Availability } from '@/app/ui/uiForms/productCart'
-import React, { useEffect } from 'react'
+import React, { useEffect, useId, useRef, useState } from 'react'
 import ImageUploader from '../utilComp/ImageUploader'
 import { useFormState,  } from 'react-dom'
 import { addProduct } from '@/app/actions/users/addProduct'
 import { validate } from '@/app/lib/utills/validator'
 import toast from 'react-hot-toast'
+import { nanoid } from '@reduxjs/toolkit'
 
 
 
 
 
 const ProductForm = ({data}) => {
-    const initialState = { message: null, errors: {}, success: null, store: null };
+   const id = useRef(null)
+    const initialState = { message: null, errors: {}, success: null, store: null, id:null};
     const [state, dispatch] = useFormState(addProduct, initialState);
     const [states, dispatch2] = useFormState(validate, initialState);
     const show = " *" 
-
-    
+    const [loading, setIsLoading]= useState(false)
+  
     useEffect(() => {
+      const FormEle = document.getElementById("prod_form")
+      FormEle.addEventListener("submit", ()=>{setIsLoading(true); id.current = nanoid(4);})
       const notify = () => toast(state.message);  
-      if (state.success === true)
-      notify();
-    },[state.success, state.message]);
+      if (state.success){
+      notify(); 
+      FormEle.reset();
+      }
+      console.log("hhah")
+      return ()=>{ setIsLoading(false); FormEle.removeEventListener("submit", ()=>setIsLoading(false))}
+    },[state.success, state.message,  id.current,]);
     
-
+    
   return (
     <div className='mx-auto flex flex-col space-y-2 bg-white mb-16 pb-20'>
      <section>
@@ -38,7 +46,7 @@ const ProductForm = ({data}) => {
           }
     </span>
     </section>
-       <form action={dispatch} className='flex flex-col space-y-4 min-w-80 p-6 rounded-md  shadow-md'>
+       <form action={dispatch} id="prod_form" className='flex flex-col space-y-4 min-w-80 p-6 rounded-md  shadow-md'>
       <section className='flex flex-col space-y-1'>
       <label htmlFor='name' className='font-semibold'>Name{<p className='text-red-700 inline'>{show}</p>}</label>
       <input onBlur={dispatch2} type='text' name='name' className='p-2.5 bg-[#fcfaff]  rounded-md ring-1 ring-slate-300'/>
@@ -120,7 +128,7 @@ const ProductForm = ({data}) => {
         <label className='font-semibold'>Link to a branch</label>
             <LinkToBranch option={data}/>
         </section>
-        <button type='submit'  className='rounded-md bg-[#6A0DAD] py-2.5  text-white'>Submit</button>
+        <button type='submit' disabled={loading}  className='rounded-md bg-[#6A0DAD] py-2.5  text-white disabled:opacity-50'>Submit</button>
       </form>
       
 

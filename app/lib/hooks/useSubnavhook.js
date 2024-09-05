@@ -60,7 +60,7 @@ export const useSubnavhook = (h , m , setIndex, setShow, data) => {
          return [...prev];
        });
       } 
-      if (Array.isArray(item[1]) && item[1].length > 0 && item[0] === 'comment'){
+      if (Array.isArray(item[1]) && item[1].length > 0 && item[0] === 'prod_reviews'){
         
         setShow((prev) => {
           prev[1] = "visible";

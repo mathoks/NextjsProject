@@ -50,7 +50,6 @@ const State = {
  */
 export const createStore = async function (State, formData) {
   const phone = formData.get("tel");
-const Store = formData.get('storename')
   const file = formData.get("picture");
   const headerList = headers();
   const domain = headerList.get("host");
@@ -117,7 +116,7 @@ const Store = formData.get('storename')
         );
         
         if (!response.ok) {
-          throw new Error("Network failed");
+          throw new Error("an error occured please try again");
         }
         
         const store = await response.json();
@@ -127,7 +126,7 @@ const Store = formData.get('storename')
           throw new Error('could not create store')
         } 
         
-        revalidatePath('/home')
+       
         redirect(`http://${domain}/store/${encodeURIComponent(businessName)}/${encodeURIComponent(id)}`);
         
         //   return {

@@ -3,7 +3,7 @@ import Skeleton from "@mui/material/Skeleton";
 
 const Skeletons = function () {
   return (
-    <div className="w-screen p-4 bg-white">
+    <div className="w-full p-4 bg-white">
       <span className="flex items-start justify-between"
       >
         <Skeleton animation="pulse" variant="circular" width={40} height={40} />
@@ -34,7 +34,7 @@ const Skeletons = function () {
               </span>
             </span>
     
-            <span className="flex flex-col space-y-1 w-40 pr-2">
+            <span className="flex flex-col space-y-1 w-32 pr-2">
           <Skeleton animation="pulse" variant="text" sx={{ fontSize: "2rem"}} />
           <Skeleton animation="pulse" variant="text" sx={{ fontSize: "5rem" }} />
         

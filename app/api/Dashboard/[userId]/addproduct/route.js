@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { Pool } from "@neondatabase/serverless";
 import { PrismaNeon } from "@prisma/adapter-neon";
 import { PrismaClient } from "@prisma/client";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 // Create a single instance of the Prisma client for efficiency
 let prisma;
@@ -21,7 +22,7 @@ export async function POST(req) {
     try {
      const {
         name,
-        category,
+        categoryId,
         price,
         availability,
         negotiable,
@@ -31,7 +32,7 @@ export async function POST(req) {
         storeId
      } = await req.json();
        const result = await prisma.$transaction(async(prima) => {
-        const newProd = await prima.product.create({
+        const newProd = await prima.Product.create({
           data: {
             storeId,
             name,
@@ -39,7 +40,7 @@ export async function POST(req) {
             negotiable,
             availability,
             price,
-            category
+            categoryId,
           },
           select: { id: true }, // Only select necessary fields
         });
@@ -56,11 +57,11 @@ export async function POST(req) {
             await prima.ProdImage.createMany({
             data: [{
              prodId: newProd.id,
-             image: Images[0]
+             image: Images[0].url
             },
             {
               prodId: newProd.id,
-              image: Images[1]
+              image: Images[1].url
              }]
           });
         return  newProd.id;
@@ -69,14 +70,12 @@ export async function POST(req) {
         throw new Error("product not added");
       }
       
-
+      revalidateTag('store')
+       revalidatePath('/api/home')
       return NextResponse.json(result, { status: 201 });
     } catch (error) {
       console.log(error)
-      return NextResponse.json(
-        { error: "Failed to add Product" },
-        { status: 500 }
-      );
+      return NextResponse.error()
     }
     finally{
         await prisma.$disconnect();

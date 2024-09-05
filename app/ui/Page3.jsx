@@ -1,14 +1,15 @@
 import React from "react";
 import Reviews from "./utilComp/Reviews";
+import { auth } from "@/auth";
 
 
-const Page3 = () => {
-  const data = [{review:"This is a great product it fits perfectly just as described ill definitely be buying some more i just hope you can deliver"},];
-  if (!data.length)
-    return <p className="p-4">No Reviews yet be the first to drop a review</p>;
+const Page3 = async({data, prod}) => {
+ 
+  // const data = [{review:"This is a great product it fits perfectly just as described ill definitely be buying some more i just hope you can deliver"},];
+ 
   return (
-    <div className="relative min-h-[18rem]">
-      <Reviews reviews={data} />
+    <div className={`relative ${data.length > 0 ? "min-h-[18rem]" : ""}`}>
+      <Reviews comment={data} prod={prod}/>
       
       <div className="absolute bottom-0 w-full"></div>
     </div>

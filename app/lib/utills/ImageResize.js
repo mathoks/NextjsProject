@@ -59,6 +59,7 @@ let con = [];
 
   export const ImageResize2 = async (files = []) => {
     // Validate input type and length
+    console.log(files[0])
     if (!Array.isArray(files) || files.length === 0) {
       throw new Error("Invalid input: Please provide an array of image files.");
     }
@@ -68,7 +69,8 @@ let con = [];
     try {
       // Process each image file asynchronously using Promise.all
       await Promise.all(
-        files.map(async ({img, ids}) => {
+        files.map(async (img, ids) => {
+         
           if (img.size === 0) {
             throw new Error("Image size is not allowed (empty file).");
           }

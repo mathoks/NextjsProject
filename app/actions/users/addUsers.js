@@ -58,6 +58,7 @@ export const addUser = async function (State, formData) {
         },
         body: JSON.stringify({ email, password, name: username }),
       });
+      
       if (!response.ok) {
         throw new Error("Network failed");
       }
@@ -89,6 +90,7 @@ export const addUser = async function (State, formData) {
           name: "Authentication failed.",
         },
         success: false,
+        message: "Oops.. Account creation failed.",
       };
     }
   }

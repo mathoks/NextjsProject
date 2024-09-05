@@ -22,7 +22,7 @@ export const addReview = async function (state, formData) {
   const domain = headerList.get("host");
   const session = await auth();
   const prodId = formData.get('product')
- 
+  const category_id = formData.get("category")
   // 2. Check provider ID and Authenticate (handle different providers)
 
   try {
@@ -35,7 +35,7 @@ export const addReview = async function (state, formData) {
       value
     } = await validateReview(formData);
 
-   console.log(text, value)
+   console.log(text, value, category_id)
    
     const response = await fetch(
       `http://${domain}/api/Product/${prodId}/reviews`,
@@ -48,7 +48,8 @@ export const addReview = async function (state, formData) {
          reviewer: session?.user.id,
          text,
          prodId,
-         value
+         value,
+         category_id
         }),
       }
     );
@@ -59,18 +60,19 @@ export const addReview = async function (state, formData) {
 
     const review = await response.json();
   
-
+    console.log(review)
     if (!review) {
       throw new Error("could not add review");
     }
-    revalidateTag('reviews')
+    //  revalidateTag(prodId)
    
 
     return {
       success: true,
       message: ` review Successfully added`,
       errors: {},
-      isloading : false
+      isloading : false,
+      data: review.Average
     };
   } catch (error) {
     if (error.message === "NEXT_REDIRECT") {

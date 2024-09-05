@@ -1,21 +1,22 @@
 "use client";
 import { useAppDispatch, useAppSelector } from "@/app/lib/hooks/hooks";
-import React, { memo, useOptimistic } from "react";
+import React, { memo } from "react";
 import { useEffect, useState } from "react";
 import {useFormState} from 'react-dom'
 import { is } from "immutable";
 import { addReview } from "@/app/actions/users/addReview";
 import toast from 'react-hot-toast'
-import { setComment , setReview} from "@/app/lib/features/Review/ReviewSlice";
-import { useDispatch } from "react-redux";
+import { setComment , resetBox} from "@/app/lib/features/Review/ReviewSlice";
 import { Star } from "@mui/icons-material";
 import {Avatar} from '@mui/material'
-const WriteReview = ({params}) => {
+import { useSession } from "next-auth/react";
+
+const WriteReview = memo(function RForm({params, category}){
    
   const ReviewState = useAppSelector((state) => state.review.showBox);
   const [active, setActive] = useState(true);
-  const [state, dispatch] = useFormState(addReview, {isloading: false, errors: {}, success: null, message: ''});
-  // 
+  const [state, dispatch] = useFormState(addReview, {isloading: false, errors: {}, success: null, message: '', data: null});
+  const user = useSession()
   const dispatchRedux = useAppDispatch()
  
 
@@ -46,6 +47,8 @@ const WriteReview = ({params}) => {
     const notify = () => toast(state.message);  
     if (state.message){
     notify();
+     dispatchRedux(resetBox())
+     document.getElementById('revForm').reset()
   }
   },[state.message]);
   
@@ -53,11 +56,11 @@ const WriteReview = ({params}) => {
     state.isloading = true;
     const review = formData.get("review");
      const rating = formData.get("rating");
-    dispatchRedux(setComment(review));
-    dispatchRedux(setReview(review))
-    dispatch(formData);
+    const data = {comment: review , review: Number(rating) , createdat: Date.now(), user : { name: user?.data?.user?.name, image: user?.data?.user?.image } }
+    dispatchRedux(setComment(data));
+    setTimeout( ()=>dispatch(formData), 20);
   };
-    
+    console.log(state)
 //  useEffect(()=>{
 //   const dispatComment = async()=>{
 //     const form = document.getElementById('revForm')
@@ -127,7 +130,8 @@ const WriteReview = ({params}) => {
         />
         <pre className="text-[11px]"></pre>
          </div>   
-        <input name="product"  defaultValue= {params.prodId} className="sr-only "/>
+        <input name="product"  defaultValue= {params} className="sr-only "/>
+        <input name="category"  defaultValue= {category} className="sr-only "/>
         <span className="flex justify-end">
           <button
             disabled={active || state.isloading}
@@ -140,7 +144,7 @@ const WriteReview = ({params}) => {
       </form>
     </div>
   );
-};
+});
 
 // const mapStateToProps = (state) => ({
 //   review: state.review.showBox,

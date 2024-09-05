@@ -1,28 +1,40 @@
 import React, { useEffect } from "react";
 
 const productCategories = [
-  // General Categories
-  "Apparel & Accessories",
-  "Electronics & Appliances",
-  "Home & Garden",
-  "Beauty & Personal Care",
-  "Health & Wellness",
-  "Food & Beverages",
-  "Toys & Games",
-  "Sports & Outdoors",
-  "Books & Stationery",
-  "Office Supplies & Electronics",
-  "Arts & Crafts",
-  "Pets & Pet Supplies",
-  "Travel & Luggage",
-
-  // Industry-Specific Categories
-  "Baby & Kids",
-  "Automotive",
-  "Instruments & Music",
-  "DIY & Hardware",
-  "Jewelry & Watches",
-  "Luxury Goods",
+   {key: 1, tagname: "Electronics"},
+   {key: 2, tagname: "Furniture"},
+   {key: 3, tagname: "Safety"},
+   {key: 4, tagname: "Auto Parts"},
+   {key: 5, tagname: "Safety"},
+   {key: 6, tagname: "Baby Items"},
+   {key: 7, tagname: "Mobile Phone"},
+   {key: 8, tagname: "Shoes & Mens Wear"},
+   {key: 9, tagname: "Metals & Alloys"},
+   {key: 10, tagname: "Jewelries and Watches" },
+   {key: 11, tagname:  "Machine Parts"},
+   {key: 12, tagname: "General Articles"},
+   {key: 13, tagname: "Hairs & Wigs"},
+   {key: 14, tagname: "Toys & Games"},
+   {key: 15, tagname: "Artworks"},
+   {key: 16, tagname: "Home Interior & Decor"},
+   {key: 17, tagname: "Bags & Luggage"},
+   {key: 18, tagname: "Building Materials"},
+   {key: 19, tagname:   "General Articles" },
+   {key: 20, tagname: "Musical Instruments"},
+   {key: 21, tagname: "Tools and Hardware"},
+   {key: 22, tagname: "Home Appliances"},
+   {key: 23, tagname:  "Chemicals"},
+   {key: 24, tagname:   "Food & Beverage"}, 
+   {key: 25, tagname:   "Phone Accessories"},
+   {key: 26, tagname:  "Gifts & Craft"},
+   {key: 27, tagname:  "School & Office Supplies"},
+   {key: 28, tagname:  "Lights & Lighting"},
+   {key: 29, tagname: "Apparel & Accessories" },
+   {key: 30, tagname:  "Cosmetics & Beauty"},
+   {key: 31, tagname: "Power Transmission" },
+   {key: 32, tagname:  "kitchen Wares"},
+   {key: 33, tagname:  "Rubber & Plastics"},
+   {key: 34, tagname: "Computer & Accesories"}
 ];
 
 const handleCount = () => {
@@ -36,10 +48,10 @@ const handleCount = () => {
 };
 
 export const ProductCart = () => {
-  const options = productCategories.map((choice, id) => {
+  const options = productCategories.map(({key, tagname}, id) => {
     return (
-      <option value={choice} key={id}>
-        {choice}
+      <option value={key} key={id}>
+        {tagname}
       </option>
     );
   });

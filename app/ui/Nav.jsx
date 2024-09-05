@@ -1,16 +1,12 @@
 "use client"
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import Logo from "@/app/assets/photo1.jpeg"
 import { LocationOn, SearchOutlined, ExpandMore } from "@mui/icons-material";
 import Tab from "./Tab";
-import { useAppDispatch, useAppSelector } from "../lib/hooks/hooks";
+import { useAppSelector } from "../lib/hooks/hooks";
 import { setNav } from "../lib/features/Nav/navSlice";
 import { connect } from "react-redux";
 import { ButtonBase, useScrollTrigger } from "@mui/material";
 import useHomeDrawer from "../lib/hooks/useHomeDrawer";
-import { usePathname } from "next/navigation";
 
 
 

@@ -14,6 +14,7 @@ import { MakeEllipsis } from "../lib/utills/Makelipsis";
 import getProductById from "../actions/users/getProductById";
 import { useRouter } from "next/navigation";
 import { is } from "immutable";
+import RatingsWin from "./utilComp/RatingsWin";
 
 const Ava = (ava) => {
   switch (ava) {
@@ -55,7 +56,7 @@ if(Array.isArray(info) && info.length === 0) return <p>loading...</p>;
           delay: 5000,
           disableOnInteraction: true,
         }}
-        loop="true"
+      
       >
         {info &&
           info?.length > 1 &&
@@ -87,7 +88,7 @@ if(Array.isArray(info) && info.length === 0) return <p>loading...</p>;
                   <div className=" shadow-md p-1 pb-0 rounded-md bg-white mx-auto">
                   
                     <div className="flex justify-between items-center px-2">
-                      <span className="font-semibold text-sm max-w-[70%]" >{category}</span>
+                      <span className="font-semibold text-sm max-w-[70%]" >{category.name}</span>
                       
                         <BookmarkAddOutlined fontSize="small" />
                       
@@ -132,8 +133,8 @@ if(Array.isArray(info) && info.length === 0) return <p>loading...</p>;
                       </span>
                       <span className="text-[12px] first-letter:capitalize" {...Ava(availability)}>{availability.toLowerCase().replace(/_/g, ' ')}</span>
                         <MakeEllipsis text={description} size={60} flag={"A"} />
-                     
-                      <div className="flex flex-col space-y-2 pt-2">
+                     <RatingsWin rating={rating}/>
+                      {/* <div className="flex flex-col space-y-2 pt-2">
                         <span className="flex items-center justify-between ">
                           <span className="flex space-x-1 items-center text-[10px]">
                             <span>{rating}</span>
@@ -149,7 +150,7 @@ if(Array.isArray(info) && info.length === 0) return <p>loading...</p>;
                             <span className="text-[#005B9A]">(1123)</span>
                           </span>
                         </span>
-                      </div>
+                      </div> */}
                     </div>
                     
                   </div>

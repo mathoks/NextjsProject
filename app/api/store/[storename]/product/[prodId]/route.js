@@ -1,7 +1,7 @@
 import { Pool } from "@neondatabase/serverless";
 import { PrismaNeon } from "@prisma/adapter-neon";
 import { PrismaClient } from "@prisma/client";
-import { unstable_cache } from "next/cache";
+import {  unstable_cache } from "next/cache";
 import { NextResponse } from "next/server";
 
 // Create a single instance of the Prisma client for efficiency
@@ -74,14 +74,20 @@ export async function GET(req) {
                 },
               },
             },
-            comment: {
+            prod_reviews: {
+              take: 5,
+              orderBy: {
+                createdat: 'desc' // Sort by createdAt in descending order
+              },
               select: {
                 id: true,
+                createdat: true,
                 comment: true,
                 review: true,
-                commenter: {
+                user: {
                   select: {
                     name: true,
+                    image: true,
                   },
                 },
               },
@@ -92,7 +98,7 @@ export async function GET(req) {
         return product;
       },
       ["product", prodId],
-      { revalidate: 60 * 60 * 1, tags: [prodId] }
+      { revalidate: 1, tags: [prodId] }
     );
     const cachedProduct = await getProductById(prodId);
     

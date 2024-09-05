@@ -9,6 +9,7 @@
 import { Pool } from "@neondatabase/serverless";
 import { PrismaNeon } from "@prisma/adapter-neon";
 import { PrismaClient } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
 // Create a single instance of the Prisma client for efficiency
@@ -50,9 +51,10 @@ export async function POST(request) {
     if (!newStore) {
       throw new Error(`API request failed with status`);
     }
+    revalidatePath('/home')
     return NextResponse.json({ data: newStore});
   } catch (error) {
     console.error("Error fetching todo:", error);
-    return NextResponse.error({ error: "Internal server error" });
+    return NextResponse.error();
   }
 }

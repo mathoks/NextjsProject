@@ -1,4 +1,5 @@
 export const productSort = (data = []) => {
+  console.log(data[0].product)
   if (data.length < 2) return data;
   const sorted = data.sort((a, b) => {
     if (a.product.length === 0 && b.product.length !== 0) {

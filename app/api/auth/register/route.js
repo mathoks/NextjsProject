@@ -68,15 +68,14 @@ export async function POST(req) {
       });
       if (!result) {
         throw new Error("User not created");
-      }
-      
-
+      }     
       return NextResponse.json(result, { status: 201 });
     } catch (error) {
-      return NextResponse.json(
-        { error: "Failed to create user" },
-        { status: 500 }
-      );
+       return NextResponse.error();
+      //NextResponse.error(
+      //   { error: "Failed to create user" },
+      //   { status: 500 }
+      // );
     }
   } else {
     // Handle other HTTP methods if needed (e.g., GET for user details)

@@ -62,7 +62,7 @@ export const addPost = async function ({}, formData) {
     if (!store) {
       throw new Error("could not create store");
     }
-    revalidateTag('post')
+   
     // redirect(`http://${domain}/store/${encodeURIComponent(businessName)}/${encodeURIComponent(id)}`);
 
     return {

@@ -32,7 +32,7 @@ export const addProduct = async function ({}, formData) {
       name,
       description,
       negotiable,
-      category,
+      categoryId,
       availability,
       link,
       price,
@@ -41,6 +41,7 @@ export const addProduct = async function ({}, formData) {
     if (file.size === 0 && file2.size === 0) {
       throw new Error("An image is required");
     }
+    
     const url = await ImageResize2([file, file2]);
     if (url.length < 2) {
       throw new Error("image upload failed");
@@ -53,9 +54,9 @@ export const addProduct = async function ({}, formData) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          storeId: session?.user.id,
+          storeId: session.user.id,
           name,
-          category,
+          categoryId,
           price,
           availability,
           negotiable,
@@ -76,8 +77,7 @@ export const addProduct = async function ({}, formData) {
     if (!store) {
       throw new Error("could not create store");
     }
-    revalidateTag('store')
-    revalidatePath('/api/home')
+    
     // redirect(`http://${domain}/store/${encodeURIComponent(businessName)}/${encodeURIComponent(id)}`);
 
     return {
