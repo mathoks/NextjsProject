@@ -6,9 +6,9 @@ const ReviewStars = () => {
     const stars = new Array(5)
     for (let i = 0; i < 5; i++) {
         if (i < rating) {
-            stars[i] = (<li><Star key={i} fontSize='inherit' sx={{color: 'gold'}}/></li>)
+            stars[i] = (<li key={i}><Star fontSize='inherit' sx={{color: 'gold'}}/></li>)
         } else {
-            stars[i] = (<li><Star fontSize='inherit' key={i} sx={{color: 'gray'}} /></li>)
+            stars[i] = (<li key={i}><Star  fontSize='inherit'  sx={{color: 'gray'}} /></li>)
         }
     }
     return stars 

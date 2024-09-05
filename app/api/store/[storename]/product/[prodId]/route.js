@@ -74,6 +74,11 @@ export async function GET(req) {
                 },
               },
             },
+            category:{
+            select:{  id: true,
+              name: true,
+              products: true
+            }},
             prod_reviews: {
               take: 5,
               orderBy: {

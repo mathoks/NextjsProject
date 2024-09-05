@@ -51,8 +51,9 @@ const Page = async ({ params }) => {
   //   }
   // }
   // cache.forEach((i)=>console.log(i))
-
+  console.log(product?.data?.category)
   if (!product.data) return <div>Product not found</div>;
+ 
   return (
     <>
       <ProTab data={product.data || {}} />
@@ -69,7 +70,7 @@ const Page = async ({ params }) => {
           <h1 className="text-lg font-semibold px-4">Product Details</h1>
           <div className=" h-fit overflow-y-scroll">
             <Page2 data={product?.data?.attribute || {}} />
-            <Hints cat={product?.data?.category || null} prodId = {params}/>
+            <Hints cat={product?.data?.category.name} prodId = {params}/>
           </div>
           <hr />
         </div>

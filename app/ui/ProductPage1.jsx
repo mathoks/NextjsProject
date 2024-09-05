@@ -64,7 +64,7 @@ const ProductPage1 = async (props) => {
               {props?.data?.negotiable.toLowerCase()}
             </span>
           </span>
-          <span className="">{props?.data?.category}</span>
+          <span className="">{props?.data?.category.name}</span>
           <div className="text-[12px] -pt-3 flex items-center space-x-1">
             <span>4.0</span>
             <Rating size="small" />
