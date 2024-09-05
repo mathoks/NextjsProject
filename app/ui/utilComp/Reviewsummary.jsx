@@ -44,7 +44,7 @@ const Reviewsummary = ({ product }) => {
     <div className="grid grid-cols-3  gap-x-0  -ml-5 w-[calc(100%-8px)]">
       <div className="flex col-span-1 flex-col text-[12px] items-center ">
         <Stars
-          rating={Number(val) + ".0"}
+          rating={Number(val).toFixed(1)}
           size={"font-semibold text-4xl "}
           size1={"flex-col"}
         />
