@@ -23,7 +23,7 @@ const Stars = memo(function Starss({ rating, size, size1 = '' }) {
 
   return (
     <div className={`flex space-x-2 text-[14px] items-center ${size1}`}>
-      <p className={size}>{rating}</p>
+      <p className={size}>{Number(rating).toFixed(1)}</p>
       <ul className='flex space-x-0'>
         {stars}
       </ul>

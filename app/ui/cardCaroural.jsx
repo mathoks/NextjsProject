@@ -68,7 +68,7 @@ if(Array.isArray(info) && info.length === 0) return <p>loading...</p>;
                 price,
                 description,
                 category,
-                rating = 4.5,
+                rating,
                 name,
                 availability,
               },
@@ -120,37 +120,22 @@ if(Array.isArray(info) && info.length === 0) return <p>loading...</p>;
                     </div>
                     <div className=" flex flex-col space-y-1 px-2">
                       <span className="flex justify-between ">
-                        <span className=" w-[95%] overflow-ellipsis font-semibold text-sm line-clamp-2 ">
+                        <span className=" w-[100%] overflow-ellipsis font-semibold text-sm line-clamp-2 ">
                           {name}
                         </span>
 
-                        <span className="flex justify-between items-center">
-                          <span className="flex justify-start items-center space-x-1">
-                            <span className="text-[12px]">&#x20A6;</span>
-                            <p className="text-[12px] font-semibold">{price}</p>
-                          </span>
-                        </span>
+            
                       </span>
                       <span className="text-[12px] first-letter:capitalize" {...Ava(availability)}>{availability.toLowerCase().replace(/_/g, ' ')}</span>
                         <MakeEllipsis text={description} size={60} flag={"A"} />
-                     <RatingsWin rating={rating}/>
-                      {/* <div className="flex flex-col space-y-2 pt-2">
-                        <span className="flex items-center justify-between ">
-                          <span className="flex space-x-1 items-center text-[10px]">
-                            <span>{rating}</span>
-                           
-                              {Array.from(Array(5)).map((_, index) => (
-                                <StarRate
-                                  key={index}
-                                  fontSize="inherit"
-                                  sx={{ color: "#f2c464" }}
-                                />
-                              ))}
-                           
-                            <span className="text-[#005B9A]">(1123)</span>
+                        <span className="flex justify-between items-center">
+                          <span className="flex justify-start items-center space-x-1 py-2 font-semibold">
+                            <span className="text-[12px]">&#x20A6;</span>
+                            <p className="text-[14px]">{price}</p>
                           </span>
                         </span>
-                      </div> */}
+                     <RatingsWin rating={rating}/>
+                     
                     </div>
                     
                   </div>

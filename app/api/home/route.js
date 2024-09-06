@@ -107,6 +107,7 @@ export async function GET(req) {
                 price: true,
                 name: true,
                 description: true,
+                rating: true,
                 prodImage: {
                   select: { id: true, image: true },
                 },
@@ -131,7 +132,7 @@ export async function GET(req) {
         }
       },
       ["store"],
-      { tags:['store'], revalidate: 60 * 60 * 1} // Cache for 1 hour (adjust as needed)
+      { tags:['store'], revalidate: 60 * 60 * 1} 
     );
 
     const cachedStores = await getUsers();

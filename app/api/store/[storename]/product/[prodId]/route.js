@@ -103,7 +103,7 @@ export async function GET(req) {
         return product;
       },
       ["product", prodId],
-      { revalidate: 60 * 60 * 1, tags: [prodId] }
+      { revalidate: 60 * 5, tags: [prodId] }
     );
     const cachedProduct = await getProductById(prodId);
     

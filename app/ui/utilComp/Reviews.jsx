@@ -88,7 +88,7 @@ const Reviews = memo(
                   {comment}
                 </p>
                 <p className="text-slate-800">
-                  10 people found this review helpfull
+                 <span className="font-medium"> 10</span> people found this review helpfull
                 </p>
                 <span className="flex items-center justify-between pt-8">
                   <p className="">Was this review helpfull?</p>{" "}

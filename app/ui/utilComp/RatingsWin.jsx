@@ -23,7 +23,7 @@ const RatingsWin = memo(function Ratingswins({rating, productId}){
                           <span className="flex space-x-1 items-center text-[10px]"  ref={ref}>
                             
                            
-                            <Stars rating={rating} />
+                            <Stars rating={rating} size='text-[12px] text-blue-500 font-meduim' />
                            
                             <span className="text-[#005B9A]">(1123)</span>
                           </span>

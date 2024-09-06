@@ -32,7 +32,7 @@ const Usercard = ({
   bizLogo,
   shopAddress,
   product,
-  ratings = 4,
+  ratings,
   phone,
 }) => {
   const newArr = [...product, { link: "see all" }];
@@ -106,7 +106,7 @@ const Usercard = ({
           href={`/store/${encodeURIComponent(
             businessName
           )}/${encodeURIComponent(id)}`}
-          className="text-sm  rounded-full  px-2.5 py-1 mt-2 text-[#005B9A] "
+          className="text-sm  rounded-full font-medium  px-2.5 py-1 mt-2 text-white bg-[#ce3801]"
         >
           Visit the Store
         </Link>

@@ -50,7 +50,7 @@ export const ProTab = ({data}) => {
                     <li
                         onClick={handleclick}
                       value={0}
-                     className={`pb-4 tab   ${index === 0 ? 'border-b-2  border-indigo-600 text-indigo-600' : 'border-none font-normal text-gray-500'}`}
+                     className={`pb-4 tab    ${index === 0 ? 'border-b-2  border-indigo-600 text-indigo-600' : 'border-none font-medium text-gray-500'}`}
                      data-id='Overview'
                     >
                       Overview
@@ -66,7 +66,7 @@ export const ProTab = ({data}) => {
                     <li
                       value={2}
                     data-id='ProductReviews'
-                      className={`tab ${show[1]} pb-3 ${index === 2 ? 'border-b-2  border-indigo-600  text-indigo-600' : 'border-none font-normal text-gray-500'}`}
+                      className={`tab ${show[1]} pb-3 ${index === 2 ? 'border-b-2  border-indigo-600  text-indigo-600' : 'border-none font-medium text-gray-500'}`}
             
                       
                     >
@@ -76,7 +76,7 @@ export const ProTab = ({data}) => {
                       value={3}
                       data-id='ProductRecommended'
                        
-                      className={`tab pb-4 ${index === 3 ? 'border-b-2  border-indigo-600  text-indigo-600' : 'border-none font-normal text-gray-500'}`}
+                      className={`tab pb-4 ${index === 3 ? 'border-b-2  border-indigo-600  text-indigo-600' : 'border-none font-medium text-gray-500'}`}
             
                       
                     >

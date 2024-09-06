@@ -9,6 +9,7 @@ import Stars from "./utilComp/Stars";
 
 const ProductPage1 = async (props) => {
   const session = await auth();
+  console.log(props)
   return (
     <section className="text-gray-900  flex flex-col w-full space-y-4 text-[15px] md:flex lg:flex">
       <div className="mx-auto space-y-2 rounded-md md:shadow-md pb-2 md:ring-1 ring-slate-300">
@@ -66,7 +67,7 @@ const ProductPage1 = async (props) => {
             </span>
           </span>
           <span className="">{props?.data?.category.name}</span>
-          <Stars rating = {4.5}/>
+          <Stars rating = {props?.data.rating}/>
         </div>
       </div>
       <div className=" space-y-3 mx-auto py-1">
