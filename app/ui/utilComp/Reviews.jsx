@@ -12,11 +12,14 @@ import { Avatar } from "@mui/material";
 
 import Stars from "./Stars";
 import Reviewsummary from "./Reviewsummary";
+
+
+
 const Reviews = memo(
   function ReviewsCol(props) {
     const { comment: comments, prod } = props;
-    console.log(comments)
     const comment = useAppSelector((state) => state.review.comment);
+   
     const initialOptimisticReviews = useMemo(() => {
       // Handle initial state here
       if (comments) {
@@ -55,13 +58,13 @@ const Reviews = memo(
         });
       }
     }, [comment]); // Only update on comment change
-
+    
     return optimisticReviews.length === 0 ? (
       <p className="p-4">No Reviews yet be the first to drop a review</p>
     ) : (
       <div className="space-y-4">
         <p className="px-4">What People are saying about this Product</p>
-        <Reviewsummary product={prod}/>
+        <Reviewsummary product={prod} prevRate = {comment?.review  || 0}/>
         <ul className="px-4 space-y-2 grid grid-cols-1 gap-4 md:grid-cols-2">
           {optimisticReviews?.map(
             (

@@ -112,7 +112,7 @@ const FormSchema3 = joi.object({
         .string()
         .trim()
         .pattern(new RegExp("[a-zA-Z0-9s\u00A0.,:?]+$"))
-        .min(10)
+        .min(4)
         .max(400).allow(''),
       value: joi.number().required()})
     

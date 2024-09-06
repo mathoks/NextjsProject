@@ -51,7 +51,7 @@ const Page = async ({ params }) => {
   //   }
   // }
   // cache.forEach((i)=>console.log(i))
-  console.log(product?.data?.category)
+  
   if (!product.data) return <div>Product not found</div>;
  
   return (

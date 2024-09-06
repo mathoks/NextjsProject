@@ -5,6 +5,7 @@ import Carousel from "./Carousal";
 import { auth } from "@/auth";
 import { LocationOnOutlined } from "@mui/icons-material";
 import BranchAccor from "./branchAccor";
+import Stars from "./utilComp/Stars";
 
 const ProductPage1 = async (props) => {
   const session = await auth();
@@ -12,7 +13,7 @@ const ProductPage1 = async (props) => {
     <section className="text-gray-900  flex flex-col w-full space-y-4 text-[15px] md:flex lg:flex">
       <div className="mx-auto space-y-2 rounded-md md:shadow-md pb-2 md:ring-1 ring-slate-300">
         <span className="flex justify-between items-center px-4">
-          <h1 className="text-lg font-semibold ">{props?.data?.name}</h1>
+          <h1 className="text-lg font-semibold first-letter:capitalize">{props?.data?.name}</h1>
           {props.data.storeId === session?.user?.id ? (
             <Link
               href={`/store/${props.data.storeId}/product/${props.data.id}/edit`}
@@ -65,11 +66,7 @@ const ProductPage1 = async (props) => {
             </span>
           </span>
           <span className="">{props?.data?.category.name}</span>
-          <div className="text-[12px] -pt-3 flex items-center space-x-1">
-            <span>4.0</span>
-            <Rating size="small" />
-            <span className="text-blue-400">(10,052)</span>
-          </div>
+          <Stars rating = {4.5}/>
         </div>
       </div>
       <div className=" space-y-3 mx-auto py-1">

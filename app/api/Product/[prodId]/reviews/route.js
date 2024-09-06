@@ -26,10 +26,8 @@ async function updateProductRating(reviewId, category_id, prima) {
   // Fetch the product associated with the review
   const product = await prima.prod_reviews.findUnique({
     where: { reviewId: {
-      
-       id: reviewId ,
+       id: reviewId,
        category_id: Number(category_id) 
-    
     }},
     select: { prod_id: true },
   });

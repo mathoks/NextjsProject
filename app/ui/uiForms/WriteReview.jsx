@@ -60,7 +60,7 @@ const WriteReview = memo(function RForm({params, category}){
     dispatchRedux(setComment(data));
     setTimeout( ()=>dispatch(formData), 20);
   };
-    console.log(state)
+    
 //  useEffect(()=>{
 //   const dispatComment = async()=>{
 //     const form = document.getElementById('revForm')
