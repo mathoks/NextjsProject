@@ -54,7 +54,6 @@ export async function POST(request) {
     revalidatePath('/home')
     return NextResponse.json({ data: newStore});
   } catch (error) {
-    console.error("Error fetching todo:", error);
     return NextResponse.error();
   }
 }

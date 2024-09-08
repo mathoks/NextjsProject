@@ -1,14 +1,13 @@
 "use client";
 import { useAppSelector } from "@/app/lib/hooks/hooks";
-import { CallOutlined, CallEndOutlined } from "@mui/icons-material";
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 
 /**
  *
  * @param {*} props
  * @returns {React.JSX}
  */
-function Modal(props = {}) {
+const Modal = memo(function Modals(props = {}) {
   const ObjectLength = Object.keys(props).length;
   const open = useAppSelector((state) => state.modal.show);
   const [child, setchild] = useState("");
@@ -25,13 +24,13 @@ function Modal(props = {}) {
             {tile.toString() === "call" ? (
               <a href={`tel:${props.phone}`}>
                 {" "}
-                <span className="flex items-center space-x-2 text-[#4f08ed]">
+                <span className="flex items-center space-x-2 text-[#4f08ed] text-nowrap">
                   <span>{props[tile.toString()].icon}</span>
                   <span>{props[tile.toString()].tag}</span>{" "}
                 </span>
               </a>
             ) : (
-              <span className="flex items-center space-x-2 text-[#4f08ed]">
+              <span className="flex items-center space-x-2 text-[#4f08ed] text-nowrap">
                 <span>{props[tile.toString()].icon}</span>
                 <span>{props[tile.toString()].tag}</span>{" "}
               </span>
@@ -56,11 +55,11 @@ function Modal(props = {}) {
       key={props["value"]}
       id={props["value"]}
     >
-      <ul className="flex flex-col space-y-2 w-20 pl-1" onClick={handleOpen}>
+      <ul className="flex flex-col space-y-2  pl-1" onClick={handleOpen}>
         {child}
       </ul>
     </div>
   );
-}
+})
 
 export default Modal;

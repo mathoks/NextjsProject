@@ -40,8 +40,6 @@ export async function GET(req) {
     
     return NextResponse.json(cachedStores);
   } catch (error) {
-    // Log the error for debugging
-    console.log(error)
     return NextResponse.json({ error: "Internal Server Error" }, {
       status: 500,
     });

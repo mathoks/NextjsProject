@@ -53,7 +53,6 @@ export async function GET(req) {
       return NextResponse.json({ data: stores?.branches });
     } else throw new Error("cant query database");
   } catch (error) {
-    console.log(error)
     return Response.error();
   }
 }

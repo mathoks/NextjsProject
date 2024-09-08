@@ -38,7 +38,7 @@ const Reviewsummary = ({ product, prevRate}) => {
   const [val, setval] = useState(prevRate);
   const [val1, setval1] = useState(0);
   const [list, setList] = useState(Array(5).fill(0));
-console.log(prevRate)
+
   useEffect(() => {
     const getReviesSumm = async () => {
       const data = await getReviewsSumm(product);

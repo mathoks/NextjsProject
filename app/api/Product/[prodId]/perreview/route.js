@@ -1,3 +1,4 @@
+import { auth } from "@/auth";
 import { Pool } from "@neondatabase/serverless";
 import { PrismaNeon } from "@prisma/adapter-neon";
 import { PrismaClient } from "@prisma/client";
@@ -24,30 +25,32 @@ if (!prisma) {
 
 export async function GET(req) {
   const prodId = req.nextUrl.pathname.split("/")[3];
-
+  const { searchParams } = new URL(req.url);
+  
   try {
-    const ProductReview = unstable_cache(
+    const userProductReview = unstable_cache(
       async (prodId) => {
-        const review_sum = await prisma.ratings_stats.findUnique({
-          where: {
-            prod_id: prodId,
-          },
+        const review = await prisma.prod_reviews.findUnique({
+          where: { userReview: { 
+            category_id: Number(searchParams.get('category')),
+            user_id : searchParams.get('user'),
+            prod_id: prodId,   
+          }},
+          
         });
-
-        return review_sum;
+        console.log(review)
+        return review;
       },
-      ["reviews", prodId],
-      { revalidate: 60 * 5, tags: [`${"review" + prodId}`] }
+      ["product", prodId, "review"],
+      { revalidate: 60 * 5, tags: ["product", prodId , "review"] }
     );
-    const data = await ProductReview(prodId);
+    const data = await userProductReview(prodId);
     if (data === null) {
-      return NextResponse.json({ data: null });
+      return NextResponse.json({ data: {} });
     }
-    console.log(data)
-    
-    return NextResponse.json({ data: data});
+   
+    return NextResponse.json({ data: data });
   } catch (error) {
-    console.log(error)
     return Response.error();
   }
 }

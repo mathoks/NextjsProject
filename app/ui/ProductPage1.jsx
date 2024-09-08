@@ -6,10 +6,11 @@ import { auth } from "@/auth";
 import { LocationOnOutlined } from "@mui/icons-material";
 import BranchAccor from "./branchAccor";
 import Stars from "./utilComp/Stars";
+import UserReview from "./utilComp/userReview";
 
 const ProductPage1 = async (props) => {
   const session = await auth();
-  console.log(props)
+ 
   return (
     <section className="text-gray-900  flex flex-col w-full space-y-4 text-[15px] md:flex lg:flex">
       <div className="mx-auto space-y-2 rounded-md md:shadow-md pb-2 md:ring-1 ring-slate-300">
@@ -70,12 +71,12 @@ const ProductPage1 = async (props) => {
           <Stars rating = {props?.data.rating}/>
         </div>
       </div>
-      <div className=" space-y-3 mx-auto py-1">
+      <div className=" space-y-3 mx-auto py-2">
         <button className=" w-[20rem]  py-1.5 text-white  bg-[#FF4500] rounded-full shadow-md font-semibold">
           Add to wishlist
         </button>
 
-        <div className="flex space-x-1">
+        <div className="flex space-x-1 py-1">
           <a href={`tel:${props.data.store.phone}`}>
             <button className=" w-[10rem] py-1.5 text-white  bg-[#6A0DAD] rounded-full shadow-md font-semibold">
               Contact the Seller
@@ -87,14 +88,6 @@ const ProductPage1 = async (props) => {
         </div>
       </div>
       <Divider />
-
-      <div className="px-4  min-h-20 flex flex-col justify-left items-start">
-        <h2 className="font-semibold text-[15px]">About This Product</h2>
-        <p className="">{props?.data.description}</p>
-      </div>
-
-      <Divider />
-
       <div className="flex justify-start items-start space-x-2 p-2">
         <Avatar className="ring-1" src={props?.data?.store?.bizLogo} />
         <div className="flex flex-col space-y-1">
@@ -119,10 +112,15 @@ const ProductPage1 = async (props) => {
           <div></div>
         </div>
       </div>
-
       <Divider />
-      <div className="p-2 ml-1">
+     {props?.data?.branch.length > 0 ? <> <div className="p-2 ml-1">
         <BranchAccor branches={props?.data?.branch} />
+      </div>
+      <Divider /></> : '' }
+      {session?.user?.id ? <UserReview prod = {props?.data?.id} category_id={props?.data?.category?.id} user_id = {session?.user?.id}/> : ''}
+      <div className="px-4  min-h-20 flex flex-col justify-left items-start">
+        <h2 className="font-semibold text-[15px]">About This Product</h2>
+        <p className="">{props?.data.description}</p>
       </div>
     </section>
   );

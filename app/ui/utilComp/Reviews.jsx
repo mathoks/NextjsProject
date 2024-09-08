@@ -7,19 +7,22 @@ import React, {
   useState,
   memo,
   startTransition,
+  useCallback,
 } from "react"; // Use useState instead of useOptimistic
 import { Avatar } from "@mui/material";
 
 import Stars from "./Stars";
 import Reviewsummary from "./Reviewsummary";
-
-
+import { addLiked } from "@/app/actions/users/addLiked";
+import Modal from "./modal";
+import HomeMore from "../Buttons/HomeMore";
 
 const Reviews = memo(
   function ReviewsCol(props) {
-    const { comment: comments, prod } = props;
+    const { comment: comments, prod, storeId} = props;
+    
     const comment = useAppSelector((state) => state.review.comment);
-   
+    const [push, setPush] = useState(false);
     const initialOptimisticReviews = useMemo(() => {
       // Handle initial state here
       if (comments) {
@@ -44,6 +47,23 @@ const Reviews = memo(
       classList.toggle("line-clamp-none");
     };
 
+    const pushReaction = async (e) => {
+      const {
+        dataset: { val },
+      } = e.target;
+      setPush(true);
+      try {
+        const done = await addLiked(val);
+        console.log(done)
+      } catch (error) {
+        console.log("failed");
+      } finally {
+        setPush(false);
+      }
+    };
+
+    
+
     useEffect(() => {
       if (
         comment.hasOwnProperty("comment") ||
@@ -58,20 +78,20 @@ const Reviews = memo(
         });
       }
     }, [comment]); // Only update on comment change
-    
+
     return optimisticReviews.length === 0 ? (
       <p className="p-4">No Reviews yet be the first to drop a review</p>
     ) : (
       <div className="space-y-4">
         <p className="px-4">What People are saying about this Product</p>
-        <Reviewsummary product={prod} prevRate = {comment?.review  || 0}/>
+        <Reviewsummary product={prod} prevRate={comment?.review || 0} />
         <ul className="px-4 space-y-2 grid grid-cols-1 gap-4 md:grid-cols-2">
           {optimisticReviews?.map(
-            (
-              { createdat, comment, review, user: { name , image  } },
-              id
-            ) => (
-              <li className=" py-2  space-y-3" key={id}>
+            ({ createdat, comment, review, user: { name, image, } }, idx) => (
+              <li className=" py-2  space-y-3 relative" key={idx}>
+               <span className="flex justify-between">
+
+              
                 <span className="flex space-x-2 ">
                   <Avatar src={image} />
                   <span className="space-y-1">
@@ -84,23 +104,44 @@ const Reviews = memo(
                     </span>
                   </span>
                 </span>
+                <HomeMore id={createdat}/>
+                </span>
                 <p onClick={toggleClass} className="line-clamp-2">
                   {comment}
                 </p>
                 <p className="text-slate-800">
-                 <span className="font-medium"> 10</span> people found this review helpfull
+                  <span className="font-medium"> 10</span> people found this
+                  review helpfull
                 </p>
                 <span className="flex items-center justify-between pt-8">
                   <p className="">Was this review helpfull?</p>{" "}
-                  <span className="flex justify-end space-x-2">
-                    <button className="font-medium  px-2 rounded-md ring-1">
+                  <span className="space-x-2 ">
+                    <button
+                      className="font-medium  px-2 rounded-md ring-1 hover:bg-blue-500 hover:text-white"
+                      data-val={1}
+                      disabled={push}
+                      onClick={pushReaction}
+                    >
                       Yes
                     </button>
-                    <button className="font-medium px-2 rounded ring-1">
+
+                    <button
+                      className="font-medium px-2 rounded ring-1  hover:bg-blue-500 hover:text-white"
+                      data-val={-1}
+                      disabled={push}
+                      onClick={pushReaction}
+                    >
                       No
                     </button>
                   </span>
                 </span>
+                <Modal
+                  flag={{ tag: "Flag as inappropriate",}}
+                  flag2={{ tag: "Flag as spam",  }}
+                  comment={ storeId  ? { tag: "Comment", } : '' }
+                  value={createdat}
+                />
+                
               </li>
             )
           )}

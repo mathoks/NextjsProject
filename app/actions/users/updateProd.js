@@ -109,7 +109,7 @@ export const updateProduct = async function ({}, formData) {
         idOp: nanoid(5),
       };
     } else {
-        console.log(error)  
+        
       return {
         errors: {
           error: error.message,

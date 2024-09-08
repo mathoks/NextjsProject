@@ -75,7 +75,6 @@ export async function POST(req) {
        revalidatePath('/api/home')
       return NextResponse.json(result, { status: 201 });
     } catch (error) {
-      console.log(error)
       return NextResponse.error()
     }
     finally{

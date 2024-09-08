@@ -15,6 +15,6 @@ export default async function getProductById(userInfo, productId) {
         
         return user.data || {}
     } catch (error) {
-        console.error("Error fetching user:", error)
+        return {error: error.message}
     }
 }

@@ -5,7 +5,7 @@ import { headers } from "next/headers";
 
 export default async function getReviewsSumm(productId) {
   const headerList = headers();
-  console.log(productId, "hh")
+ 
     const domain = headerList.get("host");
     try {
         const response = await fetch(`http://${domain}/api/Product/${productId}/review`, {next: {tags:['product', productId]}})

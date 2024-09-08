@@ -21,6 +21,6 @@ export async function getRoutes() {
     const Users = users? JSON.stringify(users) : []
     return Users; // Return an empty array if data is missing
   } catch (error) {
-    console.error("Error fetching users:", error);
+    return { error: "failed" };
   }
 }

@@ -45,7 +45,7 @@ export const updateProductAtrr = async function ({}, formData) {
     ];
 
     const formBody = await createFormbody(fields);
-    console.log(formBody);
+   
     
     if(formBody === null){
         throw new Error("No data to update");

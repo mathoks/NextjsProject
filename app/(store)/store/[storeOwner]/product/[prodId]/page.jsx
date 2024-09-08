@@ -36,22 +36,7 @@ import SignToReview from "@/app/ui/Buttons/SignToReview";
 
 const Page = async ({ params }) => {
   const product = await getProductByIds(params);
-  console.log(params)
-  const user = await auth()
-  // const cache = new Map()
-  // if(params.prodId && product.data.categoryId){
-  //   const val = cache.has(params.prodId)
-  //   const cat = cache.has(product.data.categoryId)
-  //   if(!val && cat){
-  //       cache.set(params.prodId, params.prodId)
-  //       cache.set(product.data.categoryId, product.data.categoryId )
-  //     }
-  //   else {
-
-  //   }
-  // }
-  // cache.forEach((i)=>console.log(i))
-  
+  const user = await auth() 
   if (!product.data) return <div>Product not found</div>;
  
   return (
@@ -82,7 +67,7 @@ const Page = async ({ params }) => {
             {/* <button className="text-blue-500 px-4 py-2 ">write a review</button> */}
           </div>
 
-          <Page3 prod={params.prodId} data={product?.data?.prod_reviews || null}/>
+          <Page3 prod={params.prodId} data={product?.data?.prod_reviews || null} canComment={params.storeOwner === user?.user?.id ? true : false}/>
           <WriteReview params={params.prodId || null} category = {product.data.categoryId || null}/>
           <hr />
         </div>

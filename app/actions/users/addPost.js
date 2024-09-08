@@ -1,8 +1,6 @@
 "use server";
 import { auth } from "@/auth";
 import { headers } from "next/headers";
-import { revalidatePath, revalidateTag } from "next/cache";
-import { ImageResize2 } from "@/app/lib/utills/ImageResize";
 import { validatePost } from "@/app/lib/utills/actionValidator";
 
 
@@ -34,7 +32,7 @@ export const addPost = async function ({}, formData) {
       productId
     } = await validatePost(formData);
 
-    console.log(text, category, productId)
+   
    
     const response = await fetch(
       `http://${domain}/api/Discover/post`,

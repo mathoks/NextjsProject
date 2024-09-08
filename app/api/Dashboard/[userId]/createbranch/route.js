@@ -25,7 +25,7 @@ export async function POST(request) {
   try {
     const { id, storename, address, phone, country, state, market } =
       await request.json();
-      console.log(id, storename)
+     
     const newBranch = await prisma.branch.create({
       data: {
         store: { connect: { id: id } },

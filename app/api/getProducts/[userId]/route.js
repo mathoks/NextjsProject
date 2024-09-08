@@ -68,7 +68,6 @@ export async function GET(req) {
     
     return NextResponse.json(cachedProducts);
   } catch (error) {
-    console.log(error)
     return Response.json({ message: "Internal server error" });
   }
 }

@@ -360,6 +360,7 @@ model prod_reviews {
 
   @@id([id, category_id], name: "reviewId", map: "prodreviews_pkey")
   @@unique([id, category_id, user_id], name: "reviewIds", map: "prod_reviews_id_key")
+  @@unique([category_id, user_id, prod_id], name: "userReview", map: "unik_revies")
 }
 
 model Reply {
@@ -377,10 +378,9 @@ model Reply {
   @@map("reply")
 }
 
-
 view ratings_stats {
-  prod_id        String @unique
-  total_reviews  BigInt?
+  prod_id        String   @unique
+  total_reviews  Int?
   average_rating Decimal? @db.Decimal
   percentage_5   Decimal? @db.Decimal
   percentage_4   Decimal? @db.Decimal

@@ -27,7 +27,7 @@ export async function GET(req) {
     const lim = searchParams.get("limit");
     const category = searchParams.get("category");
     const myCursor = searchParams.get("cursor") || 0;
-    console.log(searchParams.get("cursor"))
+   
     if (myCursor === 0) {
       const product = await prisma.Category.findMany({
         take: Number(lim),
@@ -143,7 +143,7 @@ export async function GET(req) {
       });
     }
   } catch (error) {
-    console.log(error)
+   
     return Response.json({ message: "Internal server error" });
   }
 }
