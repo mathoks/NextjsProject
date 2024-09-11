@@ -41,8 +41,8 @@ export async function GET(req) {
         console.log(review)
         return review;
       },
-      ["product", prodId, "review"],
-      { revalidate: 60 * 5, tags: ["product", prodId , "review"] }
+      [`product + ${prodId} + review`],
+      { revalidate: 60 * 5, tags: ["userreview"] }
     );
     const data = await userProductReview(prodId);
     if (data === null) {

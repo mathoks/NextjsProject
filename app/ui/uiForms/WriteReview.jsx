@@ -6,7 +6,7 @@ import {useFormState} from 'react-dom'
 import { is } from "immutable";
 import { addReview } from "@/app/actions/users/addReview";
 import toast from 'react-hot-toast'
-import { setComment , resetBox} from "@/app/lib/features/Review/ReviewSlice";
+import { setComment , resetBox, setCompleted} from "@/app/lib/features/Review/ReviewSlice";
 import { Star } from "@mui/icons-material";
 import {Avatar} from '@mui/material'
 import { useSession } from "next-auth/react";
@@ -45,12 +45,18 @@ const WriteReview = memo(function RForm({params, category}){
 
   useEffect(() => {
     const notify = () => toast(state.message);  
-    if (state.message){
-    notify();
+    if (state.message && state.success){
+    
+      notify();
+
      dispatchRedux(resetBox())
+     dispatchRedux(setCompleted())
      document.getElementById('revForm').reset()
   }
-  },[state.message]);
+  else if(state.message && !state.success ){
+    notify();
+  }
+  },[state.message, state.success]);
   
   const dispatComment = (formData) => {
     state.isloading = true;

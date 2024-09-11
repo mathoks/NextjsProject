@@ -73,7 +73,6 @@ export async function POST(req) {
       return NextResponse.json({ data: result });
     
     } catch (error) {
-    
       return NextResponse.error()
       // Response.json({ message: "Internal server error" });
     }

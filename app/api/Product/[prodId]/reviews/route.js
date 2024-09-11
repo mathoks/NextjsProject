@@ -82,7 +82,8 @@ export async function POST(req) {
         return averageRating
       })
       if(result){
-      revalidateTag(prodId)
+      revalidateTag('reviewstats')
+      revalidateTag('userreview')
       return NextResponse.json({ Average: result || 0 });
       }
     } catch (error) {

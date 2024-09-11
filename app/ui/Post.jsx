@@ -55,8 +55,7 @@ const Post = async () => {
                 </p>
               </>
               
-                {Array.isArray(products) && products.length > 0 ? (
-                  
+                {Array.isArray(products) && products.length > 0 ? (                 
                     <ul className="overflow-x-scroll flex space-x-2 py-2  pl-2 text-nowrap ">
                       {products?.map(
                         ({ product: { name, storeId }, productId }, ids) => (
@@ -65,7 +64,7 @@ const Post = async () => {
                             className="ring-1 ring-[#8841b8] rounded-full px-2.5 py-0.5 shadow bg-white w-fit text-[#481869] text-center text-sm"
                             href={`/store/${storeId}/product/${productId}`}
                           >
-                            <LinkOutlined className="text-[#481869]" />{name}
+                            <LinkOutlined className="text-[#481869] font-medium" />{name}
                           </Link>
                         )
                       )}
@@ -73,11 +72,10 @@ const Post = async () => {
                 ) : (
                   ""
                 )}
-              
               {session?.user?.id === ids ? (<div className="flex justify-between pl-2">
              <button className="flex space-x-1">
                      <EditNoteOutlined className="text-blue-400" />{" "}
-                     <p>Edit </p>
+                     <p>Edit</p>
                      </button> 
                      <TimeDifference  timestamp={createdAt} />
               </div>) : <TimeDifference timestamp={createdAt} />}

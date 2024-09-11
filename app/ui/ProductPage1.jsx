@@ -104,7 +104,7 @@ const ProductPage1 = async (props) => {
 
           <Link
             href={`/store/${props.data.store.businessName}/${props.data.storeId}`}
-            className="text-blue-400"
+            className="text-blue-500 font-medium"
           >
             Visit the Store
           </Link>

@@ -72,12 +72,12 @@ const RelPost = ({ prodId, category }) => {
                   {fi.text}
                 </p>
                 <div className="flex space-x-2">
-                  <p>Author :</p>
+                  <p className=" font-medium">Author :</p>
                   <Link
                     href={`/store/${encodeURIComponent(
                       fi.author.name
                     )}/${encodeURIComponent(fi.author.id)}`}
-                    className="text-gray-400 hover:underline cursor-pointer active:text-indigo-600"
+                    className="text-gray-400 hover:underline cursor-pointer active:text-indigo-600 "
                   >
                     {fi.author.name}
                   </Link>

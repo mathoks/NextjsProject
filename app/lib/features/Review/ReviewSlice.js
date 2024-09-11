@@ -1,10 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
    
     showBox: false,
     openDialog: false,
     comment: {},
+    completed: false,
     rating: ''
 }
 
@@ -28,6 +29,10 @@ reducers: {
         state.openDialog = true;
         else state.openDialog = false;
     },
+
+    setCompleted: (state)=>{
+        state.completed = true
+    },
     resetBox : (state)=>{
         if(state.showBox){
         state.showBox = false;
@@ -39,5 +44,5 @@ reducers: {
 }
 });
 
-export const { setRevBox, resetBox, setRating, setOpenDialog, setComment } = ReviewSliceReducer.actions
+export const { setRevBox, setCompleted, resetBox, setRating, setOpenDialog, setComment } = ReviewSliceReducer.actions
 export default ReviewSliceReducer.reducer

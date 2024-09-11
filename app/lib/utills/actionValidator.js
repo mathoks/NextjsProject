@@ -89,11 +89,7 @@ const FormSchema3 = joi.object({
         .array()
         .items(
           joi
-            .string()
-            .trim()
-            .min(3)
-            .max(30)
-            .pattern(new RegExp("[a-zA-Z0-9s\u00A0.,:?]+$"))
+            .number()
         ),
       productId: joi
         .array()

@@ -4,15 +4,20 @@ import { Fab } from "@mui/material";
 import { CreateOutlined } from "@mui/icons-material";
 import PostForm from "../uiForms/postForm";
 import { getCategory } from "@/app/lib/actions/getCategory";
+import toast from "react-hot-toast";
 
 export const PostCreate = memo(function Memm({ avatar, userId }){
   const [open, setIsOpen] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setIsLoading] = useState(false);
   const [catda, setcatdat] = useState([]);
+ 
+
   const toggleOpen = () => {
     setIsOpen((prev) => !prev);
   };
+
+ 
 
   useEffect(() => {
     const getcat = async () => {
@@ -26,9 +31,7 @@ export const PostCreate = memo(function Memm({ avatar, userId }){
         setIsLoading(false);
       }
     };
-    if (open) {
-      getcat();
-    }
+    getcat()
   }, [open]);
 
   const height = typeof window !== "undefined" ? window.innerHeight : 0;
@@ -49,6 +52,7 @@ export const PostCreate = memo(function Memm({ avatar, userId }){
         avatar={avatar}
         userId={userId}
         cat={catda}
+       
       />
     </>
   );

@@ -13,18 +13,22 @@ import Modal from "./modal";
 import HomeMore from "../Buttons/HomeMore";
 import getUserReview from "@/app/actions/users/getUserReview";
 import { useSession } from "next-auth/react";
+import { useAppDispatch, useAppSelector } from "@/app/lib/hooks/hooks";
+import { setCompleted } from "@/app/lib/features/Review/ReviewSlice";
+
+
 
 
 const ReviewCard = memo(function NewEntry({prod_comment}){
     const {data: {user : {name , image}}} = useSession()
     const {comment, createdat, review} = prod_comment
+    
     const FormattedDate = memo(function My({ timestamp }) {
         const date = new Date(timestamp);
         return (
           <p className=" text-slate-700 text-sm">{`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`}</p>
         );
       });
-  
       const toggleClass = (e) => {
         const { classList } = e.target;
         classList.toggle("line-clamp-none");
@@ -69,11 +73,14 @@ const UserReview = memo(
     const { prod,  category_id, user_id } = props;
     const [userComment, updateUserComment] = useState({});
     const [error, setError] = useState(false);
+     const dispatch = useAppDispatch();
+    const comp = useAppSelector((state)=>state.review.completed)
     const [loading, setIsLoading] = useState(false);
     const initialOptimisticReviews = useMemo(() => {
       // Handle initial state here
     
       if (Object.keys(userComment).length > 0) {
+       
         return userComment; // Use props.reviews for initial data
       }
       return {}; // Or an empty array if no initial reviews
@@ -83,19 +90,21 @@ const UserReview = memo(
       initialOptimisticReviews
     );
 
-    
+    console.log(comp)
 
     useEffect(() => {
       const fetchUserComment = async () => {
+       
         setIsLoading(true);
         const userReview = await getUserReview(prod, user_id, category_id);
        try {
-        updateUserComment(userReview.data) 
-        
-          console.log(userComment)
+       if(Object.keys(userReview.data).length > 0) {
+        updateUserComment(userReview.data)
+        dispatch(setCompleted())
            startTransition(() => {
              setOptimisticReviews({...userComment})
-           });
+           })} else {};
+          
        } catch (error) {
         setError(true);
        }
@@ -105,7 +114,7 @@ const UserReview = memo(
     }
     fetchUserComment()
     }, [userComment.review]); // Only update on comment change
-
+   
     
     if (loading) return <p className="text-center ">loading....</p>;
     if (error) return <p>could not load your review</p>;

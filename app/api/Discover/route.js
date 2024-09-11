@@ -62,7 +62,7 @@ export async function GET(req) {
         }
       },
       ["post"],
-      { tags:['post'], revalidate: 60 * 60 * 1} // Cache for 1 hour (adjust as needed)
+      { tags:['post'], revalidate:  2} // Cache for 1 hour (adjust as needed)
     );
 
     const cachedStores = await getPost();
@@ -70,9 +70,8 @@ export async function GET(req) {
     return NextResponse.json(cachedStores);
   } catch (error) {
     // Log the error for debugging
-    return NextResponse.json({ error: "Internal Server Error" }, {
-      status: 500,
-    });
+    console.log(error)
+    return NextResponse.error()
   }
 }
 

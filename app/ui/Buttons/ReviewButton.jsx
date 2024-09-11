@@ -12,19 +12,19 @@ import {
   setOpenDialog,
   resetBox
 } from "@/app/lib/features/Review/ReviewSlice";
-import { useAppSelector } from "@/app/lib/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "@/app/lib/hooks/hooks";
 
 const ReviewButton = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+ 
+const ReviewState = useAppSelector((state) => state.review.showBox);
+const DialogState = useAppSelector((state) => state.review.openDialog);
+const completedState = useAppSelector((state) => state.review.completed);
 
-  const ReviewState = useAppSelector((state) => state.review.showBox);
-  const DialogState = useAppSelector((state) => state.review.openDialog);
 
-  useEffect(() => {
-    return ()=>{
-        dispatch(resetBox())
-    }
-  },[])
+
+
+
 
   return (
     <div>
@@ -32,7 +32,7 @@ const ReviewButton = () => {
         onClick={() => {
           dispatch(setOpenDialog());
         }}
-        className="text-blue-500 px-4 py-2 disabled:opacity-50 font-medium"
+        className ={`text-blue-500 px-4 py-2 disabled:opacity-50 font-medium ${completedState ? "invisible" : "visible"}`}
         disabled={ReviewState}
       >
         Write a review

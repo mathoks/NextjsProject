@@ -14,7 +14,7 @@ import { validatePost } from "@/app/lib/utills/actionValidator";
  * @param {FormData} formData - The form data containing invoice information.
  * @returns {Promise<object>} An object containing success/failure information and optional updated state.
  */
-export const addPost = async function ({}, formData) {
+export const addPost = async function (formData) {
   const headerList = headers();
   const domain = headerList.get("host");
   const session = await auth();
@@ -61,7 +61,7 @@ export const addPost = async function ({}, formData) {
       throw new Error("could not create store");
     }
    
-    // redirect(`http://${domain}/store/${encodeURIComponent(businessName)}/${encodeURIComponent(id)}`);
+    
 
     return {
       success: true,
@@ -89,7 +89,7 @@ export const addPost = async function ({}, formData) {
           error: error.message,
           name: error.message.split(" ")[0],
         },
-        message: `Validation failed. ${error.message}.`,
+        message: `${error.message}.`,
         success: false,
       };
     }

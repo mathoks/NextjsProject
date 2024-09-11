@@ -36,15 +36,14 @@ export async function GET(req) {
 
         return review_sum;
       },
-      ["reviews", prodId],
-      { revalidate: 60 * 5, tags: [`${"review" + prodId}`] }
+      [`reviews + ${prodId}`],
+      { revalidate: 60 * 5, tags: ['reviewstats'] }
     );
     const data = await ProductReview(prodId);
     if (data === null) {
       return NextResponse.json({ data: null });
     }
-    console.log(data)
-    
+
     return NextResponse.json({ data: data});
   } catch (error) {
     console.log(error)
