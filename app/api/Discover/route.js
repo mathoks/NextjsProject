@@ -62,7 +62,7 @@ export async function GET() {
         }
       },
       ["post"],
-      { tags:['post'], revalidate:  2} // Cache for 1 hour (adjust as needed)
+      { tags:['post'], revalidate: 60 * 60 * 1} // Cache for 1 hour (adjust as needed)
     );
 
     const cachedStores = await getPost();
