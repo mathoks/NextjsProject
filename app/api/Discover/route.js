@@ -14,7 +14,7 @@ const adapter = new PrismaNeon(neon);
 if (!prisma) {
   prisma = new PrismaClient({ adapter });
 }
-export async function GET(req) {
+export async function GET() {
   try {
     const getPost = unstable_cache(
       async () => {
@@ -69,8 +69,6 @@ export async function GET(req) {
    
     return NextResponse.json(cachedStores);
   } catch (error) {
-    // Log the error for debugging
-    console.log(error)
     return NextResponse.error()
   }
 }

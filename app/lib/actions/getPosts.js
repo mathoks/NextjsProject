@@ -6,7 +6,7 @@ export async function getPost() {
     const domain = headerList.get("host");
     const abort = new AbortController()
     try {
-      const response = await fetch(`http://${domain}/api/Discover`, { next: {tags:['post']}});
+      const response = await fetch(`http://${domain}/api/Discover`);
       if (!response.ok) {
         throw new Error(`API request failed with status ${response.status}`);
       }

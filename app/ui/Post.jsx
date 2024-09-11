@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar,  Chip } from "@mui/material";
+import { Avatar} from "@mui/material";
 import { getPost } from "../lib/actions/getPosts";
 import { TimeDifference } from "../lib/utills/Timestamp";
 import { EditNoteOutlined, LinkOutlined, TagOutlined } from "@mui/icons-material";
