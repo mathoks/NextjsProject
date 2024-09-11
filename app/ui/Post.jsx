@@ -9,7 +9,7 @@ import { auth } from "@/auth";
 const Post = async () => {
   const data = await getPost();
   const session = await auth()
-  console.log(Array.isArray(data))
+  console.log(data)
   if (!Array.isArray(data) || data.length === 0) return <p>no post yet</p>;
   const PostList = () =>
     data?.map(
