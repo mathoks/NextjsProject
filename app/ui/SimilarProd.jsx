@@ -3,6 +3,7 @@ import React from 'react'
 import { MakeEllipsis } from '../lib/utills/Makelipsis'
 import { BookmarkAddOutlined } from '@mui/icons-material'
 import RatingsWin from './utilComp/RatingsWin'
+import { useRouter } from 'next/navigation'
 
 const Ava = (ava) => {
     switch (ava) {
@@ -21,10 +22,10 @@ const Ava = (ava) => {
     }
   };
 const SimilarProd = ({prods}) => {
-
+const router = useRouter()
  if(prods.length === 0)return <p>No similar Products</p>
  const Tiles = prods.map(({id, storeId, name, description, price, availability,  rating, prodImage}, ids)=>{
-   return <div className='w-fit  h-full shadow-md p-1  rounded-md bg-white ' key={ids}>
+   return <div className='w-[14rem] flex-shrink-0  ring-1 h-full shadow-lg p-1  rounded-md bg-white ' key={ids}>
                   
                   <div className="flex justify-end">
                 
@@ -82,8 +83,13 @@ const SimilarProd = ({prods}) => {
   })
 
   return (
-    <div className='overflow-x-auto flex space-x-4 py-2'>
+    <div className='space-y-4 '>
+    <div className='overflow-x-auto flex space-x-4 py-2 px-2'>
     {Tiles}
+    </div>
+    <span className='flex justify-end'>
+        <button className='text-blue-500 font-medium text-end'>See all</button>
+    </span>
     </div>
   )
 }

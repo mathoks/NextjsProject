@@ -19,6 +19,7 @@ export async function getProductByIds(context) {
 
 export default async function Layout({ children}) {
   return (
+    <>
     <div className="flex flex-col space-y-6 text-[15px]  bg-white shadow-md">
       <header
         id="prod_header"
@@ -35,9 +36,10 @@ export default async function Layout({ children}) {
       </header>
 
       <main className="bg-white">{children}</main>
-      <footer className="bg-white h-16 ">
+      </div>
+      <footer className="bg-white h-16 mt-0">
         <Footer />
       </footer>
-    </div>
+      </>
   );
 }

@@ -36,14 +36,13 @@ import SignToReview from "@/app/ui/Buttons/SignToReview";
 
 const Page = async ({ params }) => {
   const product = await getProductByIds(params);
-  console.log(product.data.category.products)
   const user = await auth() 
   if (!product.data) return <div>Product not found</div>;
  
   return (
     <>
       <ProTab data={product.data || {}} />
-      <div className=" bg-white flex flex-col space-y-4 mt-[4rem]">
+      <div className=" bg-white flex flex-col space-y-4 mt-[4rem] pb-0">
         <div id="Overview" className="view space-y-2">
           <ProductPage1 data={product.data || {}} />
           <hr />
@@ -70,16 +69,17 @@ const Page = async ({ params }) => {
 
           <Page3 prod={params.prodId} data={product?.data?.prod_reviews || null} canComment={params.storeOwner === user?.user?.id ? true : false}/>
           <WriteReview params={params.prodId || null} category = {product.data.categoryId || null}/>
-          <hr />
+         
         </div>
-
-        <div id="ProductRecommended" className="view py-8">
+        <hr />
+        <div id="ProductRecommended" className="view pt-8">
+        
           <h1 className="text-lg font-semibold px-4">Similar Products</h1>
 
           <Page4 products = {product.data.category.products || []} />
         </div>
       </div>
-      <div className="min-h-[5rem]"></div>
+      {/* <div className="min-h-[5rem]"></div> */}
     </>
   );
 };
