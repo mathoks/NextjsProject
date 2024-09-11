@@ -36,6 +36,7 @@ import SignToReview from "@/app/ui/Buttons/SignToReview";
 
 const Page = async ({ params }) => {
   const product = await getProductByIds(params);
+  console.log(product.data.category.products)
   const user = await auth() 
   if (!product.data) return <div>Product not found</div>;
  
@@ -75,7 +76,7 @@ const Page = async ({ params }) => {
         <div id="ProductRecommended" className="view py-8">
           <h1 className="text-lg font-semibold px-4">Similar Products</h1>
 
-          <Page4 />
+          <Page4 products = {product.data.category.products || []} />
         </div>
       </div>
       <div className="min-h-[5rem]"></div>
