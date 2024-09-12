@@ -54,14 +54,14 @@ export async function GET() {
         }
       },
       ["store"],
-      { tags:['store'], revalidate: 60 * 60 * 1} 
+      { tags:['store'], revalidate: 60 * 5} 
     );
 
     const cachedStores = await getUsers();
     
     return NextResponse.json(cachedStores);
   } catch (error) {
-    console.log(error)
+    
     // Log the error for debugging
     return NextResponse.error()
   }
